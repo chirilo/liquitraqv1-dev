@@ -38,7 +38,7 @@ const logout = () => {
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
-                        <div class="flex" style="border-right: 2px solid #cecece; padding-right: 15%; margin: 5px 0px 5px 0px;">
+                        <div class="flex" style="padding-right: 15%; margin: 5px 0px 5px 0px;">
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
                                 <Link :href="route('dashboard')">
@@ -274,14 +274,14 @@ const logout = () => {
             </nav>
 
             <!-- Page Heading -->
-            <header v-if="$slots.header" class="bg-white dark:bg-gray-800 shadow">
+            <!-- <header v-if="$slots.header" class="bg-white dark:bg-gray-800 shadow">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     <slot name="header" />
                 </div>
-            </header>
+            </header> -->
 
             <!-- Page Content -->
-            <main>
+            <main class="mainbackground">
                 <slot />
             </main>
         </div>

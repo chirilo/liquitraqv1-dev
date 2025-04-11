@@ -11,7 +11,8 @@
         "@fullcalendar/interaction": "^6.1.15",
         "@fullcalendar/list": "^6.1.15",
         "@fullcalendar/timegrid": "^6.1.15",
-        "@fullcalendar/vue3": "^6.1.15"
+        "@fullcalendar/vue3": "^6.1.15",
+        "flowbite": "^3.1.2"
     },
     "devDependencies": {
         "@inertiajs/vue3": "^2.0",
