@@ -1,7 +1,7 @@
 <script setup>
     import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 
-    //import SearchBarSideBar from '@/Components/SearchBarSideBar.vue';
+    import SearchBarSideBar from '@/Components/SearchBarSideBar.vue';
 
     import Calendar from '@/Components/Calendar.vue';
     import RecentJobs from '@/Components/RecentJobs.vue';
@@ -18,21 +18,21 @@
             
             <!-- LEFT PART -->
             <!-- Container for Left Sidebar (search and quick add job) -->
-            <div id="left-side" class="flex flex-col items-start gap-6 overflow-hidden rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] md:row-span-3 lg:p-10 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]">
+            <div id="left-side" class="mx-auto flex flex-col items-start gap-6 overflow-hidden rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] md:row-span-3 lg:p-10 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]">
                 
-                <div class="relative flex items-center gap-6 lg:items-end">
+                <div class="mx-auto relative flex items-center gap-6 lg:items-end sm:hidden hidden lg:block">
                     
                     <div class="shrink-0 flex items-center"><a href="http://127.0.0.1:8000/dashboard"><img src="/images/logos/liquis-logo.png" alt="LiquiTraq" class="block h-9 w-auto"></a></div>
                 </div>
 
-                <div class="relative flex items-center gap-6 lg:items-end">
+                <div class="mx-auto relative flex items-center gap-6 lg:items-end">
                     <div class="relative flex items-center gap-6 lg:items-end">
                         <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="max-w-2xl max-h-2xl rounded-full cursor-pointer" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="User dropdown">
                     </div>
 
-                    <div class="relative flex items-center gap-6 lg:items-end">
+                    <!-- <div class="relative flex items-center gap-6 lg:items-end">
                         <h1>My Account</h1>
-                    </div>
+                    </div> -->
                     <!-- Dropdown menu -->
                     <div id="userDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
                         <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
@@ -59,8 +59,11 @@
                 <!-- <div id="screenshot-container" class="relative flex w-full flex-1 items-stretch">
                     <input type="search" name="search" placeholder="Search anything" />
                 </div> -->
-                 <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="search" name="search" placeholder="Search anything" />
-                 <br/>
+
+                <SearchBarSideBar/>
+
+                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="search" name="search" placeholder="Search anything" />
+                <br/>
 
 
                  <h2 class="block w-full text-center">FILTER JOBS BY</h2>

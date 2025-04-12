@@ -9,6 +9,7 @@
       </div>
       <div class="relative flex flex-col rounded-lg bg-white border-slate-200" style="width: 100%;">
           <ul style="padding: 0;">
+            
               <li>
                   <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">      
                     <div class="mx-3 border-slate-200 pb-3 pt-2 px-1">
@@ -21,18 +22,7 @@
                     </div>
                   </div>
               </li>
-              <!-- <li>
-                  <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%; padding-right: 2em;">      
-                    <div class="mx-3 border-slate-200 pb-3 pt-2 px-1">
-                      <span class="text-sm text-slate-600 font-medium">
-                        Building: E. Barret Prettyman U.S. Courthouse
-                      </span>
-                      <span class="text-sm text-slate-600 font-medium" style="float: inline-end;">
-                          April 19, 2025
-                      </span>
-                    </div>
-                  </div>
-              </li> -->
+          
               <li>
                   <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">      
                     <div class="mx-3 border-slate-200 pb-3 pt-2 px-1">
@@ -45,6 +35,8 @@
                     </div>
                   </div>
               </li>
+
+
               <li>
                   <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">      
                     <div class="mx-3 border-slate-200 pb-3 pt-2 px-1">

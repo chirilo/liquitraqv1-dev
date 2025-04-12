@@ -10,16 +10,9 @@
       </div>
       <div class="relative flex flex-col rounded-lg bg-white border-slate-200" style="width: 100%;">
           <ul style="padding: 0;">
+
               <li>
                   <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">      
-                    <!-- <div class="p-4">
-                      <h5 class="mb-2 text-slate-800 text-xl font-semibold">
-                        Building: E. Barret Prettyman U.S. Courthouse
-                      </h5>
-                      <p class="text-slate-600 leading-normal font-light">
-                        Employee
-                      </p>
-                    </div> -->
                     <div class="mx-3 border-slate-200 pb-3 pt-2 px-1">
                       <span class="text-sm text-slate-600 font-medium">
                         Building: E. Barret Prettyman U.S. Courthouse
@@ -33,14 +26,6 @@
               
               <li>
                   <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">      
-                    <!-- <div class="p-4">
-                      <h5 class="mb-2 text-slate-800 text-xl font-semibold">
-                        Job Name
-                      </h5>
-                      <p class="text-slate-600 leading-normal font-light">
-                        Employee
-                      </p>
-                    </div> -->
                     <div class="mx-3 border-t border-slate-200 pb-3 pt-2 px-1">
                       <span class="text-sm text-slate-600 font-medium">
                         Building: E. Barret Prettyman U.S. Courthouse
@@ -54,14 +39,6 @@
 
               <li>
                   <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">      
-                    <!-- <div class="p-4">
-                      <h5 class="mb-2 text-slate-800 text-xl font-semibold">
-                        Job Name
-                      </h5>
-                      <p class="text-slate-600 leading-normal font-light">
-                        Employee
-                      </p>
-                    </div> -->
                     <div class="mx-3 border-t border-slate-200 pb-3 pt-2 px-1">
                       <span class="text-sm text-slate-600 font-medium">
                         Building: E. Barret Prettyman U.S. Courthouse
