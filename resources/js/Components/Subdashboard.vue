@@ -4,6 +4,9 @@
     //import SearchBarSideBar from '@/Components/SearchBarSideBar.vue';
 
     import Calendar from '@/Components/Calendar.vue';
+    import RecentJobs from '@/Components/RecentJobs.vue';
+    import JobsLastSevenDays from '@/Components/JobsLastSevenDays.vue';
+    import UpcomingJobs from '@/Components/UpcomingJobs.vue';
 
     import { Modal } from 'flowbite'
 </script>
@@ -17,6 +20,11 @@
             <!-- Container for Left Sidebar (search and quick add job) -->
             <div id="left-side" class="flex flex-col items-start gap-6 overflow-hidden rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] md:row-span-3 lg:p-10 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]">
                 
+                <div class="relative flex items-center gap-6 lg:items-end">
+                    
+                    <div class="shrink-0 flex items-center"><a href="http://127.0.0.1:8000/dashboard"><img src="/images/logos/liquis-logo.png" alt="LiquiTraq" class="block h-9 w-auto"></a></div>
+                </div>
+
                 <div class="relative flex items-center gap-6 lg:items-end">
                     <div class="relative flex items-center gap-6 lg:items-end">
                         <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="max-w-2xl max-h-2xl rounded-full cursor-pointer" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="User dropdown">
@@ -123,220 +131,20 @@
                 
                 <!-- Container for RECENT JOBS -->
                 <!-- <div id="recent-jobs" class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]"> -->
-                <div id="recent-jobs" class="grid items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]">
-                    <div class="relative flex flex-col " style="width: 100%; text-align: center;">
-                        <h1 class="text-center font-bold text-xl">RECENT JOBS</h1>
-                    </div>
-                    <div class="relative flex flex-col rounded-lg bg-white shadow-sm border border-slate-200" style="width: 100%;">
-                      
-                        <ul style="padding: 0 0.5rem 0 0.5rem;">
-                            <li>
-                                <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">      
-                                  <div class="p-4">
-                                    <h5 class="mb-2 text-slate-800 text-xl font-semibold">
-                                      Building: Paul G. Rogers Federal Building and U.S. Courthouse
-                                    </h5>
-                                    <p class="text-slate-600 leading-normal font-light">
-                                      City: West Palm Beach
-                                    </p>
-                                  </div>
-                                  <div class="mx-3 border-t border-slate-200 pb-3 pt-2 px-1">
-                                    <span class="text-sm text-slate-600 font-medium">
-                                      Type: Facility Decommissioning
-                                    </span>
-                                    <span class="text-sm text-slate-600 font-medium" style="float: inline-end;">
-                                      Start Date: April 19, 2025
-                                    </span>
-                                  </div>
-                                </div>
-                            </li>
-                            
-                            <li>
-                                <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">      
-                                  <div class="p-4">
-                                    <h5 class="mb-2 text-slate-800 text-xl font-semibold">
-                                      Building: Paul G. Rogers Federal Building and U.S. Courthouse
-                                    </h5>
-                                    <p class="text-slate-600 leading-normal font-light">
-                                      City: West Palm Beach
-                                    </p>
-                                  </div>
-                                  <div class="mx-3 border-t border-slate-200 pb-3 pt-2 px-1">
-                                    <span class="text-sm text-slate-600 font-medium">
-                                      Type: Data Center Decommissioning
-                                    </span>
-                                    <span class="text-sm text-slate-600 font-medium" style="float: inline-end;">
-                                      Start Date: April 19, 2025
-                                    </span>
-                                  </div>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">      
-                                  <div class="p-4">
-                                    <h5 class="mb-2 text-slate-800 text-xl font-semibold">
-                                      Building: Paul G. Rogers Federal Building and U.S. Courthouse
-                                    </h5>
-                                    <p class="text-slate-600 leading-normal font-light">
-                                      City: West Palm Beach
-                                    </p>
-                                  </div>
-                                  <div class="mx-3 border-t border-slate-200 pb-3 pt-2 px-1">
-                                    <span class="text-sm text-slate-600 font-medium">
-                                      Type: Data Center Decommissioning
-                                    </span>
-                                    <span class="text-sm text-slate-600 font-medium" style="float: inline-end;">
-                                      Start Date: April 19, 2025
-                                    </span>
-                                  </div>
-                                </div>
-                            </li>
-                            
-                        </ul>
-                    </div>
-                    
-                </div>
-
+                
+                <RecentJobs/>
 
                 <!-- Container for JOB LAST 7 DAYS -->
                 <!-- <div id="job-last-7-days" class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]"> -->
-                <div id="job-last-7-days" class="grid items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]">
-                    <div class="relative flex flex-col " style="width: 100%;">
-                        <h1 class="font-bold">JOBS LAST 7 DAYS</h1>
-                    </div>
-                    <div class="relative flex flex-col rounded-lg bg-white border-slate-200" style="width: 100%;">
-                        <ul style="padding: 0;">
-                            <li>
-                                <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">      
-                                  <div class="mx-3 border-slate-200 pb-3 pt-2 px-1">
-                                    <span class="text-sm text-slate-600 font-medium">
-                                      Building: E. Barret Prettyman U.S. Courthouse
-                                    </span>
-                                    <span class="text-sm text-slate-600 font-medium" style="float: inline-end;">
-                                        April 19, 2025
-                                    </span>
-                                  </div>
-                                </div>
-                            </li>
-                            <!-- <li>
-                                <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%; padding-right: 2em;">      
-                                  <div class="mx-3 border-slate-200 pb-3 pt-2 px-1">
-                                    <span class="text-sm text-slate-600 font-medium">
-                                      Building: E. Barret Prettyman U.S. Courthouse
-                                    </span>
-                                    <span class="text-sm text-slate-600 font-medium" style="float: inline-end;">
-                                        April 19, 2025
-                                    </span>
-                                  </div>
-                                </div>
-                            </li> -->
-                            <li>
-                                <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">      
-                                  <div class="mx-3 border-slate-200 pb-3 pt-2 px-1">
-                                    <span class="text-sm text-slate-600 font-medium">
-                                      Building: E. Barret Prettyman U.S. Courthouse
-                                    </span>
-                                    <span class="text-sm text-slate-600 font-medium" style="float: inline-end;">
-                                        April 19, 2025
-                                    </span>
-                                  </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">      
-                                  <div class="mx-3 border-slate-200 pb-3 pt-2 px-1">
-                                    <span class="text-sm text-slate-600 font-medium">
-                                      Building: E. Barret Prettyman U.S. Courthouse
-                                    </span>
-                                    <span class="text-sm text-slate-600 font-medium" style="float: inline-end;">
-                                        April 19, 2025
-                                    </span>
-                                  </div>
-                                </div>
-                            </li>
-                            
-                        </ul>
-                    </div>
-                    
-                    
-                </div>
-
+                
+                <JobsLastSevenDays/>
 
                 <!-- Container for UPCOMING JOBS -->
                 <!-- <div id="upcoming-jobs" class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800"> -->
-                <div id="upcoming-jobs" class="grid items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800">
-                    
-                    <div class="relative flex flex-col " style="width: 100%;">
-                        <h1 class="font-bold">UPCOMING JOBS</h1>
-                    </div>
-                    <div class="relative flex flex-col rounded-lg bg-white border-slate-200" style="width: 100%;">
-                        <ul style="padding: 0;">
-                            <li>
-                                <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">      
-                                  <!-- <div class="p-4">
-                                    <h5 class="mb-2 text-slate-800 text-xl font-semibold">
-                                      Building: E. Barret Prettyman U.S. Courthouse
-                                    </h5>
-                                    <p class="text-slate-600 leading-normal font-light">
-                                      Employee
-                                    </p>
-                                  </div> -->
-                                  <div class="mx-3 border-slate-200 pb-3 pt-2 px-1">
-                                    <span class="text-sm text-slate-600 font-medium">
-                                      Building: E. Barret Prettyman U.S. Courthouse
-                                    </span>
-                                    <span class="text-sm text-slate-600 font-medium" style="float: inline-end;">
-                                        April 19, 2025
-                                    </span>
-                                  </div>
-                                </div>
-                            </li>
-                            
-                            <li>
-                                <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">      
-                                  <!-- <div class="p-4">
-                                    <h5 class="mb-2 text-slate-800 text-xl font-semibold">
-                                      Job Name
-                                    </h5>
-                                    <p class="text-slate-600 leading-normal font-light">
-                                      Employee
-                                    </p>
-                                  </div> -->
-                                  <div class="mx-3 border-t border-slate-200 pb-3 pt-2 px-1">
-                                    <span class="text-sm text-slate-600 font-medium">
-                                      Building: E. Barret Prettyman U.S. Courthouse
-                                    </span>
-                                    <span class="text-sm text-slate-600 font-medium" style="float: inline-end;">
-                                        April 19, 2025
-                                    </span>
-                                  </div>
-                                </div>
-                            </li>
+                
 
-                            <li>
-                                <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">      
-                                  <!-- <div class="p-4">
-                                    <h5 class="mb-2 text-slate-800 text-xl font-semibold">
-                                      Job Name
-                                    </h5>
-                                    <p class="text-slate-600 leading-normal font-light">
-                                      Employee
-                                    </p>
-                                  </div> -->
-                                  <div class="mx-3 border-t border-slate-200 pb-3 pt-2 px-1">
-                                    <span class="text-sm text-slate-600 font-medium">
-                                      Building: E. Barret Prettyman U.S. Courthouse
-                                    </span>
-                                    <span class="text-sm text-slate-600 font-medium" style="float: inline-end;">
-                                        April 19, 2025
-                                    </span>
-                                  </div>
-                                </div>
-                            </li>                            
-                        </ul>
-                    </div>
-                </div>
+                <UpcomingJobs />
+
 
                 <!-- Container for UPCOMING JOBS -->
                 <div id="upcoming-jobs" class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800" style="display: none;">
