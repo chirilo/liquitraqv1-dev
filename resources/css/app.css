@@ -33,3 +33,7 @@
 h1, h2 {
     color: #00afef;
 }
+
+.float-right{
+    float: right;
+}

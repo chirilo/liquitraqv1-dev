@@ -1,4 +1,23 @@
-<script>
+<script setup>
+
+const props = defineProps({
+    liquijobs : Object,
+    filters : Object,
+    message : String
+});
+
+const filters = {
+    filter: props.filters.filter,
+}
+const form = useForm(filters);
+
+const deleteTrade = (id) => {
+    if (confirm("Are you sure you want to move this to trash")) {
+     form.delete(route('liquijobs.destroy',{id:id}), {
+      preserveScroll: true,
+     });
+    }
+};
 
 </script>
 
@@ -10,22 +29,22 @@
     <div class="relative flex flex-col rounded-lg bg-white shadow-sm border border-slate-200" style="width: 100%;">
       
         <ul style="padding: 0 0.5rem 0 0.5rem;">
-            <li>
+            <li v-for="entry in props.liquijobs.data" :key="entry.id">
                 <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">      
                   <div class="p-4">
                     <h5 class="mb-2 text-slate-800 text-xl font-semibold">
-                      Building: Paul G. Rogers Federal Building and U.S. Courthouse
+                      Building: {{ entry.building }}
                     </h5>
                     <p class="text-slate-600 leading-normal font-light">
-                      City: West Palm Beach
+                      City: {{ entry.building }}
                     </p>
                   </div>
                   <div class="mx-3 border-t border-slate-200 pb-3 pt-2 px-1">
                     <span class="text-sm text-slate-600 font-medium">
-                      Type: Facility Decommissioning
+                      Type: {{ entry.so_number }}
                     </span>
                     <span class="text-sm text-slate-600 font-medium" style="float: inline-end;">
-                      Start Date: April 19, 2025
+                      Start Date: {{ entry.created_at }}
                     </span>
                   </div>
                 </div>

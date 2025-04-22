@@ -72,7 +72,7 @@ class LiquijobController extends Controller
             'additional_images' => $request->additional_images
         ]);
 
-        return redirect()->route('liquijobs.index')->with('message', 'Blog Post Created Successfully');
+        return redirect()->route('liquijobs.index')->with('message', 'Job Created Successfully');
     }
 
     /**
@@ -83,9 +83,9 @@ class LiquijobController extends Controller
         //
 
         return Inertia::render(
-            'Blog/View',
+            'Liquijobs/View',
             [
-                'blog' => $blog
+                'liquijobs' => $liquijob
             ]
         );
     }
@@ -98,9 +98,9 @@ class LiquijobController extends Controller
         //
 
         return Inertia::render(
-            'Blog/Edit',
+            'Liquijobs/Edit',
             [
-                'blog' => $blog
+                'liquijobs' => $liquijob
             ]
         );
     }
@@ -114,15 +114,15 @@ class LiquijobController extends Controller
 
         $request->validate([
             'heading' => 'required|string|max:255',
-            'slug' => 'required||unique:blogs,slug,'.$blog->id.',id|string|max:255'
+            'slug' => 'required||unique:liquijobs,slug,'.$blog->id.',id|string|max:255'
         ]);
-        $blog->update([
+        $liquijob->update([
             'heading' => $request->heading,
             'slug' => Str::slug($request->slug),
             'description' => $request->description
         ]);
 
-        return redirect()->route('blogs.index')->with('message', 'Blog Post Updated Successfully');
+        return redirect()->route('liquijobs.index')->with('message', 'Liquijob Updated Successfully');
     }
 
     /**
@@ -132,6 +132,6 @@ class LiquijobController extends Controller
     {
         //
         $blog->delete();
-        return redirect()->route('blogs.index')->with('message', 'Blog Post Deleted Successfully');
+        return redirect()->route('liquijobs.index')->with('message', 'Liquijob Deleted Successfully');
     }
 }

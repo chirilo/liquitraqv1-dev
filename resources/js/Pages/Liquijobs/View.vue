@@ -13,20 +13,16 @@ import RecentJobs from '@/Components/RecentJobs.vue';
 import JobsLastSevenDays from '@/Components/JobsLastSevenDays.vue';
 import UpcomingJobs from '@/Components/UpcomingJobs.vue';
 
-const liquijobsCreate = function(event) {
-	window.open("/liquijobs/create");
-}
-
 const props = defineProps({
     liquijobs : Object,
     filters : Object,
     message : String
 });
 
-const filters = {
-    filter: props.filters.filter,
-}
-const form = useForm(filters);
+// const filters = {
+//     filter: props.filters.filter,
+// }
+// const form = useForm(filters);
 
 const deleteTrade = (id) => {
     if (confirm("Are you sure you want to move this to trash")) {
@@ -46,15 +42,6 @@ const deleteTrade = (id) => {
         </template>
 
         <div class="py-2">
-        	<div
-				 v-if="props.message"
-				 class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
-				 role="alert"
-			  >
-				<span class="font-medium">
-					{{ props.message }}
-				</span>
-			</div>
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
                     <div>
@@ -166,9 +153,7 @@ const deleteTrade = (id) => {
 				                                    <p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
 				                                </div>
 				                            </div>
-				                            
-				                            <button v-on:click="liquijobsCreate" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"> ADD ASSETS <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </button>
-				                           
+				                            <button class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"> ADD ASSETS <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </button>
 				                        </form>
 				                    </div>
 
@@ -179,92 +164,63 @@ const deleteTrade = (id) => {
 				            <!-- RIGHT PART -->
 				            <div id="right-side" class="lg:col-span-2">
 				                 
-				                <!-- recent jobs -->
+				                <!-- curret job selected /recent jobs -->
 				                <div id="recent-jobs" class="grid mb-2 items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]">
 								    <div class="relative flex flex-col " style="width: 100%; text-align: center;">
-								        <h1 class="text-center font-bold text-xl">RECENT JOBS</h1>
+								        <h1 class="text-center font-bold text-xl">{{props.liquijobs.building}}</h1>
 								    </div>
 								    <div class="relative flex flex-col rounded-lg bg-white shadow-sm border border-slate-200" style="width: 100%;">
 								      
 								        <ul style="padding: 0 0.5rem 0 0.5rem;">
-								            <li v-for="entry in props.liquijobs.data" :key="entry.id">
-								                <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">      
-								                  <div class="p-4">
-								                  	<PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="max-w-xl ml-2 float-right" >VIEW</PrimaryLink>
-								                    <h5 class="mb-2 text-slate-800 text-xl font-semibold">
-								                      Building: {{ entry.building }}
-								                    </h5>
-								                    <p class="text-slate-600 leading-normal font-light">
-								                      City: {{ entry.building }}
-								                    </p>
-								                  </div>
-								                  <div class="mx-3 border-t border-slate-200 pb-3 pt-2 px-1">
-								                    <span class="text-sm text-slate-600 font-medium">
-								                      Type: {{ entry.so_number }}
-								                    </span>
-								                    <span class="text-sm text-slate-600 font-medium" style="float: inline-end;">
-								                      Start Date: {{ entry.created_at }}
-								                    </span>
-								                  </div>
-								                </div>
-								            </li>
 								            
+								            <li>
+								            	<!-- <h5 class="mb-2 text-slate-800 text-xl font-semibold">
+								                      Building: {{props.liquijobs.so_number}}
+								                    </h5> -->
+								            	<div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">
+								                  	<div class="p-4">
+								                    <p class="text-slate-600 leading-normal font-light">
+								                      <b style="font-weight: bold;">Corporate Address: </b> {{props.liquijobs.so_number}}
+								                    </p>
+								                	</div>
+								                    <div class="p-4">
+								                    <p class="text-slate-600 leading-normal font-light">
+								                      <b style="font-weight: bold;">Contact Name: </b> {{props.liquijobs.hid_employee_name}}
+								                    </p>
+								                	</div>
+								                    <div class="p-4">
+								                    <p class="text-slate-600 leading-normal font-light">
+								                      <b style="font-weight: bold;">Phone: </b> {{props.liquijobs.so_number}}
+								                    </p>
+								                	</div>
+								                    <div class="p-4">
+								                    <p class="text-slate-600 leading-normal font-light">
+								                      <b style="font-weight: bold;">Email: </b> {{props.liquijobs.so_number}}
+								                    </p>
+								                	</div>
+								                    <div class="p-4">
+								                    <p class="text-slate-600 leading-normal font-light">
+								                      <b style="font-weight: bold;">Location Name: </b> {{props.liquijobs.city}}
+								                    </p>
+								                	</div>
+								                    <div class="p-4">
+								                    <p class="text-slate-600 leading-normal font-light">
+								                      <b style="font-weight: bold;">Start Date: </b> {{props.liquijobs.created_at}}
+								                    </p>
+								                	</div>
+								                  </div>
+								        	</li>
+								            <li>
+								            	<button class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"> ALL ASSETS <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </button>
+								            </li>
 								        </ul>
 								    </div> 
 								</div>
-				                <!-- recent jobs -->
+				                <!-- curret job selected / recent jobs -->
     
-				                <!-- jobs last 7 days -->
-				                <div id="job-last-7-days" class="grid items-start mb-2 gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]">
-							      <div class="relative flex flex-col " style="width: 100%;">
-							          <h1 class="font-bold">JOBS LAST 7 DAYS</h1>
-							      </div>
-							      <div class="relative flex flex-col rounded-lg bg-white border-slate-200" style="width: 100%;">
-									<ul style="padding: 0;">
-							            
-										<li v-for="entry in props.liquijobs.data" :key="entry.id">
-											<div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">      
-												<div class="mx-3 border-slate-200 pb-3 pt-2 px-1">
-													<span class="text-sm text-slate-600 font-medium">
-													Building: {{ entry.building }}
-													</span>
-													<span class="text-sm text-slate-600 font-medium" style="float: inline-end;">
-													  {{ entry.created_at }}
-													</span>
-												</div>
-											</div>
-										</li>
-									</ul>
-							      </div> 
-							  	</div>
-				                <!-- jobs last 7 days -->
+				                
 
-				                <!-- <UpcomingJobs /> -->
-				                <!-- upcoming jobs -->
-				                <div id="upcoming-jobs" class="grid items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800">
-      
-							      	<div class="relative flex flex-col " style="width: 100%;">
-							          <h1 class="font-bold">UPCOMING JOBS</h1>
-							      	</div>
-							      	<div class="relative flex flex-col rounded-lg bg-white border-slate-200" style="width: 100%;">
-							          	<ul style="padding: 0;">
-
-							            	<li v-for="entry in props.liquijobs.data" :key="entry.id">
-							                  <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">      
-							                    <div class="mx-3 border-slate-200 pb-3 pt-2 px-1">
-							                      <span class="text-sm text-slate-600 font-medium">
-							                        Building: {{ entry.building }}
-							                      </span>
-							                      <span class="text-sm text-slate-600 font-medium" style="float: inline-end;">
-							                          {{ entry.created_at }}
-							                      </span>
-							                    </div>
-							                  </div>
-							            	</li>                             
-							          	</ul>
-							      	</div>
-							  	</div>
-				                <!-- upcoming jobs -->
+				                
 				            </div>
 
 				            
@@ -285,65 +241,15 @@ const deleteTrade = (id) => {
             </div>
         </div>
         <!-- -->
-        <h1>INDEX VUE PAGE</h1>
+        <h1>VIEW VUE PAGE</h1>
 		<div class="py-12">
-			<div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-			  <div
-				 v-if="props.message"
-				 class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
-				 role="alert"
-			  >
-				 <span class="font-medium">
-					{{ props.message }}
-				 </span>
-			  </div>
-			   <div class="bg-white rounded-md shadow overflow-x-auto">
-				<table class="w-full whitespace-nowrap">
-				  <thead>
-				    <tr class="text-left font-bold">
-					 <th class="pb-4 pt-6 px-6">Building</th>
-					 <th class="pb-4 pt-6 px-6">SO Number</th>
-					 <th class="pb-4 pt-6 px-6">Publsihed Date</th>
-					 <th class="pb-4 pt-6 px-6">Actions</th>
-				    </tr>
-				  </thead>
-				  <tbody>
-				    <tr v-for="entry in props.liquijobs.data" :key="entry.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
-					 <td class="border-t">
-					   <span class="flex items-center px-6 py-4 focus:text-indigo-500">
-						{{ entry.building }}
-					   </span>
-					 </td>
-					 <td class="border-t">
-					   <span class="flex items-center px-6 py-4 focus:text-indigo-500">
-						{{ entry.so_number }}
-					   </span>
-					 </td>
-					 <td class="border-t">
-					   <span class="flex items-center px-6 py-4 focus:text-indigo-500">
-						{{ entry.created_at }}
-					   </span>
-					 </td>
-					 <td class="border-t" >
-					 	<PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="max-w-xl ml-2" >VIEW</PrimaryLink>
-					   	<PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.edit', {'id': entry.id})" class="max-w-xl ml-2" >EDIT</PrimaryLink>
-					   	<DangerButton
-						class="ml-3"
-						@click="deleteTrade(entry.id)" v-if="entry.deleted_at == null"
-						>
-						Trash
-					   </DangerButton>
-					 </td>
-				    </tr>
-				    <tr v-if="props.liquijobs.data.length === 0">
-					 <td class="px-6 py-4 border-t" colspan="4">No posts found.</td>
-				    </tr>
-				  </tbody>
-				</table>
-			   </div>
-			   <pagination class="mt-6" :links="props.liquijobs.links" />
-			</div>
-		</div>
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+                <h1 class="text-2xl">{{props.liquijobs.so_number}}</h1>
+                <div>
+                    {{props.liquijobs.so_number}}
+                </div>
+            </div>
+        </div>
         <!-- -->
     </AppLayout>
     	

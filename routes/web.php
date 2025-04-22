@@ -6,6 +6,7 @@ use Inertia\Inertia;
 
 
 use App\Http\Controllers\LiquijobController;
+use App\Http\Controllers\LjobController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -31,4 +32,9 @@ Route::middleware([
 // Liquijobs
 Route::middleware('auth')->group(function () {
     Route::resource('liquijobs', LiquijobController::class);
+});
+
+// ljobs
+Route::middleware('auth')->group(function () {
+    Route::resource('ljobs', LjobController::class);
 });
