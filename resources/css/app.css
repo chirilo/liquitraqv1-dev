@@ -6,6 +6,90 @@
     display: none;
 }
 
+
+
+@layer base {
+        @font-face {
+            font-family: RethinkSansBold;
+            font-weight: 900;
+            src:url(/font/RethinkSans-Bold.woff2) format("woff2"), 
+            url(/font/RethinkSans-Bold.woff) format("woff"),
+            url(/font/RethinkSans-Bold.ttf) format("truetype");
+        }
+        @font-face {
+            font-family: RethinkSansBoldItalic;
+            font-weight: 900;
+            src:url(/font/RethinkSans-BoldItalic.woff2) format("woff2"), 
+            url(/font/RethinkSans-BoldItalic.woff) format("woff"),
+            url(/font/RethinkSans-BoldItalic.ttf) format("truetype");
+        }
+        @font-face {
+            font-family: RethinkSansExtraBold;
+            font-weight: 900;
+            src:url(/font/RethinkSans-ExtraBold.woff2) format("woff2"), 
+            url(/font/RethinkSans-ExtraBold.woff) format("woff"),
+            url(/font/RethinkSans-ExtraBold.ttf) format("truetype");
+        }
+        @font-face {
+            font-family: RethinkSansExtraBoldItalic;
+            font-weight: 900;
+            src:url(/font/RethinkSans-ExtraBoldItalic.woff2) format("woff2"), 
+            url(/font/RethinkSans-ExtraBoldItalic.woff) format("woff"),
+            url(/font/RethinkSans-ExtraBoldItalic.ttf) format("truetype");
+        }
+        @font-face {
+            font-family: RethinkSansItalic;
+            font-weight: 900;
+            src:url(/font/RethinkSans-Italic.woff2) format("woff2"), 
+            url(/font/RethinkSans-Italic.woff) format("woff"),
+            url(/font/RethinkSans-Italic.ttf) format("truetype");
+        }
+        @font-face {
+            font-family: RethinkSansMedium;
+            font-weight: 900;
+            src:url(/font/RethinkSans-Medium.woff2) format("woff2"), 
+            url(/font/RethinkSans-Medium.woff) format("woff"),
+            url(/font/RethinkSans-Medium.ttf) format("truetype");
+        }
+        @font-face {
+            font-family: RethinkSansMediumItalic;
+            font-weight: 900;
+            src:url(/font/RethinkSans-MediumItalic.woff2) format("woff2"), 
+            url(/font/RethinkSans-MediumItalic.woff) format("woff"),
+            url(/font/RethinkSans-MediumItalic.ttf) format("truetype");
+        }
+        @font-face {
+            font-family: RethinkSansRegular;
+            font-weight: 900;
+            src:url(/font/RethinkSans-Regular.woff2) format("woff2"), 
+            url(/font/RethinkSans-Regular.woff) format("woff"),
+            url(/font/RethinkSans-Regular.ttf) format("truetype");
+        }
+        @font-face {
+            font-family: RethinkSansSemiBold;
+            font-weight: 900;
+            src:url(/font/RethinkSans-SemiBold.woff2) format("woff2"), 
+            url(/font/RethinkSans-SemiBold.woff) format("woff"),
+            url(/font/RethinkSans-SemiBold.ttf) format("truetype");
+        }
+        @font-face {
+            font-family: RethinkSansSemiBoldItalic;
+            font-weight: 900;
+            src:url(/font/RethinkSans-SemiBoldItalic.woff2) format("woff2"), 
+            url(/font/RethinkSans-SemiBoldItalic.woff) format("woff"),
+            url(/font/RethinkSans-SemiBoldItalic.ttf) format("truetype");
+        }
+        
+        /*@font-face {
+            font-family: PlatNomor;
+            font-weight: 900;
+            src:url(/fonts/PlatNomor.woff2) format("woff2"), 
+            url(/fonts/PlatNomor.woff) format("woff"),
+            url(/fonts/PlatNomor.ttf) format("truetype");
+        }  */
+}
+
+
 /**
 * Custom/Additional Classes
 */
