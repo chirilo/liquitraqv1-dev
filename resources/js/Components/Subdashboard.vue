@@ -4,9 +4,9 @@
     import SearchBarSideBar from '@/Components/SearchBarSideBar.vue';
 
     import Calendar from '@/Components/Calendar.vue';
-    import RecentJobs from '@/Components/RecentJobs.vue';
-    import JobsLastSevenDays from '@/Components/JobsLastSevenDays.vue';
-    import UpcomingJobs from '@/Components/UpcomingJobs.vue';
+    //import RecentJobs from '@/Components/RecentJobs.vue';
+    //import JobsLastSevenDays from '@/Components/JobsLastSevenDays.vue';
+    //import UpcomingJobs from '@/Components/UpcomingJobs.vue';
 
     import { Modal } from 'flowbite'
 </script>

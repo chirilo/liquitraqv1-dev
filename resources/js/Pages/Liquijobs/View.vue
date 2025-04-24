@@ -52,7 +52,7 @@ const deleteTrade = (id) => {
 				            <!-- Container for Left Sidebar (search and quick add job) -->
 				            <div id="left-side" class="mx-auto flex flex-col items-start gap-6 overflow-hidden rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] md:row-span-3 lg:p-10 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]">
 				                
-				                <div class="mx-auto relative flex items-center gap-6 lg:items-end sm:hidden hidden lg:block">
+				                <div class="mx-auto relative flex items-center gap-6 lg:items-end sm:hidden hidden lg:block" style="display: none;">
 				                    
 				                    <div class="shrink-0 flex items-center"><a href="http://127.0.0.1:8000/dashboard"><img src="/images/logos/liquis-logo.png" alt="LiquiTraq" class="block h-9 w-auto"></a></div>
 				                </div>
@@ -180,38 +180,45 @@ const deleteTrade = (id) => {
 								            	<div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">
 								                  	<div class="p-4">
 								                    <p class="text-slate-600 leading-normal font-light">
-								                      <b style="font-weight: bold;">Corporate Address: </b> {{props.liquijobs.so_number}}
+								                      <b style="font-weight: bold;">Corporate Address: </b> {{props.liquijobs.corporate_address}}
 								                    </p>
 								                	</div>
 								                    <div class="p-4">
 								                    <p class="text-slate-600 leading-normal font-light">
-								                      <b style="font-weight: bold;">Contact Name: </b> {{props.liquijobs.hid_employee_name}}
+								                      <b style="font-weight: bold;">Contact Name: </b> {{props.liquijobs.contact_name}}
 								                    </p>
 								                	</div>
 								                    <div class="p-4">
 								                    <p class="text-slate-600 leading-normal font-light">
-								                      <b style="font-weight: bold;">Phone: </b> {{props.liquijobs.so_number}}
+								                      <b style="font-weight: bold;">Phone: </b> {{props.liquijobs.contact_telephone}}
 								                    </p>
 								                	</div>
 								                    <div class="p-4">
 								                    <p class="text-slate-600 leading-normal font-light">
-								                      <b style="font-weight: bold;">Email: </b> {{props.liquijobs.so_number}}
+								                      <b style="font-weight: bold;">Email: </b> {{props.liquijobs.contact_email}}
 								                    </p>
 								                	</div>
 								                    <div class="p-4">
 								                    <p class="text-slate-600 leading-normal font-light">
-								                      <b style="font-weight: bold;">Location Name: </b> {{props.liquijobs.city}}
+								                      <b style="font-weight: bold;">Location Name: </b> {{props.liquijobs.location_address}}
 								                    </p>
 								                	</div>
 								                    <div class="p-4">
 								                    <p class="text-slate-600 leading-normal font-light">
-								                      <b style="font-weight: bold;">Start Date: </b> {{props.liquijobs.created_at}}
+								                      <b style="font-weight: bold;">Start Date: </b> {{props.liquijobs.start_date}}
 								                    </p>
 								                	</div>
 								                  </div>
 								        	</li>
 								            <li>
 								            	<button class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"> ALL ASSETS <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </button>
+								            </li>
+								        </ul>
+								        <!-- images -->
+								        <ul style="padding: 0 0.5rem 0 0.5rem;">
+								            
+								            <li>
+								            	<img src="https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0" />
 								            </li>
 								        </ul>
 								    </div> 
@@ -241,8 +248,8 @@ const deleteTrade = (id) => {
             </div>
         </div>
         <!-- -->
-        <h1>VIEW VUE PAGE</h1>
-		<div class="py-12">
+        <!-- <h1>VIEW VUE PAGE</h1> -->
+		<div class="py-12" style="display: none;">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
                 <h1 class="text-2xl">{{props.liquijobs.so_number}}</h1>
                 <div>

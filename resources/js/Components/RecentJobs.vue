@@ -6,10 +6,10 @@ const props = defineProps({
     message : String
 });
 
-const filters = {
-    filter: props.filters.filter,
-}
-const form = useForm(filters);
+// const filters = {
+//     filter: props.filters.filter,
+// }
+// const form = useForm(filters);
 
 const deleteTrade = (id) => {
     if (confirm("Are you sure you want to move this to trash")) {

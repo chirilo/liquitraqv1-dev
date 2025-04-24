@@ -69,7 +69,14 @@ class LiquijobController extends Controller
             'liquis_employee_name' => $request->liquis_employee_name,
             'invoice_number' => $request->invoice_number,
             'liquis_complete_photo' => $request->liquis_complete_photo,
-            'additional_images' => $request->additional_images
+            'additional_images' => $request->additional_images,
+            'company_name' => $request->company_name,
+            'corporate_address' => $request->corporate_address,
+            'contact_name' => $request->contact_name,
+            'contact_telephone' => $request->contact_telephone,
+            'contact_email' => $request->contact_email,
+            'location_address' => $request->location_address,
+            'start_date' => $request->start_date
         ]);
 
         return redirect()->route('liquijobs.index')->with('message', 'Job Created Successfully');

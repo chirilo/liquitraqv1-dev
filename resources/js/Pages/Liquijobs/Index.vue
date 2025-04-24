@@ -46,15 +46,17 @@ const deleteTrade = (id) => {
         </template>
 
         <div class="py-2">
-        	<div
-				 v-if="props.message"
-				 class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
-				 role="alert"
-			  >
+        	<!-- message prompt -->
+			<div
+				v-if="props.message"
+				class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+				role="alert"
+			>
 				<span class="font-medium">
 					{{ props.message }}
 				</span>
 			</div>
+
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
                     <div>
@@ -67,7 +69,7 @@ const deleteTrade = (id) => {
 				                
 				                <div class="mx-auto relative flex items-center gap-6 lg:items-end sm:hidden hidden lg:block">
 				                    
-				                    <div class="shrink-0 flex items-center"><a href="http://127.0.0.1:8000/dashboard"><img src="/images/logos/liquis-logo.png" alt="LiquiTraq" class="block h-9 w-auto"></a></div>
+				                    <div style="display: none;" class="shrink-0 flex items-center"><a href="http://127.0.0.1:8000/liquijobs"><img src="/images/logos/liquis-logo.png" alt="LiquiTraq" class="block h-9 w-auto"></a></div>
 				                </div>
 
 				                <div class="mx-auto relative flex items-center gap-6 lg:items-end">
@@ -107,7 +109,7 @@ const deleteTrade = (id) => {
 
 				                <SearchBarSideBar/>
 
-				                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="search" name="search" placeholder="Search anything" />
+				                <!-- <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="search" name="search" placeholder="Search anything" /> -->
 				                <br/>
 
 
@@ -125,16 +127,16 @@ const deleteTrade = (id) => {
 				                             <div class="flex flex-wrap -mx-3 mb-6">
 				                                <div class="w-full py-1 px-3">
 				                                    <label class="hidden block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-				                                    Job Co Name
+				                                    Company Name
 				                                    </label>
-				                                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Job Co Name">
+				                                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Company Name">
 				                                    <p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
 				                                </div>
 				                                <div class="w-full py-1 px-3">
 				                                    <label class="hidden block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-				                                    Address
+				                                    Corporate Address
 				                                    </label>
-				                                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Address">
+				                                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Corporate Address">
 				                                    <p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
 				                                </div>
 				                                <div class="w-full py-1 px-3">
@@ -146,16 +148,23 @@ const deleteTrade = (id) => {
 				                                </div>
 				                                <div class="w-full py-1 px-3">
 				                                    <label class="hidden block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-				                                    Email
+				                                    Contact Email
 				                                    </label>
-				                                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Email">
+				                                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Contact Email">
 				                                    <p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
 				                                </div>
 				                                <div class="w-full py-1 px-3">
 				                                    <label class="hidden block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-				                                    Phone
+				                                    Contact Telephone
 				                                    </label>
-				                                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Phone">
+				                                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Contact Telephone">
+				                                    <p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
+				                                </div>
+				                                <div class="w-full py-1 px-3">
+				                                    <label class="hidden block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+				                                    Location Address
+				                                    </label>
+				                                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Location Address">
 				                                    <p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
 				                                </div>
 				                                <div class="w-full py-1 px-3">
@@ -190,7 +199,7 @@ const deleteTrade = (id) => {
 								            <li v-for="entry in props.liquijobs.data" :key="entry.id">
 								                <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">      
 								                  <div class="p-4">
-								                  	<PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="max-w-xl ml-2 float-right" >VIEW</PrimaryLink>
+								                  	<PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="max-w-xl ml-2 float-right" style="background-color: #292d73;">VIEW</PrimaryLink>
 								                    <h5 class="mb-2 text-slate-800 text-xl font-semibold">
 								                      Building: {{ entry.building }}
 								                    </h5>
@@ -203,7 +212,7 @@ const deleteTrade = (id) => {
 								                      Type: {{ entry.so_number }}
 								                    </span>
 								                    <span class="text-sm text-slate-600 font-medium" style="float: inline-end;">
-								                      Start Date: {{ entry.created_at }}
+								                      Start Date: {{ entry.start_date }}
 								                    </span>
 								                  </div>
 								                </div>
@@ -285,19 +294,22 @@ const deleteTrade = (id) => {
             </div>
         </div>
         <!-- -->
-        <h1>INDEX VUE PAGE</h1>
-		<div class="py-12">
+        <h1 style="display: none;">INDEX VUE PAGE</h1>
+		<div class="py-12" style="display: none;">
 			<div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-			  <div
-				 v-if="props.message"
-				 class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
-				 role="alert"
-			  >
-				 <span class="font-medium">
+			
+			<!-- message prompt -->
+			<div
+				v-if="props.message"
+				class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+				role="alert"
+			>
+				<span class="font-medium">
 					{{ props.message }}
-				 </span>
-			  </div>
-			   <div class="bg-white rounded-md shadow overflow-x-auto">
+				</span>
+			</div>
+			
+			<div class="bg-white rounded-md shadow overflow-x-auto">
 				<table class="w-full whitespace-nowrap">
 				  <thead>
 				    <tr class="text-left font-bold">
@@ -340,7 +352,7 @@ const deleteTrade = (id) => {
 				    </tr>
 				  </tbody>
 				</table>
-			   </div>
+			</div>
 			   <pagination class="mt-6" :links="props.liquijobs.links" />
 			</div>
 		</div>

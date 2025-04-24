@@ -30,6 +30,13 @@ class Liquijob extends Model
         'invoice_number',
         'liquis_complete_photo',
         'additional_images',
+        'company_name',
+        'corporate_address',
+        'contact_name',
+        'contact_telephone',
+        'contact_email',
+        'location_address',
+        'start_date',
     ];
 
     /**
