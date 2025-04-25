@@ -51,10 +51,19 @@ class LiquijobController extends Controller
     {
         //
 
-        $request->validate([
-            //'so_number' => ''
-            //'slug' => 'required|unique:blogs|string|max:255'
-        ]);
+        // $request->validate([
+        //     //'so_number' => ''
+        //     //'slug' => 'required|unique:blogs|string|max:255'
+        // ]);
+        // dd($request);
+        // exit;
+        // $request->validate([
+        //     'liquis_complete_photo' => 'required|file|image|max:1024',
+        //     'additional_images' => 'required|file|image|max:1024',
+        // ]);
+        // $liquis_complete_photo_imagePath = $request->file('liquis_complete_photo')->store('public/images');
+        // $additional_images_imagePath = $request->file('additional_images')->store('public/images');
+        
         Liquijob::create([
             'so_number' => $request->so_number,
             'building' => $request->building,
@@ -68,6 +77,8 @@ class LiquijobController extends Controller
             'liquis_pickup_date' => $request->liquis_pickup_date,
             'liquis_employee_name' => $request->liquis_employee_name,
             'invoice_number' => $request->invoice_number,
+            // 'liquis_complete_photo' => $liquis_complete_photo_imagePath,
+            // 'additional_images' => $additional_images_imagePath,
             'liquis_complete_photo' => $request->liquis_complete_photo,
             'additional_images' => $request->additional_images,
             'company_name' => $request->company_name,

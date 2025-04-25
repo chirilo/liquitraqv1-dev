@@ -194,7 +194,7 @@ const submit = () => {
                                     <h1 class="text-center font-bold text-xl">ADD JOB</h1>
                                 </div>
                             <section>
-                                <form @submit.prevent="submit" class="mt-6 space-y-6">
+                                <form @submit.prevent="submit" class="mt-6 space-y-6" enctype="multipart/form-data">
                                     
                                     <div>
                                         <InputLabel for="company_name" value="Company Name" />
@@ -505,8 +505,9 @@ const submit = () => {
                                         <InputLabel for="liquis_complete_photo" value="Liquis Complete Photo" />
 
                                         <TextInput
+                                            name="liquis_complete_photo"
                                             id="liquis_complete_photo"
-                                            type="file"
+                                            type="text"
                                             class="mt-1 block w-full"
                                             v-model="form.liquis_complete_photo"
                                             required
@@ -521,8 +522,9 @@ const submit = () => {
 
                                         <!-- <input type="file" class="form-control" v-on:change="onImageChange"> -->
                                         <TextInput
+                                            name="additional_images"
                                             id="additional_images"
-                                            type="file"
+                                            type="text"
                                             class="mt-1 block w-full"
                                             v-model="form.additional_images"
                                             autofocus
