@@ -16,20 +16,20 @@ class Liquijob extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'so_number',
-        'building',
-        'city',
-        'state',
-        'status',
-        'expected_qty',
-        'serial_number',
-        'hid_employee_name',
-        'hid_employee_id',
-        'liquis_pickup_date',
-        'liquis_employee_name',
-        'invoice_number',
-        'liquis_complete_photo',
-        'additional_images',
+        // 'so_number',
+        // 'building',
+        // 'city',
+        // 'state',
+        // 'status',
+        // 'expected_qty',
+        // 'serial_number',
+        // 'hid_employee_name',
+        // 'hid_employee_id',
+        // 'liquis_pickup_date',
+        // 'liquis_employee_name',
+        // 'invoice_number',
+        // 'liquis_complete_photo',
+        // 'additional_images',
         'company_name',
         'corporate_address',
         'contact_name',
@@ -37,6 +37,7 @@ class Liquijob extends Model
         'contact_email',
         'location_address',
         'start_date',
+        'type',
     ];
 
     /**

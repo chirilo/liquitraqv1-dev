@@ -201,16 +201,25 @@ const deleteTrade = (id) => {
 								                  <div class="p-4">
 								                  	<PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="max-w-xl ml-2 float-right" style="background-color: #292d73;">VIEW</PrimaryLink>
 								                    <h5 class="mb-2 text-slate-800 text-xl font-semibold">
-								                      Building: {{ entry.building }}
+								                      Building: {{ entry.corporate_address }}
 								                    </h5>
 								                    <p class="text-slate-600 leading-normal font-light">
-								                      City: {{ entry.building }}
+								                      City: {{ entry.location_address }}
 								                    </p>
 								                  </div>
 								                  <div class="mx-3 border-t border-slate-200 pb-3 pt-2 px-1">
-								                    <span class="text-sm text-slate-600 font-medium">
-								                      Type: {{ entry.so_number }}
-								                    </span>
+								                  	
+												  <span class="text-sm text-slate-600 font-medium" v-if="entry.type === 'it'">
+							                  		Type: IT
+							                    	</span>
+							                    	<span class="text-sm text-slate-600 font-medium" v-if="entry.type === 'furniture'">
+							                  		Type: Furniture
+							                    	</span>
+							                    	<span class="text-sm text-slate-600 font-medium" v-if="entry.type === 'infrastructure'">
+							                  		Type: Infrastructure
+							                    	</span>
+													
+								                    
 								                    <span class="text-sm text-slate-600 font-medium" style="float: inline-end;">
 								                      Start Date: {{ entry.start_date }}
 								                    </span>

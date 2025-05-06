@@ -23,27 +23,28 @@ import UpcomingJobs from '@/Components/UpcomingJobs.vue';
 
 
 const form = useForm({
-    so_number: '',
-    building: '',
-    city : '',
-    state : '',
-    status : '',
-    expected_qty : '',
-    serial_number : '',
-    hid_employee_name : '',
-    hid_employee_id : '',
-    liquis_pickup_date : '',
-    liquis_employee_name : '',
-    invoice_number : '',
-    liquis_complete_photo : '',
-    additional_images: '',
+    // so_number: '',
+    // building: '',
+    // city : '',
+    // state : '',
+    // status : '',
+    // expected_qty : '',
+    // serial_number : '',
+    // hid_employee_name : '',
+    // hid_employee_id : '',
+    // liquis_pickup_date : '',
+    // liquis_employee_name : '',
+    // invoice_number : '',
+    // liquis_complete_photo : '',
+    // additional_images: '',
     company_name: '',
     corporate_address: '',
     contact_name: '',
     contact_telephone: '',
     contact_email: '',
     location_address: '',
-    start_date: ''
+    start_date: '',
+    type: ''
 });
 
 const submit = () => {
@@ -202,6 +203,7 @@ const submit = () => {
                                         <TextInput
                                             id="company_name"
                                             type="text"
+                                            placeholder="Company Name"
                                             class="mt-1 block w-full"
                                             v-model="form.company_name"
                                             required
@@ -216,6 +218,7 @@ const submit = () => {
                                         <TextInput
                                             id="corporate_address"
                                             type="text"
+                                            placeholder="Corporate Address"
                                             class="mt-1 block w-full"
                                             v-model="form.corporate_address"
                                             required
@@ -230,6 +233,7 @@ const submit = () => {
                                         <TextInput
                                             id="contact_name"
                                             type="text"
+                                            placeholder="Contact Name"
                                             class="mt-1 block w-full"
                                             v-model="form.contact_name"
                                             required
@@ -244,6 +248,7 @@ const submit = () => {
                                         <TextInput
                                             id="contact_telephone"
                                             type="text"
+                                            placeholder="+1234567890"
                                             class="mt-1 block w-full"
                                             v-model="form.contact_telephone"
                                             required
@@ -257,7 +262,8 @@ const submit = () => {
 
                                         <TextInput
                                             id="contact_email"
-                                            type="text"
+                                            type="email"
+                                            placeholder="email@email.com"
                                             class="mt-1 block w-full"
                                             v-model="form.contact_email"
                                             required
@@ -272,6 +278,7 @@ const submit = () => {
                                         <TextInput
                                             id="location_address"
                                             type="text"
+                                            placeholder="Company Location Address"
                                             class="mt-1 block w-full"
                                             v-model="form.location_address"
                                             required
@@ -286,6 +293,7 @@ const submit = () => {
                                         <TextInput
                                             id="start_date"
                                             type="text"
+                                            placeholder="YYYY-MM-DD"
                                             class="mt-1 block w-full"
                                             v-model="form.start_date"
                                             required
@@ -293,6 +301,28 @@ const submit = () => {
                                         />
 
                                         <InputError class="mt-2" :message="form.errors.start_date" />
+                                    </div>
+
+
+                                    <div>
+                                        <InputLabel for="type" value="Job Type" />
+
+                                        <!-- <TextInput
+                                            id="start_date"
+                                            type="text"
+                                            placeholder="YYYY-MM-DD"
+                                            class="mt-1 block w-full"
+                                            v-model="form.type"
+                                            required
+                                            autofocus
+                                        /> -->
+                                        <select v-model="form.type" id="type" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm mt-1 block w-full form-control" name="type">
+                                            <option value="furniture">Furniture</option>
+                                            <option value="it">IT</option>
+                                            <option value="infrastructure">Infrastructure</option>
+                                        </select>
+
+                                        <InputError class="mt-2" :message="form.errors.type" />
                                     </div>
 
                                     <!-- assets below -->
@@ -321,7 +351,7 @@ const submit = () => {
                                         <InputError class="mt-2" :message="form.errors.category" />
                                     </div> -->
 
-                                    <div>
+                                    <!-- <div>
                                         <InputLabel for="so_number" value="SO Number" />
 
                                         <TextInput
@@ -334,9 +364,9 @@ const submit = () => {
                                         />
 
                                         <InputError class="mt-2" :message="form.errors.so_number" />
-                                    </div>
+                                    </div> -->
 
-                                    <div>
+                                    <!-- <div>
                                         <InputLabel for="building" value="Building" />
 
                                         <TextInput
@@ -349,9 +379,9 @@ const submit = () => {
                                         />
 
                                         <InputError class="mt-2" :message="form.errors.building" />
-                                    </div>
+                                    </div> -->
 
-                                    <div>
+                                    <!-- <div>
                                         <InputLabel for="city" value="City" />
 
                                         <TextInput
@@ -364,9 +394,9 @@ const submit = () => {
                                         />
 
                                         <InputError class="mt-2" :message="form.errors.city" />
-                                    </div>
+                                    </div> -->
 
-                                    <div>
+                                    <!-- <div>
                                         <InputLabel for="state" value="State" />
 
                                         <TextInput
@@ -379,9 +409,9 @@ const submit = () => {
                                         />
 
                                         <InputError class="mt-2" :message="form.errors.state" />
-                                    </div>
+                                    </div> -->
 
-                                    <div>
+                                    <!-- <div>
                                         <InputLabel for="status" value="Status" />
 
                                         <TextInput
@@ -394,9 +424,9 @@ const submit = () => {
                                         />
 
                                         <InputError class="mt-2" :message="form.errors.status" />
-                                    </div>
+                                    </div> -->
 
-                                    <div>
+                                    <!-- <div>
                                         <InputLabel for="expected_qty" value="Expected Quantity" />
 
                                         <TextInput
@@ -409,9 +439,9 @@ const submit = () => {
                                         />
 
                                         <InputError class="mt-2" :message="form.errors.expected_qty" />
-                                    </div>
+                                    </div> -->
 
-                                    <div>
+                                    <!-- <div>
                                         <InputLabel for="serial_number" value="Serial Number" />
 
                                         <TextInput
@@ -424,9 +454,9 @@ const submit = () => {
                                         />
 
                                         <InputError class="mt-2" :message="form.errors.serial_number" />
-                                    </div>
+                                    </div> -->
 
-                                    <div>
+                                    <!-- <div>
                                         <InputLabel for="hid_employee_name" value="HID Employee Name" />
 
                                         <TextInput
@@ -439,9 +469,9 @@ const submit = () => {
                                         />
 
                                         <InputError class="mt-2" :message="form.errors.hid_employee_name" />
-                                    </div>
+                                    </div> -->
 
-                                    <div>
+                                    <!-- <div>
                                         <InputLabel for="hid_employee_id" value="HID Employee ID" />
 
                                         <TextInput
@@ -454,9 +484,9 @@ const submit = () => {
                                         />
 
                                         <InputError class="mt-2" :message="form.errors.hid_employee_id" />
-                                    </div>
+                                    </div> -->
 
-                                    <div>
+                                    <!-- <div>
                                         <InputLabel for="liquis_pickup_date" value="Liquis Pickup Date" />
 
                                         <TextInput
@@ -469,9 +499,9 @@ const submit = () => {
                                         />
 
                                         <InputError class="mt-2" :message="form.errors.liquis_pickup_date" />
-                                    </div>
+                                    </div> -->
 
-                                    <div>
+                                    <!-- <div>
                                         <InputLabel for="liquis_employee_name" value="Liquis Employee Name" />
 
                                         <TextInput
@@ -484,9 +514,9 @@ const submit = () => {
                                         />
 
                                         <InputError class="mt-2" :message="form.errors.liquis_employee_name" />
-                                    </div>
+                                    </div> -->
 
-                                    <div>
+                                    <!-- <div>
                                         <InputLabel for="invoice_number" value="Invoice Number" />
 
                                         <TextInput
@@ -499,15 +529,15 @@ const submit = () => {
                                         />
 
                                         <InputError class="mt-2" :message="form.errors.invoice_number" />
-                                    </div>
+                                    </div> -->
 
-                                    <div>
+                                    <!-- <div>
                                         <InputLabel for="liquis_complete_photo" value="Liquis Complete Photo" />
 
                                         <TextInput
                                             name="liquis_complete_photo"
                                             id="liquis_complete_photo"
-                                            type="text"
+                                            type="file"
                                             class="mt-1 block w-full"
                                             v-model="form.liquis_complete_photo"
                                             required
@@ -515,16 +545,16 @@ const submit = () => {
                                         />
 
                                         <InputError class="mt-2" :message="form.errors.liquis_complete_photo" />
-                                    </div>
+                                    </div> -->
 
-                                    <div>
+                                    <div style="display: none;">
                                         <InputLabel for="additional_images" value="Additional Images" />
 
                                         <!-- <input type="file" class="form-control" v-on:change="onImageChange"> -->
                                         <TextInput
                                             name="additional_images"
                                             id="additional_images"
-                                            type="text"
+                                            type="file"
                                             class="mt-1 block w-full"
                                             v-model="form.additional_images"
                                             autofocus

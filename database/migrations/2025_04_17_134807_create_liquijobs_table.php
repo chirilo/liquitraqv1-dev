@@ -13,20 +13,20 @@ return new class extends Migration
     {
         Schema::create('liquijobs', function (Blueprint $table) {
             $table->id();
-            $table->integer('so_number')->unsigned();
-            $table->string('building', 255);
-            $table->string('city', 255);
-            $table->string('state', 255);
-            $table->string('status', 255);
-            $table->integer('expected_qty')->unsigned();
-            $table->integer('serial_number')->unsigned();
-            $table->string('hid_employee_name', 255);
-            $table->integer('hid_employee_id')->unsigned();
-            $table->date('liquis_pickup_date');
-            $table->string('liquis_employee_name', 255);
-            $table->integer('invoice_number')->unsigned();
-            $table->mediumText('liquis_complete_photo')->charset('binary');
-            $table->mediumText('additional_images')->charset('binary');
+            $table->integer('so_number')->unsigned()->nullable();
+            $table->string('building', 255)->nullable();
+            $table->string('city', 255)->nullable();
+            $table->string('state', 255)->nullable();
+            $table->string('status', 255)->nullable();
+            $table->integer('expected_qty')->unsigned()->nullable();
+            $table->integer('serial_number')->unsigned()->nullable();
+            $table->string('hid_employee_name', 255)->nullable();
+            $table->integer('hid_employee_id')->unsigned()->nullable();
+            $table->date('liquis_pickup_date')->nullable();
+            $table->string('liquis_employee_name', 255)->nullable();
+            $table->integer('invoice_number')->unsigned()->nullable();
+            $table->mediumText('liquis_complete_photo')->charset('binary')->nullable();
+            $table->mediumText('additional_images')->charset('binary')->nullable();
             $table->timestamps();
         });
     }
