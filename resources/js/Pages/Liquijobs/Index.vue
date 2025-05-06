@@ -218,6 +218,9 @@ const deleteTrade = (id) => {
 							                    	<span class="text-sm text-slate-600 font-medium" v-if="entry.type === 'infrastructure'">
 							                  		Type: Infrastructure
 							                    	</span>
+							                    	<span class="text-sm text-slate-600 font-medium" v-if="entry.type === null">
+							                  		Type: Unspecified
+							                    	</span>
 													
 								                    
 								                    <span class="text-sm text-slate-600 font-medium" style="float: inline-end;">
