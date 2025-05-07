@@ -247,10 +247,10 @@ const deleteTrade = (id) => {
 											<div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">      
 												<div class="mx-3 border-slate-200 pb-3 pt-2 px-1">
 													<span class="text-sm text-slate-600 font-medium">
-													Building: {{ entry.building }}
+													Building: {{ entry.corporate_address }}
 													</span>
 													<span class="text-sm text-slate-600 font-medium" style="float: inline-end;">
-													  {{ entry.created_at }}
+													  {{ entry.start_date }}
 													</span>
 												</div>
 											</div>
@@ -274,10 +274,10 @@ const deleteTrade = (id) => {
 							                  <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">      
 							                    <div class="mx-3 border-slate-200 pb-3 pt-2 px-1">
 							                      <span class="text-sm text-slate-600 font-medium">
-							                        Building: {{ entry.building }}
+							                        Building: {{ entry.corporate_address }}
 							                      </span>
 							                      <span class="text-sm text-slate-600 font-medium" style="float: inline-end;">
-							                          {{ entry.created_at }}
+							                          {{ entry.start_date }}
 							                      </span>
 							                    </div>
 							                  </div>
