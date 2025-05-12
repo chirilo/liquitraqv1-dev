@@ -71,7 +71,7 @@ const submit = (e) => {
                                 
                                 <div class="mx-auto relative flex items-center gap-6 lg:items-end sm:hidden hidden lg:block">
                                     
-                                    <div style="display: none;" class="shrink-0 flex items-center"><a href="http://127.0.0.1:8000/liquijobs"><img src="/images/logos/liquis-logo.png" alt="LiquiTraq" class="block h-9 w-auto"></a></div>
+                                    <div style="display: none;" class="shrink-0 flex items-center"><a href="/liquijobs"><img src="/images/logos/liquis-logo.png" alt="LiquiTraq" class="block h-9 w-auto"></a></div>
                                 </div>
 
                                 <!-- AVATAR -->

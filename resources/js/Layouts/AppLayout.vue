@@ -41,7 +41,7 @@ const logout = () => {
                         <div class="flex" style="padding-right: 15%; margin: 5px 0px 5px 0px;">
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
-                                <Link :href="route('dashboard')">
+                                <Link href="/liquijobs">
                                     <ApplicationMark class="block h-9 w-auto" />
                                 </Link>
                             </div>
