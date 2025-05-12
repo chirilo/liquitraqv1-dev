@@ -6,6 +6,7 @@ use Inertia\Inertia;
 
 
 use App\Http\Controllers\LiquijobController;
+use App\Http\Controllers\LiquiassetController;
 use App\Http\Controllers\LjobController;
 
 Route::get('/', function () {
@@ -32,6 +33,12 @@ Route::middleware([
 // Liquijobs
 Route::middleware('auth')->group(function () {
     Route::resource('liquijobs', LiquijobController::class);
+});
+
+// Liquijobs
+Route::middleware('auth')->group(function () {
+    Route::resource('liquiassets', LiquiassetController::class);
+    Route::post('/liquiassets/create', 'LiquiassetController@store');
 });
 
 // ljobs
