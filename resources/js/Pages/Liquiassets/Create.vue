@@ -188,7 +188,7 @@ const submit = (e) => {
                             <!-- RIGHT PART -->
                             <div id="right-side" class="lg:col-span-2 mx-5">
                                 <div class="mt-6 float-right">
-                                    <a href="/liquijobs" class="mt-6 float-right">Back to Jobs</a>
+                                    <a href="/liquijobs" class="w-half bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" style="float: right;">Back to Jobs</a>
                                 </div>
                                 <div class="relative flex flex-col mt-5" style="width: 100%; text-align: center;">
                                     <h1 class="text-center font-bold text-xl">ADD ASSET FOR JOB: # {{ props.jobid }}</h1>
