@@ -641,7 +641,7 @@ const submit = () => {
                                     </div> -->
 
                                     <div class="flex items-center gap-4">
-                                        <PrimaryButton :disabled="form.processing" style="background-color: #292d73;">Save</PrimaryButton>
+                                        <PrimaryButton :disabled="form.processing" style="background-color: #292d73; margin-bottom: 1em;">Save</PrimaryButton>
 
                                         <Transition
                                             enter-active-class="transition ease-in-out"
