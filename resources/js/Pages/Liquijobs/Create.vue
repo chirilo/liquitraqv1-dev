@@ -47,6 +47,8 @@ const form = useForm({
     type: ''
 });
 
+const liquijobsCreate = '/liquijobs/create';
+
 const submit = () => {
     form.post(route("liquijobs.store"));
 };
@@ -176,12 +178,12 @@ const submit = () => {
                                                     <label class="hidden block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
                                                     Start Date
                                                     </label>
-                                                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Start Date">
+                                                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="date" min="2018-01-01" value="2018-01-01" placeholder="Start Date">
                                                     <p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
                                                 </div>
                                             </div>
                                             
-                                            <button v-on:click="liquijobsCreate" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"> ADD ASSETS <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </button>
+                                            <a v-bind:href="liquijobsCreate" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" style="display: inline-block; width: 100% !important; text-align: center;"> ADD NEW JOB <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </a>
                                            
                                         </form>
                                     </div>
@@ -292,7 +294,7 @@ const submit = () => {
 
                                         <TextInput
                                             id="start_date"
-                                            type="text"
+                                            type="date"
                                             placeholder="YYYY-MM-DD"
                                             class="mt-1 block w-full"
                                             v-model="form.start_date"

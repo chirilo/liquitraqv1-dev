@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 use App\Models\Liquijob;
+use App\Models\Liquiasset;
 
 class LiquijobController extends Controller
 {
@@ -129,12 +130,23 @@ class LiquijobController extends Controller
      */
     public function show(Liquijob $liquijob)
     {
+        //dd($liquijob['id']);
+        // fetch assets
+        //$job_assets = DB::table('liquiassets')->where('id', $liquijob->id)->first();
+
+        $job_assets = Liquiasset::query()
+            ->select(['job_asset', 'job_id'])
+            ->where('job_id', $liquijob['id'])
+            ->orderBy('created_at', 'DESC')
+            ->limit(10)->get();
+        //dd($job_assets);
+        //dd($job_assets);
         //
 
-        return Inertia::render(
-            'Liquijobs/View',
+        return Inertia::render('Liquijobs/View',
             [
-                'liquijobs' => $liquijob
+                'liquijobs' => $liquijob,
+                'job_assets' => $job_assets
             ]
         );
     }

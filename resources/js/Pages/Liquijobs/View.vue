@@ -15,9 +15,14 @@ import UpcomingJobs from '@/Components/UpcomingJobs.vue';
 
 const props = defineProps({
     liquijobs : Object,
+    job_assets: Object,
     filters : Object,
     message : String
 });
+
+const liquijobsCreate = '/liquijobs/create';
+
+const liquiassetsurl = "/liquiassets/create?jobid=" + props.liquijobs.id;
 
 // import { useRoute } from 'vue-router';
 
@@ -108,7 +113,7 @@ const deleteTrade = (id) => {
 				                     <option value="state">State</option>
 				                     <option value="building">Building</option>
 				                 </select>
-				                 <button class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"> GO <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </button>
+				                 <a v-bind:href="liquijobsCreate" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" style="display: inline-block; width: 100% !important; text-align: center;"> GO <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </a>
 
 				                 <h2>QUICK ADD NEW JOB</h2>
 				                <div class="relative flex items-center gap-6 lg:items-end">
@@ -220,20 +225,22 @@ const deleteTrade = (id) => {
 								                	</div>
 								                  </div>
 								        	</li>
-								            <li>
-								            	<button class="w-half bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"> VIEW ASSETS <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </button>
-								            	<a href="/liquiassets/create/{ props.liquijobs.id }" class="w-half bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"> ADD ASSETS <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </a>
+								            <li style="text-align: center;">
+								            	<!-- <button class="w-half bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"> VIEW ASSETS <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </button> -->
+								            	<a v-bind:href="liquiassetsurl" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" style="display: inline-block; width: 100% !important;"> ADD ASSETS </a>
 								            </li>
 								        </ul>
 								        <!-- images -->
-								        <ul style="padding: 0 0.5rem 0 0.5rem;">
+								        <ul style="padding: 0 0.5rem 0 0.5rem; display: inline-flex; overflow: auto; padding-bottom: 1em; min-height: 250px;">
 								            
-								            <li>
-								            	<img src="https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0" />
+								        	<div v-for="item in job_assets" :key="id" :value="id">
+											  {{ item.job_id }}: {{ item.job_asset }}
+											  <li style="display: contents; margin-left: 1em;">
+								            	<!-- <img :src="'/uploads/images/' + item.job_asset" style="margin: 0 1em 0 1em;" width="300" height="300" onerror="https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0" /> -->
+								            	<img style="margin: 0 1em 0 1em; background-image: url('https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0'); opacity: 0.5;" width="300" height="300" :src="'/uploads/images/' + item.job_asset" />
 								            </li>
-								            <li>
-								            	<img src="/public/uploads/images/1747021311.png" />
-								            </li>
+											</div>
+
 								        </ul>
 								    </div> 
 								</div>

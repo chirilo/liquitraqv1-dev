@@ -26,6 +26,8 @@ const props = defineProps({
     jobid : Object
 });
 
+const liquijobsCreate = '/liquijobs/create';
+
 
 const form = useForm({
     job_asset: '',
@@ -117,7 +119,7 @@ const submit = (e) => {
                                      <option value="state">State</option>
                                      <option value="building">Building</option>
                                  </select>
-                                 <button class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"> GO <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </button>
+                                 <a href="/liquijobs" style="display: inline-block; width: 100% !important; text-align: center;" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"> GO <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </a>
 
                                  <h2 style="visibility: hidden;">QUICK ADD NEW JOB</h2>
                                 <div class="relative flex items-center gap-6 lg:items-end" style="visibility: hidden;">
@@ -175,7 +177,7 @@ const submit = (e) => {
                                                 </div>
                                             </div>
                                             
-                                            <button v-on:click="liquijobsCreate" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"> ADD ASSETS <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </button>
+                                            <a v-bind:href="liquijobsCreate" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"> ADD ASSETS <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </a>
                                            
                                         </form>
                                     </div>
@@ -189,7 +191,7 @@ const submit = (e) => {
                                     <a href="/liquijobs" class="mt-6 float-right">Back to Jobs</a>
                                 </div>
                                 <div class="relative flex flex-col mt-5" style="width: 100%; text-align: center;">
-                                    <h1 class="text-center font-bold text-xl">ADD ASSET</h1>
+                                    <h1 class="text-center font-bold text-xl">ADD ASSET FOR JOB: # {{ props.jobid }}</h1>
                                 </div>
                             <section>
                                 <form @submit.prevent="submit" class="mt-6 space-y-6" enctype="multipart/form-data">
@@ -197,15 +199,6 @@ const submit = (e) => {
                                     <div>
                                         <InputLabel for="job_asset" value="Job Asset" />
 
-                                        <!-- <TextInput
-                                            id="job_asset"
-                                            type="file"
-                                            class="mt-1 block w-full"
-                                            v-model="form.job_asset"
-                                            name="job_asset"
-                                            required
-                                            autofocus
-                                        /> -->
                                         <!-- <input type="file" @input="form.avatar = $event.target.files[0]" name="job_asset" class="mt-1 block w-full" v-on:change="onImageChange" > -->
                                             <input type="file" @input="form.job_asset = $event.target.files[0]" name="job_asset" class="mt-1 block w-full">
                                         <input type="hidden" name="job_id" v-model="form.jobid" >
@@ -213,11 +206,11 @@ const submit = (e) => {
                                     </div>
                                     
 
-                                    <div style="display: none;">
+                                    <!-- <div style="display: none;">
                                         <InputLabel for="additional_images" value="Additional Images" />
 
-                                        <!-- <input type="file" class="form-control" v-on:change="onImageChange"> -->
-                                        <TextInput
+                                        <input type="file" class="form-control" v-on:change="onImageChange"> -->
+                                        <!-- <TextInput
                                             name="additional_images"
                                             id="additional_images"
                                             type="file"
@@ -227,7 +220,7 @@ const submit = (e) => {
                                         />
 
                                         <InputError class="mt-2" :message="form.errors.additional_images" />
-                                    </div>
+                                    </div> -->
 
                                     
 
