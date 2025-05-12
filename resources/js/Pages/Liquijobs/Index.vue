@@ -79,7 +79,7 @@ const deleteTrade = (id) => {
 				                <!-- AVATAR -->
 				                <div class="mx-auto relative flex items-center gap-6 lg:items-end">
 				                    <div class="relative flex items-center gap-6 lg:items-end">
-				                        <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="max-w-2xl max-h-2xl rounded-full cursor-pointer" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="User dropdown">
+				                        <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="max-w-2xl max-h-2xl rounded-full cursor-pointer" src="https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250" alt="User dropdown">
 				                    </div>
 
 				                    <!-- <div class="relative flex items-center gap-6 lg:items-end">

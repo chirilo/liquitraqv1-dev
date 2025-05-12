@@ -66,7 +66,7 @@ const deleteTrade = (id) => {
 				                <!-- AVATAR -->
 				                <div class="mx-auto relative flex items-center gap-6 lg:items-end">
 				                    <div class="relative flex items-center gap-6 lg:items-end">
-				                        <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="max-w-2xl max-h-2xl rounded-full cursor-pointer" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="User dropdown">
+				                        <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="max-w-2xl max-h-2xl rounded-full cursor-pointer" src="https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250" alt="User dropdown">
 				                    </div>
 
 				                    <!-- <div class="relative flex items-center gap-6 lg:items-end">
@@ -235,7 +235,7 @@ const deleteTrade = (id) => {
 								    <div class="relative flex flex-col " style="width: 100%; text-align: center;">
 								        <h1 class="text-center font-bold text-xl">{{props.liquijobs.building}}</h1>
 								    </div>
-								    <div class="relative flex flex-col rounded-lg bg-white shadow-sm border border-slate-200" style="width: 100%;">
+								    <div class="relative flex flex-col rounded-lg bg-white shadow-sm border border-slate-200">
 								      
 								        <ul style="padding: 0 0.5rem 0 0.5rem;">
 								            
@@ -282,14 +282,14 @@ const deleteTrade = (id) => {
 								            </li>
 								        </ul>
 								        <!-- images -->
-								        <ul style="padding: 0 0.5rem 0 0.5rem; display: inline-flex; overflow: auto; padding-bottom: 1em; min-height: 250px;">
+								        <ul style="padding: 0 0.5rem 0 0.5rem; display: inline; padding-bottom: 1em; min-height: 250px;">
 								            
-								        	<div v-for="item in job_assets" :key="id" :value="id">
-											  <li style="display: contents; margin-left: 1em;">
+								        	
+											  <li v-for="item in job_assets" :key="id" :value="id" style="vertical-align: top; display: inline; margin-left: 1em;">
 								            	<!-- <img :src="'/uploads/images/' + item.job_asset" style="margin: 0 1em 0 1em;" width="300" height="300" onerror="https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0" /> -->
-								            	<img style="margin: 0 1em 0 1em; background-image: url('https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0'); opacity: 0.5;" width="300" height="300" :src="'/uploads/images/' + item.job_asset" />
+								            	<img style="vertical-align: top; display: inline; margin: 0 1em 1em 1em; background-image: url('https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0'); opacity: 0.5;" width="300" height="300" :src="'/uploads/images/' + item.job_asset" />
 								            </li>
-											</div>
+											
 
 								        </ul>
 								    </div> 
