@@ -22,7 +22,15 @@ import RecentJobs from '@/Components/RecentJobs.vue';
 import JobsLastSevenDays from '@/Components/JobsLastSevenDays.vue';
 import UpcomingJobs from '@/Components/UpcomingJobs.vue';
 
-
+const props = defineProps({
+    serverdata : Object,
+    caddress: String,
+    cemail: String,
+    cname: String,
+    coname: String,
+    loaddress: String,
+    sdate: String,
+});
 const form = useForm({
     // so_number: '',
     // building: '',
@@ -47,6 +55,9 @@ const form = useForm({
     start_date: '',
     type: ''
 });
+
+
+
 
 const liquijobsCreate = '/liquijobs/create';
 
@@ -176,8 +187,8 @@ const submit = () => {
                                  </select>
                                  <a href="/liquijobs" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" style="display: inline-block; width: 100% !important; text-align: center;"> GO <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </a>
 
-                                 <h2>QUICK ADD NEW JOB</h2>
-                                <div class="relative flex items-center gap-6 lg:items-end">
+                                 <h2 style="display: none;">QUICK ADD NEW JOB</h2>
+                                <div style="visibility: hidden;" class="relative flex items-center gap-6 lg:items-end">
                                     <div id="docs-card-content" class="flex items-start gap-6 lg:flex-col">
                                         <form class="w-full">
                                              <div class="flex flex-wrap -mx-3 mb-6">
@@ -195,41 +206,7 @@ const submit = () => {
                                                     <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Corporate Address">
                                                     <p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
                                                 </div>
-                                                <div class="w-full py-1 px-3">
-                                                    <label class="hidden block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                                    Contact Name
-                                                    </label>
-                                                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Contact Name">
-                                                    <p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
-                                                </div>
-                                                <div class="w-full py-1 px-3">
-                                                    <label class="hidden block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                                    Contact Email
-                                                    </label>
-                                                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Contact Email">
-                                                    <p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
-                                                </div>
-                                                <div class="w-full py-1 px-3">
-                                                    <label class="hidden block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                                    Contact Telephone
-                                                    </label>
-                                                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Contact Telephone">
-                                                    <p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
-                                                </div>
-                                                <div class="w-full py-1 px-3">
-                                                    <label class="hidden block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                                    Location Address
-                                                    </label>
-                                                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Location Address">
-                                                    <p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
-                                                </div>
-                                                <div class="w-full py-1 px-3">
-                                                    <label class="hidden block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                                                    Start Date
-                                                    </label>
-                                                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="date" min="2018-01-01" value="2018-01-01" placeholder="Start Date">
-                                                    <p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
-                                                </div>
+                                                
                                             </div>
                                             
                                             <a v-bind:href="liquijobsCreate" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" style="display: inline-block; width: 100% !important; text-align: center;"> ADD NEW JOB <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </a>
@@ -254,11 +231,12 @@ const submit = () => {
                                         <TextInput
                                             id="company_name"
                                             type="text"
-                                            placeholder="Company Name"
+                                            :placeholder="cname"
                                             class="mt-1 block w-full"
-                                            v-model="form.company_name"
+                                            v-model="caddress"
                                             required
                                             autofocus
+                                            :value="caddress"
                                         />
 
                                         <InputError class="mt-2" :message="form.errors.company_name" />
@@ -274,6 +252,7 @@ const submit = () => {
                                             v-model="form.corporate_address"
                                             required
                                             autofocus
+                                            :value="caddress"
                                         />
 
                                         <InputError class="mt-2" :message="form.errors.corporate_address" />
@@ -289,6 +268,7 @@ const submit = () => {
                                             v-model="form.contact_name"
                                             required
                                             autofocus
+                                            :value="coname"
                                         />
 
                                         <InputError class="mt-2" :message="form.errors.contact_name" />
@@ -319,6 +299,7 @@ const submit = () => {
                                             v-model="form.contact_email"
                                             required
                                             autofocus
+                                            :value="cemail"
                                         />
 
                                         <InputError class="mt-2" :message="form.errors.contact_email" />
@@ -334,6 +315,7 @@ const submit = () => {
                                             v-model="form.location_address"
                                             required
                                             autofocus
+                                            :value="loaddress"
                                         />
 
                                         <InputError class="mt-2" :message="form.errors.location_address" />
@@ -349,6 +331,7 @@ const submit = () => {
                                             v-model="form.start_date"
                                             required
                                             autofocus
+                                            :value="sdate"
                                         />
 
                                         <InputError class="mt-2" :message="form.errors.start_date" />

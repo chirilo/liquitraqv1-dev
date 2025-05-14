@@ -38,10 +38,43 @@ class LiquijobController extends Controller
      */
     public function create()
     {
+
+        // check if $_GET data is present
+        if( isset($_GET['caddress']) || isset($_GET['cemail']) || isset($_GET['cname']) || isset($_GET['coname']) || isset($_GET['loaddress']) || isset($_GET['sdate']) ) {
+            // id index exists
+            $caddress = $_GET['caddress'];
+            $cemail = $_GET['cemail'];
+            $cname = $_GET['cname'];
+            $coname = $_GET['coname'];
+            $loaddress = $_GET['loaddress'];
+            $sdate = $_GET['sdate'];
+        }
+
+        $server_data = json_encode([
+            'caddress' => $caddress,
+                'cemail' => $cemail,
+                'cname' => $cname,
+                'coname' => $coname,
+                'loaddress' => $loaddress,
+                'caddress' => $sdate,
+        ]);
         //
 
+        //dd($caddress);
+
+        //Inertia::share('caddress', $caddress);
+
         return Inertia::render(
-            'Liquijobs/Create'
+            'Liquijobs/Create',
+            [
+                'caddress' => $caddress,
+                'cemail' => $cemail,
+                'cname' => $cname,
+                'coname' => $coname,
+                'loaddress' => $loaddress,
+                'sdate' => $sdate,
+                'serverdata' => $server_data
+            ]
         );
     }
 
