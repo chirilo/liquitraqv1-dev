@@ -10,7 +10,14 @@ use Illuminate\Support\Str;
 use Inertia\Inertia;
 use App\Models\Liquiasset;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Input;
+
+use Illuminate\Http\File;
+
 use Intervention\Image\Facades\Image;
+
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class LiquiassetController extends Controller
 {
@@ -47,51 +54,21 @@ class LiquiassetController extends Controller
     public function store(Request $request)
     {
 
-        //dd($request->file('job_asset'));
-        // dd($request);
-        // exit;
-        //
-        // $request->validate([
-        //      'job_asset' => 'nullable|file|mimes:jpg,jpeg,png,gif|max:1024',
-
-        // ]);
-        // Create the uploads directory if it doesn't exist
-        // $uploadPath = public_path('uploads');
-        // if (!file_exists($uploadPath)) {
-        //     mkdir($uploadPath, 0755, true);
-        // }
-
-        // // Store the image
-        // if ($request->file('job_asset')) {
-        //    //  $uploadedimage = $request->file('job_asset');
-        //    //  //$imageName = time() . '.' . $request->image->extension();
-        //    // // $request->image->move($uploadPath, $imageName);
-        //    //  $imagename = time() . '.' . $uploadedimage;
-        //    //  $request->file('job_asset')->move($uploadPath, $imagename);
-
-        //     $imageName = 'tst'. $request->file('job_asset')->extension();
-        //     $request->file('job_asset')->move($uploadPath, $imageName);
-
-     
-        //     return redirect()->route('liquiassets.create')
-        //         ->with('message', 'Asset Added Successfully');
-        //         //->with('image', $imageName);
-        // }
-
-
         $image = $request->file('job_asset');
-        $imageName = time() . '.' . $image->getClientOriginalExtension();
-        // Resize the image
-        //$img = Image::make($image)->resize(300, 200);
-        $image->move(public_path('uploads/images/' . $imageName));
+        $fname = $request->file('job_asset')->getClientOriginalName();
+
+        //Storage::disk('local')->put('file.txt', 'Contents'); // sucess
+        // $jobasset_img = $request->file('job_asset');
+        // $jobasset_filename = $jobasset_img->getClientOriginalName() . '.' . $jobasset_img->getClientOriginalExtension();
+        // Storage::disk('public')->putFileAs('aplods', $jobasset_img, $jobasset_filename);
 
 
-        //echo $imageName;
-
-        //dd($imageName);exit;
+        $storagePath = Storage::disk('public')->put('job_assets', $image);
+        $storageName = basename($storagePath);
+       
 
         Liquiasset::create([
-            'job_asset' => $imageName,
+            'job_asset' => '/storage/job_assets/'.$storageName,
             'job_id' => $request->jobid
         ]);
 
