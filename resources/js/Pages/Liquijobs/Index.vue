@@ -300,7 +300,8 @@ const deleteTrade = (id) => {
 									<ul style="padding: 0;">
 							            
 										<li v-for="entry in props.liquijobs.data" :key="entry.id">
-											<div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">      
+											<div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">  
+												<div style="padding: 0.5em 1em 0em 0em;"><PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="max-w-xl ml-2 float-right" style="background-color: #292d73; width: fit-content;">VIEW</PrimaryLink></div>
 												<div class="mx-3 border-slate-200 pb-3 pt-2 px-1">
 													<span class="text-sm text-slate-600 font-medium">
 													Building: {{ entry.corporate_address }}
@@ -327,8 +328,11 @@ const deleteTrade = (id) => {
 							          	<ul style="padding: 0;">
 
 							            	<li v-for="entry in props.liquijobs.data" :key="entry.id">
-							                  <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">      
+							                  <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">  
+
+							                  	<div style="padding: 0.5em 1em 0em 0em;"><PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="max-w-xl ml-2 float-right" style="background-color: #292d73; width: fit-content;">VIEW</PrimaryLink></div>   
 							                    <div class="mx-3 border-slate-200 pb-3 pt-2 px-1">
+
 							                      <span class="text-sm text-slate-600 font-medium">
 							                        Building: {{ entry.corporate_address }}
 							                      </span>
