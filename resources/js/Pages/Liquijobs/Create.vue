@@ -233,7 +233,7 @@ const submit = () => {
                                             type="text"
                                             :placeholder="cname"
                                             class="mt-1 block w-full"
-                                            v-model="caddress"
+                                            v-model="form.company_name"
                                             required
                                             autofocus
                                             :value="caddress"
