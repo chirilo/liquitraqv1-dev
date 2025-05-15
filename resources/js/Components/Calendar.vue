@@ -166,7 +166,7 @@ b { /* used for event dates/times */
   /* padding: 3em; */
 }
 
-#fc-dom-1 {
+.fc-toolbar-title {
   color: #00afef !important;
   font-family: RethinkSans-ExtraBold !important;
   text-transform: uppercase !important;

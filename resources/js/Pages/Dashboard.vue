@@ -13,11 +13,9 @@ import Subdashboard from '@/Components/Subdashboard.vue';
             </h2>
         </template>
 
-        <div class="py-2">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
-                    <Subdashboard />
-                </div>
+        <div class="max-w-7xl mx-auto p-5">
+            <div class="dark:bg-gray-800 overflow-hidden sm:rounded-lg">
+                <Subdashboard />
             </div>
         </div>
     </AppLayout>

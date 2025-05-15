@@ -184,7 +184,7 @@ const submit = () => {
 									<option class="text-base primary-dark-blue" value="state">State</option>
 									<option class="text-base primary-dark-blue" value="building">Building</option>
 								</select>
-								<a href="/liquijobs" class="w-full text-white font-bold p-4 rounded-full bg-gradient-blue uppercase inline-block text-center mt-3">Go <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </a>
+								<a href="/liquijobs" class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Go <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></a>
 							</div>
                             
                             <div style="display: none;" class="w-full pr-6 pl-6 pb-6 mt-6">
@@ -659,7 +659,7 @@ const submit = () => {
                                         </div> -->
 
                                         <div class="flex items-center gap-4">
-                                            <PrimaryButton :disabled="form.processing"  class="text-base text-white font-bold px-6 py-4 rounded-full bg-gradient-blue uppercase inline-block text-center mt-3">Save</PrimaryButton>
+                                            <PrimaryButton :disabled="form.processing">Save</PrimaryButton>
 
                                             <Transition
                                                 enter-active-class="transition ease-in-out"
