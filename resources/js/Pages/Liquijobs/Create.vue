@@ -331,7 +331,6 @@ const submit = () => {
                                             v-model="form.start_date"
                                             required
                                             autofocus
-                                            :value="sdate"
                                         />
 
                                         <InputError class="mt-2" :message="form.errors.start_date" />
