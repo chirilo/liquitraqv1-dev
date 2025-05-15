@@ -163,12 +163,30 @@ b { /* used for event dates/times */
 
 .demo-app-main {
   flex-grow: 1;
-  padding: 3em;
+  /* padding: 3em; */
 }
 
+#fc-dom-1 {
+  color: #00afef !important;
+  font-family: RethinkSans-ExtraBold !important;
+  text-transform: uppercase !important;
+  font-size: 1rem !important;
+  line-height: 1.5rem !important;
+
+}
 .fc { /* the calendar root */
   max-width: 1100px;
   margin: 0 auto;
 }
-
+/* removing today button */
+.fc-today-button {
+  display: none !important;
+}
+.fc-toolbar-chunk:nth-child(1), .fc-toolbar-chunk:nth-child(3) {
+  display: none !important;
+}
+.fc-toolbar-chunk:nth-child(2) {
+  width: 100% !important;
+  text-align: center;
+}
 </style>

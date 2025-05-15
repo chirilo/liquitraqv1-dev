@@ -93,8 +93,8 @@
 /**
 * Custom/Additional Classes
 */
-.mainbackground{
-    background-color: rgba(177, 186, 211, 0.6);
+.mainbackground {
+    background-color: #dfe6f0;
 }
 
 /* from elementor */
@@ -102,26 +102,38 @@
     color: #6EC1E4;
 }
 /* for h1 1st line */
-.primary-light-blue{
+.primary-light-blue {
     color: #00afef;
 }
 /* for h1 2nd line */
 .primary-dark-blue{
     color: #323581;
 }
-
+.primary-gray {
+  color: #8c8c97;
+}
+/* sidebar border divider */
+.border-divider {
+  border-bottom: 1px #e9ebef solid;
+}
 .bg-blue-500{
     background-color: #292d73;
 }
-
+.bg-gray{
+    background-color: #fafafa;
+}
+.bg-gradient-blue {
+  background: #2A2E73;
+  background: linear-gradient(0deg,rgba(42, 46, 115, 1) 0%, rgba(47, 81, 145, 1) 70%, rgba(50, 98, 160, 1) 100%);
+}
 h1, h2 {
     color: #00afef;
 }
-
 .float-right{
     float: right;
 }
 
+/* FONTS */
 .font-rethinksansbold {
   font-family: RethinkSans-Bold;
 }
