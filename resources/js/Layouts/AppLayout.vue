@@ -38,24 +38,25 @@ const logout = () => {
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
-                        <div class="flex">
+                        <div class="flex" style="padding-right: 15%; margin: 5px 0px 5px 0px;">
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
-                                <Link :href="route('dashboard')">
+                                <Link href="/liquijobs">
                                     <ApplicationMark class="block h-9 w-auto" />
                                 </Link>
                             </div>
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Dashboard
-                                </NavLink>
+                                <!-- <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                                    Job Dashboard
+                                </NavLink> -->
+                                <a href="/liquijobs" style="padding-top: 1em;">Job Dashboard</a>
                             </div>
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ms-6">
-                            <div class="ms-3 relative">
+                            <div class="ms-3 relative" style="display: none;">
                                 <!-- Teams Dropdown -->
                                 <Dropdown v-if="$page.props.jetstream.hasTeamFeatures" align="right" width="60">
                                     <template #trigger>
@@ -142,9 +143,9 @@ const logout = () => {
                                             Profile
                                         </DropdownLink>
 
-                                        <DropdownLink v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')">
+                                        <!-- <DropdownLink v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')">
                                             API Tokens
-                                        </DropdownLink>
+                                        </DropdownLink> -->
 
                                         <div class="border-t border-gray-200 dark:border-gray-600" />
 
@@ -218,9 +219,9 @@ const logout = () => {
                                 Profile
                             </ResponsiveNavLink>
 
-                            <ResponsiveNavLink v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')" :active="route().current('api-tokens.index')">
+                            <!-- <ResponsiveNavLink v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')" :active="route().current('api-tokens.index')">
                                 API Tokens
-                            </ResponsiveNavLink>
+                            </ResponsiveNavLink> -->
 
                             <!-- Authentication -->
                             <form method="POST" @submit.prevent="logout">
@@ -233,21 +234,21 @@ const logout = () => {
                             <template v-if="$page.props.jetstream.hasTeamFeatures">
                                 <div class="border-t border-gray-200 dark:border-gray-600" />
 
-                                <div class="block px-4 py-2 text-xs text-gray-400">
+                                <!-- <div class="block px-4 py-2 text-xs text-gray-400">
                                     Manage Team
-                                </div>
+                                </div> -->
 
                                 <!-- Team Settings -->
-                                <ResponsiveNavLink :href="route('teams.show', $page.props.auth.user.current_team)" :active="route().current('teams.show')">
+                                <!-- <ResponsiveNavLink :href="route('teams.show', $page.props.auth.user.current_team)" :active="route().current('teams.show')">
                                     Team Settings
-                                </ResponsiveNavLink>
+                                </ResponsiveNavLink> -->
 
-                                <ResponsiveNavLink v-if="$page.props.jetstream.canCreateTeams" :href="route('teams.create')" :active="route().current('teams.create')">
+                                <!-- <ResponsiveNavLink v-if="$page.props.jetstream.canCreateTeams" :href="route('teams.create')" :active="route().current('teams.create')">
                                     Create New Team
-                                </ResponsiveNavLink>
+                                </ResponsiveNavLink> -->
 
                                 <!-- Team Switcher -->
-                                <template v-if="$page.props.auth.user.all_teams.length > 1">
+                                <!-- <template v-if="$page.props.auth.user.all_teams.length > 1">
                                     <div class="border-t border-gray-200 dark:border-gray-600" />
 
                                     <div class="block px-4 py-2 text-xs text-gray-400">
@@ -266,7 +267,7 @@ const logout = () => {
                                             </ResponsiveNavLink>
                                         </form>
                                     </template>
-                                </template>
+                                </template> -->
                             </template>
                         </div>
                     </div>
@@ -274,14 +275,14 @@ const logout = () => {
             </nav>
 
             <!-- Page Heading -->
-            <header v-if="$slots.header" class="bg-white dark:bg-gray-800 shadow">
+            <!-- <header v-if="$slots.header" class="bg-white dark:bg-gray-800 shadow">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     <slot name="header" />
                 </div>
-            </header>
+            </header> -->
 
             <!-- Page Content -->
-            <main>
+            <main class="mainbackground">
                 <slot />
             </main>
         </div>

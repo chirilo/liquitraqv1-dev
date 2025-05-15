@@ -1,0 +1,32 @@
+add_filter( 'register_post_type_args', 'dynamic_keep_product_slug', 10, 2 );
+function dynamic_keep_product_slug( $args, $post_type ) {
+    if ( 'manufacturers' === $post_type ) {
+		
+		//Add 'manufacturers' tag.
+     	//add_rewrite_tag('%manufacturers%', '([^&/]+)');
+		//add_rewrite_tag('%manufacturers', '([^&/]+)');
+		add_rewrite_tag('%manufacturers/manufacturer-categories%', '([^&/]+)');
+		
+        $my_args = array(
+            'rewrite' => array( 'slug' => '%manufacturers/manufacturer-categories%', 'with_front' => false ),
+            'hierarchical' => false,
+            //'taxonomies' => array('manufacturers')
+        );
+        return array_merge( $args, $my_args );
+    }
+
+    return $args;
+}
+function keep_product_link( $post_link, $id = 0 ) {
+    $post = get_post($id);
+
+    $terms = wp_get_object_terms( $post->ID, 'manufacturer-categories' );
+    if( $terms ){
+        return str_replace( '%manufacturers/manufacturer-categories%' , $terms[0]->slug , $post_link );
+    } else {
+        return str_replace( 'manufacturerr/%manufacturer-categories%' , 'products' , $post_link );
+    }
+
+    return $post_link;
+}
+add_filter( 'post_type_link', 'keep_product_link', 10, 2 );

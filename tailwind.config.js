@@ -16,6 +16,17 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                //sans: ['RethinkSansBold', 'RethinkSansBoldItalic', 'RethinkSansExtraBold', 'RethinkSansExtraBoldItalic', 'RethinkSansItalic', 'RethinkSansMedium', 'RethinkSansMediumItalic', 'RethinkSansRegular', 'RethinkSansSemiBold', 'RethinkSansSemiBoldItalic', ...defaultTheme.fontFamily.sans],
+                rethinksansbold: ['RethinkSans-Bold'],
+                rethinksansbolditalic: ['RethinkSans-BoldItalic'],
+                rethinksansextrabold: ['RethinkSans-ExtraBold'],
+                rethinksansextrabolditalic: ['RethinkSans-ExtraBoldItalic'],
+                rethinksansitalic: ['RethinkSans-Italic'],
+                rethinksansmedium: ['RethinkSans-Medium'],
+                rethinksansmediumitalic: ['RethinkSans-MediumItalic'],
+                rethinksansregular: ['RethinkSans-Regular'],
+                rethinksanssemibold: ['RethinkSans-SemiBold'],
+                rethinksanssemibolditalic: ['RethinkSans-SemiBoldItalic'],
             },
         },
     },
