@@ -112,7 +112,7 @@
 .primary-gray {
   color: #8c8c97;
 }
-/* sidebar border divider */
+/* border divider */
 .border-divider {
   border-bottom: 1px #e9ebef solid;
 }
@@ -163,4 +163,12 @@ h1, h2 {
 }
 .font-rethinksanssemibolditalic {
   font-family: RethinkSans-SemiBoldItalic;
+}
+
+
+/* Recent Jobs */
+@media (max-width: 767px) {
+  #recent-jobs-info {
+    flex-direction: column !important;
+  }
 }

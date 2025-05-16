@@ -14,6 +14,7 @@ import RecentJobs from '@/Components/RecentJobs.vue';
 import JobsLastSevenDays from '@/Components/JobsLastSevenDays.vue';
 import UpcomingJobs from '@/Components/UpcomingJobs.vue';
 
+
 // const liquijobsCreate = function(event) {
 // 	window.open("/liquijobs/create");
 // }
@@ -244,109 +245,96 @@ const deleteTrade = (id) => {
 
 						<!-- RIGHT PART -->
 						<div id="right-side" class="lg:col-span-2 md:col-span-3">
-								
-							<!-- recent jobs -->
-							<div id="recent-jobs" class="grid items-start rounded-lg bg-white p-6 mb-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] lg:pb-10">
-								<div class="relative flex flex-col " style="width: 100%; text-align: center;">
-									<h3 class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">Recent Jobs</h3>
+							
+							<div class="grid items-start rounded-lg bg-white p-6 mb-6">
+								<!-- recent jobs -->
+								<div id="recent-jobs">
+									<div class="relative flex flex-col">
+										<h3 class="block text-center text-2xl primary-light-blue font-rethinksansextrabold uppercase">Recent Jobs</h3>
+									</div>
+									<div class="w-full relative flex flex-col">
+										<ul class="p-0">
+											<li class="mb-6 last:mb-0" v-for="entry in props.liquijobs.data" :key="entry.id">
+												<div class="w-full relative flex flex-col bg-white border border-[#e9ebef] rounded-lg">      
+													<div class="p-4">
+														<PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="float-right">View</PrimaryLink>
+														<h5 class="mb-2 primary-dark-blue font-rethinksansbold text-base">
+															Building: {{ entry.corporate_address }}
+														</h5>
+														<p class="primary-dark-blue font-rethinksansmedium text-base">
+															City: {{ entry.location_address }}
+														</p>
+													</div>
+													<div id="recent-jobs-info" class="flex justify-between bg-[#f2f4f7] px-4 py-2">
+														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'it'">
+														Type: IT
+														</span>
+														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'furniture'">
+														Type: Furniture
+														</span>
+														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'infrastructure'">
+														Type: Infrastructure
+														</span>
+														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === null">
+														Type: Unspecified
+														</span>
+														<span class="text-nowrap w-auto primary-dark-blue font-rethinksansmedium text-base">
+														Start Date: {{ entry.start_date }}
+														</span>
+													</div>
+												</div>
+											</li>
+											
+										</ul>
+									</div> 
 								</div>
-								<div class="relative flex flex-col rounded-lg bg-white shadow-sm border border-slate-200" style="width: 100%;">
-									<ul style="padding: 0 0.5rem 0 0.5rem;">
-										<li v-for="entry in props.liquijobs.data" :key="entry.id">
-											<div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">      
-												<div class="p-4">
-												<PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="max-w-xl ml-2 float-right" style="background-color: #292d73;">VIEW</PrimaryLink>
-												<h5 class="mb-2 text-slate-800 text-xl font-semibold">
-													Building: {{ entry.corporate_address }}
-												</h5>
-												<p class="text-slate-600 leading-normal font-light">
-													City: {{ entry.location_address }}
-												</p>
-												</div>
-												<div class="mx-3 border-t border-slate-200 pb-3 pt-2 px-1">
-												
-												<span class="text-sm text-slate-600 font-medium" v-if="entry.type === 'it'">
-												Type: IT
-												</span>
-												<span class="text-sm text-slate-600 font-medium" v-if="entry.type === 'furniture'">
-												Type: Furniture
-												</span>
-												<span class="text-sm text-slate-600 font-medium" v-if="entry.type === 'infrastructure'">
-												Type: Infrastructure
-												</span>
-												<span class="text-sm text-slate-600 font-medium" v-if="entry.type === null">
-												Type: Unspecified
-												</span>
-												
-												
-												<span class="text-sm text-slate-600 font-medium" style="float: inline-end;">
-													Start Date: {{ entry.start_date }}
-												</span>
-												</div>
+								<!-- recent jobs -->
+
+								<!-- jobs last 7 days -->
+								<div id="job-last-7-days" class="mt-6 w-full relative flex flex-col bg-white border border-[#e9ebef] rounded-lg">
+									<div class="relative flex flex-col pt-4 pb-2 px-4">
+										<h3 class="block w-full text-lg primary-light-blue font-rethinksansextrabold uppercase">Jobs Last 7 Days</h3>
+									</div>
+									<ul class="p-0">
+										<li class="px-4 py-2 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none" v-for="entry in props.liquijobs.data" :key="entry.id">
+											<div >
+												<!-- <PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="float-right">View</PrimaryLink> -->
+												<a :href="route('liquijobs.show', {'id': entry.id})" class="primary-dark-blue font-rethinksansbold text-base hover:opacity-80">
+												Building: {{ entry.corporate_address }}
+												</a>
+												<!-- <span class="primary-dark-blue font-rethinksansmedium text-base" style="float: inline-end;">
+													{{ entry.start_date }}
+												</span> -->
 											</div>
 										</li>
-										
 									</ul>
-								</div> 
-							</div>
-							<!-- recent jobs -->
-
-							<!-- jobs last 7 days -->
-							<div id="job-last-7-days" class="grid items-start rounded-lg bg-white p-6 mb-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] lg:pb-10">
-								<div class="relative flex flex-col " style="width: 100%;">
-									<h3 class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">Jobs Last 7 Days</h3>
 								</div>
-								<div class="relative flex flex-col rounded-lg bg-white border-slate-200" style="width: 100%;">
-								<ul style="padding: 0;">
-									
-									<li v-for="entry in props.liquijobs.data" :key="entry.id">
-										<div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">  
-											<div style="padding: 0.5em 1em 0em 0em;"><PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="max-w-xl ml-2 float-right" style="background-color: #292d73; width: fit-content;">VIEW</PrimaryLink></div>
-											<div class="mx-3 border-slate-200 pb-3 pt-2 px-1">
-												<span class="text-sm text-slate-600 font-medium">
+								<!-- jobs last 7 days -->
+
+								<!-- <UpcomingJobs /> -->
+								<!-- upcoming jobs -->
+								<div id="upcoming-jobs" class="mt-6 w-full relative flex flex-col bg-white border border-[#e9ebef] rounded-lg">
+									<div class="relative flex flex-col pt-4 pb-2 px-4">
+										<h3 class="block w-full text-lg primary-light-blue font-rethinksansextrabold uppercase">Upcoming Jobs</h3>
+									</div>
+									<ul class="p-0">
+										<li class="px-4 py-2 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none"  v-for="entry in props.liquijobs.data" :key="entry.id">
+											<!-- <PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="float-right">View</PrimaryLink> -->
+											<div>
+												<a :href="route('liquijobs.show', {'id': entry.id})" class="primary-dark-blue font-rethinksansbold text-base hover:opacity-80">
 												Building: {{ entry.corporate_address }}
-												</span>
-												<span class="text-sm text-slate-600 font-medium" style="float: inline-end;">
+												</a>
+												<span class="primary-dark-blue font-rethinksansmedium text-base" style="float: inline-end;">
 													{{ entry.start_date }}
 												</span>
 											</div>
-										</div>
-									</li>
-								</ul>
-								</div> 
-							</div>
-							<!-- jobs last 7 days -->
-
-							<!-- <UpcomingJobs /> -->
-							<!-- upcoming jobs -->
-							<div id="upcoming-jobs" class="grid items-start rounded-lg bg-white p-6 mb-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] lg:pb-10">
-								<div class="relative flex flex-col " style="width: 100%;">
-									<h3 class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">Upcoming Jobs</h3>
-								</div>
-								<div class="relative flex flex-col rounded-lg bg-white border-slate-200" style="width: 100%;">
-									<ul style="padding: 0;">
-
-										<li v-for="entry in props.liquijobs.data" :key="entry.id">
-											<div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">  
-
-											<div style="padding: 0.5em 1em 0em 0em;"><PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="max-w-xl ml-2 float-right" style="background-color: #292d73; width: fit-content;">VIEW</PrimaryLink></div>   
-											<div class="mx-3 border-slate-200 pb-3 pt-2 px-1">
-
-												<span class="text-sm text-slate-600 font-medium">
-												Building: {{ entry.corporate_address }}
-												</span>
-												<span class="text-sm text-slate-600 font-medium" style="float: inline-end;">
-													{{ entry.start_date }}
-												</span>
-											</div>
-											</div>
-										</li>                             
+										</li>                        
 									</ul>
 								</div>
-							</div>
-							<!-- upcoming jobs -->
+								<!-- upcoming jobs -->
+							 </div>
 							<!-- CALENDAR -->
-							<div id="calendar-container" class="grid items-start rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)]">
+							<div id="calendar-container" class="mt-6 grid items-start rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)]">
 								<Calendar />
 							</div>
 						</div>

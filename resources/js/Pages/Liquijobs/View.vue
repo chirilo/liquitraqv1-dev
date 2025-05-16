@@ -52,270 +52,269 @@ const deleteTrade = (id) => {
             </h2>
         </template>
 
-        <div class="py-2">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
-                    <div>
-
-				        <div class="grid gap-6 lg:grid-cols-3 md:grid-cols-1 lg:gap-8">
-				            
-				            <!-- LEFT PART -->
-				            <!-- Container for Left Sidebar (search and quick add job) -->
-				            <div id="left-side" class="mx-auto flex flex-col items-start gap-6 overflow-hidden rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] md:row-span-3 lg:p-10 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]" style="padding-left: 1em; padding-right: 1.5em;">
-				                
-				                <!-- AVATAR -->
-				                <div class="mx-auto relative flex items-center gap-6 lg:items-end">
-				                    <div class="relative flex items-center gap-6 lg:items-end">
-				                        <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="max-w-2xl max-h-2xl rounded-full cursor-pointer" src="https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250" alt="User dropdown">
-				                    </div>
-
-				                    <!-- <div class="relative flex items-center gap-6 lg:items-end">
-				                        <h1>My Account</h1>
-				                    </div> -->
-				                    <!-- Dropdown menu -->
-				                    <div id="userDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
-				                        <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-				                          <div>Chi Rilo</div>
-				                          <div class="font-medium truncate">name@flowbite.com</div>
-				                        </div>
-				                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
-				                          <li>
-				                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-				                          </li>
-				                          <li>
-				                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-				                          </li>
-				                          <li>
-				                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-				                          </li>
-				                        </ul>
-				                        <div class="py-1">
-				                          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
-				                        </div>
-				                    </div>
-				                </div>
-				                <!-- END OF AVATAR -->
-				                <!-- MY ACCOUNT -->
-				                <div class="mx-auto relative flex items-center gap-6 lg:items-end">
-				                
-				                    <!-- <div class="relative flex items-center gap-6 lg:items-end">
-				                        <h1>MY ACCOUNT 	&dArr;</h1>
-				                    </div> -->
-				                    <Dropdown align="right" width="48">
-	                                    <template #trigger>
-	                                        <button v-if="$page.props.jetstream.managesProfilePhotos" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-	                                            <img class="size-8 rounded-full object-cover" :src="$page.props.auth.user.profile_photo_url" :alt="$page.props.auth.user.name">
-	                                        </button>
-
-	                                        <span v-else class="inline-flex rounded-md">
-	                                            <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
-	                                                {{ $page.props.auth.user.name }}
-
-	                                                <svg class="ms-2 -me-0.5 size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-	                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-	                                                </svg>
-	                                            </button>
-	                                        </span>
-	                                    </template>
-
-	                                    <template #content>
-	                                        <!-- Account Management -->
-	                                        <div class="block px-4 py-2 text-xs text-gray-400">
-	                                            Manage Account
-	                                        </div>
-
-	                                        <DropdownLink :href="route('profile.show')">
-	                                            Profile
-	                                        </DropdownLink>
-
-	                                        <!-- <DropdownLink v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')">
-	                                            API Tokens
-	                                        </DropdownLink> -->
-
-	                                        <div class="border-t border-gray-200 dark:border-gray-600" />
-
-	                                        <!-- Authentication -->
-	                                        <form @submit.prevent="logout">
-	                                            <DropdownLink as="button">
-	                                                Log Out
-	                                            </DropdownLink>
-	                                        </form>
-	                                    </template>
-	                                </Dropdown>
-				                    
-				                </div>
-				                <!-- END OF: MY ACCOUNT -->
-
-				                
-
-				                <!-- <div id="screenshot-container" class="relative flex w-full flex-1 items-stretch">
-				                    <input type="search" name="search" placeholder="Search anything" />
-				                </div> -->
-
-				                <SearchBarSideBar/>
-
-				                
-				                <br/>
-
-
-				                 <h2 class="block w-full text-center">FILTER JOBS BY</h2>
-				                 <select class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-				                     <option value="state">State</option>
-				                     <option value="building">Building</option>
-				                 </select>
-				                 <a href="/liquijobs" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" style="display: inline-block; width: 100% !important; text-align: center;"> GO <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </a>
-
-				                 <h2>QUICK ADD NEW JOB</h2>
-				                <div class="relative flex items-center gap-6 lg:items-end">
-				                    <div id="docs-card-content" class="flex items-start gap-6 lg:flex-col">
-				                        <form class="w-full">
-				                             <div class="flex flex-wrap -mx-3 mb-6">
-				                                <div class="w-full py-1 px-3">
-				                                    <label class="hidden block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-				                                    Job Co Name
-				                                    </label>
-				                                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Job Co Name">
-				                                    <p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
-				                                </div>
-				                                <div class="w-full py-1 px-3">
-				                                    <label class="hidden block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-				                                    Address
-				                                    </label>
-				                                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Address">
-				                                    <p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
-				                                </div>
-				                                <div class="w-full py-1 px-3">
-				                                    <label class="hidden block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-				                                    Contact Name
-				                                    </label>
-				                                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Contact Name">
-				                                    <p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
-				                                </div>
-				                                <div class="w-full py-1 px-3">
-				                                    <label class="hidden block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-				                                    Email
-				                                    </label>
-				                                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Email">
-				                                    <p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
-				                                </div>
-				                                <div class="w-full py-1 px-3">
-				                                    <label class="hidden block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-				                                    Phone
-				                                    </label>
-				                                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Phone">
-				                                    <p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
-				                                </div>
-				                                <div class="w-full py-1 px-3">
-				                                    <label class="hidden block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-				                                    Start Date
-				                                    </label>
-				                                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Start Date">
-				                                    <p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
-				                                </div>
-				                            </div>
-				                            
-				                            <a v-bind:href="liquijobsCreate" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" style="display: inline-block; width: 100% !important; text-align: center;"> ADD NEW JOB <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </a>
-				                        </form>
-				                    </div>
-
-				                    
-				                </div>
-				            </div>
-
-				            <!-- RIGHT PART -->
-				            <div id="right-side" class="lg:col-span-2">
-				                
-				                <!-- curret job selected /recent jobs -->
-				                <div id="recent-jobs" class="grid mb-2 items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20] lg\:pt-0 sm\:pt-0" style="padding-top: 0; padding-left: 0.5em;">
-
-				                	<div class="mt-6 float-right">
-					                	<a href="/liquijobs" class="w-half bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" style="float: right;">Back to Jobs</a>
-					                </div>
-
-								    <div class="relative flex flex-col " style="width: 100%; text-align: center;">
-								        <h1 class="text-center font-bold text-xl">{{props.liquijobs.building}}</h1>
-								    </div>
-								    <div class="relative flex flex-col rounded-lg bg-white shadow-sm border border-slate-200">
-								      
-								        <ul style="padding: 0 0.5rem 0 0.5rem;">
-								            
-								            <li>
-								            	<!-- <h5 class="mb-2 text-slate-800 text-xl font-semibold">
-								                      Building: {{props.liquijobs.so_number}}
-								                    </h5> -->
-								            	<div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-96" style="width: 100%;">
-								                  	<div class="p-4">
-								                    <p class="text-slate-600 leading-normal font-light">
-								                      <b style="font-weight: bold;">Corporate Address: </b> {{props.liquijobs.corporate_address}}
-								                    </p>
-								                	</div>
-								                    <div class="p-4">
-								                    <p class="text-slate-600 leading-normal font-light">
-								                      <b style="font-weight: bold;">Contact Name: </b> {{props.liquijobs.contact_name}}
-								                    </p>
-								                	</div>
-								                    <div class="p-4">
-								                    <p class="text-slate-600 leading-normal font-light">
-								                      <b style="font-weight: bold;">Phone: </b> {{props.liquijobs.contact_telephone}}
-								                    </p>
-								                	</div>
-								                    <div class="p-4">
-								                    <p class="text-slate-600 leading-normal font-light">
-								                      <b style="font-weight: bold;">Email: </b> {{props.liquijobs.contact_email}}
-								                    </p>
-								                	</div>
-								                    <div class="p-4">
-								                    <p class="text-slate-600 leading-normal font-light">
-								                      <b style="font-weight: bold;">Location Name: </b> {{props.liquijobs.location_address}}
-								                    </p>
-								                	</div>
-								                    <div class="p-4">
-								                    <p class="text-slate-600 leading-normal font-light">
-								                      <b style="font-weight: bold;">Start Date: </b> {{props.liquijobs.start_date}}
-								                    </p>
-								                	</div>
-								                  </div>
-								        	</li>
-								            <li style="text-align: center;">
-								            	<!-- <button class="w-half bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"> VIEW ASSETS <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </button> -->
-								            	<a v-bind:href="liquiassetsurl" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" style="display: inline-block; width: 100% !important;"> ADD ASSETS </a>
-								            </li>
-								        </ul>
-								        <!-- images -->
-								        <ul style="padding: 0 0.5rem 0 0.5rem; display: inline; padding-bottom: 1em; min-height: 250px;">
-								            
-								        	
-											  <li v-for="item in job_assets" :key="id" :value="id" style="vertical-align: top; display: inline; margin-left: 1em;">
-								            	<!-- <img :src="'/uploads/images/' + item.job_asset" style="margin: 0 1em 0 1em;" width="300" height="300" onerror="https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0" /> -->
-								            	<img style="vertical-align: top; display: inline; margin: 1em 1em 1em 1em; background-image: url('https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0');" width="300" height="300" :src="item.job_asset" />
-								            </li>
-											
-
-								        </ul>
-								    </div> 
+		<div class="max-w-7xl mx-auto p-5">
+			<div class="dark:bg-gray-800 overflow-hidden sm:rounded-lg">
+				<div>
+					<div class="grid gap-6 lg:grid-cols-3 md:grid-cols-5 lg:gap-8">
+						<!-- LEFT PART -->
+						<!-- Container for Left Sidebar (search and quick add job) -->
+						<div id="left-side" class="mx-auto flex flex-col items-start overflow-hidden pb-6 pt-6 rounded-lg bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] lg:col-span-1 md:col-span-2">
+							<div class="relative w-full flex items-center pb-6 border-divider">
+								<div class="mx-auto">
+									<div class="flex items-center"><a href="/liquijobs"><img src="/images/logos/liquis-logo.png" alt="LiquiTraq" class="block md:w-40 sm:w-20"></a></div>
 								</div>
-				                <!-- curret job selected / recent jobs -->
-    
-				                
+							</div>
 
-				                
-				            </div>
+							<div class="relative w-full border-divider pt-6">
+							<!-- AVATAR -->
+								<div class="relative flex items-center lg:items-end">
+									<div class="mx-auto relative flex items-center lg:items-end">
+										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl" src="/images/logos/avatar.jpg" alt="User dropdown">
+									</div>
 
-				            
+									<!-- <div class="relative flex items-center gap-6 lg:items-end">
+										<h1>My Account</h1>
+									</div> -->
+									<!-- Dropdown menu -->
+									<div id="userDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
+										<div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+										<div>Chi Rilo</div>
+										<div class="font-medium truncate">name@flowbite.com</div>
+										</div>
+										<ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
+										<li>
+											<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+										</li>
+										<li>
+											<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+										</li>
+										<li>
+											<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+										</li>
+										</ul>
+										<div class="py-1">
+										<a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+										</div>
+									</div>
+								</div>
+								<!-- END OF AVATAR -->
+								<!-- MY ACCOUNT -->
+								<div class="mx-auto relative flex justify-center pt-6 pb-6">
+								
+									<!-- <div class="relative flex items-center gap-6 lg:items-end">
+										<h1>MY ACCOUNT 	&dArr;</h1>
+									</div> -->
+									<Dropdown align="right" width="48" >
+										<template #trigger>
+											<button v-if="$page.props.jetstream.managesProfilePhotos" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
+												<img class="rounded-full object-cover" :src="$page.props.auth.user.profile_photo_url" :alt="$page.props.auth.user.name">
+											</button>
 
-				        </div>
+											<span v-else class="inline-flex rounded-md">
+												<button type="button" class="inline-flex items-center border border-transparent text-base text-base primary-light-blue font-rethinksansextrabold uppercase dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
+													{{ $page.props.auth.user.name }}
 
+													<svg class="ms-2 -me-0.5 size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+														<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+													</svg>
+												</button>
+											</span>
+										</template>
 
-				        <!-- CALENDAR -->
-				        <div class="grid gap-6 lg:grid-cols-1 lg:gap-8" style="margin-top: 2em;">
-				            <!-- Container for CALENDAR -->
-				            <div id="calendar-container" class="flex flex-col items-start gap-12 overflow-hidden rounded-lg bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] md:row-span-3 lg:p-12 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]">
-				                <Calendar />
-				            </div>
-				        </div>
+										<template #content>
+											<!-- Account Management -->
+											<div class="block px-4 py-2 text-sm text-gray-600">
+												Manage Account
+											</div>
+											
+											<DropdownLink class="block px-4 py-2 text-sm text-gray-600" :href="route('profile.show')">
+												Profile
+											</DropdownLink>
+
+											<!-- <DropdownLink v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')">
+												API Tokens
+											</DropdownLink> -->
+
+											<div class="border-t border-gray-200 dark:border-gray-600" />
+
+											<!-- Authentication -->
+												
+											<form @submit.prevent="logout">
+												<DropdownLink class="block px-4 py-2 text-sm text-gray-600" as="button">
+													Log Out
+												</DropdownLink>
+											</form>
+										</template>
+									</Dropdown>
+								</div>
+								<!-- END OF: MY ACCOUNT -->
+							</div>
+
+							<!-- <div id="screenshot-container" class="relative flex w-full flex-1 items-stretch">
+								<input type="search" name="search" placeholder="Search anything" />
+							</div> -->
+							
+							<div class="w-full pr-6 pl-6 pb-6 mt-6 border-divider">
+								<SearchBarSideBar/>
+							</div>
+
+							<!-- <input class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="search" name="search" placeholder="Search anything" /> -->
+							<div class="w-full pr-6 pl-6 pb-6 mt-6 border-divider">
+								<h2 class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">Filter Jobs By</h2>
+								<select class="appearance-none block w-full p-4 mt-3 text-base primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none">
+									<option class="text-base primary-dark-blue" value="state">State</option>
+									<option class="text-base primary-dark-blue" value="building">Building</option>
+								</select>
+								<a href="/liquijobs" class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Go <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></a>
+							</div>
+
+							<div class="w-full pr-6 pl-6 pb-6 mt-6">
+								<h2 class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">Quick Add New Job</h2>
+								<div class="mt-3 relative flex items-center lg:items-end">
+									<div id="docs-card-content" class="flex items-start lg:flex-col">
+										<form class="w-full" action="/liquijobs/create">
+											<div class="flex flex-wrap">
+												<div class="w-full">
+													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
+													Company Name
+													</label>
+													<input name="cname" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Company Name">
+													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
+												</div>
+												<div class="w-full mt-3">
+													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
+													Corporate Address
+													</label>
+													<input name="caddress" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Corporate Address">
+													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
+												</div>
+												<div class="w-full mt-3">
+													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
+													Contact Name
+													</label>
+													<input name="coname" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Contact Name">
+													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
+												</div>
+												<div class="w-full mt-3">
+													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
+													Contact Email
+													</label>
+													<input name="cemail" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Contact Email">
+													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
+												</div>
+												<div class="w-full mt-3">
+													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
+													Contact Telephone
+													</label>
+													<input name="cname"cotel class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Contact Telephone">
+													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
+												</div>
+												<div class="w-full mt-3">
+													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
+													Location Address
+													</label>
+													<input name="loaddress" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Location Address">
+													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
+												</div>
+												<div class="w-full mt-3">
+													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
+													Start Date
+													</label>
+													<input name="sdate" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Start Date">
+													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
+												</div>
+											</div>
+											
+											<!-- <a v-bind:href="liquijobsCreate" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" style="display: inline-block; width: 100% !important; text-align: center;"> ADD NEW JOB <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </a> -->
+											<button id="send" type="submit" class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Add New <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></button>
+										
+										</form>
+									</div>
+
+									
+								</div>
+							</div>
+						</div>
+						<!-- RIGHT PART -->
+						<div id="right-side" class="lg:col-span-2 md:col-span-3">
+							<!-- current job selected /recent jobs -->
+							<div class="rounded-lg bg-white p-6">
+								<div id="recent-jobs">
+									<div class="float-right">
+										<a href="/liquijobs" class="text-white py-2 px-4 rounded-full bg-gradient-blue inline-block text-center text-sm font-rethinksansbold hover:opacity-90 float-right">Back to Jobs</a>
+									</div>
+										 <!-- class="block text-center text-2xl primary-light-blue font-rethinksansextrabold uppercase" -->
+									<div class="relative flex flex-col w-full mt-6">
+										<h1 class="block text-center text-2xl primary-light-blue font-rethinksansextrabold uppercase">{{props.liquijobs.building}}</h1>
+									</div>
+									<ul class="p-0">
+										<li>
+											<!-- <h5 class="mb-2 text-slate-800 text-xl font-semibold">
+													Building: {{props.liquijobs.so_number}}
+												</h5> -->
+											<div class="w-full relative flex flex-col">
+												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
+													<p>
+														<span class="font-rethinksansbold primary-dark-blue">Corporate Address: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.corporate_address}}</span>
+													</p>
+												</div>
+												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
+													<p>
+														<span class="font-rethinksansbold primary-dark-blue">Contact Name: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.contact_name}}</span>
+													</p>
+												</div>
+												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
+													<p>
+														<span class="font-rethinksansbold primary-dark-blue">Phone: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.contact_telephone}}</span>
+													</p>
+												</div>
+												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
+													<p>
+														<span class="font-rethinksansbold primary-dark-blue">Email: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.contact_email}}</span>
+													</p>
+												</div>
+												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
+													<p>
+														<span class="font-rethinksansbold primary-dark-blue">Location Name: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.location_address}}</span>
+													</p>
+												</div>
+												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
+													<p>
+														<span class="font-rethinksansbold primary-dark-blue">Start Date: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.start_date}}</span>
+													</p>
+												</div>
+											</div>
+										</li>
+										<li class="text-center">
+											<!-- <button class="w-half bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"> VIEW ASSETS <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </button> -->
+											<a v-bind:href="liquiassetsurl" class="text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90"> Add Assets <svg class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" style="display: inline; float: inline-end; margin-left: 5px"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"></path></svg></a>
+										</li>
+									</ul>
+								</div> 
+							</div>
+							<div class="rounded-lg bg-white p-6 mt-6">
+								<div id="recent-assets">
+									<!-- images -->
+									<ul class="m-0 p-0 flex justify-start">
+											<li class="m-0 p-0 w-40 pr-3" v-for="item in job_assets" :key="id" :value="id">
+											<!-- <img :src="'/uploads/images/' + item.job_asset" style="margin: 0 1em 0 1em;" width="300" height="300" onerror="https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0" /> -->
+											<img class="aspect-square object-cover h-auto " style="background-image: url('https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0');" :src="item.job_asset" />
+										</li>
+									</ul>
+								</div> 
+							</div>
+						</div>
+							<!-- current job selected / recent jobs -->
+					</div>
+					<!-- CALENDAR -->
+					<div class="mt-6 grid gap-6 lg:grid-cols-1 lg:gap-8" style="display: none;">
+						<!-- Container for CALENDAR -->
+						<div id="calendar-container" class="flex flex-col items-start gap-12 overflow-hidden rounded-lg bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] md:row-span-3 lg:p-12 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]">
+							<Calendar />
+						</div>
+					</div>
 				        
-				    </div> <!-- end of unlabeled div -->
-                </div>
+				</div> <!-- end of unlabeled div -->
             </div>
         </div>
         <!-- -->

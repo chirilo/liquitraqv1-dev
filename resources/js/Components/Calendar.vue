@@ -170,8 +170,8 @@ b { /* used for event dates/times */
   color: #00afef !important;
   font-family: RethinkSans-ExtraBold !important;
   text-transform: uppercase !important;
-  font-size: 1rem !important;
-  line-height: 1.5rem !important;
+  font-size: 1.125rem !important;
+  line-height: 1.75rem !important;
 
 }
 .fc { /* the calendar root */
