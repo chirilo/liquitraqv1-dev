@@ -10,7 +10,7 @@ use App\Http\Controllers\LiquiassetController;
 use App\Http\Controllers\LjobController;
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
+    return Inertia::render('Auth/Login', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
