@@ -267,12 +267,11 @@ const submit = () => {
                                             <TextInput
                                                 id="company_name"
                                                 type="text"
-                                                :placeholder="cname"
+                                                placeholder="Company Name"
                                                 class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
                                                 v-model="form.company_name"
                                                 required
                                                 autofocus
-                                                :value="caddress"
                                             />
 
                                             <InputError class="mt-2" :message="form.errors.company_name" />
@@ -288,7 +287,6 @@ const submit = () => {
                                                 v-model="form.corporate_address"
                                                 required
                                                 autofocus
-                                                :value="caddress"
                                             />
 
                                             <InputError class="mt-2" :message="form.errors.corporate_address" />
@@ -304,7 +302,6 @@ const submit = () => {
                                                 v-model="form.contact_name"
                                                 required
                                                 autofocus
-                                                :value="coname"
                                             />
 
                                             <InputError class="mt-2" :message="form.errors.contact_name" />
@@ -335,7 +332,6 @@ const submit = () => {
                                                 v-model="form.contact_email"
                                                 required
                                                 autofocus
-                                                :value="cemail"
                                             />
 
                                             <InputError class="mt-2" :message="form.errors.contact_email" />
@@ -351,7 +347,6 @@ const submit = () => {
                                                 v-model="form.location_address"
                                                 required
                                                 autofocus
-                                                :value="loaddress"
                                             />
 
                                             <InputError class="mt-2" :message="form.errors.location_address" />
@@ -395,226 +390,7 @@ const submit = () => {
                                         </div>
 
                                         <!-- assets below -->
-                                        <!-- <div>
-                                            <InputLabel for="category" value="Category" />
-
-                                            <select id="category" class="mt-1 block w-full">
-                                                <option value="furniture">Furniture</option>
-                                                <option value="it">IT</option>
-                                                <option value="infrastructure">Infrastructure</option>
-                                            </select>
-                                            
-
-                                            <InputError class="mt-2" :message="form.errors.category" />
-                                        </div>
-                                        <div>
-                                            <InputLabel for="type" value="Type" />
-
-                                            <select id="type" class="mt-1 block w-full">
-                                                <option value="furniture">Furniture</option>
-                                                <option value="it">IT</option>
-                                                <option value="infrastructure">Infrastructure</option>
-                                            </select>
-                                            
-
-                                            <InputError class="mt-2" :message="form.errors.category" />
-                                        </div> -->
-
-                                        <!-- <div>
-                                            <InputLabel for="so_number" value="SO Number" />
-
-                                            <TextInput
-                                                id="so_number"
-                                                type="text"
-                                                class="mt-1 block w-full"
-                                                v-model="form.so_number"
-                                                required
-                                                autofocus
-                                            />
-
-                                            <InputError class="mt-2" :message="form.errors.so_number" />
-                                        </div> -->
-
-                                        <!-- <div>
-                                            <InputLabel for="building" value="Building" />
-
-                                            <TextInput
-                                                id="building"
-                                                type="text"
-                                                class="mt-1 block w-full"
-                                                v-model="form.building"
-                                                required
-                                                autofocus
-                                            />
-
-                                            <InputError class="mt-2" :message="form.errors.building" />
-                                        </div> -->
-
-                                        <!-- <div>
-                                            <InputLabel for="city" value="City" />
-
-                                            <TextInput
-                                                id="city"
-                                                type="text"
-                                                class="mt-1 block w-full"
-                                                v-model="form.city"
-                                                required
-                                                autofocus
-                                            />
-
-                                            <InputError class="mt-2" :message="form.errors.city" />
-                                        </div> -->
-
-                                        <!-- <div>
-                                            <InputLabel for="state" value="State" />
-
-                                            <TextInput
-                                                id="state"
-                                                type="text"
-                                                class="mt-1 block w-full"
-                                                v-model="form.state"
-                                                required
-                                                autofocus
-                                            />
-
-                                            <InputError class="mt-2" :message="form.errors.state" />
-                                        </div> -->
-
-                                        <!-- <div>
-                                            <InputLabel for="status" value="Status" />
-
-                                            <TextInput
-                                                id="status"
-                                                type="text"
-                                                class="mt-1 block w-full"
-                                                v-model="form.status"
-                                                required
-                                                autofocus
-                                            />
-
-                                            <InputError class="mt-2" :message="form.errors.status" />
-                                        </div> -->
-
-                                        <!-- <div>
-                                            <InputLabel for="expected_qty" value="Expected Quantity" />
-
-                                            <TextInput
-                                                id="expected_qty"
-                                                type="text"
-                                                class="mt-1 block w-full"
-                                                v-model="form.expected_qty"
-                                                required
-                                                autofocus
-                                            />
-
-                                            <InputError class="mt-2" :message="form.errors.expected_qty" />
-                                        </div> -->
-
-                                        <!-- <div>
-                                            <InputLabel for="serial_number" value="Serial Number" />
-
-                                            <TextInput
-                                                id="serial_number"
-                                                type="text"
-                                                class="mt-1 block w-full"
-                                                v-model="form.serial_number"
-                                                required
-                                                autofocus
-                                            />
-
-                                            <InputError class="mt-2" :message="form.errors.serial_number" />
-                                        </div> -->
-
-                                        <!-- <div>
-                                            <InputLabel for="hid_employee_name" value="HID Employee Name" />
-
-                                            <TextInput
-                                                id="hid_employee_name"
-                                                type="text"
-                                                class="mt-1 block w-full"
-                                                v-model="form.hid_employee_name"
-                                                required
-                                                autofocus
-                                            />
-
-                                            <InputError class="mt-2" :message="form.errors.hid_employee_name" />
-                                        </div> -->
-
-                                        <!-- <div>
-                                            <InputLabel for="hid_employee_id" value="HID Employee ID" />
-
-                                            <TextInput
-                                                id="hid_employee_id"
-                                                type="text"
-                                                class="mt-1 block w-full"
-                                                v-model="form.hid_employee_id"
-                                                required
-                                                autofocus
-                                            />
-
-                                            <InputError class="mt-2" :message="form.errors.hid_employee_id" />
-                                        </div> -->
-
-                                        <!-- <div>
-                                            <InputLabel for="liquis_pickup_date" value="Liquis Pickup Date" />
-
-                                            <TextInput
-                                                id="liquis_pickup_date"
-                                                type="text"
-                                                class="mt-1 block w-full"
-                                                v-model="form.liquis_pickup_date"
-                                                required
-                                                autofocus
-                                            />
-
-                                            <InputError class="mt-2" :message="form.errors.liquis_pickup_date" />
-                                        </div> -->
-
-                                        <!-- <div>
-                                            <InputLabel for="liquis_employee_name" value="Liquis Employee Name" />
-
-                                            <TextInput
-                                                id="liquis_employee_name"
-                                                type="text"
-                                                class="mt-1 block w-full"
-                                                v-model="form.liquis_employee_name"
-                                                required
-                                                autofocus
-                                            />
-
-                                            <InputError class="mt-2" :message="form.errors.liquis_employee_name" />
-                                        </div> -->
-
-                                        <!-- <div>
-                                            <InputLabel for="invoice_number" value="Invoice Number" />
-
-                                            <TextInput
-                                                id="invoice_number"
-                                                type="text"
-                                                class="mt-1 block w-full"
-                                                v-model="form.invoice_number"
-                                                required
-                                                autofocus
-                                            />
-
-                                            <InputError class="mt-2" :message="form.errors.invoice_number" />
-                                        </div> -->
-
-                                        <!-- <div>
-                                            <InputLabel for="liquis_complete_photo" value="Liquis Complete Photo" />
-
-                                            <TextInput
-                                                name="liquis_complete_photo"
-                                                id="liquis_complete_photo"
-                                                type="file"
-                                                class="mt-1 block w-full"
-                                                v-model="form.liquis_complete_photo"
-                                                required
-                                                autofocus
-                                            />
-
-                                            <InputError class="mt-2" :message="form.errors.liquis_complete_photo" />
-                                        </div> -->
+                                        
 
                                         <div style="display: none;">
                                             <InputLabel for="additional_images" value="Additional Images" />
@@ -632,31 +408,7 @@ const submit = () => {
                                             <InputError class="mt-2" :message="form.errors.additional_images" />
                                         </div>
 
-                                        <!-- <div>
-                                            <InputLabel for="slug" value="Slug" />
-
-                                            <TextInput
-                                                id="slug"
-                                                type="text"
-                                                class="mt-1 block w-full"
-                                                v-model="form.slug"
-                                                required
-                                            />
-
-                                            <InputError class="mt-2" :message="form.errors.slug" />
-                                        </div>
-                                        <div>
-                                            <InputLabel for="description" value="Description" />
-
-                                            <TextArea
-                                                id="description"
-                                                type="text"
-                                                class="mt-1 block w-full"
-                                                v-model="form.description"
-                                            />
-
-                                            <InputError class="mt-2" :message="form.errors.email" />
-                                        </div> -->
+                                        
 
                                         <div class="flex items-center gap-4">
                                             <PrimaryButton :disabled="form.processing">Save</PrimaryButton>
