@@ -179,50 +179,50 @@ const deleteTrade = (id) => {
 								<div class="mt-3 relative flex items-center lg:items-end">
 									<div id="docs-card-content" class="flex items-start lg:flex-col">
 										<form class="w-full" action="/liquijobs/create">
-											<div class="flex flex-wrap -mx-3">
-												<div class="w-full py-1 px-3">
+											<div class="flex flex-wrap">
+												<div class="w-full">
 													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
 													Company Name
 													</label>
 													<input name="cname" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Company Name">
 													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
 												</div>
-												<div class="w-full py-1 px-3">
+												<div class="w-full mt-3">
 													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
 													Corporate Address
 													</label>
 													<input name="caddress" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Corporate Address">
 													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
 												</div>
-												<div class="w-full py-1 px-3">
+												<div class="w-full mt-3">
 													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
 													Contact Name
 													</label>
 													<input name="coname" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Contact Name">
 													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
 												</div>
-												<div class="w-full py-1 px-3">
+												<div class="w-full mt-3">
 													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
 													Contact Email
 													</label>
 													<input name="cemail" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Contact Email">
 													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
 												</div>
-												<div class="w-full py-1 px-3">
+												<div class="w-full mt-3">
 													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
 													Contact Telephone
 													</label>
 													<input name="cname"cotel class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Contact Telephone">
 													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
 												</div>
-												<div class="w-full py-1 px-3">
+												<div class="w-full mt-3">
 													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
 													Location Address
 													</label>
 													<input name="loaddress" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Location Address">
 													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
 												</div>
-												<div class="w-full py-1 px-3">
+												<div class="w-full mt-3">
 													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
 													Start Date
 													</label>

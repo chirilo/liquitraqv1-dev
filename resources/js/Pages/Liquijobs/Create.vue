@@ -267,8 +267,7 @@ const submit = () => {
                                             <TextInput
                                                 id="company_name"
                                                 type="text"
-                                                placeholder="Company Name"
-                                                class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+                                                :placeholder="cname"
                                                 v-model="form.company_name"
                                                 required
                                                 autofocus
@@ -283,7 +282,6 @@ const submit = () => {
                                                 id="corporate_address"
                                                 type="text"
                                                 placeholder="Corporate Address"
-                                                class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
                                                 v-model="form.corporate_address"
                                                 required
                                                 autofocus
@@ -298,7 +296,6 @@ const submit = () => {
                                                 id="contact_name"
                                                 type="text"
                                                 placeholder="Contact Name"
-                                                class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
                                                 v-model="form.contact_name"
                                                 required
                                                 autofocus
@@ -313,7 +310,6 @@ const submit = () => {
                                                 id="contact_telephone"
                                                 type="text"
                                                 placeholder="+1234567890"
-                                                class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
                                                 v-model="form.contact_telephone"
                                                 required
                                                 autofocus
@@ -328,7 +324,6 @@ const submit = () => {
                                                 id="contact_email"
                                                 type="email"
                                                 placeholder="email@email.com"
-                                                class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
                                                 v-model="form.contact_email"
                                                 required
                                                 autofocus
@@ -343,7 +338,6 @@ const submit = () => {
                                                 id="location_address"
                                                 type="text"
                                                 placeholder="Company Location Address"
-                                                class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
                                                 v-model="form.location_address"
                                                 required
                                                 autofocus
@@ -358,7 +352,6 @@ const submit = () => {
                                                 id="start_date"
                                                 type="date"
                                                 placeholder="YYYY-MM-DD"
-                                                class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
                                                 v-model="form.start_date"
                                                 required
                                                 autofocus
