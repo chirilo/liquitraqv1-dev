@@ -105,7 +105,7 @@ const closeModal = () => {
                 </SecondaryButton>
 
                 <PrimaryButton
-                    class="ms-3 bg-gradient-blue hover:opacity-90"
+                    class="ms-3"
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                     @click="confirmPassword"
