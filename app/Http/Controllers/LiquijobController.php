@@ -148,7 +148,7 @@ class LiquijobController extends Controller
         //$job_assets = DB::table('liquiassets')->where('id', $liquijob->id)->first();
 
         $job_assets = Liquiasset::query()
-            ->select(['job_asset', 'job_id'])
+            ->select(['id','job_asset', 'job_id'])
             ->where('job_id', $liquijob['id'])
             ->orderBy('created_at', 'DESC')
             ->limit(10)->get();
@@ -156,12 +156,27 @@ class LiquijobController extends Controller
         //dd($job_assets);
         //
 
-        return Inertia::render('Liquijobs/View',
-            [
-                'liquijobs' => $liquijob,
-                'job_assets' => $job_assets
-            ]
-        );
+        $all = isset( $_GET['all'] ) ? $_GET['all'] : '';
+
+        if ( $all ){
+            //dd($liquijob);
+            return Inertia::render('Liquijobs/All',
+                [
+                    'liquijobs' => $liquijob,
+                    'liquijobid' => $liquijob['id'],
+                    'job_assets' => $job_assets
+                ]
+            );
+        }else{
+            return Inertia::render('Liquijobs/View',
+                [
+                    'liquijobs' => $liquijob,
+                    'job_assets' => $job_assets
+                ]
+            );
+        }
+
+        
     }
 
     /**

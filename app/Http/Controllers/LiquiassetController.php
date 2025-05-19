@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 use App\Models\Liquiasset;
+use App\Models\Liquijob;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Input;
@@ -87,12 +88,45 @@ class LiquiassetController extends Controller
         return redirect()->route('liquijobs.index')->with('message', 'Asset Added Successfully');
     }
 
+
     /**
      * Display the specified resource.
      */
     public function show(Liquiasset $liquiasset)
     {
         //
+
+        // dd($liquiasset);
+        // exit;
+
+        //
+        $liquijob_id = isset( $_GET['jobid'] ) ? $_GET['jobid'] : 1;
+
+        // $job_assets = Liquiasset::query()
+        //     ->select(['job_asset', 'job_id'])
+        //     //->where('job_id', $liquijob_id)
+        //     ->where('id', $liquiasset['id'])
+        //     ->orderBy('created_at', 'DESC')
+        //     ->limit(10)->get();
+        //dd($job_assets);
+        //dd($job_assets);
+        //
+
+        $job_assets = Liquiasset::query()
+            ->select('*')
+            ->where('id', $liquiasset['id'])
+            ->get();
+
+        //dd($job_assets);
+
+        return Inertia::render('Liquiassets/View',
+            [
+                'liquijobs' => $liquijob_id,
+                'job_assets' => $job_assets
+            ]
+        );
+
+
     }
 
     /**
