@@ -284,7 +284,7 @@ const submit = () => {
                                             <TextInput
                                                 id="corporate_address"
                                                 type="text"
-                                                placeholder="Corporate Address"
+                                                :placeholder="caddress"
                                                 v-model="form.corporate_address"
                                                 required
                                                 autofocus
@@ -298,7 +298,7 @@ const submit = () => {
                                             <TextInput
                                                 id="contact_name"
                                                 type="text"
-                                                placeholder="Contact Name"
+                                                :placeholder="coname"
                                                 v-model="form.contact_name"
                                                 required
                                                 autofocus
@@ -340,7 +340,7 @@ const submit = () => {
                                             <TextInput
                                                 id="location_address"
                                                 type="text"
-                                                placeholder="Company Location Address"
+                                                :placeholder="loaddress"
                                                 v-model="form.location_address"
                                                 required
                                                 autofocus
