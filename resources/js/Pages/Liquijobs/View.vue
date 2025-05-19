@@ -18,6 +18,10 @@ import UpcomingJobs from '@/Components/UpcomingJobs.vue';
 const props = defineProps({
     liquijobs : Object,
     job_assets: Object,
+    jobassetscount: String,
+    itjobassets: String,
+    infrastructurejobassets: String,
+    furniturejobassets: String,
     filters : Object,
     message : String
 });
@@ -181,16 +185,16 @@ const deleteTrade = (id) => {
 											<div class="flex flex-wrap">
 												<div class="w-full">
 													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													Company Name
+													Job Co Name
 													</label>
-													<input name="cname" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Company Name">
+													<input name="cname" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Job Co Name">
 													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
 												</div>
 												<div class="w-full mt-3">
 													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													Corporate Address
+													Address
 													</label>
-													<input name="caddress" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Corporate Address">
+													<input name="caddress" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Address">
 													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
 												</div>
 												<div class="w-full mt-3">
@@ -202,19 +206,19 @@ const deleteTrade = (id) => {
 												</div>
 												<div class="w-full mt-3">
 													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													Contact Email
+													Email
 													</label>
-													<input name="cemail" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Contact Email">
+													<input name="cemail" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Email">
 													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
 												</div>
 												<div class="w-full mt-3">
 													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													Contact Telephone
+													Phone
 													</label>
-													<input name="cname"cotel class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Contact Telephone">
+													<input name="cname"cotel class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Phone">
 													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
 												</div>
-												<div class="w-full mt-3">
+												<div class="w-full mt-3" style="display: none;">
 													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
 													Location Address
 													</label>
@@ -236,7 +240,7 @@ const deleteTrade = (id) => {
 										</form>
 									</div>
 
-									
+									<a href="#"> User Settings</a>
 								</div>
 							</div>
 						</div>
@@ -297,42 +301,42 @@ const deleteTrade = (id) => {
 											<div class="w-full relative flex flex-col">
 												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
 													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Total Assets: </span><span class="font-rethinksanssemibold primary-gray">{{ props.liquijobs.count }}</span>
+														<span class="font-rethinksansbold primary-dark-blue">Total Assets: </span><span class="font-rethinksanssemibold primary-gray">{{ props.jobassetscount }}</span>
 													</p>
 												</div>
 												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
 													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Furniture: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count}}</span>
+														<span class="font-rethinksansbold primary-dark-blue">Furniture: </span><span class="font-rethinksanssemibold primary-gray">{{ props.furniturejobassets }}</span>
 													</p>
 												</div>
 												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
 													<p>
-														<span class="font-rethinksansbold primary-dark-blue">IT: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count}}</span>
+														<span class="font-rethinksansbold primary-dark-blue">IT: </span><span class="font-rethinksanssemibold primary-gray">{{ props.itjobassets }}</span>
 													</p>
 												</div>
 												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
 													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Infrastructure: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count}}</span>
+														<span class="font-rethinksansbold primary-dark-blue">Infrastructure: </span><span class="font-rethinksanssemibold primary-gray">{{ props.infrastructurejobassets }}</span>
 													</p>
 												</div>
 												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
 													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Total Resold: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count}}</span>
+														<span class="font-rethinksansbold primary-dark-blue">Total Resold: </span><span class="font-rethinksanssemibold primary-gray">{{ props.jobassetscount }}</span>
 													</p>
 												</div>
 												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
 													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Total Recycled </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count}}</span>
+														<span class="font-rethinksansbold primary-dark-blue">Total Recycled </span><span class="font-rethinksanssemibold primary-gray">{{ props.jobassetscount }}</span>
 													</p>
 												</div>
 												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
 													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Total Disposed </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count}}</span>
+														<span class="font-rethinksansbold primary-dark-blue">Total Disposed </span><span class="font-rethinksanssemibold primary-gray">{{ props.jobassetscount }}</span>
 													</p>
 												</div>
 												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
 													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Total Return </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count}}</span>
+														<span class="font-rethinksansbold primary-dark-blue">Total Return </span><span class="font-rethinksanssemibold primary-gray">{{ props.jobassetscount }}</span>
 													</p>
 												</div>
 											</div>

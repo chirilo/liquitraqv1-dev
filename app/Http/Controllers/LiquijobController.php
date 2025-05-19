@@ -161,6 +161,25 @@ class LiquijobController extends Controller
         //dd($job_assets);
         //
 
+        $furniturejobassets = Liquiasset::query()
+            ->select(['id','job_asset', 'job_id'])
+            ->where('job_id', $liquijob['id'])
+            ->where('asset_category', 'furniture')
+            ->orderBy('created_at', 'DESC')
+            ->get();
+        $itjobassets = Liquiasset::query()
+            ->select(['id','job_asset', 'job_id'])
+            ->where('job_id', $liquijob['id'])
+            ->where('asset_category', 'it')
+            ->orderBy('created_at', 'DESC')
+            ->get();
+        $infrastructurejobassets = Liquiasset::query()
+            ->select(['id','job_asset', 'job_id'])
+            ->where('job_id', $liquijob['id'])
+            ->where('asset_category', 'infrastructure')
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
         $all = isset( $_GET['all'] ) ? $_GET['all'] : '';
 
         if ( $all ){
@@ -173,10 +192,18 @@ class LiquijobController extends Controller
                 ]
             );
         }else{
+            $jobassetscount = count($job_assets); // total number of assets
+            $itjobassets = count($itjobassets);
+            $infrastructurejobassets = count($infrastructurejobassets);
+            $furniturejobassets = count($furniturejobassets);
             return Inertia::render('Liquijobs/View',
                 [
                     'liquijobs' => $liquijob,
-                    'job_assets' => $job_assets
+                    'job_assets' => $job_assets,
+                    'jobassetscount' => $jobassetscount,
+                    'itjobassets' => $itjobassets,
+                    'infrastructurejobassets' => $infrastructurejobassets,
+                    'furniturejobassets' => $furniturejobassets,
                 ]
             );
         }
