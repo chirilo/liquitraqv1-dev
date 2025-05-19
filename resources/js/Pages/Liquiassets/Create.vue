@@ -260,22 +260,132 @@ const submit = (e) => {
                                                 <InputError class="mt-2" :message="form.errors.job_asset" />
                                             </div>
                                             
+                                            <!-- Asset Details Form Fields -->
+                                            <div>
+                                                <InputLabel for="asset_category" value="Category" />
 
-                                            <!-- <div style="display: none;">
-                                                <InputLabel for="additional_images" value="Additional Images" />
-
-                                                <input type="file" class="form-control" v-on:change="onImageChange"> -->
-                                                <!-- <TextInput
-                                                    name="additional_images"
-                                                    id="additional_images"
-                                                    type="file"
-                                                    class="mt-1 block w-full"
-                                                    v-model="form.additional_images"
+                                                <TextInput
+                                                    id="asset_category"
+                                                    type="text"
+                                                    placeholder="Category"
+                                                    v-model="form.asset_category"
+                                                    required
                                                     autofocus
                                                 />
 
-                                                <InputError class="mt-2" :message="form.errors.additional_images" />
-                                            </div> -->
+                                                <InputError class="mt-2" :message="form.errors.asset_category" />
+                                            </div>
+                                            <div>
+                                                <InputLabel for="asset_quantity" value="Quantity" />
+
+                                                <TextInput
+                                                    id="asset_quantity"
+                                                    type="number"
+                                                    placeholder="Quantity"
+                                                    v-model="form.asset_quantity"
+                                                    required
+                                                    autofocus
+                                                />
+
+                                                <InputError class="mt-2" :message="form.errors.asset_quantity" />
+                                            </div>
+                                            <div>
+                                                <InputLabel for="asset_type" value="Type" />
+
+                                                <TextInput
+                                                    id="asset_type"
+                                                    type="text"
+                                                    placeholder="ex. Chair, Tables, PCs , etc."
+                                                    v-model="form.asset_type"
+                                                    required
+                                                    autofocus
+                                                />
+
+                                                <InputError class="mt-2" :message="form.errors.asset_type" />
+                                            </div>
+                                            <div>
+                                                <InputLabel for="asset_make" value="Make" />
+
+                                                <TextInput
+                                                    id="asset_make"
+                                                    type="text"
+                                                    placeholder="ex. Simmons, Philips, Toshiba.."
+                                                    v-model="form.asset_make"
+                                                    required
+                                                    autofocus
+                                                />
+
+                                                <InputError class="mt-2" :message="form.errors.asset_make" />
+                                            </div>
+                                            <div>
+                                                <InputLabel for="asset_model" value=" Model" />
+
+                                                <TextInput
+                                                    id="asset_model"
+                                                    type="text"
+                                                    placeholder="ex. SQ-12.."
+                                                    v-model="form.asset_model"
+                                                    required
+                                                    autofocus
+                                                />
+
+                                                <InputError class="mt-2" :message="form.errors.asset_model" />
+                                            </div>
+                                            <div>
+                                                <InputLabel for="asset_serial" value=" Serial" />
+
+                                                <TextInput
+                                                    id="asset_serial"
+                                                    type="text"
+                                                    placeholder="ex. HFIOE18DHIN23-23"
+                                                    v-model="form.asset_serial"
+                                                    required
+                                                    autofocus
+                                                />
+
+                                                <InputError class="mt-2" :message="form.errors.asset_serial" />
+                                            </div>
+                                            <div>
+                                                <InputLabel for="asset_weight_each" value="Weight Each" />
+
+                                                <TextInput
+                                                    id="asset_weight_each"
+                                                    type="text"
+                                                    placeholder="ex. 12 lbs"
+                                                    v-model="form.asset_weight_each"
+                                                    required
+                                                    autofocus
+                                                />
+
+                                                <InputError class="mt-2" :message="form.errors.asset_weight_each" />
+                                            </div>
+                                            
+                                            <div>
+                                                <InputLabel for="asset_description" value="Description" />
+
+                                                <TextInput
+                                                    id="asset_description"
+                                                    type="text"
+                                                    placeholder="Description"
+                                                    v-model="form.asset_description"
+                                                    required
+                                                    autofocus
+                                                />
+
+                                                <InputError class="mt-2" :message="form.errors.asset_description" />
+                                            </div>
+                                            <div>
+                                            <InputLabel for="asset_status" value="Status"/>
+
+                                                <select v-model="form.asset_status" id="asset_status" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_status">
+                                                    <option value="originalstate">Original State</option>
+                                                    <option value="workinprogress">Work In Progress</option>
+                                                    <option value="completed">Completed</option>
+                                                </select>
+
+                                                <InputError class="mt-2" :message="form.errors.asset_status" />
+                                            </div>
+                                            <!-- END OF : Asset Details Form Fields -->
 
                                             
 
