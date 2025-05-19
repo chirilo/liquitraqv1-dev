@@ -1,5 +1,5 @@
 <script setup>
-import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
+import { Head, Link, useForm, usePage, router } from '@inertiajs/vue3';
 //import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import DangerButton from '@/Components/DangerButton.vue';
@@ -55,6 +55,10 @@ const form = useForm({
 // from Create.vue
 const submit = () => {
     form.post(route("liquijobs.store"));
+};
+
+const logout = () => {
+    router.post(route('logout'));
 };
 </script>
 

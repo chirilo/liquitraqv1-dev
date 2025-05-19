@@ -1,5 +1,5 @@
 <script setup>
-import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
+import { Head, Link, useForm, usePage, router } from '@inertiajs/vue3';
 //import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import DangerButton from '@/Components/DangerButton.vue';
@@ -240,7 +240,7 @@ const deleteTrade = (id) => {
 										</form>
 									</div>
 
-									<a href="#"> User Settings</a>
+									
 								</div>
 							</div>
 						</div>
