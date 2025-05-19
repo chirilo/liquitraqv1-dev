@@ -7,7 +7,7 @@ import TextInput from '@/Components/TextInput.vue';
 import TextArea from '@/Components/TextArea.vue';
 //import { Link, useForm, usePage } from '@inertiajs/vue3';
 
-import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
+import { Head, Link, useForm, usePage, router } from '@inertiajs/vue3';
 //import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import DangerButton from '@/Components/DangerButton.vue';
