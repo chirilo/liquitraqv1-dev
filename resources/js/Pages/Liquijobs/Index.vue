@@ -364,7 +364,7 @@ const submit = () => {
 										<h3 class="block w-full text-lg primary-light-blue font-rethinksansextrabold uppercase">Upcoming Jobs</h3>
 									</div>
 									<ul class="p-0">
-										<li class="px-4 py-2 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none"  v-for="entry in props.liquijobs.items" :key="entry.id">
+										<li class="px-4 py-2 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none"  v-for="entry in props.liquijobs" :key="entry.id">
 											<!-- <PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="float-right">View</PrimaryLink> -->
 											<div>
 												<a :href="route('liquijobs.show', {'id': entry.id})" class="primary-dark-blue font-rethinksansbold text-base hover:opacity-80">

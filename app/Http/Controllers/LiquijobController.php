@@ -20,11 +20,16 @@ class LiquijobController extends Controller
     {
         //
 
+        // this has count of assets per job
+        // $liquijobs = \DB::table('liquijobs')
+        // ->join('liquiassets', 'liquijobs.id', '=', 'liquiassets.job_id')
+        // ->select('liquijobs.*', \DB::raw("count(liquiassets.job_id) as count"))
+        // ->groupBy('liquijobs.id')
+        // ->get();
+
         $liquijobs = \DB::table('liquijobs')
-        ->join('liquiassets', 'liquijobs.id', '=', 'liquiassets.job_id')
-        ->select('liquijobs.*', \DB::raw("count(liquiassets.job_id) as count"))
         ->groupBy('liquijobs.id')
-        ->get();
+        ->limit('5')->get();
 
         //dd($liquijobs);
 
