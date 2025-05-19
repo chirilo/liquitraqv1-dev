@@ -20,11 +20,19 @@ class LiquijobController extends Controller
     {
         //
 
-        $liquijobs = Liquijob::query()
-            ->orderBy('created_at', 'DESC')
-            ->filter($request->only('filter'))
-            ->paginate(10)
-            ->withQueryString();
+        $liquijobs = \DB::table('liquijobs')
+        ->join('liquiassets', 'liquijobs.id', '=', 'liquiassets.job_id')
+        ->select('liquijobs.*', \DB::raw("count(liquiassets.job_id) as count"))
+        ->groupBy('liquijobs.id')
+        ->get();
+
+        //dd($liquijobs);
+
+        // $liquijobs = Liquijob::query()
+        //     ->orderBy('created_at', 'DESC')
+        //     ->filter($request->only('filter'))
+        //     ->paginate(10)
+        //     ->withQueryString();
 
         return Inertia::render('Liquijobs/Index', [
             'liquijobs' => $liquijobs,
@@ -50,14 +58,14 @@ class LiquijobController extends Controller
             $sdate = $_GET['sdate'];
         }
 
-        $server_data = json_encode([
-            'caddress' => $caddress,
-                'cemail' => $cemail,
-                'cname' => $cname,
-                'coname' => $coname,
-                'loaddress' => $loaddress,
-                'caddress' => $sdate,
-        ]);
+        // $server_data = json_encode([
+        //     'caddress' => $caddress,
+        //     'cemail' => $cemail,
+        //     'cname' => $cname,
+        //     'coname' => $coname,
+        //     'loaddress' => $loaddress,
+        //     'sdate' => $sdate,
+        // ]);
         //
 
         //dd($caddress);
@@ -72,8 +80,7 @@ class LiquijobController extends Controller
                 'cname' => $cname,
                 'coname' => $coname,
                 'loaddress' => $loaddress,
-                'sdate' => $sdate,
-                'serverdata' => $server_data
+                'sdate' => $sdate
             ]
         );
     }
@@ -128,33 +135,6 @@ class LiquijobController extends Controller
             'invoice_number' => '1',
 
         ]);
-
-        // Liquijob::create([
-        //     'so_number' => $request->so_number,
-        //     'building' => $request->building,
-        //     'city' => $request->city,
-        //     'state' => $request->state,
-        //     'status' => $request->status,
-        //     'expected_qty' => $request->expected_qty,
-        //     'serial_number' => $request->serial_number,
-        //     'hid_employee_name' => $request->hid_employee_name,
-        //     'hid_employee_id' => $request->hid_employee_id,
-        //     'liquis_pickup_date' => $request->liquis_pickup_date,
-        //     'liquis_employee_name' => $request->liquis_employee_name,
-        //     'invoice_number' => $request->invoice_number,
-        //     // 'liquis_complete_photo' => $liquis_complete_photo_imagePath,
-        //     // 'additional_images' => $additional_images_imagePath,
-        //     'liquis_complete_photo' => $request->liquis_complete_photo,
-        //     'additional_images' => $request->additional_images,
-        //     'company_name' => $request->company_name,
-        //     'corporate_address' => $request->corporate_address,
-        //     'contact_name' => $request->contact_name,
-        //     'contact_telephone' => $request->contact_telephone,
-        //     'contact_email' => $request->contact_email,
-        //     'location_address' => $request->location_address,
-        //     'start_date' => $request->start_date
-        // ]);
-
         return redirect()->route('liquijobs.index')->with('message', 'Job Created Successfully');
     }
 

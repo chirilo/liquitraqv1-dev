@@ -18,7 +18,16 @@ class Liquiasset extends Model
      */
     protected $fillable = [
         'job_asset',
-        'job_id'
+        'job_id',
+        'asset_category',
+        'asset_quantity',
+        'asset_type',
+        'asset_make',
+        'asset_model',
+        'asset_serial',
+        'asset_weight_each',
+        'asset_description',
+        'asset_status',
     ];
 
     /**

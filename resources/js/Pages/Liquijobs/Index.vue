@@ -272,7 +272,7 @@ const submit = () => {
 									</div>
 									<div class="w-full relative flex flex-col">
 										<ul class="p-0">
-											<li class="mb-6 last:mb-0" v-for="entry in props.liquijobs.data" :key="entry.id">
+											<li class="mb-6 last:mb-0" v-for="entry in props.liquijobs" :key="entry.id">
 												<div class="w-full relative flex flex-col bg-white border border-[#e9ebef] rounded-lg">      
 													<div class="p-4">
 														<PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="float-right">View</PrimaryLink>
@@ -284,14 +284,42 @@ const submit = () => {
 														</p>
 													</div>
 													<div id="recent-jobs-info" class="flex justify-between bg-[#f2f4f7] px-4 py-2">
+														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'facilitydecomissioning'">
+														Type: Facility Decomissioning
+														</span>
+														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'datacenterdecommissioning'">
+														Type: Data Center Decommissioning
+														</span>
+														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'officefurniture'">
+														Type: Office Furniture
+														</span>
+														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'datadestruction'">
+														Type: Data Destruction
+														</span>
+														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'assetrecovery'">
+														Type: Asset Recovery
+														</span>
+														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'assetmanagement'">
+														Type: Asset Management
+														</span>
+														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'recycling'">
+														Type: Recycling
+														</span>
+														
+														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'generatorremoval'">
+														Type: Generator Removal
+														</span>
+														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'industrialremoval'">
+														Type: Industrial Removal
+														</span>
 														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'it'">
 														Type: IT
 														</span>
-														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'furniture'">
-														Type: Furniture
-														</span>
 														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'infrastructure'">
 														Type: Infrastructure
+														</span>
+														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'furniture'">
+														Type: Furniture
 														</span>
 														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === null">
 														Type: Unspecified
@@ -314,7 +342,7 @@ const submit = () => {
 										<h3 class="block w-full text-lg primary-light-blue font-rethinksansextrabold uppercase">Jobs Last 7 Days</h3>
 									</div>
 									<ul class="p-0">
-										<li class="px-4 py-2 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none" v-for="entry in props.liquijobs.data" :key="entry.id">
+										<li class="px-4 py-2 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none" v-for="entry in props.liquijobs" :key="entry.id">
 											<div >
 												<!-- <PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="float-right">View</PrimaryLink> -->
 												<a :href="route('liquijobs.show', {'id': entry.id})" class="primary-dark-blue font-rethinksansbold text-base hover:opacity-80">
@@ -336,7 +364,7 @@ const submit = () => {
 										<h3 class="block w-full text-lg primary-light-blue font-rethinksansextrabold uppercase">Upcoming Jobs</h3>
 									</div>
 									<ul class="p-0">
-										<li class="px-4 py-2 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none"  v-for="entry in props.liquijobs.data" :key="entry.id">
+										<li class="px-4 py-2 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none"  v-for="entry in props.liquijobs.items" :key="entry.id">
 											<!-- <PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="float-right">View</PrimaryLink> -->
 											<div>
 												<a :href="route('liquijobs.show', {'id': entry.id})" class="primary-dark-blue font-rethinksansbold text-base hover:opacity-80">
@@ -415,13 +443,13 @@ const submit = () => {
 					   </DangerButton>
 					 </td>
 				    </tr>
-				    <tr v-if="props.liquijobs.data.length === 0">
+				    <!-- <tr v-if="props.liquijobs.length === 0">
 					 <td class="px-6 py-4 border-t" colspan="4">No posts found.</td>
-				    </tr>
+				    </tr> -->
 				  </tbody>
 				</table>
 			</div>
-			   <pagination class="mt-6" :links="props.liquijobs.links" />
+			   <!-- <pagination class="mt-6" :links="props.liquijobs.links" /> -->
 			</div>
 		</div>
         <!-- -->

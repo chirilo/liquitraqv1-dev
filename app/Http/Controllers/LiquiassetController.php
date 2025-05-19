@@ -54,6 +54,9 @@ class LiquiassetController extends Controller
     public function store(Request $request)
     {
 
+        // dd($request);
+        // exit;
+
         $image = $request->file('job_asset');
         $fname = $request->file('job_asset')->getClientOriginalName();
 
@@ -69,7 +72,16 @@ class LiquiassetController extends Controller
 
         Liquiasset::create([
             'job_asset' => '/storage/job_assets/'.$storageName,
-            'job_id' => $request->jobid
+            'job_id' => $request->jobid,
+            'asset_category' => $request->asset_category,
+            'asset_quantity' => $request->asset_quantity,
+            'asset_type' => $request->asset_type,
+            'asset_make' => $request->asset_make,
+            'asset_model' => $request->asset_model,
+            'asset_serial' => $request->asset_serial,
+            'asset_weight_each' => $request->asset_weight_each,
+            'asset_description' => $request->asset_description,
+            'asset_status' => $request->asset_status,
         ]);
 
         return redirect()->route('liquijobs.index')->with('message', 'Asset Added Successfully');

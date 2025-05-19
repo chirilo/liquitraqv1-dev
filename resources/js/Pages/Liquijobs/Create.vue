@@ -367,19 +367,16 @@ const submit = () => {
                                         <div>
                                             <InputLabel for="type" value="Job Type"/>
 
-                                            <!-- <TextInput
-                                                id="start_date"
-                                                type="text"
-                                                placeholder="YYYY-MM-DD"
-                                                class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
-                                                v-model="form.type"
-                                                required
-                                                autofocus
-                                            /> -->
                                             <select v-model="form.type" id="type" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="type">
-                                                <option value="furniture">Furniture</option>
-                                                <option value="it">IT</option>
-                                                <option value="infrastructure">Infrastructure</option>
+                                                <option value="facilitydecomissioning">Facility Decomissioning</option>
+                                                <option value="datacenterdecommissioning">Data Center Decommissioning</option>
+                                                <option value="officefurniture">Office Furniture</option>
+                                                <option value="datadestruction">Data Destruction</option>
+                                                <option value="assetrecovery">Asset Recovery</option>
+                                                <option value="assetmanagement">Asset Management</option>
+                                                <option value="recycling">Recycling</option>
+                                                <option value="generatorremoval">Generator Removal</option>
+                                                <option value="industrialremoval">Industrial Removal</option>
                                             </select>
 
                                             <InputError class="mt-2" :message="form.errors.type" />
