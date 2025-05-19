@@ -7,6 +7,7 @@ import PrimaryLink from '@/Components/PrimaryLink.vue';
 import Pagination from '@/Components/Pagination.vue';
 import TextInput from '@/Components/TextInput.vue';
 import Dropdown from '@/Components/Dropdown.vue';
+import DropdownLink from '@/Components/DropdownLink.vue';
 
 import SearchBarSideBar from '@/Components/SearchBarSideBar.vue';
 import Calendar from '@/Components/Calendar.vue';
@@ -292,7 +293,7 @@ const deleteTrade = (id) => {
 											<div class="w-full relative flex flex-col">
 												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
 													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Total Assets: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count }}</span>
+														<span class="font-rethinksansbold primary-dark-blue">Total Assets: </span><span class="font-rethinksanssemibold primary-gray">{{ props.liquijobs.count }}</span>
 													</p>
 												</div>
 												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">

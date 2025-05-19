@@ -15,6 +15,7 @@ import PrimaryLink from '@/Components/PrimaryLink.vue';
 import Pagination from '@/Components/Pagination.vue';
 //import TextInput from '@/Components/TextInput.vue';
 import Dropdown from '@/Components/Dropdown.vue';
+import DropdownLink from '@/Components/DropdownLink.vue';
 
 import SearchBarSideBar from '@/Components/SearchBarSideBar.vue';
 import Calendar from '@/Components/Calendar.vue';
