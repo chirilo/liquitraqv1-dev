@@ -132,6 +132,9 @@ h1, h2 {
 .float-right{
     float: right;
 }
+.width-50 {
+  width: 50%;
+}
 
 /* FONTS */
 .font-rethinksansbold {
