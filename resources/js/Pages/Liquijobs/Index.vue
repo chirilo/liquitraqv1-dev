@@ -181,7 +181,7 @@ const submit = () => {
 								<SearchBarSideBar/>
 							</div>
 
-							<!-- <input class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="search" name="search" placeholder="Search anything" /> -->
+							<!-- <input class="appearance-none block w-full p-4 primary-gray placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="search" name="search" placeholder="Search anything" /> -->
 							<div class="w-full pr-6 pl-6 pb-6 mt-6 border-divider">
 								<h2 class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">Filter Jobs By</h2>
 								<select class="appearance-none block w-full p-4 mt-3 text-base primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none">
@@ -199,52 +199,52 @@ const submit = () => {
 											<!-- <form @submit.prevent="submit"  class="w-full"> -->
 											<div class="flex flex-wrap">
 												<div class="w-full">
-													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
+													<label class="hidden block tracking-wide mb-2 " for="grid-first-name">
 													Job Co Name
 													</label>
-													<input name="cname" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Job Co Name">
+													<input name="cname" class="appearance-none block w-full p-4 primary-gray placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Job Co Name">
 													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
 												</div>
 												<div class="w-full mt-3">
 													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
 													 Address
 													</label>
-													<input name="caddress" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Address">
+													<input name="caddress" class="appearance-none block w-full p-4 primary-gray placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Address">
 													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
 												</div>
 												<div class="w-full mt-3">
 													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
 													Contact Name
 													</label>
-													<input name="coname" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Contact Name">
+													<input name="coname" class="appearance-none block w-full p-4 primary-gray placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Contact Name">
 													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
 												</div>
 												<div class="w-full mt-3">
 													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
 													Email
 													</label>
-													<input name="cemail" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Email">
+													<input name="cemail" class="appearance-none block w-full p-4 primary-gray placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Email">
 													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
 												</div>
 												<div class="w-full mt-3">
 													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
 													Phone
 													</label>
-													<input name="cname"cotel class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Phone">
+													<input name="cname" cotel class="appearance-none block w-full p-4 primary-gray placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Phone">
 													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
 												</div>
 												<div class="w-full mt-3" style="display: none;">
 													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
 													Location Address
 													</label>
-													<input name="loaddress" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Location Address" value="Location Address">
+													<input name="loaddress" class="appearance-none block w-full p-4 primary-gray placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Location Address" value="Location Address">
 													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
 												</div>
 												<div class="w-full mt-3">
 													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
 													Start Date
 													</label>
-													<input name="sdate" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="date" placeholder="Start Date">
+													<input name="sdate" class="appearance-none block w-full p-4 primary-gray placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="date" placeholder="Start Date">
 													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
 												</div>
 											</div>
