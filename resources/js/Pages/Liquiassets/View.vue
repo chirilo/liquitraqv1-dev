@@ -259,7 +259,7 @@ const deleteTrade = (id) => {
 											<div class="w-full relative flex flex-col">
 												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
 													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Category: </span><span class="font-rethinksanssemibold primary-gray">{{ item.asset_category }}</span>
+														<span class="font-rethinksansbold primary-dark-blue">Category: </span><span class="font-rethinksanssemibold primary-gray" style="text-transform: capitalize;">{{ item.asset_category }}</span>
 													</p>
 												</div>
 												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
@@ -304,7 +304,7 @@ const deleteTrade = (id) => {
 												</div>
 											</div>
 											<div class="float-right">
-												<a v-bind:href="parentjoburl+item.job_id" class="text-white py-2 px-4 rounded-full bg-gradient-blue inline-block text-center text-sm font-rethinksansbold hover:opacity-90 float-right">Back to Jobs</a>
+												<a v-bind:href="parentjoburl+item.job_id" class="text-white py-2 px-4 rounded-full bg-gradient-blue inline-block text-center text-sm font-rethinksansbold hover:opacity-90 float-right">Back to Job</a>
 											</div>
 										</li>
 
