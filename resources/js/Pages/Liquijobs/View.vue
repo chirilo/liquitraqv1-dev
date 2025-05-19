@@ -285,6 +285,53 @@ const deleteTrade = (id) => {
 												</div>
 											</div>
 										</li>
+
+										<!-- Additional Data for Job and Assets -->
+										<li>
+											
+											<div class="w-full relative flex flex-col">
+												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
+													<p>
+														<span class="font-rethinksansbold primary-dark-blue">Total Assets: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count }}</span>
+													</p>
+												</div>
+												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
+													<p>
+														<span class="font-rethinksansbold primary-dark-blue">Furniture: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count}}</span>
+													</p>
+												</div>
+												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
+													<p>
+														<span class="font-rethinksansbold primary-dark-blue">IT: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count}}</span>
+													</p>
+												</div>
+												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
+													<p>
+														<span class="font-rethinksansbold primary-dark-blue">Infrastructure: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count}}</span>
+													</p>
+												</div>
+												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
+													<p>
+														<span class="font-rethinksansbold primary-dark-blue">Total Resold: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count}}</span>
+													</p>
+												</div>
+												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
+													<p>
+														<span class="font-rethinksansbold primary-dark-blue">Total Recycled </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count}}</span>
+													</p>
+												</div>
+												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
+													<p>
+														<span class="font-rethinksansbold primary-dark-blue">Total Disposed </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count}}</span>
+													</p>
+												</div>
+												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
+													<p>
+														<span class="font-rethinksansbold primary-dark-blue">Total Return </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count}}</span>
+													</p>
+												</div>
+											</div>
+										</li>
 										<li class="text-center">
 											<!-- <button class="w-half bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"> VIEW ASSETS <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </button> -->
 											<a v-bind:href="liquiassetsurl" class="text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90"> Add Assets <svg class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" style="display: inline; float: inline-end; margin-left: 5px"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"></path></svg></a>
@@ -298,6 +345,7 @@ const deleteTrade = (id) => {
 									<ul class="m-0 p-0 flex justify-start">
 											<li class="m-0 p-0 w-40 pr-3" v-for="item in job_assets" :key="id" :value="id">
 											<!-- <img :src="'/uploads/images/' + item.job_asset" style="margin: 0 1em 0 1em;" width="300" height="300" onerror="https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0" /> -->
+											<!-- <img class="aspect-square object-cover h-auto " style="background-image: url('https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0');" :src="'/storage/job_assets/'+item.job_asset" /> -->
 											<img class="aspect-square object-cover h-auto " style="background-image: url('https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0');" :src="item.job_asset" />
 										</li>
 									</ul>

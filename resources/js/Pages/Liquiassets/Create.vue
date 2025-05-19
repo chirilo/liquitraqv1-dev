@@ -32,7 +32,16 @@ const liquijobsCreate = '/liquijobs/create';
 
 const form = useForm({
     job_asset: '',
-    jobid: props.jobid
+    jobid: props.jobid,
+    asset_category: '',
+    asset_quantity: '',
+    asset_type: '',
+    asset_make: '',
+    asset_model: '',
+    asset_serial: '',
+    asset_weight_each: '',
+    asset_description: '',
+    asset_status: ''
 });
 
 const onImageChange = (e) => {
@@ -264,14 +273,11 @@ const submit = (e) => {
                                             <div>
                                                 <InputLabel for="asset_category" value="Category" />
 
-                                                <TextInput
-                                                    id="asset_category"
-                                                    type="text"
-                                                    placeholder="Category"
-                                                    v-model="form.asset_category"
-                                                    required
-                                                    autofocus
-                                                />
+	                                            <select v-model="form.asset_category" id="type" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_category">
+	                                                <option value="it">IT</option>
+	                                                <option value="infrastructure">Infrastructure</option>
+	                                                <option value="furniture">Furniture</option>
+	                                            </select>
 
                                                 <InputError class="mt-2" :message="form.errors.asset_category" />
                                             </div>
