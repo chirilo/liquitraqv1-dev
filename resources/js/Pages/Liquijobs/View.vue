@@ -298,7 +298,6 @@ const deleteTrade = (id) => {
 										<!-- Additional Data for Job and Assets -->
 										<li>
 											
-<<<<<<< HEAD
 											<div class="w-full relative flex flex-row flex-wrap">
 												<div class="width-50 pr-6">
 													<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
@@ -327,48 +326,6 @@ const deleteTrade = (id) => {
 													<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
 														<span class="font-rethinksansbold primary-dark-blue">Total Return: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count}}</span>
 													</div>
-=======
-											<div class="w-full relative flex flex-col">
-												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
-													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Total Assets: </span><span class="font-rethinksanssemibold primary-gray">{{ props.jobassetscount }}</span>
-													</p>
-												</div>
-												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
-													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Furniture: </span><span class="font-rethinksanssemibold primary-gray">{{ props.furniturejobassets }}</span>
-													</p>
-												</div>
-												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
-													<p>
-														<span class="font-rethinksansbold primary-dark-blue">IT: </span><span class="font-rethinksanssemibold primary-gray">{{ props.itjobassets }}</span>
-													</p>
-												</div>
-												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
-													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Infrastructure: </span><span class="font-rethinksanssemibold primary-gray">{{ props.infrastructurejobassets }}</span>
-													</p>
-												</div>
-												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
-													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Total Resold: </span><span class="font-rethinksanssemibold primary-gray">{{ props.jobassetscount }}</span>
-													</p>
-												</div>
-												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
-													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Total Recycled </span><span class="font-rethinksanssemibold primary-gray">{{ props.jobassetscount }}</span>
-													</p>
-												</div>
-												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
-													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Total Disposed </span><span class="font-rethinksanssemibold primary-gray">{{ props.jobassetscount }}</span>
-													</p>
-												</div>
-												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
-													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Total Return </span><span class="font-rethinksanssemibold primary-gray">{{ props.jobassetscount }}</span>
-													</p>
->>>>>>> 559d52d86ece136be46d3174c7fa76848be3c467
 												</div>
 											</div>
 										</li>
