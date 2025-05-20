@@ -184,22 +184,19 @@ const searchanything = () => {
 								</div>
 								<!-- END OF: MY ACCOUNT -->
 							</div>
-
-							<!-- <div id="screenshot-container" class="relative flex w-full flex-1 items-stretch">
-								<input type="search" name="search" placeholder="Search anything" />
-							</div> -->
 							
 							<!-- Search Anything -->
 							<div class="w-full pr-6 pl-6 pb-6 mt-6 border-divider">
-								<form @submit.prevent="searchanything">
+								<!-- <SearchBarSideBar/> -->
+								<form @submit.prevent="searchanything" class="relative">
 									<!-- <h1>{{ searchkey }}</h1> -->
 									<input type="hidden" name="key" v-model="searchkey" />
-									<input v-model="searchkey" class="appearance-none block w-full p-4 primary-gray placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="search" name="search" placeholder="Search anything" />
-									<!-- <button type="submit">Search go</button> -->
-									<button type="submit"class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">GO SEARCH<svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></button>
+									<input v-model="searchkey" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#e9ebef] bg-white rounded-lg focus:outline-none" type="search" name="search" placeholder="Search anything..." />
+									<!-- <button type="submit"><svg class="size-6 shrink-0 stroke-[#8c8c97] absolute inset-y-4 right-0 w-12" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></button> -->
 								</form>
 							</div>
 							<!-- END OF: Search Anything -->
+
 							<div class="w-full pr-6 pl-6 pb-6 mt-6 border-divider">
 								<form @submit.prevent="searchanything">
 									<h2 class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">Filter Jobs By</h2>
@@ -327,7 +324,6 @@ const searchanything = () => {
 		                                                type="date"
 		                                                placeholder="YYYY-MM-DD"
 		                                                v-model="form.start_date"
-		                                                required
 		                                                autofocus
 		                                            />
 		                                            <InputError class="mt-2" :message="form.errors.start_date" />
