@@ -1,5 +1,5 @@
 <script setup>
-import { Head, Link, useForm, usePage, router} from '@inertiajs/vue3';
+import { Head, Link, useForm, usePage, router } from '@inertiajs/vue3';
 //import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import DangerButton from '@/Components/DangerButton.vue';
@@ -15,8 +15,6 @@ import RecentJobs from '@/Components/RecentJobs.vue';
 import JobsLastSevenDays from '@/Components/JobsLastSevenDays.vue';
 import UpcomingJobs from '@/Components/UpcomingJobs.vue';
 
-import { ref } from "vue";
-
 
 // const liquijobsCreate = function(event) {
 // 	window.open("/liquijobs/create");
@@ -27,12 +25,13 @@ const liquijobsCreate = '/liquijobs/create';
 const props = defineProps({
     liquijobs : Object,
     filters : Object,
-    message : String
+    message : String,
+    results: Object
 });
 
-const filters = {
-    filter: props.filters.filter,
-}
+// const filters = {
+//     filter: props.filters.filter,
+// }
 //const form = useForm(filters);
 
 const deleteTrade = (id) => {
@@ -62,21 +61,13 @@ const submitaddjob = () => {
 const logout = () => {
     router.post(route('logout'));
 };
-
-let searchkey = ref("");
-
-const searchanything = () => {
-	router.get( route("search.index") + '?key=' + '%'+searchkey.value+'%' );
-}
-
-
 </script>
 
 <template>
     <AppLayout title="Dashboard">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                Dashboard
+                Search Results
             </h2>
         </template>
         	<!-- message prompt -->
@@ -192,19 +183,11 @@ const searchanything = () => {
 								<input type="search" name="search" placeholder="Search anything" />
 							</div> -->
 							
+							<div class="w-full pr-6 pl-6 pb-6 mt-6 border-divider">
+								<SearchBarSideBar/>
+							</div>
 
-							<div class="w-full pr-6 pl-6 pb-6 mt-6 border-divider">
-								
-								<!-- <SearchBarSideBar/> -->
-							</div>
-							<div class="w-full pr-6 pl-6 pb-6 mt-6 border-divider">
-								<form @submit.prevent="searchanything">
-								<h1>{{ searchkey }}</h1>
-								<input type="hidden" name="key" v-model="searchkey" />
-								<input v-model="searchkey" class="appearance-none block w-full p-4 primary-gray placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="search" name="search" placeholder="Search anything" />
-								<button type="submit">Search go</button>
-								</form>
-							</div>
+							<!-- <input class="appearance-none block w-full p-4 primary-gray placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="search" name="search" placeholder="Search anything" /> -->
 							<div class="w-full pr-6 pl-6 pb-6 mt-6 border-divider">
 								<h2 class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">Filter Jobs By</h2>
 								<select class="appearance-none block w-full p-4 mt-3 text-base primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none">
@@ -370,124 +353,17 @@ const searchanything = () => {
 						<div id="right-side" class="lg:col-span-2 md:col-span-3">
 							
 							<div class="grid items-start rounded-lg bg-white p-6 mb-6">
-								<!-- recent jobs -->
-								<div id="recent-jobs">
-									<div class="relative flex flex-col">
-										<h3 class="block text-center text-2xl primary-light-blue font-rethinksansextrabold uppercase">Recent Jobs</h3>
-									</div>
-									<div class="w-full relative flex flex-col">
-										<ul class="p-0">
-											<li class="mb-6 last:mb-0" v-for="entry in props.liquijobs" :key="entry.id">
-												<div class="w-full relative flex flex-col bg-white border border-[#e9ebef] rounded-lg">      
-													<div class="p-4">
-														<button type="button" class="inline-flex items-center border border-transparent text-base text-base primary-light-blue font-rethinksansextrabold uppercase dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150" style="float:right;">
-															
-															&#8942;
-														</button>
-														<PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="float-right">View</PrimaryLink>
-														
-														<h5 class="mb-2 primary-dark-blue font-rethinksansbold text-base">
-															Building: {{ entry.corporate_address }}
-														</h5>
-														<p class="primary-dark-blue font-rethinksansmedium text-base">
-															City: {{ entry.location_address }}
-														</p>
-													</div>
-													<div id="recent-jobs-info" class="flex justify-between bg-[#f2f4f7] px-4 py-2">
-														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'facilitydecomissioning'">
-														Type: Facility Decomissioning
-														</span>
-														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'datacenterdecommissioning'">
-														Type: Data Center Decommissioning
-														</span>
-														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'officefurniture'">
-														Type: Office Furniture
-														</span>
-														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'datadestruction'">
-														Type: Data Destruction
-														</span>
-														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'assetrecovery'">
-														Type: Asset Recovery
-														</span>
-														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'assetmanagement'">
-														Type: Asset Management
-														</span>
-														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'recycling'">
-														Type: Recycling
-														</span>
-														
-														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'generatorremoval'">
-														Type: Generator Removal
-														</span>
-														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'industrialremoval'">
-														Type: Industrial Removal
-														</span>
-														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'it'">
-														Type: IT
-														</span>
-														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'infrastructure'">
-														Type: Infrastructure
-														</span>
-														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'furniture'">
-														Type: Furniture
-														</span>
-														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === null">
-														Type: Unspecified
-														</span>
-														<span class="text-nowrap w-auto primary-dark-blue font-rethinksansmedium text-base">
-														Start Date: {{ entry.start_date }}
-														</span>
-													</div>
-												</div>
-											</li>
-											
-										</ul>
-									</div> 
-								</div>
-								<!-- recent jobs -->
+								<!-- search results here -->
+								
+								<div v-if="results">
+						          <ul>
+						            <li v-for="(val, index) in results" :key="index">
+						              <span>{{ val.company_name }}</span>
+						            </li>
+						          </ul>
+        						</div>
 
-								<!-- jobs last 7 days -->
-								<div id="job-last-7-days" class="mt-6 w-full relative flex flex-col bg-white border border-[#e9ebef] rounded-lg">
-									<div class="relative flex flex-col pt-4 pb-2 px-4">
-										<h3 class="block w-full text-lg primary-light-blue font-rethinksansextrabold uppercase">Jobs Last 7 Days</h3>
-									</div>
-									<ul class="p-0">
-										<li class="px-4 py-2 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none" v-for="entry in props.liquijobs" :key="entry.id">
-											<div >
-												<!-- <PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="float-right">View</PrimaryLink> -->
-												<a :href="route('liquijobs.show', {'id': entry.id})" class="primary-dark-blue font-rethinksansbold text-base hover:opacity-80">
-												Building: {{ entry.corporate_address }}
-												</a>
-												<!-- <span class="primary-dark-blue font-rethinksansmedium text-base" style="float: inline-end;">
-													{{ entry.start_date }}
-												</span> -->
-											</div>
-										</li>
-									</ul>
-								</div>
-								<!-- jobs last 7 days -->
-
-								<!-- <UpcomingJobs /> -->
-								<!-- upcoming jobs -->
-								<div id="upcoming-jobs" class="mt-6 w-full relative flex flex-col bg-white border border-[#e9ebef] rounded-lg">
-									<div class="relative flex flex-col pt-4 pb-2 px-4">
-										<h3 class="block w-full text-lg primary-light-blue font-rethinksansextrabold uppercase">Upcoming Jobs</h3>
-									</div>
-									<ul class="p-0">
-										<li class="px-4 py-2 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none"  v-for="entry in props.liquijobs" :key="entry.id">
-											<!-- <PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="float-right">View</PrimaryLink> -->
-											<div>
-												<a :href="route('liquijobs.show', {'id': entry.id})" class="primary-dark-blue font-rethinksansbold text-base hover:opacity-80">
-												Building: {{ entry.corporate_address }}
-												</a>
-												<span class="primary-dark-blue font-rethinksansmedium text-base" style="float: inline-end;">
-													{{ entry.start_date }}
-												</span>
-											</div>
-										</li>                        
-									</ul>
-								</div>
-								<!-- upcoming jobs -->
+        						<div v-else class="text-gray-500">No results were found.</div>
 							 </div>
 							<!-- CALENDAR -->
 							<div id="calendar-container" class="mt-6 grid items-start rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)]">
@@ -499,70 +375,7 @@ const searchanything = () => {
 			</div>
 		</div>
 
-        <!-- -->
-        <h1 style="display: none;">INDEX VUE PAGE</h1>
-		<div class="py-12" style="display: none;">
-			<div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-			
-			<!-- message prompt -->
-			<div
-				v-if="props.message"
-				class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
-				role="alert"
-			>
-				<span class="font-medium">
-					{{ props.message }}
-				</span>
-			</div>
-			
-			<div class="bg-white rounded-md shadow overflow-x-auto">
-				<table class="w-full whitespace-nowrap">
-				  <thead>
-				    <tr class="text-left font-bold">
-					 <th class="pb-4 pt-6 px-6">Building</th>
-					 <th class="pb-4 pt-6 px-6">SO Number</th>
-					 <th class="pb-4 pt-6 px-6">Publsihed Date</th>
-					 <th class="pb-4 pt-6 px-6">Actions</th>
-				    </tr>
-				  </thead>
-				  <tbody>
-				    <tr v-for="entry in props.liquijobs.data" :key="entry.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
-					 <td class="border-t">
-					   <span class="flex items-center px-6 py-4 focus:text-indigo-500">
-						{{ entry.building }}
-					   </span>
-					 </td>
-					 <td class="border-t">
-					   <span class="flex items-center px-6 py-4 focus:text-indigo-500">
-						{{ entry.so_number }}
-					   </span>
-					 </td>
-					 <td class="border-t">
-					   <span class="flex items-center px-6 py-4 focus:text-indigo-500">
-						{{ entry.created_at }}
-					   </span>
-					 </td>
-					 <td class="border-t" >
-					 	<PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="max-w-xl ml-2" >VIEW</PrimaryLink>
-					   	<PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.edit', {'id': entry.id})" class="max-w-xl ml-2" >EDIT</PrimaryLink>
-					   	<DangerButton
-						class="ml-3"
-						@click="deleteTrade(entry.id)" v-if="entry.deleted_at == null"
-						>
-						Trash
-					   </DangerButton>
-					 </td>
-				    </tr>
-				    <!-- <tr v-if="props.liquijobs.length === 0">
-					 <td class="px-6 py-4 border-t" colspan="4">No posts found.</td>
-				    </tr> -->
-				  </tbody>
-				</table>
-			</div>
-			   <!-- <pagination class="mt-6" :links="props.liquijobs.links" /> -->
-			</div>
-		</div>
-        <!-- -->
+        
     </AppLayout>
     	
 </template>
