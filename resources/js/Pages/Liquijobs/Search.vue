@@ -104,7 +104,7 @@ const searchanything = () => {
 							</div>
 
 							<div class="relative w-full border-divider pt-6">
-							<!-- AVATAR -->
+								<!-- AVATAR -->
 								<div class="relative flex items-center lg:items-end">
 									<div class="mx-auto relative flex items-center lg:items-end">
 										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl" src="/images/logos/avatar.jpg" alt="User dropdown">
@@ -137,12 +137,8 @@ const searchanything = () => {
 								</div>
 								<!-- END OF AVATAR -->
 								<!-- MY ACCOUNT -->
-								<div class="mx-auto relative flex justify-center pt-6 pb-6">
-								
-									<!-- <div class="relative flex items-center gap-6 lg:items-end">
-										<h1>MY ACCOUNT 	&dArr;</h1>
-									</div> -->
-									<Dropdown align="right" width="48" >
+								<div class="w-full text-center relative pt-6 pb-6">
+									<Dropdown align="center">
 										<template #trigger>
 											<button v-if="$page.props.jetstream.managesProfilePhotos" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
 												<img class="rounded-full object-cover" :src="$page.props.auth.user.profile_photo_url" :alt="$page.props.auth.user.name">
@@ -161,11 +157,11 @@ const searchanything = () => {
 
 										<template #content>
 											<!-- Account Management -->
-											<div class="block px-4 py-2 text-sm text-gray-600">
+											<div class="block pl-4 pr-6 py-2 text-base primary-dark-blue font-rethinksansmedium">
 												Manage Account
 											</div>
 											
-											<DropdownLink class="block px-4 py-2 text-sm text-gray-600" :href="route('profile.show')">
+											<DropdownLink class="block w-full" :href="route('profile.show')">
 												Profile
 											</DropdownLink>
 
@@ -178,7 +174,7 @@ const searchanything = () => {
 											<!-- Authentication -->
 												
 											<form @submit.prevent="logout">
-												<DropdownLink class="block px-4 py-2 text-sm text-gray-600" as="button">
+												<DropdownLink class="block w-full" as="button">
 													Log Out
 												</DropdownLink>
 											</form>
