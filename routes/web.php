@@ -38,6 +38,8 @@ Route::middleware([
 // Liquijobs
 Route::middleware('auth')->group(function () {
     Route::resource('liquijobs', LiquijobController::class);
+    Route::get('liquijobs/{id}/edit', 'LiquijobController@edit'); 
+    Route::post('liquijobs/{id}/update', 'LiquijobController@update');
 });
 
 // Liquijobs

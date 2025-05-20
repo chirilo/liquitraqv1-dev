@@ -11,6 +11,8 @@ use Inertia\Inertia;
 use App\Models\Liquijob;
 use App\Models\Liquiasset;
 
+use Illuminate\Support\Facades\Auth;
+
 class LiquijobController extends Controller
 {
     /**
@@ -39,10 +41,26 @@ class LiquijobController extends Controller
         //     ->paginate(10)
         //     ->withQueryString();
 
+
+
+        // Get the currently authenticated user...
+        $user = Auth::user(); 
+        // Get the currently authenticated user's ID...
+        $id = Auth::id();
+
+        //dd($user->email);
+
+        $showeditdelete = 'normal';
+        if( $id == 2 || $user->email == 'webteamsupprt@gmail.com' ){
+            $showeditdelete = 'admin';
+        }
+        
+        //dd($showeditdelete);exit;
         return Inertia::render('Liquijobs/Index', [
             'liquijobs' => $liquijobs,
             'filters' => $request->all('filter'),
             'message' => session('message'),
+            'showeditdelete' => $showeditdelete,
         ]);
     }
 
@@ -225,6 +243,7 @@ class LiquijobController extends Controller
     public function edit(Liquijob $liquijob)
     {
         //
+        //dd($liquijob);exit();
 
         return Inertia::render(
             'Liquijobs/Edit',
@@ -240,6 +259,9 @@ class LiquijobController extends Controller
     public function update(Request $request, Liquijob $liquijob)
     {
         //
+        //dd($liquijob);
+        // dd($request);
+        // exit();
 
         // $request->validate([
         //     'heading' => 'required|string|max:255',
@@ -250,6 +272,17 @@ class LiquijobController extends Controller
         //     'slug' => Str::slug($request->slug),
         //     'description' => $request->description
         // ]);
+
+        $liquijob->update([
+            'company_name' => $request->company_name,
+            'corporate_address' => $request->corporate_address,
+            'contact_name' => $request->contact_name,
+            'contact_telephone' => $request->contact_telephone,
+            'contact_email' => $request->contact_email,
+            'location_address' => $request->location_address,
+            'start_date' => $request->start_date,
+            'type' => $request->type,
+        ]);
 
         return redirect()->route('liquijobs.index')->with('message', 'Liquijob Updated Successfully');
     }
