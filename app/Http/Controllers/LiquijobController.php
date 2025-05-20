@@ -29,7 +29,7 @@ class LiquijobController extends Controller
 
         $liquijobs = \DB::table('liquijobs')
         ->groupBy('liquijobs.id')
-        ->limit('5')->get();
+        ->limit('10')->get();
 
         //dd($liquijobs);
 
@@ -61,6 +61,14 @@ class LiquijobController extends Controller
             $coname = $_GET['coname'];
             $loaddress = $_GET['loaddress'];
             $sdate = $_GET['sdate'];
+        }
+        else{
+            $caddress = '';
+            $cemail = '';
+            $cname = '';
+            $coname = '';
+            $loaddress = '';
+            $sdate = '';
         }
 
         // $server_data = json_encode([
@@ -233,15 +241,15 @@ class LiquijobController extends Controller
     {
         //
 
-        $request->validate([
-            'heading' => 'required|string|max:255',
-            'slug' => 'required||unique:liquijobs,slug,'.$blog->id.',id|string|max:255'
-        ]);
-        $liquijob->update([
-            'heading' => $request->heading,
-            'slug' => Str::slug($request->slug),
-            'description' => $request->description
-        ]);
+        // $request->validate([
+        //     'heading' => 'required|string|max:255',
+        //     'slug' => 'required||unique:liquijobs,slug,'.$blog->id.',id|string|max:255'
+        // ]);
+        // $liquijob->update([
+        //     'heading' => $request->heading,
+        //     'slug' => Str::slug($request->slug),
+        //     'description' => $request->description
+        // ]);
 
         return redirect()->route('liquijobs.index')->with('message', 'Liquijob Updated Successfully');
     }
@@ -252,7 +260,27 @@ class LiquijobController extends Controller
     public function destroy(Liquijob $liquijob)
     {
         //
-        $blog->delete();
+        $liquijob->delete();
         return redirect()->route('liquijobs.index')->with('message', 'Liquijob Deleted Successfully');
+    }
+
+    /**
+     * Search and Filter feature
+     */
+    public function searchanything(Request $request)
+    {
+
+        // $liquijobs = \DB::table('liquijobs')
+        //     //->where('liquijobs.name')
+        //     ->groupBy('liquijobs.id')
+        //     ->limit('20')
+        //     ->get();
+
+        // return Inertia::render('Liquijobs/Search', [
+        //     'liquijobs' => $liquijobs,
+        //     // 'filters' => $request->all('filter'),
+        //     // 'message' => session('message'),
+        // ]);
+        return Inertia::render('Liquijobs/Search');
     }
 }

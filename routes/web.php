@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Http\Controllers;
+
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -7,7 +9,10 @@ use Inertia\Inertia;
 
 use App\Http\Controllers\LiquijobController;
 use App\Http\Controllers\LiquiassetController;
-//use App\Http\Controllers\LjobController;
+use App\Http\Controllers\AlljobsController;
+
+
+
 
 Route::get('/', function () {
     return Inertia::render('Auth/Login', [
@@ -42,7 +47,6 @@ Route::middleware('auth')->group(function () {
     //Route::get('/liquiassets/allassets', 'LiquiassetController@show');
 });
 
-// ljobs
-// Route::middleware('auth')->group(function () {
-//     Route::resource('ljobs', LjobController::class);
-// });
+
+// search
+Route::get('/search', [AlljobsController::class, 'index'])->name('search.index');
