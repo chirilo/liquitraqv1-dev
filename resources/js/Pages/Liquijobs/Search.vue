@@ -365,12 +365,32 @@ const searchanything = () => {
 								<!-- search results here -->
 								 
 								<div class="w-full relative flex flex-col mt-3">
-									<h1>Results for: {{ keyword }}</h1>
+									<h1 style="text-align: center;">Results for: {{ keyword }}</h1>
 									<div v-if="results.length">
-										<ul>
-											<li v-for="(val, index) in results" :key="index">
+										<ul class="p-0">
+											<!-- <li v-for="(val, index) in results" :key="index">
 											<span>{{ val.company_name }}</span>
+											</li> -->
+											
+											<li v-for="(val, index) in results" :key="index">
+												<!-- <h5 class="mb-2 text-slate-800 text-xl font-semibold">
+													Building: {{props.liquijobs.so_number}}
+												</h5> -->
+												<div class="w-full relative flex flex-col">
+													<div class="py-3 last:mb-2 border-[#e9ebef] last:border-none">
+														<p>
+															<span class="font-rethinksansbold primary-dark-blue">Job Co Name: </span><span class="font-rethinksanssemibold primary-gray">{{val.company_name}}</span>
+														</p>
+													</div>
+													<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
+														<p>
+															<span class="font-rethinksansbold primary-dark-blue">Address: </span><span class="font-rethinksanssemibold primary-gray">{{val.corporate_address}}</span>
+														</p>
+													</div>
+													
+												</div>
 											</li>
+											<hr>
 										</ul>
 									</div>
         							<div v-else class="text-gray-500">No results were found.</div>
