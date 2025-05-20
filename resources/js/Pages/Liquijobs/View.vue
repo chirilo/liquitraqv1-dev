@@ -44,6 +44,21 @@ const viewsingleliquiasseturl = "/liquiassets/";
 // }
 // const form = useForm(filters);
 
+const form = useForm({
+    company_name: '',
+    corporate_address: '',
+    contact_name: '',
+    contact_telephone: '',
+    contact_email: '',
+    location_address: '',
+    start_date: '',
+    type: ''
+});
+// from Create.vue
+const submitaddjob = () => {
+    form.post(route("liquijobs.store"));
+};
+
 const deleteTrade = (id) => {
     if (confirm("Are you sure you want to move this to trash")) {
 	   form.delete(route('liquijobs.destroy',{id:id}), {
@@ -177,65 +192,148 @@ const deleteTrade = (id) => {
 								<a href="/liquijobs" class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Go <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></a>
 							</div>
 
+							<!-- Quick Add New Job -->
 							<div class="w-full pr-6 pl-6 pb-6 mt-6">
 								<h2 class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">Quick Add New Job</h2>
 								<div class="mt-3 relative flex items-center lg:items-end">
 									<div id="docs-card-content" class="flex items-start lg:flex-col">
-										<form class="w-full" action="/liquijobs/create">
+										<form @submit.prevent="submitaddjob" class="w-full">
+											<!-- <form @submit.prevent="submit"  class="w-full" action="/liquijobs/create"> -->
 											<div class="flex flex-wrap">
 												<div class="w-full">
-													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
+													<!-- <label class="hidden block tracking-wide mb-2 " for="grid-first-name">
 													Job Co Name
-													</label>
-													<input name="cname" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Job Co Name">
-													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
+													</label> -->
+													<InputLabel for="company_name" value="Job Co Name" />
+													<TextInput
+		                                                id="company_name"
+		                                                type="text"
+		                                                placeholder="Job Co Name"
+		                                                v-model="form.company_name"
+		                                                required
+		                                                autofocus
+		                                            />
+
+		                                            <InputError class="mt-2" :message="form.errors.company_name" />
 												</div>
 												<div class="w-full mt-3">
-													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													Address
-													</label>
-													<input name="caddress" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Address">
-													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
+													<!-- <label class="hidden block tracking-wide mb-2" for="grid-first-name">
+													 Address
+													</label> -->
+													<InputLabel for="corporate_address" value="Address" />
+													<TextInput
+		                                                id="corporate_address"
+		                                                type="text"
+		                                                placeholder="Address"
+		                                                v-model="form.corporate_address"
+		                                                required
+		                                                autofocus
+		                                            />
+
+		                                            <InputError class="mt-2" :message="form.errors.corporate_address" />
 												</div>
 												<div class="w-full mt-3">
-													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
+													<!-- <label class="hidden block tracking-wide mb-2" for="grid-first-name">
 													Contact Name
-													</label>
-													<input name="coname" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Contact Name">
-													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
+													</label> -->
+													<InputLabel for="contact_name" value="Contact Name" />
+													<TextInput
+		                                                id="contact_name"
+		                                                type="text"
+		                                                placeholder="Contact Name"
+		                                                v-model="form.contact_name"
+		                                                required
+		                                                autofocus
+		                                            />
+
+		                                            <InputError class="mt-2" :message="form.errors.contact_name" />
 												</div>
 												<div class="w-full mt-3">
-													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
+													<!-- <label class="hidden block tracking-wide mb-2" for="grid-first-name">
 													Email
-													</label>
-													<input name="cemail" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Email">
-													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
+													</label> -->
+													<InputLabel for="contact_email" value="Email" />
+													<TextInput
+		                                                id="contact_email"
+		                                                type="text"
+		                                                placeholder="Email"
+		                                                v-model="form.contact_email"
+		                                                required
+		                                                autofocus
+		                                            />
+
+		                                            <InputError class="mt-2" :message="form.errors.contact_email" />
 												</div>
 												<div class="w-full mt-3">
-													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
+													<!-- <label class="hidden block tracking-wide mb-2" for="grid-first-name">
 													Phone
-													</label>
-													<input name="cname"cotel class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Phone">
-													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
-												</div>
-												<div class="w-full mt-3" style="display: none;">
-													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													Location Address
-													</label>
-													<input name="loaddress" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Location Address">
-													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
+													</label> -->
+													<InputLabel for="contact_telephone" value="Phone" />
+													<TextInput
+		                                                id="contact_telephone"
+		                                                type="text"
+		                                                placeholder="Phone"
+		                                                v-model="form.contact_telephone"
+		                                                required
+		                                                autofocus
+		                                            />
+
+		                                            <InputError class="mt-2" :message="form.errors.contact_telephone" />
 												</div>
 												<div class="w-full mt-3">
-													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													Start Date
-													</label>
-													<input name="sdate" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Start Date">
-													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
+													<!-- <label class="hidden block tracking-wide mb-2" for="grid-first-name">
+													Location Address
+													</label> -->
+													<InputLabel for="location_address" value="Location Address" />
+													<TextInput
+		                                                id="location_address"
+		                                                type="text"
+		                                                placeholder="Location Address"
+		                                                v-model="form.location_address"
+		                                                required
+		                                                autofocus
+		                                            />
+
+		                                            <InputError class="mt-2" :message="form.errors.location_address" />
 												</div>
+												<div class="w-full mt-3">
+													<!-- <label class="hidden block tracking-wide mb-2" for="grid-first-name">
+													Start Date
+													</label> -->
+													<InputLabel for="start_date" value="Start Date" />
+
+		                                            <TextInput
+		                                                id="start_date"
+		                                                type="date"
+		                                                placeholder="YYYY-MM-DD"
+		                                                v-model="form.start_date"
+		                                                required
+		                                                autofocus
+		                                            />
+		                                            <InputError class="mt-2" :message="form.errors.start_date" />
+												</div>
+												<div class="w-full mt-3">
+		                                            <InputLabel for="type" value="Job Type"/>
+
+		                                            <select v-model="form.type" id="type" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="type">
+		                                            	<option value="">Job Type</option>
+		                                                <option value="facilitydecomissioning">Facility Decomissioning</option>
+		                                                <option value="datacenterdecommissioning">Data Center Decommissioning</option>
+		                                                <option value="officefurniture">Office Furniture</option>
+		                                                <option value="datadestruction">Data Destruction</option>
+		                                                <option value="assetrecovery">Asset Recovery</option>
+		                                                <option value="assetmanagement">Asset Management</option>
+		                                                <option value="recycling">Recycling</option>
+		                                                <option value="generatorremoval">Generator Removal</option>
+		                                                <option value="industrialremoval">Industrial Removal</option>
+		                                            </select>
+
+		                                            <InputError class="mt-2" :message="form.errors.type" />
+		                                        </div>
 											</div>
 											
 											<!-- <a v-bind:href="liquijobsCreate" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" style="display: inline-block; width: 100% !important; text-align: center;"> ADD NEW JOB <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </a> -->
-											<button id="send" type="submit" class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Add New <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></button>
+											<button id="send" type="submit" class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Add New Job <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></button>
 										
 										</form>
 									</div>
@@ -243,6 +341,7 @@ const deleteTrade = (id) => {
 									
 								</div>
 							</div>
+							<!-- END OF: Quick Add New Job -->
 						</div>
 						<!-- RIGHT PART -->
 						<div id="right-side" class="lg:col-span-2 md:col-span-3">

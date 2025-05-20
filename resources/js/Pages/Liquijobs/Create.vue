@@ -266,12 +266,12 @@ const submit = () => {
                                     <form @submit.prevent="submit" class="mt-6 space-y-6" enctype="multipart/form-data">
                                         
                                         <div>
-                                            <InputLabel for="company_name" value="Company Name" />
+                                            <InputLabel for="company_name" value="Job Co Name" />
 
                                             <TextInput
                                                 id="company_name"
                                                 type="text"
-                                                :placeholder="cname"
+                                                placeholder="Job Co Name"
                                                 v-model="form.company_name"
                                                 required
                                                 autofocus
@@ -280,12 +280,12 @@ const submit = () => {
                                             <InputError class="mt-2" :message="form.errors.company_name" />
                                         </div>
                                         <div>
-                                            <InputLabel for="corporate_address" value="Corporate Address" />
+                                            <InputLabel for="corporate_address" value="Address" />
 
                                             <TextInput
                                                 id="corporate_address"
                                                 type="text"
-                                                :placeholder="caddress"
+                                                placeholder="Address"
                                                 v-model="form.corporate_address"
                                                 required
                                                 autofocus
@@ -299,7 +299,7 @@ const submit = () => {
                                             <TextInput
                                                 id="contact_name"
                                                 type="text"
-                                                :placeholder="coname"
+                                                placeholder="Contact Name"
                                                 v-model="form.contact_name"
                                                 required
                                                 autofocus
@@ -308,7 +308,7 @@ const submit = () => {
                                             <InputError class="mt-2" :message="form.errors.contact_name" />
                                         </div>
                                         <div>
-                                            <InputLabel for="contact_telephone" value="Contact Telephone" />
+                                            <InputLabel for="contact_telephone" value="Phone" />
 
                                             <TextInput
                                                 id="contact_telephone"
@@ -322,7 +322,7 @@ const submit = () => {
                                             <InputError class="mt-2" :message="form.errors.contact_telephone" />
                                         </div>
                                         <div>
-                                            <InputLabel for="contact_email" value="Contact Email" />
+                                            <InputLabel for="contact_email" value="Email" />
 
                                             <TextInput
                                                 id="contact_email"
@@ -341,7 +341,7 @@ const submit = () => {
                                             <TextInput
                                                 id="location_address"
                                                 type="text"
-                                                :placeholder="loaddress"
+                                                placeholder="Location Address"
                                                 v-model="form.location_address"
                                                 required
                                                 autofocus

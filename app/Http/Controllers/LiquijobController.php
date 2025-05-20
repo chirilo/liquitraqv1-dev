@@ -29,7 +29,7 @@ class LiquijobController extends Controller
 
         $liquijobs = \DB::table('liquijobs')
         ->groupBy('liquijobs.id')
-        ->limit('5')->get();
+        ->limit('10')->get();
 
         //dd($liquijobs);
 
@@ -61,6 +61,14 @@ class LiquijobController extends Controller
             $coname = $_GET['coname'];
             $loaddress = $_GET['loaddress'];
             $sdate = $_GET['sdate'];
+        }
+        else{
+            $caddress = '';
+            $cemail = '';
+            $cname = '';
+            $coname = '';
+            $loaddress = '';
+            $sdate = '';
         }
 
         // $server_data = json_encode([
