@@ -16,6 +16,8 @@ import JobsLastSevenDays from '@/Components/JobsLastSevenDays.vue';
 import UpcomingJobs from '@/Components/UpcomingJobs.vue';
 
 
+import { ref } from "vue";
+
 // const liquijobsCreate = function(event) {
 // 	window.open("/liquijobs/create");
 // }
@@ -26,7 +28,8 @@ const props = defineProps({
     liquijobs : Object,
     filters : Object,
     message : String,
-    results: Object
+    results: Object,
+    keyword: String,
 });
 
 // const filters = {
@@ -61,6 +64,12 @@ const submitaddjob = () => {
 const logout = () => {
     router.post(route('logout'));
 };
+
+let searchkey = ref("");
+
+const searchanything = () => {
+	router.get( route("search.index") + '?key=' + '%'+searchkey.value+'%' );
+}
 </script>
 
 <template>
@@ -183,11 +192,21 @@ const logout = () => {
 								<input type="search" name="search" placeholder="Search anything" />
 							</div> -->
 							
-							<div class="w-full pr-6 pl-6 pb-6 mt-6 border-divider">
+							<!-- <div class="w-full pr-6 pl-6 pb-6 mt-6 border-divider">
 								<SearchBarSideBar/>
-							</div>
+							</div> -->
 
-							<!-- <input class="appearance-none block w-full p-4 primary-gray placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="search" name="search" placeholder="Search anything" /> -->
+							<!-- Search Anything -->
+							<div class="w-full pr-6 pl-6 pb-6 mt-6 border-divider">
+								<form @submit.prevent="searchanything">
+									<!-- <h1>{{ searchkey }}</h1> -->
+									<input type="hidden" name="key" v-model="searchkey" />
+									<input v-model="searchkey" class="appearance-none block w-full p-4 primary-gray placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="search" name="search" placeholder="Search anything" />
+									<!-- <button type="submit">Search go</button> -->
+									<button type="submit"class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">GO SEARCH<svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></button>
+								</form>
+							</div>
+							<!-- END OF: Search Anything -->
 							<div class="w-full pr-6 pl-6 pb-6 mt-6 border-divider">
 								<h2 class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">Filter Jobs By</h2>
 								<select class="appearance-none block w-full p-4 mt-3 text-base primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none">
@@ -354,8 +373,8 @@ const logout = () => {
 							
 							<div class="grid items-start rounded-lg bg-white p-6 mb-6">
 								<!-- search results here -->
-								
-								<div v-if="results">
+								<h1>Results for: {{ keyword }}</h1>
+								<div v-if="results.length">
 						          <ul>
 						            <li v-for="(val, index) in results" :key="index">
 						              <span>{{ val.company_name }}</span>

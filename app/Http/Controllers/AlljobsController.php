@@ -31,6 +31,7 @@ class AlljobsController extends Controller
         //return Inertia::render('Liquijobs/Search');
         return Inertia::render('Liquijobs/Search', [
             'results' => $results,
+            'keyword' => $keyword
         ]);
     }
 }
