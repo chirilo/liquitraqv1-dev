@@ -70,6 +70,11 @@ const searchanything = () => {
 	router.get( route("search.index") + '?key=' + '%'+searchkey.value+'%' );
 }
 
+let isOpen = ref(false);
+const openMenu = () => {
+  isOpen.value = !isOpen.value;
+  console.log(isOpen);
+};
 
 </script>
 
@@ -374,22 +379,24 @@ const searchanything = () => {
 											<li class="mb-6 last:mb-0" v-for="entry in props.liquijobs" :key="entry.id">
 												<div class="w-full relative flex flex-col bg-white border border-[#e9ebef] rounded-lg">      
 													<div class="p-4">
-														<button type="button" class="inline-flex items-center border border-transparent text-base text-base primary-light-blue font-rethinksansextrabold uppercase dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150" style="float:right;">
-															
+														<button @click="openMenu" type="button" class="inline-flex items-center border border-transparent text-base text-base primary-light-blue font-rethinksansextrabold uppercase dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150" style="float:right; font-size: 1.5em;">
 															&#8942;
 														</button>
 
-														<PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="max-w-xl ml-2 float-right">View</PrimaryLink>
-														<!-- {{ props.showeditdelete }} -->
-														<div v-if="props.showeditdelete == 'admin'">
-															<PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.edit', {'id': entry.id})" class="max-w-xl ml-2 float-right" >EDIT</PrimaryLink>
-														   	<DangerButton
-															class="ml-3 float-right"
-															@click="deleteTrade(entry.id)" v-if="entry.deleted_at == null"
-															>
-															Trash
-														   </DangerButton>
+														<div id="actionbuttons" :class="isOpen ? 'block' : 'hidden' ">
+															<PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="max-w-xl ml-2 float-right">View</PrimaryLink>
+															<!-- {{ props.showeditdelete }} -->
+															<div v-if="props.showeditdelete == 'admin'">
+																<PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.edit', {'id': entry.id})" class="max-w-xl ml-2 float-right" >EDIT</PrimaryLink>
+															   	<DangerButton
+																class="ml-3 float-right"
+																@click="deleteTrade(entry.id)" v-if="entry.deleted_at == null"
+																>
+																Trash
+															   </DangerButton>
+															</div>
 														</div>
+														
 														
 														
 														<h5 class="mb-2 primary-dark-blue font-rethinksansbold text-base">
