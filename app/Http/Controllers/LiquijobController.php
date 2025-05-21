@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-// use App\Models\Liquijob;
-// use Illuminate\Http\Request;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -27,13 +25,6 @@ class LiquijobController extends Controller
         // Get the currently authenticated user's ID...
         $id = Auth::id();
 
-        // this has count of assets per job
-        // $liquijobs = \DB::table('liquijobs')
-        // ->join('liquiassets', 'liquijobs.id', '=', 'liquiassets.job_id')
-        // ->select('liquijobs.*', \DB::raw("count(liquiassets.job_id) as count"))
-        // ->groupBy('liquijobs.id')
-        // ->get();
-
         /**
          * check here if user is Admin or Regular, if Admin query all jobs, if Regular, only query jobs created by Regular user
          */
@@ -51,21 +42,6 @@ class LiquijobController extends Controller
         }
 
         
-
-        //dd($liquijobs);
-
-        // $liquijobs = Liquijob::query()
-        //     ->orderBy('created_at', 'DESC')
-        //     ->filter($request->only('filter'))
-        //     ->paginate(10)
-        //     ->withQueryString();
-
-
-
-        
-
-        //dd($user->email);
-
         $showeditdelete = 'normal';
         if( $id == 5 || $user->email == 'webteamsupprt@gmail.com' ){
             $showeditdelete = 'admin';
@@ -105,20 +81,6 @@ class LiquijobController extends Controller
             $sdate = '';
         }
 
-        // $server_data = json_encode([
-        //     'caddress' => $caddress,
-        //     'cemail' => $cemail,
-        //     'cname' => $cname,
-        //     'coname' => $coname,
-        //     'loaddress' => $loaddress,
-        //     'sdate' => $sdate,
-        // ]);
-        //
-
-        //dd($caddress);
-
-        //Inertia::share('caddress', $caddress);
-
         return Inertia::render(
             'Liquijobs/Create',
             [
@@ -137,28 +99,6 @@ class LiquijobController extends Controller
      */
     public function store(Request $request)
     {
-        //
-
-        // $request->validate([
-        //     //'so_number' => ''
-        //     //'slug' => 'required|unique:blogs|string|max:255'
-        // ]);
-        // dd($request);
-        // exit;
-        // $request->validate([
-        //     'liquis_complete_photo' => 'required|file|image|max:1024',
-        //     'additional_images' => 'required|file|image|max:1024',
-        // ]);
-        // $liquis_complete_photo_imagePath = $request->file('liquis_complete_photo')->store('public/images');
-        // $additional_images_imagePath = $request->file('additional_images')->store('public/images');
-        
-
-        // dd($request);
-        // exit;
-        // $request->validate([
-        //     'type' => 'required|string|max:255'
-        // ]);
-
         // Get the currently authenticated user...
         $user = Auth::user(); 
         // Get the currently authenticated user's ID...
@@ -197,19 +137,13 @@ class LiquijobController extends Controller
      */
     public function show(Liquijob $liquijob)
     {
-        //dd($liquijob['id']);
-        // fetch assets
-        //$job_assets = DB::table('liquiassets')->where('id', $liquijob->id)->first();
-
+        
         $job_assets = Liquiasset::query()
             ->select(['id','job_asset', 'job_id'])
             ->where('job_id', $liquijob['id'])
             ->orderBy('created_at', 'DESC')
             ->limit(10)->get();
-        //dd($job_assets);
-        //dd($job_assets);
-        //
-
+        
         $furniturejobassets = Liquiasset::query()
             ->select(['id','job_asset', 'job_id'])
             ->where('job_id', $liquijob['id'])
@@ -265,9 +199,6 @@ class LiquijobController extends Controller
      */
     public function edit(Liquijob $liquijob)
     {
-        //
-        //dd($liquijob);exit();
-
         return Inertia::render(
             'Liquijobs/Edit',
             [
@@ -281,21 +212,6 @@ class LiquijobController extends Controller
      */
     public function update(Request $request, Liquijob $liquijob)
     {
-        //
-        //dd($liquijob);
-        // dd($request);
-        // exit();
-
-        // $request->validate([
-        //     'heading' => 'required|string|max:255',
-        //     'slug' => 'required||unique:liquijobs,slug,'.$blog->id.',id|string|max:255'
-        // ]);
-        // $liquijob->update([
-        //     'heading' => $request->heading,
-        //     'slug' => Str::slug($request->slug),
-        //     'description' => $request->description
-        // ]);
-
         $liquijob->update([
             'company_name' => $request->company_name,
             'corporate_address' => $request->corporate_address,
@@ -325,18 +241,6 @@ class LiquijobController extends Controller
      */
     public function searchanything(Request $request)
     {
-
-        // $liquijobs = \DB::table('liquijobs')
-        //     //->where('liquijobs.name')
-        //     ->groupBy('liquijobs.id')
-        //     ->limit('20')
-        //     ->get();
-
-        // return Inertia::render('Liquijobs/Search', [
-        //     'liquijobs' => $liquijobs,
-        //     // 'filters' => $request->all('filter'),
-        //     // 'message' => session('message'),
-        // ]);
         return Inertia::render('Liquijobs/Search');
     }
 }
