@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers;
 
-// use App\Models\Liquiasset;
-// use Illuminate\Http\Request;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
@@ -55,17 +52,8 @@ class LiquiassetController extends Controller
     public function store(Request $request)
     {
 
-        // dd($request);
-        // exit;
-
         $image = $request->file('job_asset');
         $fname = $request->file('job_asset')->getClientOriginalName();
-
-        //Storage::disk('local')->put('file.txt', 'Contents'); // sucess
-        // $jobasset_img = $request->file('job_asset');
-        // $jobasset_filename = $jobasset_img->getClientOriginalName() . '.' . $jobasset_img->getClientOriginalExtension();
-        // Storage::disk('public')->putFileAs('aplods', $jobasset_img, $jobasset_filename);
-
 
         $storagePath = Storage::disk('public')->put('job_assets', $image);
         $storageName = basename($storagePath);
@@ -94,30 +82,13 @@ class LiquiassetController extends Controller
      */
     public function show(Liquiasset $liquiasset)
     {
-        //
-
-        // dd($liquiasset);
-        // exit;
-
-        //
+        
         $liquijob_id = isset( $_GET['jobid'] ) ? $_GET['jobid'] : 1;
-
-        // $job_assets = Liquiasset::query()
-        //     ->select(['job_asset', 'job_id'])
-        //     //->where('job_id', $liquijob_id)
-        //     ->where('id', $liquiasset['id'])
-        //     ->orderBy('created_at', 'DESC')
-        //     ->limit(10)->get();
-        //dd($job_assets);
-        //dd($job_assets);
-        //
 
         $job_assets = Liquiasset::query()
             ->select('*')
             ->where('id', $liquiasset['id'])
             ->get();
-
-        //dd($job_assets);
 
         return Inertia::render('Liquiassets/View',
             [
