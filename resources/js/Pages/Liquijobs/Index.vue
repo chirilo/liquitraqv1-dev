@@ -233,7 +233,6 @@ const openMenu = () => {
 		                                                placeholder="Job Co Name"
 		                                                v-model="form.company_name"
 		                                                required
-		                                                autofocus
 		                                            />
 
 		                                            <InputError class="mt-2" :message="form.errors.company_name" />
@@ -249,7 +248,6 @@ const openMenu = () => {
 		                                                placeholder="Address"
 		                                                v-model="form.corporate_address"
 		                                                required
-		                                                autofocus
 		                                            />
 
 		                                            <InputError class="mt-2" :message="form.errors.corporate_address" />
@@ -265,7 +263,6 @@ const openMenu = () => {
 		                                                placeholder="Contact Name"
 		                                                v-model="form.contact_name"
 		                                                required
-		                                                autofocus
 		                                            />
 
 		                                            <InputError class="mt-2" :message="form.errors.contact_name" />
@@ -277,11 +274,10 @@ const openMenu = () => {
 													<InputLabel for="contact_email" value="Email" />
 													<TextInput
 		                                                id="contact_email"
-		                                                type="text"
+		                                                type="email"
 		                                                placeholder="Email"
 		                                                v-model="form.contact_email"
 		                                                required
-		                                                autofocus
 		                                            />
 
 		                                            <InputError class="mt-2" :message="form.errors.contact_email" />
@@ -297,7 +293,6 @@ const openMenu = () => {
 		                                                placeholder="Phone"
 		                                                v-model="form.contact_telephone"
 		                                                required
-		                                                autofocus
 		                                            />
 
 		                                            <InputError class="mt-2" :message="form.errors.contact_telephone" />
@@ -313,7 +308,6 @@ const openMenu = () => {
 		                                                placeholder="Location Address"
 		                                                v-model="form.location_address"
 		                                                required
-		                                                autofocus
 		                                            />
 
 		                                            <InputError class="mt-2" :message="form.errors.location_address" />
@@ -329,7 +323,7 @@ const openMenu = () => {
 		                                                type="date"
 		                                                placeholder="YYYY-MM-DD"
 		                                                v-model="form.start_date"
-		                                                autofocus
+		                                                required
 		                                            />
 		                                            <InputError class="mt-2" :message="form.errors.start_date" />
 												</div>
@@ -374,7 +368,7 @@ const openMenu = () => {
 									<div class="relative flex flex-col">
 										<h3 class="block text-center text-2xl primary-light-blue font-rethinksansextrabold uppercase">Recent Jobs</h3>
 									</div>
-									<div class="w-full relative flex flex-col">
+									<div v-if="props.liquijobs" class="w-full relative flex flex-col">
 										<ul class="p-0">
 											<li class="mb-6 last:mb-0" v-for="entry in props.liquijobs" :key="entry.id">
 												<div class="w-full relative flex flex-col bg-white border border-[#e9ebef] rounded-lg">      
@@ -456,6 +450,9 @@ const openMenu = () => {
 											
 										</ul>
 									</div> 
+									<div v-else class="w-full relative flex flex-col">
+										<h1 style="text-align: center;font-size: 1.5em; margin-top: 2em;">No Jobs Recorded</h1>
+									</div>
 								</div>
 								<!-- recent jobs -->
 

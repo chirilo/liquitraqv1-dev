@@ -22,6 +22,11 @@ class LiquijobController extends Controller
     {
         //
 
+        // Get the currently authenticated user...
+        $user = Auth::user(); 
+        // Get the currently authenticated user's ID...
+        $id = Auth::id();
+
         // this has count of assets per job
         // $liquijobs = \DB::table('liquijobs')
         // ->join('liquiassets', 'liquijobs.id', '=', 'liquiassets.job_id')
@@ -29,9 +34,23 @@ class LiquijobController extends Controller
         // ->groupBy('liquijobs.id')
         // ->get();
 
-        $liquijobs = \DB::table('liquijobs')
-        ->groupBy('liquijobs.id')
-        ->limit('10')->get();
+        /**
+         * check here if user is Admin or Regular, if Admin query all jobs, if Regular, only query jobs created by Regular user
+         */
+        if( $id == 5 || $user->email == 'webteamsupprt@gmail.com' ){
+            // query all jobs
+            $liquijobs = \DB::table('liquijobs')
+            ->groupBy('liquijobs.id')
+            ->limit('10')->get();
+        }
+        else{
+            $liquijobs = \DB::table('liquijobs')
+            ->groupBy('liquijobs.id')
+            ->where('job_owner_id', $id)
+            ->limit('10')->get();
+        }
+
+        
 
         //dd($liquijobs);
 
@@ -43,15 +62,12 @@ class LiquijobController extends Controller
 
 
 
-        // Get the currently authenticated user...
-        $user = Auth::user(); 
-        // Get the currently authenticated user's ID...
-        $id = Auth::id();
+        
 
         //dd($user->email);
 
         $showeditdelete = 'normal';
-        if( $id == 2 || $user->email == 'webteamsupprt@gmail.com' ){
+        if( $id == 5 || $user->email == 'webteamsupprt@gmail.com' ){
             $showeditdelete = 'admin';
         }
         
@@ -142,6 +158,12 @@ class LiquijobController extends Controller
         // $request->validate([
         //     'type' => 'required|string|max:255'
         // ]);
+
+        // Get the currently authenticated user...
+        $user = Auth::user(); 
+        // Get the currently authenticated user's ID...
+        $id = Auth::id();
+
         Liquijob::create([
             'company_name' => $request->company_name,
             'corporate_address' => $request->corporate_address,
@@ -151,6 +173,7 @@ class LiquijobController extends Controller
             'location_address' => $request->location_address,
             'start_date' => $request->start_date,
             'type' => $request->type,
+            'job_owner_id' => $id,
 
             'so_number' => 1,
             'building' => $request->location_address,

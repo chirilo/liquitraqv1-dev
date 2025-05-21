@@ -38,6 +38,7 @@ class Liquijob extends Model
         'location_address',
         'start_date',
         'type',
+        'job_owner_id'
     ];
 
     /**

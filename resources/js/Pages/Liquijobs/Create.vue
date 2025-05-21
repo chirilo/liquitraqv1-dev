@@ -275,7 +275,6 @@ const submit = () => {
                                                 placeholder="Job Co Name"
                                                 v-model="form.company_name"
                                                 required
-                                                autofocus
                                             />
 
                                             <InputError class="mt-2" :message="form.errors.company_name" />
@@ -289,7 +288,6 @@ const submit = () => {
                                                 placeholder="Address"
                                                 v-model="form.corporate_address"
                                                 required
-                                                autofocus
                                             />
 
                                             <InputError class="mt-2" :message="form.errors.corporate_address" />
@@ -303,7 +301,6 @@ const submit = () => {
                                                 placeholder="Contact Name"
                                                 v-model="form.contact_name"
                                                 required
-                                                autofocus
                                             />
 
                                             <InputError class="mt-2" :message="form.errors.contact_name" />
@@ -317,7 +314,6 @@ const submit = () => {
                                                 placeholder="+1234567890"
                                                 v-model="form.contact_telephone"
                                                 required
-                                                autofocus
                                             />
 
                                             <InputError class="mt-2" :message="form.errors.contact_telephone" />
@@ -331,7 +327,6 @@ const submit = () => {
                                                 placeholder="email@email.com"
                                                 v-model="form.contact_email"
                                                 required
-                                                autofocus
                                             />
 
                                             <InputError class="mt-2" :message="form.errors.contact_email" />
@@ -345,7 +340,6 @@ const submit = () => {
                                                 placeholder="Location Address"
                                                 v-model="form.location_address"
                                                 required
-                                                autofocus
                                             />
 
                                             <InputError class="mt-2" :message="form.errors.location_address" />
@@ -358,7 +352,6 @@ const submit = () => {
                                                 type="date"
                                                 placeholder="YYYY-MM-DD"
                                                 v-model="form.start_date"
-                                                autofocus
                                             />
 
                                             <InputError class="mt-2" :message="form.errors.start_date" />
