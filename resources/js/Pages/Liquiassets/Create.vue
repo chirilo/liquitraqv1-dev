@@ -274,6 +274,7 @@ const submit = (e) => {
                                                 <InputLabel for="asset_category" value="Category" />
 
 	                                            <select v-model="form.asset_category" id="type" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_category">
+	                                            	<option value="">Select Category</option>
 	                                                <option value="it">IT</option>
 	                                                <option value="infrastructure">Infrastructure</option>
 	                                                <option value="furniture">Furniture</option>
@@ -384,6 +385,7 @@ const submit = (e) => {
                                             <InputLabel for="asset_status" value="Status"/>
 
                                                 <select v-model="form.asset_status" id="asset_status" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_status">
+                                                	<option value="">Select Status</option>
                                                     <option value="originalstate">Original State</option>
                                                     <option value="workinprogress">Work In Progress</option>
                                                     <option value="completed">Completed</option>
