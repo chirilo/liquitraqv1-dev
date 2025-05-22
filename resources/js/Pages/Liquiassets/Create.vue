@@ -292,11 +292,13 @@ const openMenuSelect = (event) => {
                         <div id="right-side" class="lg:col-span-2 md:col-span-3">
 							<div class="rounded-lg bg-white p-6">
 								<div id="recent-jobs">
-                                    <div class="float-right">
-                                        <a href="/liquijobs" class="text-white py-2 px-4 rounded-full bg-gradient-blue inline-block text-center text-sm font-rethinksansbold hover:opacity-90 float-right">Back to Jobs</a>
-                                    </div>
+									<div class="flex sm:justify-end">
+										<a href="/liquijobs" class="text-white py-2 px-4 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
+											<img class="w-4 mr-2" src="/images/logos/back.png"> Go Back
+										</a>
+									</div>
                                     <div class="relative flex flex-col mt-5 w-full text-center">
-                                        <h1 class="block text-center text-2xl primary-light-blue font-rethinksansextrabold uppercase">Add asset for Job: # {{ props.jobid }}</h1>
+                                        <h1 class="block text-center text-2xl primary-light-blue font-rethinksansextrabold uppercase">Add Asset for Job: # {{ props.jobid }}</h1>
                                     </div>
                                     <section>
                                         <form @submit.prevent="submit" class="mt-6 space-y-6" enctype="multipart/form-data">

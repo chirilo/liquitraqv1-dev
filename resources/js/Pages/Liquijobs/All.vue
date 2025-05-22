@@ -17,8 +17,11 @@ import UpcomingJobs from '@/Components/UpcomingJobs.vue';
 
 const props = defineProps({
     liquijobs : Object,
-    liquijobid: String,
     job_assets: Object,
+    jobassetscount: String,
+    itjobassets: String,
+    infrastructurejobassets: String,
+    furniturejobassets: String,
     filters : Object,
     message : String
 });
@@ -244,8 +247,10 @@ const deleteTrade = (id) => {
 							<!-- current job selected /recent jobs -->
 							<div class="rounded-lg bg-white p-6">
 								<div id="recent-jobs">
-									<div class="float-right">
-										<a href="/liquijobs" class="text-white py-2 px-4 rounded-full bg-gradient-blue inline-block text-center text-sm font-rethinksansbold hover:opacity-90 float-right">Back to Jobs</a>
+									<div class="flex sm:justify-end">
+										<a href="/liquijobs" class="text-white py-2 px-4 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
+											<img class="w-4 mr-2" src="/images/logos/back.png"> Go Back
+										</a>
 									</div>
 										 <!-- class="block text-center text-2xl primary-light-blue font-rethinksansextrabold uppercase" -->
 									<div class="relative flex flex-col w-full mt-6">
@@ -296,16 +301,16 @@ const deleteTrade = (id) => {
 											<div class="w-full relative flex flex-row flex-wrap">
 												<div class="width-50 pr-6">
 													<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
-															<span class="font-rethinksansbold primary-dark-blue">Total Assets: </span><span class="font-rethinksanssemibold primary-gray">{{ props.liquijobs.count }}</span>
+															<span class="font-rethinksansbold primary-dark-blue">Total Assets: </span><span class="font-rethinksanssemibold primary-gray">{{ props.jobassetscount }}</span>
 													</div>
 													<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
-															<span class="font-rethinksansbold primary-dark-blue">Furniture: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count}}</span>
+															<span class="font-rethinksansbold primary-dark-blue">Furniture: </span><span class="font-rethinksanssemibold primary-gray">{{props.furniturejobassets}}</span>
 													</div>
 													<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
-															<span class="font-rethinksansbold primary-dark-blue">IT: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count}}</span>
+															<span class="font-rethinksansbold primary-dark-blue">IT: </span><span class="font-rethinksanssemibold primary-gray">{{props.itjobassets}}</span>
 													</div>
 													<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
-															<span class="font-rethinksansbold primary-dark-blue">Infrastructure: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count}}</span>
+															<span class="font-rethinksansbold primary-dark-blue">Infrastructure: </span><span class="font-rethinksanssemibold primary-gray">{{props.infrastructurejobassets}}</span>
 													</div>
 												</div>
 												<div class="width-50">
@@ -336,16 +341,36 @@ const deleteTrade = (id) => {
 							<div class="rounded-lg bg-white p-6 mt-6">
 								<div id="recent-assets">
 									<!-- images -->
-									<ul class="m-0 p-0 flex justify-start">
-											<li class="m-0 p-0 w-40 pr-3" v-for="item in job_assets">
-											<!-- <img :src="'/uploads/images/' + item.job_asset" style="margin: 0 1em 0 1em;" width="300" height="300" onerror="https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0" /> -->
-											<!-- <img class="aspect-square object-cover h-auto " style="background-image: url('https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0');" :src="'/storage/job_assets/'+item.job_asset" /> -->
-											<a v-bind:href="viewsingleliquiasseturl+item.id" target="_blank">
-												<img class="aspect-square object-cover h-auto " style="background-image: url('https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0');" :src="item.job_asset" />
-											</a>
+									<ul class="m-0 p-0 flex flex-col justify-start mb-3">
+										<li class="m-0 p-0 w-full mb-6" v-for="item in job_assets">
+										<!-- <img :src="'/uploads/images/' + item.job_asset" style="margin: 0 1em 0 1em;" width="300" height="300" onerror="https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0" /> -->
+										<!-- <img class="aspect-square object-cover h-auto " style="background-image: url('https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0');" :src="'/storage/job_assets/'+item.job_asset" /> -->
+											<div class="flex sm:flex-row flex-col">
+												<div class="w-48 sm:mr-6">
+													<a v-bind:href="viewsingleliquiasseturl+item.id">
+														<img class="aspect-square object-cover h-auto " style="background-image: url('https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0');" :src="item.job_asset" />
+													</a>
+												</div>
+												<div class="w-full relative flex flex-col">
+													<h5 class="text-lg primary-light-blue font-rethinksansextrabold uppercase">
+														Asset #: {{ item.id }}
+													</h5>
+													<div class="pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
+														<div class="font-rethinksansbold primary-dark-blue width-60">Category: </div>
+														<div class="font-rethinksanssemibold primary-gray width-40 uppercase">{{ item.asset_category }}</div>
+													</div>
+													<div class="pt-3 pb-1 m-0 border-b border-[#e9ebef] flex">
+														<div class="font-rethinksansbold primary-dark-blue width-60">Status: </div>
+														<div class="font-rethinksanssemibold primary-gray width-40">{{ item.asset_status }}</div>
+													</div>
+													<div class="mt-3">
+														<a v-bind:href="viewsingleliquiasseturl+item.id" class="text-white py-2 px-4 rounded-full bg-gradient-blue text-center text-sm font-rethinksansbold hover:opacity-90">View</a>
+													</div>
+												</div>
+											</div>
 										</li>
 									</ul>
-								</div> 
+								</div>
 							</div>
 						</div>
 							<!-- current job selected / recent jobs -->

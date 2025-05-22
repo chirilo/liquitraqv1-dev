@@ -247,8 +247,10 @@ const deleteTrade = (id) => {
 									</div>
 									<ul class="p-0">
 										<li class="m-0" v-for="item in job_assets" :key="id" :value="id">
-											<div class="w-full text-center sm:text-right">
-												<a v-bind:href="parentjoburl+item.job_id" class="text-white py-2 px-4 rounded-full bg-gradient-blue text-center text-sm font-rethinksansbold hover:opacity-90">Back to Job</a>
+											<div class="flex sm:justify-end">
+												<a v-bind:href="parentjoburl+item.job_id" class="text-white py-2 px-4 rounded-full bg-gradient-blue text-center text-sm font-rethinksansbold hover:opacity-90 flex">
+												<img class="w-4 mr-2" src="/images/logos/back.png"> Go Back
+												</a>
 											</div>
 											<h5 class="w-full mt-6 block text-center text-2xl primary-light-blue font-rethinksansextrabold uppercase">
 												Asset #: {{ item.id }}

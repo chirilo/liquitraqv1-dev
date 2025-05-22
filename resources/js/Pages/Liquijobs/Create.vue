@@ -257,8 +257,10 @@ const submit = () => {
                         <!-- RIGHT PART -->
                         <div id="right-side" class="lg:col-span-2 md:col-span-3">
                             <div class="grid items-start rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] lg:pb-10">
-                                <div class="sm:text-right text-center">
-                                    <a href="/liquijobs" class="text-white py-2 px-4 rounded-full bg-gradient-blue inline-block text-center text-sm font-rethinksansbold hover:opacity-90">Back to Jobs</a>
+                                <div class="flex sm:justify-end">
+                                    <a href="/liquijobs" class="text-white py-2 px-4 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
+                                        <img class="w-4 mr-2" src="/images/logos/back.png"> Go Back
+                                    </a>
                                 </div>
                                 <div class="relative flex flex-col mt-5 w-full text-center">
                                     <h1 class="block text-center text-2xl primary-light-blue font-rethinksansextrabold uppercase">Add Job</h1>
