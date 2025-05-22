@@ -37,7 +37,7 @@ const filters = {
 //const form = useForm(filters);
 
 const deleteTrade = (id) => {
-    if (confirm("Are you sure you want to move this to trash")) {
+    if (confirm("Are you sure you want to move this to trash?")) {
 	   form.delete(route('liquijobs.destroy',{id:id}), {
 		  preserveScroll: true,
 	   });
@@ -85,7 +85,6 @@ const openMenu = () => {
                 Dashboard
             </h2>
         </template>
-        	<!-- message prompt -->
 		<div
 			v-if="props.message"
 			class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
@@ -95,50 +94,23 @@ const openMenu = () => {
 				{{ props.message }}
 			</span>
 		</div>
-
 		<div class="max-w-7xl mx-auto p-5">
 			<div class="dark:bg-gray-800 overflow-hidden sm:rounded-lg">
 				<div>
 					<div class="grid gap-6 lg:grid-cols-3 md:grid-cols-5 lg:gap-8">
 						<!-- LEFT PART -->
 						<!-- Container for Left Sidebar (search and quick add job) -->
-						<div id="left-side" class="mx-auto flex flex-col items-start overflow-hidden pb-6 pt-6 rounded-lg bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] lg:col-span-1 md:col-span-2">
+						<div id="left-side" class="w-full mx-auto flex flex-col items-start overflow-hidden pb-6 pt-6 rounded-lg bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] lg:col-span-1 md:col-span-2">
 							<div class="relative w-full flex items-center pb-6 border-divider">
 								<div class="mx-auto">
 									<div class="flex items-center"><a href="/liquijobs"><img src="/images/logos/liquis-logo.png" alt="LiquiTraq" class="block md:w-40 sm:w-20"></a></div>
 								</div>
 							</div>
-
 							<div class="relative w-full border-divider pt-6">
 							<!-- AVATAR -->
 								<div class="relative flex items-center lg:items-end">
 									<div class="mx-auto relative flex items-center lg:items-end">
 										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl" src="/images/logos/avatar.jpg" alt="User dropdown">
-									</div>
-
-									<!-- <div class="relative flex items-center gap-6 lg:items-end">
-										<h1>My Account</h1>
-									</div> -->
-									<!-- Dropdown menu -->
-									<div id="userDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
-										<div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-										<div>Chi Rilo</div>
-										<div class="font-medium truncate">name@flowbite.com</div>
-										</div>
-										<ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
-										<li>
-											<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-										</li>
-										<li>
-											<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-										</li>
-										<li>
-											<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-										</li>
-										</ul>
-										<div class="py-1">
-										<a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
-										</div>
 									</div>
 								</div>
 								<!-- END OF AVATAR -->
@@ -149,7 +121,6 @@ const openMenu = () => {
 											<button v-if="$page.props.jetstream.managesProfilePhotos" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
 												<img class="rounded-full object-cover" :src="$page.props.auth.user.profile_photo_url" :alt="$page.props.auth.user.name">
 											</button>
-
 											<span v-else class="inline-flex rounded-md">
 												<button type="button" class="inline-flex items-center border border-transparent text-base text-base primary-light-blue font-rethinksansextrabold uppercase dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
 													{{ $page.props.auth.user.name }}
@@ -160,25 +131,19 @@ const openMenu = () => {
 												</button>
 											</span>
 										</template>
-
 										<template #content>
 											<!-- Account Management -->
 											<div class="block pl-4 pr-6 py-2 text-base primary-dark-blue font-rethinksansmedium">
 												Manage Account
 											</div>
-											
 											<DropdownLink class="block w-full" :href="route('profile.show')">
 												Profile
 											</DropdownLink>
-
 											<!-- <DropdownLink v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')">
 												API Tokens
 											</DropdownLink> -->
-
 											<div class="border-t border-gray-200 dark:border-gray-600" />
-
 											<!-- Authentication -->
-												
 											<form @submit.prevent="logout">
 												<DropdownLink class="block w-full" as="button">
 													Log Out
@@ -189,7 +154,6 @@ const openMenu = () => {
 								</div>
 								<!-- END OF: MY ACCOUNT -->
 							</div>
-							
 							<!-- Search Anything -->
 							<div class="w-full pr-6 pl-6 pb-6 mt-6 border-divider">
 								<!-- <SearchBarSideBar/> -->
@@ -197,11 +161,10 @@ const openMenu = () => {
 									<!-- <h1>{{ searchkey }}</h1> -->
 									<input type="hidden" name="key" v-model="searchkey" />
 									<input v-model="searchkey" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#e9ebef] bg-white rounded-lg focus:outline-none" type="search" name="search" placeholder="Search anything..." />
-									<button type="submit"><svg class="size-6 shrink-0 stroke-[#8c8c97] absolute inset-y-4 right-0 w-12" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></button>
+									<!-- <button type="submit"><svg class="size-6 shrink-0 stroke-[#8c8c97] absolute inset-y-4 right-0 w-12" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></button> -->
 								</form>
 							</div>
 							<!-- END OF: Search Anything -->
-
 							<div class="w-full pr-6 pl-6 pb-6 mt-6 border-divider">
 								<form @submit.prevent="searchanything">
 									<h2 class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">Filter Jobs By</h2>
@@ -213,19 +176,14 @@ const openMenu = () => {
 									<button type="submit" class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Go <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></button>
 								</form>
 							</div>
-
 							<!-- Quick Add New Job -->
 							<div class="w-full pr-6 pl-6 pb-6 mt-6">
 								<h2 class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">Quick Add New Job</h2>
 								<div class="mt-3 relative flex items-center lg:items-end">
 									<div id="docs-card-content" class="flex items-start lg:flex-col">
 										<form @submit.prevent="submitaddjob" class="w-full">
-											<!-- <form @submit.prevent="submit"  class="w-full" action="/liquijobs/create"> -->
 											<div class="flex flex-wrap">
 												<div class="w-full">
-													<!-- <label class="hidden block tracking-wide mb-2 " for="grid-first-name">
-													Job Co Name
-													</label> -->
 													<InputLabel for="company_name" value="Job Co Name" />
 													<TextInput
 		                                                id="company_name"
@@ -234,13 +192,9 @@ const openMenu = () => {
 		                                                v-model="form.company_name"
 		                                                required
 		                                            />
-
 		                                            <InputError class="mt-2" :message="form.errors.company_name" />
 												</div>
 												<div class="w-full mt-3">
-													<!-- <label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													 Address
-													</label> -->
 													<InputLabel for="corporate_address" value="Address" />
 													<TextInput
 		                                                id="corporate_address"
@@ -249,13 +203,9 @@ const openMenu = () => {
 		                                                v-model="form.corporate_address"
 		                                                required
 		                                            />
-
 		                                            <InputError class="mt-2" :message="form.errors.corporate_address" />
 												</div>
 												<div class="w-full mt-3">
-													<!-- <label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													Contact Name
-													</label> -->
 													<InputLabel for="contact_name" value="Contact Name" />
 													<TextInput
 		                                                id="contact_name"
@@ -264,13 +214,9 @@ const openMenu = () => {
 		                                                v-model="form.contact_name"
 		                                                required
 		                                            />
-
 		                                            <InputError class="mt-2" :message="form.errors.contact_name" />
 												</div>
 												<div class="w-full mt-3">
-													<!-- <label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													Email
-													</label> -->
 													<InputLabel for="contact_email" value="Email" />
 													<TextInput
 		                                                id="contact_email"
@@ -279,13 +225,9 @@ const openMenu = () => {
 		                                                v-model="form.contact_email"
 		                                                required
 		                                            />
-
 		                                            <InputError class="mt-2" :message="form.errors.contact_email" />
 												</div>
 												<div class="w-full mt-3">
-													<!-- <label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													Phone
-													</label> -->
 													<InputLabel for="contact_telephone" value="Phone" />
 													<TextInput
 		                                                id="contact_telephone"
@@ -294,13 +236,9 @@ const openMenu = () => {
 		                                                v-model="form.contact_telephone"
 		                                                required
 		                                            />
-
 		                                            <InputError class="mt-2" :message="form.errors.contact_telephone" />
 												</div>
 												<div class="w-full mt-3">
-													<!-- <label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													Location Address
-													</label> -->
 													<InputLabel for="location_address" value="Location Address" />
 													<TextInput
 		                                                id="location_address"
@@ -309,15 +247,10 @@ const openMenu = () => {
 		                                                v-model="form.location_address"
 		                                                required
 		                                            />
-
 		                                            <InputError class="mt-2" :message="form.errors.location_address" />
 												</div>
 												<div class="w-full mt-3">
-													<!-- <label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													Start Date
-													</label> -->
 													<InputLabel for="start_date" value="Start Date" />
-
 		                                            <TextInput
 		                                                id="start_date"
 		                                                type="date"
@@ -329,7 +262,6 @@ const openMenu = () => {
 												</div>
 												<div class="w-full mt-3">
 		                                            <InputLabel for="type" value="Job Type"/>
-
 		                                            <select v-model="form.type" id="type" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="type">
 		                                            	<option value="">Job Type</option>
 		                                                <option value="facilitydecomissioning">Facility Decomissioning</option>
@@ -342,23 +274,16 @@ const openMenu = () => {
 		                                                <option value="generatorremoval">Generator Removal</option>
 		                                                <option value="industrialremoval">Industrial Removal</option>
 		                                            </select>
-
 		                                            <InputError class="mt-2" :message="form.errors.type" />
 		                                        </div>
 											</div>
-											
-											<!-- <a v-bind:href="liquijobsCreate" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" style="display: inline-block; width: 100% !important; text-align: center;"> ADD NEW JOB <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </a> -->
 											<button id="send" type="submit" class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Add New Job <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></button>
-										
 										</form>
 									</div>
-
-									
 								</div>
 							</div>
 							<!-- END OF: Quick Add New Job -->
 						</div>
-
 						<!-- RIGHT PART -->
 						<div id="right-side" class="lg:col-span-2 md:col-span-3">
 							
@@ -373,7 +298,7 @@ const openMenu = () => {
 											<li class="mb-6 last:mb-0" v-for="entry in props.liquijobs" :key="entry.id">
 												<div class="w-full relative flex flex-col bg-white border border-[#e9ebef] rounded-lg">      
 													<div class="p-4">
-														<button @click="openMenu" type="button" class="inline-flex items-center border border-transparent text-base text-base primary-light-blue font-rethinksansextrabold uppercase dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150" style="float:right; font-size: 1.5em;">
+														<button @click="openMenu" type="button" class="float-right text-base color-[#98a2b3] ml-3">
 															&#8942;
 														</button>
 
@@ -390,9 +315,6 @@ const openMenu = () => {
 															   </DangerButton>
 															</div>
 														</div>
-														
-														
-														
 														<h5 class="mb-2 primary-dark-blue font-rethinksansbold text-base">
 															Building: {{ entry.corporate_address }}
 														</h5>
@@ -422,7 +344,6 @@ const openMenu = () => {
 														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'recycling'">
 														Type: Recycling
 														</span>
-														
 														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'generatorremoval'">
 														Type: Generator Removal
 														</span>
@@ -455,7 +376,6 @@ const openMenu = () => {
 									</div>
 								</div>
 								<!-- recent jobs -->
-
 								<!-- jobs last 7 days -->
 								<div id="job-last-7-days" class="mt-6 w-full relative flex flex-col bg-white border border-[#e9ebef] rounded-lg">
 									<div class="relative flex flex-col pt-4 pb-2 px-4">
@@ -476,7 +396,6 @@ const openMenu = () => {
 									</ul>
 								</div>
 								<!-- jobs last 7 days -->
-
 								<!-- <UpcomingJobs /> -->
 								<!-- upcoming jobs -->
 								<div id="upcoming-jobs" class="mt-6 w-full relative flex flex-col bg-white border border-[#e9ebef] rounded-lg">
@@ -508,12 +427,9 @@ const openMenu = () => {
 				</div> <!-- end of unlabeled div -->
 			</div>
 		</div>
-
-        <!-- -->
         <h1 style="display: none;">INDEX VUE PAGE</h1>
 		<div class="py-12" style="display: none;">
 			<div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-			
 			<!-- message prompt -->
 			<div
 				v-if="props.message"

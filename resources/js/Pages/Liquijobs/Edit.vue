@@ -94,7 +94,7 @@ const updatejob = (id) => {
 					<div class="grid gap-6 lg:grid-cols-3 md:grid-cols-5 lg:gap-8">
 						<!-- LEFT PART -->
 						<!-- Container for Left Sidebar (search and quick add job) -->
-						<div id="left-side" class="mx-auto flex flex-col items-start overflow-hidden pb-6 pt-6 rounded-lg bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] lg:col-span-1 md:col-span-2">
+						<div id="left-side" class="w-full mx-auto flex flex-col items-start overflow-hidden pb-6 pt-6 rounded-lg bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] lg:col-span-1 md:col-span-2">
 							<div class="relative w-full flex items-center pb-6 border-divider">
 								<div class="mx-auto">
 									<div class="flex items-center"><a href="/liquijobs"><img src="/images/logos/liquis-logo.png" alt="LiquiTraq" class="block md:w-40 sm:w-20"></a></div>
@@ -199,178 +199,37 @@ const updatejob = (id) => {
 								</select>
 								<a href="/liquijobs" class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Go <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></a>
 							</div>
-
-							<!-- Quick Add New Job -->
-							<div class="w-full pr-6 pl-6 pb-6 mt-6">
-								<h2 class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">Quick Add New Job</h2>
-								<div class="mt-3 relative flex items-center lg:items-end">
-									<div id="docs-card-content" class="flex items-start lg:flex-col">
-										<form @submit.prevent="submitaddjob" class="w-full">
-											<!-- <form @submit.prevent="submit"  class="w-full" action="/liquijobs/create"> -->
-											<div class="flex flex-wrap">
-												<div class="w-full">
-													<!-- <label class="hidden block tracking-wide mb-2 " for="grid-first-name">
-													Job Co Name
-													</label> -->
-													<InputLabel for="company_name" value="Job Co Name" />
-													<TextInput
-		                                                id="company_name"
-		                                                type="text"
-		                                                placeholder="Job Co Name"
-		                                                v-model="form.company_name"
-		                                                required
-		                                                autofocus
-		                                            />
-
-		                                            <InputError class="mt-2" :message="form.errors.company_name" />
-												</div>
-												<div class="w-full mt-3">
-													<!-- <label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													 Address
-													</label> -->
-													<InputLabel for="corporate_address" value="Address" />
-													<TextInput
-		                                                id="corporate_address"
-		                                                type="text"
-		                                                placeholder="Address"
-		                                                v-model="form.corporate_address"
-		                                                required
-		                                                autofocus
-		                                            />
-
-		                                            <InputError class="mt-2" :message="form.errors.corporate_address" />
-												</div>
-												<div class="w-full mt-3">
-													<!-- <label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													Contact Name
-													</label> -->
-													<InputLabel for="contact_name" value="Contact Name" />
-													<TextInput
-		                                                id="contact_name"
-		                                                type="text"
-		                                                placeholder="Contact Name"
-		                                                v-model="form.contact_name"
-		                                                required
-		                                                autofocus
-		                                            />
-
-		                                            <InputError class="mt-2" :message="form.errors.contact_name" />
-												</div>
-												<div class="w-full mt-3">
-													<!-- <label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													Email
-													</label> -->
-													<InputLabel for="contact_email" value="Email" />
-													<TextInput
-		                                                id="contact_email"
-		                                                type="text"
-		                                                placeholder="Email"
-		                                                v-model="form.contact_email"
-		                                                required
-		                                                autofocus
-		                                            />
-
-		                                            <InputError class="mt-2" :message="form.errors.contact_email" />
-												</div>
-												<div class="w-full mt-3">
-													<!-- <label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													Phone
-													</label> -->
-													<InputLabel for="contact_telephone" value="Phone" />
-													<TextInput
-		                                                id="contact_telephone"
-		                                                type="text"
-		                                                placeholder="Phone"
-		                                                v-model="form.contact_telephone"
-		                                                required
-		                                                autofocus
-		                                            />
-
-		                                            <InputError class="mt-2" :message="form.errors.contact_telephone" />
-												</div>
-												<div class="w-full mt-3">
-													<!-- <label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													Location Address
-													</label> -->
-													<InputLabel for="location_address" value="Location Address" />
-													<TextInput
-		                                                id="location_address"
-		                                                type="text"
-		                                                placeholder="Location Address"
-		                                                v-model="form.location_address"
-		                                                required
-		                                                autofocus
-		                                            />
-
-		                                            <InputError class="mt-2" :message="form.errors.location_address" />
-												</div>
-												<div class="w-full mt-3">
-													<!-- <label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													Start Date
-													</label> -->
-													<InputLabel for="start_date" value="Start Date" />
-
-		                                            <TextInput
-		                                                id="start_date"
-		                                                type="date"
-		                                                placeholder="YYYY-MM-DD"
-		                                                v-model="form.start_date"
-		                                                required
-		                                                autofocus
-		                                            />
-		                                            <InputError class="mt-2" :message="form.errors.start_date" />
-												</div>
-												<div class="w-full mt-3">
-		                                            <InputLabel for="type" value="Job Type"/>
-
-		                                            <select v-model="form.type" id="type" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="type">
-		                                            	<option value="">Job Type</option>
-		                                                <option value="facilitydecomissioning">Facility Decomissioning</option>
-		                                                <option value="datacenterdecommissioning">Data Center Decommissioning</option>
-		                                                <option value="officefurniture">Office Furniture</option>
-		                                                <option value="datadestruction">Data Destruction</option>
-		                                                <option value="assetrecovery">Asset Recovery</option>
-		                                                <option value="assetmanagement">Asset Management</option>
-		                                                <option value="recycling">Recycling</option>
-		                                                <option value="generatorremoval">Generator Removal</option>
-		                                                <option value="industrialremoval">Industrial Removal</option>
-		                                            </select>
-
-		                                            <InputError class="mt-2" :message="form.errors.type" />
-		                                        </div>
-											</div>
-											
-											<!-- <a v-bind:href="liquijobsCreate" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" style="display: inline-block; width: 100% !important; text-align: center;"> ADD NEW JOB <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </a> -->
-											<button id="send" type="submit" class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Add New Job <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></button>
-										
-										</form>
-									</div>
-
-									
-								</div>
-							</div>
-							<!-- END OF: Quick Add New Job -->
 						</div>
 						<!-- RIGHT PART -->
 						<div id="right-side" class="lg:col-span-2 md:col-span-3">
 							<!-- current job selected /recent jobs -->
-							<form @submit.prevent="updatejob" class="mt-6 space-y-6" enctype="multipart/form-data">
+
+							<div class="grid items-start rounded-lg bg-white p-6 mb-6">
+                                
+                                <div class="sm:text-right text-center">
+                                    <a href="/liquijobs" class="text-white py-2 px-4 rounded-full bg-gradient-blue inline-block text-center text-sm font-rethinksansbold hover:opacity-90">Back to Jobs</a>
+                                </div>
+                                        <!-- class="block text-center text-2xl primary-light-blue font-rethinksansextrabold uppercase" -->
+                                <div class="relative flex flex-col w-full mt-3">
+                                    <h1 class="block text-center text-2xl primary-light-blue font-rethinksansextrabold uppercase">Edit Job</h1>
+                                </div>
+								<form @submit.prevent="updatejob" class="mt-6 space-y-6" enctype="multipart/form-data">
                                         
                                         <div>
+											<label class="text-base font-rethinksansbold primary-dark-blue">Job Co Name</label>
                                             <InputLabel for="company_name" value="Job Co Name" />
 
                                             <TextInput
                                                 id="company_name"
                                                 type="text"
-                                                placeholder="Job Co Name"
                                                 v-model="form.company_name"
                                                 required
-                                                autofocus
                                             />
 
                                             <InputError class="mt-2" :message="form.errors.company_name" />
                                         </div>
                                         <div>
+											<label class="text-base font-rethinksansbold primary-dark-blue">Address</label>
                                             <InputLabel for="corporate_address" value="Address" />
 
                                             <TextInput
@@ -379,26 +238,25 @@ const updatejob = (id) => {
                                                 placeholder="Address"
                                                 v-model="form.corporate_address"
                                                 required
-                                                autofocus
                                             />
 
                                             <InputError class="mt-2" :message="form.errors.corporate_address" />
                                         </div>
                                         <div>
+											<label class="text-base font-rethinksansbold primary-dark-blue">Contact Name</label>
                                             <InputLabel for="contact_name" value="Contact Name" />
 
                                             <TextInput
                                                 id="contact_name"
                                                 type="text"
-                                                placeholder="Contact Name"
                                                 v-model="form.contact_name"
                                                 required
-                                                autofocus
                                             />
 
                                             <InputError class="mt-2" :message="form.errors.contact_name" />
                                         </div>
                                         <div>
+											<label class="text-base font-rethinksansbold primary-dark-blue">Phone</label>
                                             <InputLabel for="contact_telephone" value="Phone" />
 
                                             <TextInput
@@ -407,49 +265,45 @@ const updatejob = (id) => {
                                                 placeholder="+1234567890"
                                                 v-model="form.contact_telephone"
                                                 required
-                                                autofocus
                                             />
 
                                             <InputError class="mt-2" :message="form.errors.contact_telephone" />
                                         </div>
                                         <div>
+											<label class="text-base font-rethinksansbold primary-dark-blue">Email</label>
                                             <InputLabel for="contact_email" value="Email" />
 
                                             <TextInput
                                                 id="contact_email"
                                                 type="email"
-                                                placeholder="email@email.com"
                                                 v-model="form.contact_email"
                                                 required
-                                                autofocus
                                             />
 
                                             <InputError class="mt-2" :message="form.errors.contact_email" />
                                         </div>
                                         <div>
+											<label class="text-base font-rethinksansbold primary-dark-blue">Location Address</label>
                                             <InputLabel for="location_address" value="Location Address" />
 
                                             <TextInput
                                                 id="location_address"
                                                 type="text"
-                                                placeholder="Location Address"
                                                 v-model="form.location_address"
                                                 required
-                                                autofocus
                                             />
 
                                             <InputError class="mt-2" :message="form.errors.location_address" />
                                         </div>
                                         <div>
+											<label class="text-base font-rethinksansbold primary-dark-blue">Start Date</label>
                                             <InputLabel for="start_date" value="Start Date" />
 
                                             <TextInput
                                                 id="start_date"
                                                 type="date"
-                                                placeholder="YYYY-MM-DD"
                                                 v-model="form.start_date"
                                                 required
-                                                autofocus
                                             />
 
                                             <InputError class="mt-2" :message="form.errors.start_date" />
@@ -487,7 +341,6 @@ const updatejob = (id) => {
                                                 type="file"
                                                 class="mt-1 block w-full"
                                                 v-model="form.additional_images"
-                                                autofocus
                                             />
 
                                             <InputError class="mt-2" :message="form.errors.additional_images" />
@@ -507,8 +360,8 @@ const updatejob = (id) => {
                                                 <p v-if="form.recentlySuccessful" class="text-sm text-gray-600">Saved.</p>
                                             </Transition>
                                         </div>
-                                    </form>
-							
+								</form>
+							</div>
 						</div>
 							<!-- current job selected / recent jobs -->
 					</div>

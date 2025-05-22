@@ -75,7 +75,6 @@ const deleteTrade = (id) => {
                 Dashboard
             </h2>
         </template>
-
 		<div class="max-w-7xl mx-auto p-5">
 			<div class="dark:bg-gray-800 overflow-hidden sm:rounded-lg">
 				<div>
@@ -88,37 +87,11 @@ const deleteTrade = (id) => {
 									<div class="flex items-center"><a href="/liquijobs"><img src="/images/logos/liquis-logo.png" alt="LiquiTraq" class="block md:w-40 sm:w-20"></a></div>
 								</div>
 							</div>
-
 							<div class="relative w-full border-divider pt-6">
-							<!-- AVATAR -->
+								<!-- AVATAR -->
 								<div class="relative flex items-center lg:items-end">
 									<div class="mx-auto relative flex items-center lg:items-end">
 										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl" src="/images/logos/avatar.jpg" alt="User dropdown">
-									</div>
-
-									<!-- <div class="relative flex items-center gap-6 lg:items-end">
-										<h1>My Account</h1>
-									</div> -->
-									<!-- Dropdown menu -->
-									<div id="userDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
-										<div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-										<div>Chi Rilo</div>
-										<div class="font-medium truncate">name@flowbite.com</div>
-										</div>
-										<ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
-										<li>
-											<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-										</li>
-										<li>
-											<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-										</li>
-										<li>
-											<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-										</li>
-										</ul>
-										<div class="py-1">
-										<a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
-										</div>
 									</div>
 								</div>
 								<!-- END OF AVATAR -->
@@ -140,25 +113,19 @@ const deleteTrade = (id) => {
 												</button>
 											</span>
 										</template>
-
 										<template #content>
 											<!-- Account Management -->
 											<div class="block pl-4 pr-6 py-2 text-base primary-dark-blue font-rethinksansmedium">
 												Manage Account
 											</div>
-											
 											<DropdownLink class="block w-full" :href="route('profile.show')">
 												Profile
 											</DropdownLink>
-
 											<!-- <DropdownLink v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')">
 												API Tokens
 											</DropdownLink> -->
-
 											<div class="border-t border-gray-200 dark:border-gray-600" />
-
 											<!-- Authentication -->
-												
 											<form @submit.prevent="logout">
 												<DropdownLink class="block w-full" as="button">
 													Log Out
@@ -169,7 +136,6 @@ const deleteTrade = (id) => {
 								</div>
 								<!-- END OF: MY ACCOUNT -->
 							</div>
-							
 							<!-- Search Anything -->
 							<div class="w-full pr-6 pl-6 pb-6 mt-6 border-divider">
 								<!-- <SearchBarSideBar/> -->
@@ -181,7 +147,6 @@ const deleteTrade = (id) => {
 								</form>
 							</div>
 							<!-- END OF: Search Anything -->
-
 							<div class="w-full pr-6 pl-6 pb-6 mt-6 border-divider">
 								<h2 class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">Filter Jobs By</h2>
 								<select class="appearance-none block w-full p-4 mt-3 text-base primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none">
@@ -190,19 +155,14 @@ const deleteTrade = (id) => {
 								</select>
 								<a href="/liquijobs" class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Go <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></a>
 							</div>
-
 							<!-- Quick Add New Job -->
 							<div class="w-full pr-6 pl-6 pb-6 mt-6">
 								<h2 class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">Quick Add New Job</h2>
 								<div class="mt-3 relative flex items-center lg:items-end">
 									<div id="docs-card-content" class="flex items-start lg:flex-col">
 										<form @submit.prevent="submitaddjob" class="w-full">
-											<!-- <form @submit.prevent="submit"  class="w-full" action="/liquijobs/create"> -->
 											<div class="flex flex-wrap">
 												<div class="w-full">
-													<!-- <label class="hidden block tracking-wide mb-2 " for="grid-first-name">
-													Job Co Name
-													</label> -->
 													<InputLabel for="company_name" value="Job Co Name" />
 													<TextInput
 		                                                id="company_name"
@@ -211,13 +171,9 @@ const deleteTrade = (id) => {
 		                                                v-model="form.company_name"
 		                                                required
 		                                            />
-
 		                                            <InputError class="mt-2" :message="form.errors.company_name" />
 												</div>
 												<div class="w-full mt-3">
-													<!-- <label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													 Address
-													</label> -->
 													<InputLabel for="corporate_address" value="Address" />
 													<TextInput
 		                                                id="corporate_address"
@@ -226,13 +182,9 @@ const deleteTrade = (id) => {
 		                                                v-model="form.corporate_address"
 		                                                required
 		                                            />
-
 		                                            <InputError class="mt-2" :message="form.errors.corporate_address" />
 												</div>
 												<div class="w-full mt-3">
-													<!-- <label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													Contact Name
-													</label> -->
 													<InputLabel for="contact_name" value="Contact Name" />
 													<TextInput
 		                                                id="contact_name"
@@ -241,13 +193,9 @@ const deleteTrade = (id) => {
 		                                                v-model="form.contact_name"
 		                                                required
 		                                            />
-
 		                                            <InputError class="mt-2" :message="form.errors.contact_name" />
 												</div>
 												<div class="w-full mt-3">
-													<!-- <label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													Email
-													</label> -->
 													<InputLabel for="contact_email" value="Email" />
 													<TextInput
 		                                                id="contact_email"
@@ -256,13 +204,9 @@ const deleteTrade = (id) => {
 		                                                v-model="form.contact_email"
 		                                                required
 		                                            />
-
 		                                            <InputError class="mt-2" :message="form.errors.contact_email" />
 												</div>
 												<div class="w-full mt-3">
-													<!-- <label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													Phone
-													</label> -->
 													<InputLabel for="contact_telephone" value="Phone" />
 													<TextInput
 		                                                id="contact_telephone"
@@ -271,13 +215,9 @@ const deleteTrade = (id) => {
 		                                                v-model="form.contact_telephone"
 		                                                required
 		                                            />
-
 		                                            <InputError class="mt-2" :message="form.errors.contact_telephone" />
 												</div>
 												<div class="w-full mt-3">
-													<!-- <label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													Location Address
-													</label> -->
 													<InputLabel for="location_address" value="Location Address" />
 													<TextInput
 		                                                id="location_address"
@@ -286,15 +226,10 @@ const deleteTrade = (id) => {
 		                                                v-model="form.location_address"
 		                                                required
 		                                            />
-
 		                                            <InputError class="mt-2" :message="form.errors.location_address" />
 												</div>
 												<div class="w-full mt-3">
-													<!-- <label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													Start Date
-													</label> -->
 													<InputLabel for="start_date" value="Start Date" />
-
 		                                            <TextInput
 		                                                id="start_date"
 		                                                type="date"
@@ -305,7 +240,6 @@ const deleteTrade = (id) => {
 												</div>
 												<div class="w-full mt-3">
 		                                            <InputLabel for="type" value="Job Type"/>
-
 		                                            <select v-model="form.type" id="type" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="type">
 		                                            	<option value="">Job Type</option>
 		                                                <option value="facilitydecomissioning">Facility Decomissioning</option>
@@ -322,14 +256,9 @@ const deleteTrade = (id) => {
 		                                            <InputError class="mt-2" :message="form.errors.type" />
 		                                        </div>
 											</div>
-											
-											<!-- <a v-bind:href="liquijobsCreate" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" style="display: inline-block; width: 100% !important; text-align: center;"> ADD NEW JOB <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </a> -->
 											<button id="send" type="submit" class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Add New Job <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></button>
-										
 										</form>
 									</div>
-
-									
 								</div>
 							</div>
 							<!-- END OF: Quick Add New Job -->
@@ -342,15 +271,11 @@ const deleteTrade = (id) => {
 									<div class="sm:text-right text-center">
 										<a href="/liquijobs" class="text-white py-2 px-4 rounded-full bg-gradient-blue inline-block text-center text-sm font-rethinksansbold hover:opacity-90">Back to Jobs</a>
 									</div>
-										 <!-- class="block text-center text-2xl primary-light-blue font-rethinksansextrabold uppercase" -->
 									<div class="relative flex flex-col w-full mt-3">
 										<h1 class="block text-center text-2xl primary-light-blue font-rethinksansextrabold uppercase">{{props.liquijobs.building}}</h1>
 									</div>
 									<ul class="p-0">
 										<li>
-											<!-- <h5 class="mb-2 text-slate-800 text-xl font-semibold">
-													Building: {{props.liquijobs.so_number}}
-												</h5> -->
 											<div class="w-full relative flex flex-col">
 												<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
 													<p>
@@ -384,10 +309,8 @@ const deleteTrade = (id) => {
 												</div>
 											</div>
 										</li>
-
 										<!-- Additional Data for Job and Assets -->
 										<li>
-											
 											<div class="w-full relative flex flex-row flex-wrap">
 												<div class="width-50 pr-6">
 													<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
@@ -433,7 +356,7 @@ const deleteTrade = (id) => {
 											<li class="m-0 p-0 w-40 pr-3" v-for="item in job_assets">
 											<!-- <img :src="'/uploads/images/' + item.job_asset" style="margin: 0 1em 0 1em;" width="300" height="300" onerror="https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0" /> -->
 											<!-- <img class="aspect-square object-cover h-auto " style="background-image: url('https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0');" :src="'/storage/job_assets/'+item.job_asset" /> -->
-											<a v-bind:href="viewsingleliquiasseturl+item.id" target="_blank">
+											<a v-bind:href="viewsingleliquiasseturl+item.id">
 												<img class="aspect-square object-cover h-auto " style="background-image: url('https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0');" :src="item.job_asset" />
 											</a>
 										</li>
@@ -453,8 +376,7 @@ const deleteTrade = (id) => {
 							<Calendar />
 						</div>
 					</div>
-				        
-				</div> <!-- end of unlabeled div -->
+				</div><!-- end of unlabeled div -->
             </div>
         </div>
         <!-- -->
