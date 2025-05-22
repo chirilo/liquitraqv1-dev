@@ -72,7 +72,7 @@ const deleteTrade = (id) => {
     <AppLayout title="Dashboard">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                Dashboard
+                View Job
             </h2>
         </template>
 		<div class="max-w-7xl mx-auto p-5">
@@ -314,16 +314,16 @@ const deleteTrade = (id) => {
 											<div class="w-full relative flex flex-row flex-wrap">
 												<div class="width-50 pr-6">
 													<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
-														<span class="font-rethinksansbold primary-dark-blue">Total Assets: </span><span class="font-rethinksanssemibold primary-gray">{{ props.liquijobs.count }}</span>
+														<span class="font-rethinksansbold primary-dark-blue">Total Assets: </span><span class="font-rethinksanssemibold primary-gray">{{ props.jobassetscount }}</span>
 													</div>
 													<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
-														<span class="font-rethinksansbold primary-dark-blue">Furniture: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count}}</span>
+														<span class="font-rethinksansbold primary-dark-blue">Furniture: </span><span class="font-rethinksanssemibold primary-gray">{{ props.furniturejobassets }}</span>
 													</div>
 													<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
-														<span class="font-rethinksansbold primary-dark-blue">IT: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count}}</span>
+														<span class="font-rethinksansbold primary-dark-blue">IT: </span><span class="font-rethinksanssemibold primary-gray">{{ props.itjobassets }}</span>
 													</div>
 													<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
-														<span class="font-rethinksansbold primary-dark-blue">Infrastructure: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count}}</span>
+														<span class="font-rethinksansbold primary-dark-blue">Infrastructure: </span><span class="font-rethinksanssemibold primary-gray">{{ props.infrastructurejobassets }}</span>
 													</div>
 												</div>
 												<div class="width-50">

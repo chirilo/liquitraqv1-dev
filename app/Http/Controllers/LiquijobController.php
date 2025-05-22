@@ -67,7 +67,7 @@ class LiquijobController extends Controller
         //dd($user->email);
 
         $showeditdelete = 'normal';
-        if( $id == 5 || $user->email == 'webteamsupprt@gmail.com' ){
+        if( $id == 1 || $user->email == 'webteamsupprt@gmail.com' ){
             $showeditdelete = 'admin';
         }
         

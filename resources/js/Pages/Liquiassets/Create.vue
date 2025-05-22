@@ -23,6 +23,8 @@ import RecentJobs from '@/Components/RecentJobs.vue';
 import JobsLastSevenDays from '@/Components/JobsLastSevenDays.vue';
 import UpcomingJobs from '@/Components/UpcomingJobs.vue';
 
+import { ref } from 'vue';
+
 
 const props = defineProps({
     jobid : Object
@@ -56,6 +58,41 @@ const onImageChange = (e) => {
 
 const submit = (e) => {
     form.post(route("liquiassets.store"));
+};
+
+let isOpenFurniture = ref(false);
+let isOpenIt = ref(false);
+let isOpenInfrastructure = ref(false);
+
+const openMenuSelect = (event) => {
+	const it_asset_type = document.getElementById('asset_type');
+	const furniture_asset_type = document.getElementById('furniture_asset_type');
+	const infrastructure_asset_type = document.getElementById('infrastructure_asset_type');
+	// Access the selected value using event.target.value
+	console.log('Selected option:', event.target.value);
+	// Perform actions based on the selected option
+	if (event.target.value === 'it') {
+		// Do something
+		//alert('it here');
+		isOpenIt.value = !isOpenIt.value;
+		isOpenFurniture.value = isOpenFurniture.value;
+		isOpenInfrastructure.value = isOpenInfrastructure.value;
+		furniture_asset_type.removeAttribute('required');
+		infrastructure_asset_type.removeAttribute('required');
+		console.log(isOpenIt);
+	} else if (event.target.value === 'furniture') {
+		// Do something else
+		//alert('furniture ');
+		isOpenFurniture.value = !isOpenFurniture.value;
+		isOpenIt.value = isOpenIt.value;
+		isOpenInfrastructure.value = isOpenInfrastructure.value;
+	} else if (event.target.value === 'infrastructure') {
+		// Do something else
+		//alert('infrastructure ');
+		isOpenInfrastructure.value = !isOpenInfrastructure.value;
+		isOpenIt.value = isOpenIt.value;
+		isOpenFurniture.value = isOpenFurniture.value;
+	}
 };
 </script>
 <template>
@@ -264,7 +301,7 @@ const submit = (e) => {
                                                 <InputLabel for="job_asset" value="Job Asset" />
 
                                                 <!-- <input type="file" @input="form.avatar = $event.target.files[0]" name="job_asset" class="mt-1 block w-full" v-on:change="onImageChange" > -->
-                                                    <input type="file" @input="form.job_asset = $event.target.files[0]" name="job_asset" class="mt-1 block w-full">
+                                                    <input required type="file" @input="form.job_asset = $event.target.files[0]" name="job_asset" class="mt-1 block w-full">
                                                 <input type="hidden" name="job_id" v-model="form.jobid" >
                                                 <InputError class="mt-2" :message="form.errors.job_asset" />
                                             </div>
@@ -273,7 +310,7 @@ const submit = (e) => {
                                             <div>
                                                 <InputLabel for="asset_category" value="Category" />
 
-	                                            <select v-model="form.asset_category" id="type" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_category">
+	                                            <select v-model="form.asset_category" id="type" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_category" required @change="openMenuSelect">
 	                                            	<option value="">Select Category</option>
 	                                                <option value="it">IT</option>
 	                                                <option value="infrastructure">Infrastructure</option>
@@ -281,6 +318,64 @@ const submit = (e) => {
 	                                            </select>
 
                                                 <InputError class="mt-2" :message="form.errors.asset_category" />
+                                            </div>
+                                            <div>
+                                                <InputLabel for="asset_type" value="Type" />
+
+                                                <!-- <TextInput
+                                                    id="asset_type"
+                                                    type="text"
+                                                    placeholder="ex. Chair, Tables, PCs , etc."
+                                                    v-model="form.asset_type"
+                                                    required
+                                                    autofocus
+                                                /> -->
+                                                <select v-model="form.asset_type" id="furniture_asset_type" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_type" required  :class="isOpenFurniture ? 'block' : 'hidden' ">
+                                                	<optgroup label="Furniture">
+                                                		<option value="">Select Type</option>
+		                                                <option value="furniture-cubicle">Cubicle</option>
+		                                                <option value="furniture-casegood">Case Good</option>
+		                                                <option value="furniture-chair">Chair</option>
+		                                                <option value="furniture-wallhanging">Wall Hanging</option>
+		                                                <option value="furniture-appliance">Appliance</option>
+		                                                <option value="furniture-others">Others</option>
+                                                	</optgroup>
+                                                </select>
+                                                <select v-model="form.asset_type" id="it_asset_type" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_type" required  :class="isOpenIt ? 'block' : 'hidden' ">
+	                                            	<optgroup label="IT">
+                                                		<option value="">Select Type</option>
+		                                                <option value="it-networkgear">Network Gear</option>
+		                                                <option value="it-servers">Servers</option>
+		                                                <option value="it-pcs">PCs</option>
+		                                                <option value="it-laptops">Laptops</option>
+		                                                <option value="it-rack">Rack</option>
+		                                                <option value="it-telecom">Telecom</option>
+		                                                <option value="it-monitors">Monitors</option>
+		                                                <option value="it-camera">Camera</option>
+		                                                <option value="it-printers">Printers</option>
+		                                                <option value="it-others">Others</option>
+                                                	</optgroup>
+                                                </select>
+                                                <select v-model="form.asset_type" id="infrastructure_asset_type" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_type" required  :class="isOpenInfrastructure ? 'block' : 'hidden' ">
+                                                	<optgroup label="Infrastructure">
+                                                		<option value="">Select Type</option>
+		                                                <option value="infrastructure-generator">Generator</option>
+		                                                <option value="infrastructure-cracunit">CRAC Unit</option>
+		                                                <option value="infrastructure-ups">UPS</option>
+		                                                <option value="infrastructure-ats">ATS</option>
+		                                                <option value="infrastructure-bypass">Bypass</option>
+		                                                <option value="infrastructure-switchgear">Switchgear</option>
+		                                                <option value="infrastructure-batteries">Batteries</option>
+		                                                <option value="infrastructure-wiringlowvoltage">Wiring, Low-Voltage</option>
+		                                                <option value="infrastructure-wiringhighvoltage">Wiring, High-Voltage</option>
+		                                                <option value="infrastructure-firesuppressant">Fire Suppressant</option>
+		                                                <option value="infrastructure-raisedflooring">Raised Flooring</option>
+		                                                <option value="infrastructure-paintchemical">Paint/Chemical</option>
+		                                                <option value="infrastructure-others">Others</option>
+                                                	</optgroup>
+	                                            </select>
+
+                                                <InputError class="mt-2" :message="form.errors.asset_type" />
                                             </div>
                                             <div>
                                                 <InputLabel for="asset_quantity" value="Quantity" />
@@ -291,25 +386,12 @@ const submit = (e) => {
                                                     placeholder="Quantity"
                                                     v-model="form.asset_quantity"
                                                     required
-                                                    autofocus
+                                                    
                                                 />
 
                                                 <InputError class="mt-2" :message="form.errors.asset_quantity" />
                                             </div>
-                                            <div>
-                                                <InputLabel for="asset_type" value="Type" />
-
-                                                <TextInput
-                                                    id="asset_type"
-                                                    type="text"
-                                                    placeholder="ex. Chair, Tables, PCs , etc."
-                                                    v-model="form.asset_type"
-                                                    required
-                                                    autofocus
-                                                />
-
-                                                <InputError class="mt-2" :message="form.errors.asset_type" />
-                                            </div>
+                                            
                                             <div>
                                                 <InputLabel for="asset_make" value="Make" />
 
@@ -319,7 +401,7 @@ const submit = (e) => {
                                                     placeholder="ex. Simmons, Philips, Toshiba.."
                                                     v-model="form.asset_make"
                                                     required
-                                                    autofocus
+                                                    
                                                 />
 
                                                 <InputError class="mt-2" :message="form.errors.asset_make" />
@@ -333,7 +415,7 @@ const submit = (e) => {
                                                     placeholder="ex. SQ-12.."
                                                     v-model="form.asset_model"
                                                     required
-                                                    autofocus
+                                                    
                                                 />
 
                                                 <InputError class="mt-2" :message="form.errors.asset_model" />
@@ -347,7 +429,7 @@ const submit = (e) => {
                                                     placeholder="ex. HFIOE18DHIN23-23"
                                                     v-model="form.asset_serial"
                                                     required
-                                                    autofocus
+                                                    
                                                 />
 
                                                 <InputError class="mt-2" :message="form.errors.asset_serial" />
@@ -361,7 +443,7 @@ const submit = (e) => {
                                                     placeholder="ex. 12 lbs"
                                                     v-model="form.asset_weight_each"
                                                     required
-                                                    autofocus
+                                                    
                                                 />
 
                                                 <InputError class="mt-2" :message="form.errors.asset_weight_each" />
@@ -376,7 +458,7 @@ const submit = (e) => {
                                                     placeholder="Description"
                                                     v-model="form.asset_description"
                                                     required
-                                                    autofocus
+                                                    
                                                 />
 
                                                 <InputError class="mt-2" :message="form.errors.asset_description" />
@@ -384,7 +466,7 @@ const submit = (e) => {
                                             <div>
                                             <InputLabel for="asset_status" value="Status"/>
 
-                                                <select v-model="form.asset_status" id="asset_status" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_status">
+                                                <select v-model="form.asset_status" id="asset_status" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_status" required>
                                                 	<option value="">Select Status</option>
                                                     <option value="originalstate">Original State</option>
                                                     <option value="workinprogress">Work In Progress</option>

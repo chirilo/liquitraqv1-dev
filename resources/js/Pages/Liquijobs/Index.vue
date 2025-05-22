@@ -82,7 +82,7 @@ const openMenu = () => {
     <AppLayout title="Dashboard">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                Dashboard
+                Job Dashboard
             </h2>
         </template>
 		<div
@@ -306,7 +306,7 @@ const openMenu = () => {
 															<PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="max-w-xl ml-2 float-right">View</PrimaryLink>
 															<!-- {{ props.showeditdelete }} -->
 															<div v-if="props.showeditdelete == 'admin'">
-																<PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.edit', {'id': entry.id})" class="max-w-xl ml-2 float-right" >EDIT</PrimaryLink>
+																<PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.edit', {'id': entry.id})" class="max-w-xl ml-2 float-right" >Edit</PrimaryLink>
 															   	<DangerButton
 																class="ml-3 float-right"
 																@click="deleteTrade(entry.id)" v-if="entry.deleted_at == null"
