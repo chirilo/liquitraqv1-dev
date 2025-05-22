@@ -86,12 +86,16 @@ const openMenuSelect = (event) => {
 		isOpenFurniture.value = !isOpenFurniture.value;
 		isOpenIt.value = isOpenIt.value;
 		isOpenInfrastructure.value = isOpenInfrastructure.value;
+		it_asset_type.removeAttribute('required');
+		infrastructure_asset_type.removeAttribute('required');
 	} else if (event.target.value === 'infrastructure') {
 		// Do something else
 		//alert('infrastructure ');
 		isOpenInfrastructure.value = !isOpenInfrastructure.value;
 		isOpenIt.value = isOpenIt.value;
 		isOpenFurniture.value = isOpenFurniture.value;
+		it_asset_type.removeAttribute('required');
+		furniture_asset_type.removeAttribute('required');
 	}
 };
 </script>
