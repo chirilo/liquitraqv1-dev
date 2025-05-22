@@ -362,6 +362,7 @@ const submit = () => {
                                             <InputLabel for="type" value="Job Type"/>
 
                                             <select v-model="form.type" id="type" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="type">
+                                                
                                                 <option value="facilitydecomissioning">Facility Decomissioning</option>
                                                 <option value="datacenterdecommissioning">Data Center Decommissioning</option>
                                                 <option value="officefurniture">Office Furniture</option>
@@ -389,7 +390,6 @@ const submit = () => {
                                                 type="file"
                                                 class="mt-1 block w-full"
                                                 v-model="form.additional_images"
-                                                autofocus
                                             />
 
                                             <InputError class="mt-2" :message="form.errors.additional_images" />

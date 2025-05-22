@@ -63,7 +63,7 @@ const deleteTrade = (id) => {
 					<div class="grid gap-6 lg:grid-cols-3 md:grid-cols-5 lg:gap-8">
 						<!-- LEFT PART -->
 						<!-- Container for Left Sidebar (search and quick add job) -->
-						<div id="left-side" class="mx-auto flex flex-col items-start overflow-hidden pb-6 pt-6 rounded-lg bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] lg:col-span-1 md:col-span-2">
+						<div id="left-side" class="w-full mx-auto flex flex-col items-start overflow-hidden pb-6 pt-6 rounded-lg bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] lg:col-span-1 md:col-span-2">
 							<div class="relative w-full flex items-center pb-6 border-divider">
 								<div class="mx-auto">
 									<div class="flex items-center"><a href="/liquijobs"><img src="/images/logos/liquis-logo.png" alt="LiquiTraq" class="block md:w-40 sm:w-20"></a></div>
@@ -169,7 +169,8 @@ const deleteTrade = (id) => {
 								<a href="/liquijobs" class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Go <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></a>
 							</div>
 
-							<div class="w-full pr-6 pl-6 pb-6 mt-6">
+							<!-- ADD JOB -->
+							<div class="hidden w-full pr-6 pl-6 pb-6 mt-6">
 								<h2 class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">Quick Add New Job</h2>
 								<div class="mt-3 relative flex items-center lg:items-end">
 									<div id="docs-card-content" class="flex items-start lg:flex-col">
@@ -241,72 +242,61 @@ const deleteTrade = (id) => {
 							<!-- current job selected /recent jobs -->
 							<div class="rounded-lg bg-white p-6">
 								<div id="recent-jobs">
-									
-										 <!-- class="block text-center text-2xl primary-light-blue font-rethinksansextrabold uppercase" -->
-									<div class="relative flex flex-col w-full mt-6">
-										<h1 class="block text-center text-2xl primary-light-blue font-rethinksansextrabold uppercase">{{props.liquijobs.building}}</h1>
+									<div class="relative flex flex-col w-full">
+										<h1 class="block texst-center text-2xl primary-light-blue font-rethinksansextrabold uppercase">{{props.liquijobs.building}}</h1>
 									</div>
 									<ul class="p-0">
-										<li v-for="item in job_assets" :key="id" :value="id">
-											<h5 class="mb-2 text-slate-800 text-xl font-semibold">
+										<li class="m-0" v-for="item in job_assets" :key="id" :value="id">
+											<div class="w-full text-center sm:text-right">
+												<a v-bind:href="parentjoburl+item.job_id" class="text-white py-2 px-4 rounded-full bg-gradient-blue text-center text-sm font-rethinksansbold hover:opacity-90">Back to Job</a>
+											</div>
+											<h5 class="w-full mt-6 block text-center text-2xl primary-light-blue font-rethinksansextrabold uppercase">
 												Asset #: {{ item.id }}
 											</h5>
-											<img :src="item.job_asset" class="w-full">
 											<div class="w-full relative flex flex-col">
-												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
-													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Category: </span><span class="font-rethinksanssemibold primary-gray" style="text-transform: capitalize;">{{ item.asset_category }}</span>
-													</p>
+												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
+													<div class="font-rethinksansbold primary-dark-blue width-60">Category: </div>
+													<div class="font-rethinksanssemibold primary-gray width-40 uppercase">{{ item.asset_category }}</div>
 												</div>
-												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
-													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Quantity: </span><span class="font-rethinksanssemibold primary-gray">{{ item.asset_quantity}}</span>
-													</p>
+												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
+													<div class="font-rethinksansbold primary-dark-blue width-60">Quantity: </div>
+													<div class="font-rethinksanssemibold primary-gray width-40">{{ item.asset_quantity}}</div>
 												</div>
-												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
-													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Type: </span><span class="font-rethinksanssemibold primary-gray">{{ item.asset_type }}</span>
-													</p>
+												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
+													<div class="font-rethinksansbold primary-dark-blue width-60">Type: </div>
+													<div class="font-rethinksanssemibold primary-gray width-40">{{ item.asset_type }}</div>
 												</div>
-												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
-													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Make: </span><span class="font-rethinksanssemibold primary-gray">{{ item.asset_make}}</span>
-													</p>
+												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
+													<div class="font-rethinksansbold primary-dark-blue width-60">Make: </div>
+													<div class="font-rethinksanssemibold primary-gray width-40">{{ item.asset_make}}</div>
 												</div>
-												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
-													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Model: </span><span class="font-rethinksanssemibold primary-gray">{{ item.asset_model }}</span>
-													</p>
+												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
+													<div class="font-rethinksansbold primary-dark-blue width-60">Model: </div>
+													<div class="font-rethinksanssemibold primary-gray width-40">{{ item.asset_model }}</div>
 												</div>
-												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
-													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Serial: </span><span class="font-rethinksanssemibold primary-gray">{{ item.asset_serial }}</span>
-													</p>
+												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
+													<div class="font-rethinksansbold primary-dark-blue width-60">Serial: </div>
+													<div class="font-rethinksanssemibold primary-gray width-40">{{ item.asset_serial }}</div>
 												</div>
-												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
-													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Weight Each: </span><span class="font-rethinksanssemibold primary-gray">{{ item.asset_weight_each }}</span>
-													</p>
+												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
+													<div class="font-rethinksansbold primary-dark-blue width-60">Weight Each: </div>
+													<div class="font-rethinksanssemibold primary-gray width-40">{{ item.asset_weight_each }}</div>
 												</div>
-												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
-													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Description: </span><span class="font-rethinksanssemibold primary-gray">{{ item.asset_description }}</span>
-													</p>
+												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
+													<div class="font-rethinksansbold primary-dark-blue width-60">Description: </div>
+													<div class="font-rethinksanssemibold primary-gray width-40">{{ item.asset_description }}</div>
 												</div>
-												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
-													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Status: </span><span class="font-rethinksanssemibold primary-gray">{{ item.asset_status }}</span>
-													</p>
+												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
+													<div class="font-rethinksansbold primary-dark-blue width-60">Status: </div>
+													<div class="font-rethinksanssemibold primary-gray width-40">{{ item.asset_status }}</div>
 												</div>
 											</div>
-											<div class="float-right">
-												<a v-bind:href="parentjoburl+item.job_id" class="text-white py-2 px-4 rounded-full bg-gradient-blue inline-block text-center text-sm font-rethinksansbold hover:opacity-90 float-right">Back to Job</a>
+											<!-- :src="item.job_asset" -->
+											 <div class="mt-3">
+												<img :src="item.job_asset" class="w-48">
 											</div>
 										</li>
-
-										
 									</ul>
-									
 								</div> 
 							</div>
 							<div class="rounded-lg bg-white p-6 mt-6" style="display: none;">

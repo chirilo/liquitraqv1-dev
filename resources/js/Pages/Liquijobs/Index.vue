@@ -316,7 +316,7 @@ const openMenu = () => {
 															</div>
 														</div>
 														<h5 class="mb-2 primary-dark-blue font-rethinksansbold text-base">
-															Building: {{ entry.corporate_address }}
+															<a :href="route('liquijobs.show', {'id': entry.id})" class="hover:opacity-80">Building: {{ entry.corporate_address }}</a>
 														</h5>
 														<p class="primary-dark-blue font-rethinksansmedium text-base">
 															City: {{ entry.location_address }}
@@ -378,7 +378,7 @@ const openMenu = () => {
 								<!-- recent jobs -->
 								<!-- jobs last 7 days -->
 								<div id="job-last-7-days" class="mt-6 w-full relative flex flex-col bg-white border border-[#e9ebef] rounded-lg">
-									<div class="relative flex flex-col pt-4 pb-2 px-4">
+									<div class="relative flex flex-col pt-4 sm:pb-2 sm-0 px-4">
 										<h3 class="block w-full text-lg primary-light-blue font-rethinksansextrabold uppercase">Jobs Last 7 Days</h3>
 									</div>
 									<ul class="p-0">
@@ -399,19 +399,23 @@ const openMenu = () => {
 								<!-- <UpcomingJobs /> -->
 								<!-- upcoming jobs -->
 								<div id="upcoming-jobs" class="mt-6 w-full relative flex flex-col bg-white border border-[#e9ebef] rounded-lg">
-									<div class="relative flex flex-col pt-4 pb-2 px-4">
+									<div class="relative flex flex-col pt-4 sm:pb-2 sm-0 px-4">
 										<h3 class="block w-full text-lg primary-light-blue font-rethinksansextrabold uppercase">Upcoming Jobs</h3>
 									</div>
 									<ul class="p-0">
 										<li class="px-4 py-2 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none"  v-for="entry in props.liquijobs" :key="entry.id">
 											<!-- <PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="float-right">View</PrimaryLink> -->
-											<div>
+											<div class="flex sm:flex-row flex-col justify-start sm:justify-between">
+												<div class="w-full sm:w-auto">
 												<a :href="route('liquijobs.show', {'id': entry.id})" class="primary-dark-blue font-rethinksansbold text-base hover:opacity-80">
 												Building: {{ entry.corporate_address }}
 												</a>
-												<span class="primary-dark-blue font-rethinksansmedium text-base" style="float: inline-end;">
-													{{ entry.start_date }}
-												</span>
+												</div>
+												<div class="inline">
+													<span class="primary-dark-blue font-rethinksansmedium text-base">
+														{{ entry.start_date }}
+													</span>
+												</div>
 											</div>
 										</li>                        
 									</ul>

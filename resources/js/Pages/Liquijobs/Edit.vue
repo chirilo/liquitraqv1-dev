@@ -314,6 +314,7 @@ const updatejob = (id) => {
                                             <InputLabel for="type" value="Job Type"/>
 
                                             <select v-model="form.type" id="type" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="type">
+                                                <option value="" disabled selected hidden>Select Job Type</option>
                                                 <option value="facilitydecomissioning">Facility Decomissioning</option>
                                                 <option value="datacenterdecommissioning">Data Center Decommissioning</option>
                                                 <option value="officefurniture">Office Furniture</option>

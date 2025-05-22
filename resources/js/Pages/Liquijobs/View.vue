@@ -311,8 +311,8 @@ const deleteTrade = (id) => {
 										</li>
 										<!-- Additional Data for Job and Assets -->
 										<li>
-											<div class="w-full relative flex flex-row flex-wrap">
-												<div class="width-50 pr-6">
+											<div class="w-full relative flex sm:flex-row flex-col">
+												<div class="w-full pr-0 sm:pr-6 pb-6 sm:pb-0">
 													<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
 														<span class="font-rethinksansbold primary-dark-blue">Total Assets: </span><span class="font-rethinksanssemibold primary-gray">{{ props.jobassetscount }}</span>
 													</div>
@@ -326,7 +326,7 @@ const deleteTrade = (id) => {
 														<span class="font-rethinksansbold primary-dark-blue">Infrastructure: </span><span class="font-rethinksanssemibold primary-gray">{{ props.infrastructurejobassets }}</span>
 													</div>
 												</div>
-												<div class="width-50">
+												<div class="w-full">
 													<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
 														<span class="font-rethinksansbold primary-dark-blue">Total Resold: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count}}</span>
 													</div>
@@ -344,7 +344,7 @@ const deleteTrade = (id) => {
 										</li>
 										<li class="text-center">
 											<!-- <button class="w-half bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"> VIEW ASSETS <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </button> -->
-											<a v-bind:href="viewallliquiassetsurl" class="text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90"> All Assets <svg class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" style="display: inline; float: inline-end; margin-left: 5px;"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"></path></svg></a>
+											<a v-bind:href="viewallliquiassetsurl" class="text-white py-3 px-4 rounded-full bg-gradient-blue block sm:inline-block text-center font-rethinksansbold hover:opacity-90"> All Assets <svg class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" style="display: inline; float: inline-end; margin-left: 5px;"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"></path></svg></a>
 										</li>
 									</ul>
 								</div> 
@@ -363,7 +363,7 @@ const deleteTrade = (id) => {
 									</ul>
 								</div>
 								<div class="text-center">
-									<a v-bind:href="liquiassetsurl" class="text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Add Assets</a> 
+									<a v-bind:href="liquiassetsurl" class="text-white py-3 px-4 rounded-full bg-gradient-blue block sm:inline-block text-center font-rethinksansbold hover:opacity-90">Add Asset</a> 
 								</div>
 							</div>	
 						</div>
