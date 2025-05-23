@@ -51,6 +51,7 @@ const viewsingleliquiasseturl = "/liquiassets/";
 // const form = useForm(filters);
 
 const form = useForm({
+	id: props.liquijobs.id ? '13401002'+props.liquijobs.id : '13401002' ,
     company_name: props.liquijobs.company_name ? props.liquijobs.company_name : '' ,
     corporate_address: props.liquijobs.corporate_address ? props.liquijobs.corporate_address : '' ,
     contact_name: props.liquijobs.contact_name ? props.liquijobs.contact_name : '' ,
@@ -216,6 +217,19 @@ const updatejob = (id) => {
                                 </div>
 								<form @submit.prevent="updatejob" class="mt-6 space-y-6" enctype="multipart/form-data">
                                         
+                                        <div>
+											<label class="text-base font-rethinksansbold primary-dark-blue">So Number</label>
+                                            <InputLabel for="id" value="So Number" />
+
+                                            <TextInput
+                                                id="id"
+                                                type="text"
+                                                :value="form.id"
+                                                disabled
+                                            />
+
+                                            <InputError class="mt-2" :message="form.errors.id" />
+                                        </div>
                                         <div>
 											<label class="text-base font-rethinksansbold primary-dark-blue">Job Co Name</label>
                                             <InputLabel for="company_name" value="Job Co Name" />
