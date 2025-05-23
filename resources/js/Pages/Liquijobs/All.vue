@@ -374,7 +374,7 @@ let totalreturn = 0;
 																Completed
 															</span>
 															<span v-if="item.asset_status == 'originalstate'" >
-																Original Stat
+																Original State
 															</span>
 														</div>
 													</div>
