@@ -364,8 +364,8 @@ const deleteTrade = (id) => {
 										</li>
 									</ul>
 								</div>
-								<div class="text-center">
-									<a v-bind:href="liquiassetsurl" class="text-white py-3 px-4 rounded-full bg-gradient-blue block sm:inline-block text-center font-rethinksansbold hover:opacity-90">Add Asset</a> 
+								<div class="mt-6 sm:flex justify-center">
+									<a v-bind:href="liquiassetsurl" class="text-white py-3 px-4 rounded-full bg-gradient-blue block sm:inline-block text-center font-rethinksansbold hover:opacity-90">Add New Asset</a> 
 								</div>
 							</div>	
 						</div>
