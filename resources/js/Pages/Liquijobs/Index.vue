@@ -17,6 +17,8 @@ import UpcomingJobs from '@/Components/UpcomingJobs.vue';
 
 import { ref } from "vue";
 
+import moment from "moment";
+
 
 // const liquijobsCreate = function(event) {
 // 	window.open("/liquijobs/create");
@@ -28,7 +30,8 @@ const props = defineProps({
     liquijobs : Object,
     filters : Object,
     message : String,
-    showeditdelete: String
+    showeditdelete: String,
+    currentdatetime: String,
 });
 
 const filters = {
@@ -109,6 +112,7 @@ const openMenu = () => {
 							<div class="relative w-full border-divider pt-6">
 							<!-- AVATAR -->
 								<div class="relative flex items-center lg:items-end">
+									{{ props.currentdatetime }}
 									<div class="mx-auto relative flex items-center lg:items-end">
 										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl" src="/images/logos/avatar.jpg" alt="User dropdown">
 									</div>
@@ -363,7 +367,7 @@ const openMenu = () => {
 														Type: Unspecified
 														</span>
 														<span class="text-nowrap w-auto primary-dark-blue font-rethinksansmedium text-base">
-														Start Date: {{ entry.start_date }}
+														Start Date: {{ moment(entry.start_date).format("MMMM D, YYYY")  }} 
 														</span>
 													</div>
 												</div>
@@ -413,7 +417,7 @@ const openMenu = () => {
 												</div>
 												<div class="inline">
 													<span class="primary-dark-blue font-rethinksansmedium text-base">
-														{{ entry.start_date }}
+														{{ moment(entry.start_date).format("MMMM D, YYYY") }}
 													</span>
 												</div>
 											</div>

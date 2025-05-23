@@ -34,6 +34,9 @@ class LiquijobController extends Controller
         // ->groupBy('liquijobs.id')
         // ->get();
 
+        // get current date and time
+        $currentdatetime = now()->format('M d, Y - H:i:s');
+
         /**
          * check here if user is Admin or Regular, if Admin query all jobs, if Regular, only query jobs created by Regular user
          */
@@ -62,12 +65,12 @@ class LiquijobController extends Controller
 
 
 
-        
+        //dd($currentdatetime);
 
         //dd($user->email);
 
         $showeditdelete = 'normal';
-        if( $id == 1 || $user->email == 'webteamsupprt@gmail.com' ){
+        if( $id == 5 || $user->email == 'webteamsupprt@gmail.com' ){
             $showeditdelete = 'admin';
         }
         
@@ -77,6 +80,7 @@ class LiquijobController extends Controller
             'filters' => $request->all('filter'),
             'message' => session('message'),
             'showeditdelete' => $showeditdelete,
+            'currentdatetime' => $currentdatetime,
         ]);
     }
 

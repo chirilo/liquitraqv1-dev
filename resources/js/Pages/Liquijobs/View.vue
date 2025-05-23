@@ -15,6 +15,8 @@ import RecentJobs from '@/Components/RecentJobs.vue';
 import JobsLastSevenDays from '@/Components/JobsLastSevenDays.vue';
 import UpcomingJobs from '@/Components/UpcomingJobs.vue';
 
+import { ref } from 'vue';
+
 const props = defineProps({
     liquijobs : Object,
     job_assets: Object,
@@ -66,6 +68,76 @@ const deleteTrade = (id) => {
 	   });
     }
 };
+
+let totalresold = 0;
+let totalrecycled = 0;
+let totaldisposed = 0;
+let totalreturn = 0;
+
+
+let isOpenForm = ref(false);
+const openAssetForm = () => {
+  isOpenForm.value = !isOpenForm.value;
+  console.log(isOpenForm);
+};
+
+const formasset = useForm({
+    job_asset: '',
+    jobid: props.jobid,
+    asset_category: '',
+    asset_quantity: '',
+    asset_type: '',
+    asset_make: '',
+    asset_model: '',
+    asset_serial: '',
+    asset_weight_each: '',
+    asset_description: '',
+    asset_status: ''
+});
+
+const submitaddasset = (e) => {
+    form.post(route("liquiassets.store"));
+};
+
+let isOpenFurniture = ref(false);
+let isOpenIt = ref(false);
+let isOpenInfrastructure = ref(false);
+
+const openMenuSelect = (event) => {
+	const it_asset_type = document.getElementById('asset_type');
+	const furniture_asset_type = document.getElementById('furniture_asset_type');
+	const infrastructure_asset_type = document.getElementById('infrastructure_asset_type');
+	// Access the selected value using event.target.value
+	console.log('Selected option:', event.target.value);
+	// Perform actions based on the selected option
+	if (event.target.value === 'it') {
+		// Do something
+		//alert('it here');
+		isOpenIt.value = !isOpenIt.value;
+		isOpenFurniture.value = isOpenFurniture.value;
+		isOpenInfrastructure.value = isOpenInfrastructure.value;
+		furniture_asset_type.removeAttribute('required');
+		infrastructure_asset_type.removeAttribute('required');
+		console.log(isOpenIt);
+	} else if (event.target.value === 'furniture') {
+		// Do something else
+		//alert('furniture ');
+		isOpenFurniture.value = !isOpenFurniture.value;
+		isOpenIt.value = isOpenIt.value;
+		isOpenInfrastructure.value = isOpenInfrastructure.value;
+		it_asset_type.removeAttribute('required');
+		infrastructure_asset_type.removeAttribute('required');
+	} else if (event.target.value === 'infrastructure') {
+		// Do something else
+		//alert('infrastructure ');
+		isOpenInfrastructure.value = !isOpenInfrastructure.value;
+		isOpenIt.value = isOpenIt.value;
+		isOpenFurniture.value = isOpenFurniture.value;
+		it_asset_type.removeAttribute('required');
+		furniture_asset_type.removeAttribute('required');
+	}
+};
+
 </script>
 
 <template>
@@ -330,16 +402,16 @@ const deleteTrade = (id) => {
 												</div>
 												<div class="w-full">
 													<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
-														<span class="font-rethinksansbold primary-dark-blue">Total Resold: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count}}</span>
+														<span class="font-rethinksansbold primary-dark-blue">Total Resold: </span><span class="font-rethinksanssemibold primary-gray">{{ totalresold }}</span>
 													</div>
 													<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
-														<span class="font-rethinksansbold primary-dark-blue">Total Recycled: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count}}</span>
+														<span class="font-rethinksansbold primary-dark-blue">Total Recycled: </span><span class="font-rethinksanssemibold primary-gray">{{ totalrecycled }}</span>
 													</div>
 													<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
-														<span class="font-rethinksansbold primary-dark-blue">Total Disposed: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count}}</span>
+														<span class="font-rethinksansbold primary-dark-blue">Total Disposed: </span><span class="font-rethinksanssemibold primary-gray">{{  totaldisposed }}</span>
 													</div>
 													<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
-														<span class="font-rethinksansbold primary-dark-blue">Total Return: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count}}</span>
+														<span class="font-rethinksansbold primary-dark-blue">Total Return: </span><span class="font-rethinksanssemibold primary-gray">{{ totalreturn }}</span>
 													</div>
 												</div>
 											</div>
@@ -365,8 +437,210 @@ const deleteTrade = (id) => {
 									</ul>
 								</div>
 								<div class="text-center">
-									<a v-bind:href="liquiassetsurl" class="text-white py-3 px-4 rounded-full bg-gradient-blue block sm:inline-block text-center font-rethinksansbold hover:opacity-90">Add Asset</a> 
+									<!-- <a v-bind:href="liquiassetsurl" class="text-white py-3 px-4 rounded-full bg-gradient-blue block sm:inline-block text-center font-rethinksansbold hover:opacity-90">Add Asset</a>  -->
+									<a @click="openAssetForm" class="text-white py-3 px-4 rounded-full bg-gradient-blue block sm:inline-block text-center font-rethinksansbold hover:opacity-90">Add Asset</a> 
 								</div>
+								<!-- add asset form from create.vue(asset) -->
+								<section :class="isOpenForm ? 'block' : 'hidden' ">
+                                    <form @submit.prevent="submitaddasset" class="mt-6 space-y-6" enctype="multipart/form-data">
+                                        
+                                        <div>
+                                            <InputLabel for="job_asset" value="Job Asset" />
+
+                                            <!-- <input type="file" @input="form.avatar = $event.target.files[0]" name="job_asset" class="mt-1 block w-full" v-on:change="onImageChange" > -->
+                                                <input required type="file" @input="formasset.job_asset = $event.target.files[0]" name="job_asset" class="mt-1 block w-full">
+                                            <input type="hidden" name="job_id" v-model="formasset.jobid" >
+                                            <InputError class="mt-2" :message="formasset.errors.job_asset" />
+                                        </div>
+                                        
+                                        <!-- Asset Details Form Fields -->
+                                        <div>
+                                            <InputLabel for="asset_category" value="Category" />
+
+                                            <select v-model="formasset.asset_category" id="type" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_category" required @change="openMenuSelect">
+                                            	<option value="">Select Category</option>
+                                                <option value="it">IT</option>
+                                                <option value="infrastructure">Infrastructure</option>
+                                                <option value="furniture">Furniture</option>
+                                            </select>
+
+                                            <InputError class="mt-2" :message="formasset.errors.asset_category" />
+                                        </div>
+                                        <div>
+                                            <InputLabel for="asset_type" value="Type" />
+
+                                            <!-- <TextInput
+                                                id="asset_type"
+                                                type="text"
+                                                placeholder="ex. Chair, Tables, PCs , etc."
+                                                v-model="form.asset_type"
+                                                required
+                                                autofocus
+                                            /> -->
+                                            <select v-model="formasset.asset_type" id="furniture_asset_type" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_type" required  :class="isOpenFurniture ? 'block' : 'hidden' ">
+                                            	<optgroup label="Furniture">
+                                            		<option value="">Select Type</option>
+	                                                <option value="furniture-cubicle">Cubicle</option>
+	                                                <option value="furniture-casegood">Case Good</option>
+	                                                <option value="furniture-chair">Chair</option>
+	                                                <option value="furniture-wallhanging">Wall Hanging</option>
+	                                                <option value="furniture-appliance">Appliance</option>
+	                                                <option value="furniture-others">Others</option>
+                                            	</optgroup>
+                                            </select>
+                                            <select v-model="formasset.asset_type" id="it_asset_type" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_type" required  :class="isOpenIt ? 'block' : 'hidden' ">
+                                            	<optgroup label="IT">
+                                            		<option value="">Select Type</option>
+	                                                <option value="it-networkgear">Network Gear</option>
+	                                                <option value="it-servers">Servers</option>
+	                                                <option value="it-pcs">PCs</option>
+	                                                <option value="it-laptops">Laptops</option>
+	                                                <option value="it-rack">Rack</option>
+	                                                <option value="it-telecom">Telecom</option>
+	                                                <option value="it-monitors">Monitors</option>
+	                                                <option value="it-camera">Camera</option>
+	                                                <option value="it-printers">Printers</option>
+	                                                <option value="it-others">Others</option>
+                                            	</optgroup>
+                                            </select>
+                                            <select v-model="formasset.asset_type" id="infrastructure_asset_type" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_type" required  :class="isOpenInfrastructure ? 'block' : 'hidden' ">
+                                            	<optgroup label="Infrastructure">
+                                            		<option value="">Select Type</option>
+	                                                <option value="infrastructure-generator">Generator</option>
+	                                                <option value="infrastructure-cracunit">CRAC Unit</option>
+	                                                <option value="infrastructure-ups">UPS</option>
+	                                                <option value="infrastructure-ats">ATS</option>
+	                                                <option value="infrastructure-bypass">Bypass</option>
+	                                                <option value="infrastructure-switchgear">Switchgear</option>
+	                                                <option value="infrastructure-batteries">Batteries</option>
+	                                                <option value="infrastructure-wiringlowvoltage">Wiring, Low-Voltage</option>
+	                                                <option value="infrastructure-wiringhighvoltage">Wiring, High-Voltage</option>
+	                                                <option value="infrastructure-firesuppressant">Fire Suppressant</option>
+	                                                <option value="infrastructure-raisedflooring">Raised Flooring</option>
+	                                                <option value="infrastructure-paintchemical">Paint/Chemical</option>
+	                                                <option value="infrastructure-others">Others</option>
+                                            	</optgroup>
+                                            </select>
+
+                                            <InputError class="mt-2" :message="formasset.errors.asset_type" />
+                                        </div>
+                                        <div>
+                                            <InputLabel for="asset_quantity" value="Quantity" />
+
+                                            <TextInput
+                                                id="asset_quantity"
+                                                type="number"
+                                                placeholder="Quantity"
+                                                v-model="formasset.asset_quantity"
+                                                required
+                                                
+                                            />
+
+                                            <InputError class="mt-2" :message="formasset.errors.asset_quantity" />
+                                        </div>
+                                        
+                                        <div>
+                                            <InputLabel for="asset_make" value="Make" />
+
+                                            <TextInput
+                                                id="asset_make"
+                                                type="text"
+                                                placeholder="ex. Simmons, Philips, Toshiba.."
+                                                v-model="formasset.asset_make"
+                                                required
+                                                
+                                            />
+
+                                            <InputError class="mt-2" :message="formasset.errors.asset_make" />
+                                        </div>
+                                        <div>
+                                            <InputLabel for="asset_model" value=" Model" />
+
+                                            <TextInput
+                                                id="asset_model"
+                                                type="text"
+                                                placeholder="ex. SQ-12.."
+                                                v-model="formasset.asset_model"
+                                                required
+                                                
+                                            />
+
+                                            <InputError class="mt-2" :message="formasset.errors.asset_model" />
+                                        </div>
+                                        <div>
+                                            <InputLabel for="asset_serial" value=" Serial" />
+
+                                            <TextInput
+                                                id="asset_serial"
+                                                type="text"
+                                                placeholder="ex. HFIOE18DHIN23-23"
+                                                v-model="formasset.asset_serial"
+                                                required
+                                                
+                                            />
+
+                                            <InputError class="mt-2" :message="formasset.errors.asset_serial" />
+                                        </div>
+                                        <div>
+                                            <InputLabel for="asset_weight_each" value="Weight Each" />
+
+                                            <TextInput
+                                                id="asset_weight_each"
+                                                type="text"
+                                                placeholder="ex. 12 lbs"
+                                                v-model="formasset.asset_weight_each"
+                                                required
+                                                
+                                            />
+
+                                            <InputError class="mt-2" :message="formasset.errors.asset_weight_each" />
+                                        </div>
+                                        
+                                        <div>
+                                            <InputLabel for="asset_description" value="Description" />
+
+                                            <TextInput
+                                                id="asset_description"
+                                                type="text"
+                                                placeholder="Description"
+                                                v-model="formasset.asset_description"
+                                                required
+                                                
+                                            />
+
+                                            <InputError class="mt-2" :message="formasset.errors.asset_description" />
+                                        </div>
+                                        <div>
+                                        <InputLabel for="asset_status" value="Status"/>
+
+                                            <select v-model="formasset.asset_status" id="asset_status" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_status" required>
+                                            	<option value="">Select Status</option>
+                                                <option value="originalstate">Original State</option>
+                                                <option value="workinprogress">Work In Progress</option>
+                                                <option value="completed">Completed</option>
+                                            </select>
+
+                                            <InputError class="mt-2" :message="formasset.errors.asset_status" />
+                                        </div>
+                                        <!-- END OF : Asset Details Form Fields -->
+
+                                        
+
+                                        <div class="flex items-center gap-4">
+                                            <PrimaryButton :disabled="form.processing" style="background-color: #292d73;">Save</PrimaryButton>
+
+                                            <Transition
+                                                enter-active-class="transition ease-in-out"
+                                                enter-from-class="opacity-0"
+                                                leave-active-class="transition ease-in-out"
+                                                leave-to-class="opacity-0"
+                                            >
+                                                <p v-if="formasset.recentlySuccessful" class="text-sm text-gray-600">Saved.</p>
+                                            </Transition>
+                                        </div>
+                                    </form>
+                                </section>
+								<!-- end of add assset -->
 							</div>	
 						</div>
 							<!-- current job selected / recent jobs -->
