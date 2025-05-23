@@ -15,8 +15,9 @@ import RecentJobs from '@/Components/RecentJobs.vue';
 import JobsLastSevenDays from '@/Components/JobsLastSevenDays.vue';
 import UpcomingJobs from '@/Components/UpcomingJobs.vue';
 
-
 import { ref } from "vue";
+
+import moment from "moment";
 
 // const liquijobsCreate = function(event) {
 // 	window.open("/liquijobs/create");
@@ -30,6 +31,7 @@ const props = defineProps({
     message : String,
     results: Object,
     keyword: String,
+    currentdatetime: String,
 });
 
 // const filters = {
@@ -38,7 +40,7 @@ const props = defineProps({
 //const form = useForm(filters);
 
 const deleteTrade = (id) => {
-    if (confirm("Are you sure you want to move this to trash")) {
+    if (confirm("Are you sure you want to move this to trash?")) {
 	   form.delete(route('liquijobs.destroy',{id:id}), {
 		  preserveScroll: true,
 	   });
@@ -70,6 +72,8 @@ let searchkey = ref("");
 const searchanything = () => {
 	router.get( route("search.index") + '?key=' + '%'+searchkey.value+'%' );
 }
+
+
 </script>
 
 <template>
@@ -102,42 +106,17 @@ const searchanything = () => {
 									<div class="flex items-center"><a href="/liquijobs"><img src="/images/logos/liquis-logo.png" alt="LiquiTraq" class="block md:w-40 sm:w-20"></a></div>
 								</div>
 							</div>
-
-							<div class="relative w-full border-divider pt-6">
+							<div class="relative w-full border-divider pt-3">
 								<!-- AVATAR -->
-								<div class="relative flex items-center lg:items-end">
-									<div class="mx-auto relative flex items-center lg:items-end">
+								<div class="relative flex flex-col items-center lg:items-end">
+									<div class="w-full text-center primary-gray font-rethinksansmedium text-sm">{{ props.currentdatetime }}</div>
+									<div class="pt-3 mx-auto relative flex items-center lg:items-end">
 										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl" src="/images/logos/avatar.jpg" alt="User dropdown">
-									</div>
-
-									<!-- <div class="relative flex items-center gap-6 lg:items-end">
-										<h1>My Account</h1>
-									</div> -->
-									<!-- Dropdown menu -->
-									<div id="userDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
-										<div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-										<div>Chi Rilo</div>
-										<div class="font-medium truncate">name@flowbite.com</div>
-										</div>
-										<ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
-										<li>
-											<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-										</li>
-										<li>
-											<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-										</li>
-										<li>
-											<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-										</li>
-										</ul>
-										<div class="py-1">
-										<a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
-										</div>
 									</div>
 								</div>
 								<!-- END OF AVATAR -->
 								<!-- MY ACCOUNT -->
-								<div class="w-full text-center relative pt-6 pb-6">
+								<div class="w-full text-center relative py-3">
 									<Dropdown align="center">
 										<template #trigger>
 											<button v-if="$page.props.jetstream.managesProfilePhotos" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
@@ -183,19 +162,17 @@ const searchanything = () => {
 								</div>
 								<!-- END OF: MY ACCOUNT -->
 							</div>
-							
 							<!-- Search Anything -->
 							<div class="w-full pr-6 pl-6 pb-6 mt-6 border-divider">
 								<!-- <SearchBarSideBar/> -->
 								<form @submit.prevent="searchanything" class="relative">
 									<!-- <h1>{{ searchkey }}</h1> -->
 									<input type="hidden" name="key" v-model="searchkey" />
-									<input v-model="searchkey" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#e9ebef] bg-white rounded-lg focus:outline-none" type="search" name="search" placeholder="Search anything..." />
-									<!-- <button type="submit"><svg class="size-6 shrink-0 stroke-[#8c8c97] absolute inset-y-4 right-0 w-12" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></button> -->
+									<input v-model="searchkey" required class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#e9ebef] bg-white rounded-lg focus:outline-none" type="search" name="search" placeholder="Search anything..." />
+									<button type="submit" class="bg-white absolute inset-y-5 right-5 w-12 z-9 px-0 w-auto"><svg class="size-5 shrink-0 stroke-[#8c8c97]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 19.9 19.7" stroke-width="2"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></svg></button>
 								</form>
 							</div>
 							<!-- END OF: Search Anything -->
-
 							<div class="w-full pr-6 pl-6 pb-6 mt-6 border-divider">
 								<h2 class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">Filter Jobs By</h2>
 								<select class="appearance-none block w-full p-4 mt-3 text-base primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none">
@@ -352,11 +329,18 @@ const searchanything = () => {
 						<!-- RIGHT PART -->
 						<div id="right-side" class="lg:col-span-2 md:col-span-3">
 							<div class="grid items-start rounded-lg bg-white p-6 mb-6">
-								<div class="sm:text-right text-center">
-									<a href="/liquijobs" class="text-white py-2 px-4 rounded-full bg-gradient-blue inline-block text-center text-sm font-rethinksansbold hover:opacity-90">Back to Jobs</a>
-								</div>
+                                <div class="relative flex justify-between items-start">
+                                    <h1
+                                        class="w-[60%] block sm:text-2xl text-xl primary-light-blue font-rethinksansextrabold">
+											Search results for: <span class="primary">"{{ props.keyword.slice(1, -1) }}"</span>
+                                    </h1>
+                                    <!-- LINK TO JOBS archive page -->
+                                    <a href="/liquijobs"
+                                        class="text-white py-2 px-4 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
+                                        <img class="w-4 mr-2" src="/images/logos/back.png"> Back
+                                    </a>
+                                </div>
 								<!-- search results here -->
-								 
 								<div class="w-full relative flex flex-col mt-3">
 									<!-- <h1 style="text-align: center;">Results for: {{ keyword }}</h1> -->
 									<div v-if="results.length">
@@ -386,7 +370,7 @@ const searchanything = () => {
 											<hr>
 										</ul>
 									</div>
-        							<div v-else class="text-gray-500">No results were found.</div>
+        							<div v-else class="text-base font-rethinksansmedium primary-dark-blue">No results were found.</div>
 								</div>
 							</div>
 							<!-- CALENDAR -->

@@ -15,6 +15,8 @@ import RecentJobs from '@/Components/RecentJobs.vue';
 import JobsLastSevenDays from '@/Components/JobsLastSevenDays.vue';
 import UpcomingJobs from '@/Components/UpcomingJobs.vue';
 
+import moment from "moment";
+
 const props = defineProps({
     liquijobs : Object,
     job_assets: Object,
@@ -23,7 +25,8 @@ const props = defineProps({
     infrastructurejobassets: String,
     furniturejobassets: String,
     filters : Object,
-    message : String
+    message : String,
+    currentdatetime: String,
 });
 
 const liquijobsCreate = '/liquijobs/create';
@@ -31,6 +34,8 @@ const liquijobsCreate = '/liquijobs/create';
 const liquiassetsurl = "/liquiassets/create?jobid=" + props.liquijobs.id;
 
 const viewallliquiassetsurl = "/liquiassets/view?jobid=" + props.liquijobs.id;
+
+const backtoprevjob = "/liquijobs/" + props.liquijobs.id;
 
 const viewsingleliquiasseturl = "/liquiassets/";
 
@@ -45,7 +50,7 @@ const viewsingleliquiasseturl = "/liquiassets/";
 // const form = useForm(filters);
 
 const deleteTrade = (id) => {
-    if (confirm("Are you sure you want to move this to trash")) {
+    if (confirm("Are you sure you want to move this to trash?")) {
 	   form.delete(route('liquijobs.destroy',{id:id}), {
 		  preserveScroll: true,
 	   });
@@ -80,41 +85,17 @@ let totalreturn = 0;
 									<div class="flex items-center"><a href="/liquijobs"><img src="/images/logos/liquis-logo.png" alt="LiquiTraq" class="block md:w-40 sm:w-20"></a></div>
 								</div>
 							</div>
-
-							<div class="relative w-full border-divider pt-6">
-							<!-- AVATAR -->
-								<div class="relative flex items-center lg:items-end">
-									<div class="mx-auto relative flex items-center lg:items-end">
+							<div class="relative w-full border-divider pt-3">
+								<!-- AVATAR -->
+								<div class="relative flex flex-col items-center lg:items-end">
+									<div class="w-full text-center primary-gray font-rethinksansmedium text-sm">{{ props.currentdatetime }}</div>
+									<div class="pt-3 mx-auto relative flex items-center lg:items-end">
 										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl" src="/images/logos/avatar.jpg" alt="User dropdown">
-									</div>
-									<!-- <div class="relative flex items-center gap-6 lg:items-end">
-										<h1>My Account</h1>
-									</div> -->
-									<!-- Dropdown menu -->
-									<div id="userDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
-										<div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-										<div>Chi Rilo</div>
-										<div class="font-medium truncate">name@flowbite.com</div>
-										</div>
-										<ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
-										<li>
-											<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-										</li>
-										<li>
-											<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-										</li>
-										<li>
-											<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-										</li>
-										</ul>
-										<div class="py-1">
-										<a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
-										</div>
 									</div>
 								</div>
 								<!-- END OF AVATAR -->
 								<!-- MY ACCOUNT -->
-								<div class="w-full text-center relative pt-6 pb-6">
+								<div class="w-full text-center relative py-3">
 									<Dropdown align="center">
 										<template #trigger>
 											<button v-if="$page.props.jetstream.managesProfilePhotos" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
@@ -160,19 +141,17 @@ let totalreturn = 0;
 								</div>
 								<!-- END OF: MY ACCOUNT -->
 							</div>
-
 							<!-- Search Anything -->
 							<div class="w-full pr-6 pl-6 pb-6 mt-6 border-divider">
 								<!-- <SearchBarSideBar/> -->
 								<form @submit.prevent="searchanything" class="relative">
 									<!-- <h1>{{ searchkey }}</h1> -->
 									<input type="hidden" name="key" v-model="searchkey" />
-									<input v-model="searchkey" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#e9ebef] bg-white rounded-lg focus:outline-none" type="search" name="search" placeholder="Search anything..." />
-									<!-- <button type="submit"><svg class="size-6 shrink-0 stroke-[#8c8c97] absolute inset-y-4 right-0 w-12" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></button> -->
+									<input v-model="searchkey" required class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#e9ebef] bg-white rounded-lg focus:outline-none" type="search" name="search" placeholder="Search anything..." />
+									<button type="submit" class="bg-white absolute inset-y-5 right-5 w-12 z-9 px-0 w-auto"><svg class="size-5 shrink-0 stroke-[#8c8c97]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 19.9 19.7" stroke-width="2"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></svg></button>
 								</form>
 							</div>
 							<!-- END OF: Search Anything -->
-							 
 							<div class="w-full pr-6 pl-6 pb-6 mt-6 border-divider">
 								<h2 class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">Filter Jobs By</h2>
 								<select class="appearance-none block w-full p-4 mt-3 text-base primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none">
@@ -255,54 +234,16 @@ let totalreturn = 0;
 							<div class="rounded-lg bg-white p-6">
 								<div id="recent-jobs">
 									<div class="relative flex justify-between items-start">
-										<h1 class="width-60 block sm:text-2xl text-xl primary-light-blue font-rethinksansextrabold uppercase">
+										<h1 class="w-65% sm:w-[60%] block sm:text-2xl text-xl primary-light-blue font-rethinksansextrabold uppercase">
 											All Asset for Job: 
 											<span class="sm:inline block">{{props.liquijobs.company_name}}</span>
 										</h1>
-										<a href="/liquijobs" class="text-white py-2 px-4 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
+										<a :href="backtoprevjob" class="text-white py-2 px-4 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
 											<img class="w-4 mr-2" src="/images/logos/back.png"> Back
 										</a>
 									</div>
 									<ul class="p-0">
-										<li>
-											<!-- <h5 class="mb-2 text-slate-800 text-xl font-semibold">
-													Building: {{props.liquijobs.so_number}}
-												</h5> -->
-											<div class="w-full relative flex flex-col" style="display: none;">
-												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
-													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Corporate Address: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.corporate_address}}</span>
-													</p>
-												</div>
-												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
-													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Contact Name: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.contact_name}}</span>
-													</p>
-												</div>
-												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
-													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Phone: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.contact_telephone}}</span>
-													</p>
-												</div>
-												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
-													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Email: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.contact_email}}</span>
-													</p>
-												</div>
-												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
-													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Location Name: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.location_address}}</span>
-													</p>
-												</div>
-												<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
-													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Start Date: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.start_date}}</span>
-													</p>
-												</div>
-											</div>
-										</li>
-										<!-- Additional Data for Job and Assets -->
-										<li>
+										<li class="m-0">
 											<div class="w-full relative flex sm:flex-row flex-col">
 												<div class="w-full pr-0 sm:pr-6 pb-6 sm:pb-0">
 													<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
@@ -314,7 +255,7 @@ let totalreturn = 0;
 													<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
 															<span class="font-rethinksansbold primary-dark-blue">IT: </span><span class="font-rethinksanssemibold primary-gray">{{props.itjobassets}}</span>
 													</div>
-													<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
+													<div class="py-3 m-0 last:pb-0 border-b border-[#e9ebef] last:border-none">
 															<span class="font-rethinksansbold primary-dark-blue">Infrastructure: </span><span class="font-rethinksanssemibold primary-gray">{{props.infrastructurejobassets}}</span>
 													</div>
 												</div>
@@ -328,17 +269,11 @@ let totalreturn = 0;
 													<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
 														<span class="font-rethinksansbold primary-dark-blue">Total Disposed </span><span class="font-rethinksanssemibold primary-gray">{{ totaldisposed }}</span>
 													</div>
-													<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
+													<div class="py-3 m-0 last:pb-0  border-b border-[#e9ebef] last:border-none">
 														<span class="font-rethinksansbold primary-dark-blue">Total Return </span><span class="font-rethinksanssemibold primary-gray">{{ totalreturn }}</span>
 													</div>
 												</div>
 											</div>
-										</li>
-										<li class="text-center">
-											<!-- <button class="w-half bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"> VIEW ASSETS <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </button> -->
-											<!-- <a v-bind:href="liquiassetsurl" class="text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90"> Add Assets <svg class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" style="display: inline; float: inline-end; margin-left: 5px"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"></path></svg></a>
-
-											<a v-bind:href="viewallliquiassetsurl" class="text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90"> All Assets <svg class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" style="display: inline; float: inline-end; margin-left: 5px;"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"></path></svg></a> -->
 										</li>
 									</ul>
 								</div> 
@@ -346,27 +281,27 @@ let totalreturn = 0;
 							<div class="rounded-lg bg-white p-6 mt-6">
 								<div id="recent-assets">
 									<!-- images -->
-									<ul class="m-0 p-0 flex flex-col justify-start mb-3">
-										<li class="m-0 p-0 w-full mb-6" v-for="item in job_assets">
+									<ul class="m-0 p-0 flex flex-col justify-start0">
+										<li class="m-0 p-0 w-full mb-6 last:mb-0" v-for="item in job_assets">
 										<!-- <img :src="'/uploads/images/' + item.job_asset" style="margin: 0 1em 0 1em;" width="300" height="300" onerror="https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0" /> -->
 										<!-- <img class="aspect-square object-cover h-auto " style="background-image: url('https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0');" :src="'/storage/job_assets/'+item.job_asset" /> -->
-											<div class="flex sm:flex-row flex-col">
-												<div class="w-48 sm:mr-6">
+											<div class="flex flex-row sm:items-center">
+												<div class="lg:w-[20%] md:w-[40%] w-[30%]">
 													<a v-bind:href="viewsingleliquiasseturl+item.id">
 														<img class="aspect-square object-cover h-auto " style="background-image: url('https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0');" :src="item.job_asset" />
 													</a>
 												</div>
-												<div class="w-full relative flex flex-col">
+												<div class="lg:w-[80%] md:w-[60%] w-[70%] pl-3 sm:mt-0 relative flex flex-col">
 													<h5 class="text-lg primary-light-blue font-rethinksansextrabold uppercase">
 														Asset #: {{ item.id }}
 													</h5>
-													<div class="pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-														<div class="font-rethinksansbold primary-dark-blue width-60">Category: </div>
-														<div class="font-rethinksanssemibold primary-gray width-40 uppercase">{{ item.asset_category }}</div>
+													<div class="pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex flex-wrap">
+														<div class="font-rethinksansbold primary-dark-blue lg:w-[60%] md:w-[40%] pr-2">Category: </div>
+														<div class="font-rethinksanssemibold primary-gray lg:w-[40%] md:w-[60%] uppercase">{{ item.asset_category }}</div>
 													</div>
-													<div class="pt-3 pb-1 m-0 border-b border-[#e9ebef] flex">
-														<div class="font-rethinksansbold primary-dark-blue width-60">Status: </div>
-														<div class="font-rethinksanssemibold primary-gray width-40">
+													<div class="pt-1 pb-1 m-0 border-b border-[#e9ebef] flex flex-wrap">
+														<div class="font-rethinksansbold primary-dark-blue lg:w-[60%] md:w-[40%] pr-2">Status: </div>
+														<div class="font-rethinksanssemibold primary-gray lg:w-[40%] md:w-[60%] uppercase">
 															<span v-if="item.asset_status == 'workinprogress'" >
 																Work In Progress
 															</span>
@@ -374,7 +309,7 @@ let totalreturn = 0;
 																Completed
 															</span>
 															<span v-if="item.asset_status == 'originalstate'" >
-																Original Stat
+																Original State
 															</span>
 														</div>
 													</div>
@@ -390,14 +325,6 @@ let totalreturn = 0;
 						</div>
 							<!-- current job selected / recent jobs -->
 					</div>
-					<!-- CALENDAR -->
-					<div class="mt-6 grid gap-6 lg:grid-cols-1 lg:gap-8" style="display: none;">
-						<!-- Container for CALENDAR -->
-						<div id="calendar-container" class="flex flex-col items-start gap-12 overflow-hidden rounded-lg bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] md:row-span-3 lg:p-12 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]">
-							<Calendar />
-						</div>
-					</div>
-				        
 				</div> <!-- end of unlabeled div -->
             </div>
         </div>

@@ -15,11 +15,14 @@ import RecentJobs from '@/Components/RecentJobs.vue';
 import JobsLastSevenDays from '@/Components/JobsLastSevenDays.vue';
 import UpcomingJobs from '@/Components/UpcomingJobs.vue';
 
+import moment from "moment";
+
 const props = defineProps({
     liquijobs : String,
     job_assets: Object,
     filters : Object,
-    message : String
+    message : String,
+    currentdatetime: String,
 });
 
 const liquijobsCreate = '/liquijobs/create';
@@ -69,42 +72,17 @@ const deleteTrade = (id) => {
 									<div class="flex items-center"><a href="/liquijobs"><img src="/images/logos/liquis-logo.png" alt="LiquiTraq" class="block md:w-40 sm:w-20"></a></div>
 								</div>
 							</div>
-
-							<div class="relative w-full border-divider pt-6">
-							<!-- AVATAR -->
-								<div class="relative flex items-center lg:items-end">
-									<div class="mx-auto relative flex items-center lg:items-end">
+							<div class="relative w-full border-divider pt-3">
+								<!-- AVATAR -->
+								<div class="relative flex flex-col items-center lg:items-end">
+									<div class="w-full text-center primary-gray font-rethinksansmedium text-sm">{{ props.currentdatetime }}</div>
+									<div class="pt-3 mx-auto relative flex items-center lg:items-end">
 										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl" src="/images/logos/avatar.jpg" alt="User dropdown">
-									</div>
-
-									<!-- <div class="relative flex items-center gap-6 lg:items-end">
-										<h1>My Account</h1>
-									</div> -->
-									<!-- Dropdown menu -->
-									<div id="userDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
-										<div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-										<div>Chi Rilo</div>
-										<div class="font-medium truncate">name@flowbite.com</div>
-										</div>
-										<ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
-										<li>
-											<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-										</li>
-										<li>
-											<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-										</li>
-										<li>
-											<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-										</li>
-										</ul>
-										<div class="py-1">
-										<a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
-										</div>
 									</div>
 								</div>
 								<!-- END OF AVATAR -->
 								<!-- MY ACCOUNT -->
-								<div class="w-full text-center relative pt-6 pb-6">
+								<div class="w-full text-center relative py-3">
 									<Dropdown align="center">
 										<template #trigger>
 											<button v-if="$page.props.jetstream.managesProfilePhotos" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
@@ -150,15 +128,17 @@ const deleteTrade = (id) => {
 								</div>
 								<!-- END OF: MY ACCOUNT -->
 							</div>
-
-							<!-- <div id="screenshot-container" class="relative flex w-full flex-1 items-stretch">
-								<input type="search" name="search" placeholder="Search anything" />
-							</div> -->
-							
+							<!-- Search Anything -->
 							<div class="w-full pr-6 pl-6 pb-6 mt-6 border-divider">
-								<SearchBarSideBar/>
+								<!-- <SearchBarSideBar/> -->
+								<form @submit.prevent="searchanything" class="relative">
+									<!-- <h1>{{ searchkey }}</h1> -->
+									<input type="hidden" name="key" v-model="searchkey" />
+									<input v-model="searchkey" required class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#e9ebef] bg-white rounded-lg focus:outline-none" type="search" name="search" placeholder="Search anything..." />
+									<button type="submit" class="bg-white absolute inset-y-5 right-5 w-12 z-9 px-0 w-auto"><svg class="size-5 shrink-0 stroke-[#8c8c97]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 19.9 19.7" stroke-width="2"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></svg></button>
+								</form>
 							</div>
-
+							<!-- END OF: Search Anything -->
 							<!-- <input class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="search" name="search" placeholder="Search anything" /> -->
 							<div class="w-full pr-6 pl-6 pb-6 mt-6 border-divider">
 								<h2 class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">Filter Jobs By</h2>
@@ -242,18 +222,15 @@ const deleteTrade = (id) => {
 							<!-- current job selected /recent jobs -->
 							<div class="rounded-lg bg-white p-6">
 								<div id="recent-jobs">
-									<div class="relative flex flex-col w-full">
-										<h1 class="block texst-center text-2xl primary-light-blue font-rethinksansextrabold uppercase">{{props.liquijobs.building}}</h1>
-									</div>
 									<ul class="p-0">
 										<li class="m-0" v-for="item in job_assets" :key="id" :value="id">
 											<div class="relative flex justify-between items-start">
 												<h1 class="w-[60%] block sm:text-2xl text-xl primary-light-blue font-rethinksansextrabold uppercase">
 													Job: 
-													<span class="sm:inline block">{{props.liquijobs.building}}</span>
+													<span class="sm:inline block">{{props.liquijobs.company_name}}</span>
 												</h1>
 												<a v-bind:href="parentjoburl+item.job_id" class="text-white py-2 px-4 rounded-full bg-gradient-blue text-center text-sm font-rethinksansbold hover:opacity-90 flex">
-													<img class="w-4 mr-2" src="/images/logos/back.png"> Go Back
+													<img class="w-4 mr-2" src="/images/logos/back.png"> Back
 												</a>
 											</div>
 											<h5 class="w-full mt-6 block text-xl primary-dark-blue font-rethinksansextrabold uppercase">
@@ -294,25 +271,14 @@ const deleteTrade = (id) => {
 												</div>
 												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
 													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Status: </div>
-													<div class="font-rethinksanssemibold primary-gray width-40">{{ item.asset_status }}</div>
+													<div class="font-rethinksanssemibold primary-gray width-40 uppercase">{{ item.asset_status }}</div>
 												</div>
 											</div>
-											<!-- :src="item.job_asset" -->
-											 <div class="mt-3">
-												<img :src="item.job_asset" class="w-48">
-											</div>
-										</li>
-									</ul>
-								</div> 
-							</div>
-							<div class="rounded-lg bg-white p-6 mt-6" style="display: none;">
-								<div id="recent-assets">
-									<!-- images -->
-									<ul class="m-0 p-0 flex justify-start">
-											<li class="m-0 p-0 w-40 pr-3" v-for="item in job_assets" :key="id" :value="id">
-											<!-- <img :src="'/uploads/images/' + item.job_asset" style="margin: 0 1em 0 1em;" width="300" height="300" onerror="https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0" /> -->
-											<!-- <img class="aspect-square object-cover h-auto " style="background-image: url('https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0');" :src="'/storage/job_assets/'+item.job_asset" /> -->
-											<img class="aspect-square object-cover h-auto " style="background-image: url('https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0');" :src="item.job_asset" />
+											<ul class="mt-6 p-0 flex justify-between">
+													<li class="m-0 p-0 w-[45%]" v-for="item in job_assets" :key="id" :value="id">
+														<img class="h-auto w-full" style="background-image: url('https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0');" :src="item.job_asset" />
+												</li>
+											</ul>
 										</li>
 									</ul>
 								</div> 

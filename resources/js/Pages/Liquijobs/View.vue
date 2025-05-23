@@ -18,7 +18,6 @@ import JobsLastSevenDays from '@/Components/JobsLastSevenDays.vue';
 import UpcomingJobs from '@/Components/UpcomingJobs.vue';
 
 import { ref } from 'vue';
-
 import moment from "moment";
 
 const props = defineProps({
@@ -29,7 +28,8 @@ const props = defineProps({
     infrastructurejobassets: String,
     furniturejobassets: String,
     filters : Object,
-    message : String
+    message : String,
+    currentdatetime: String,
 });
 
 const liquijobsCreate = '/liquijobs/create';
@@ -163,16 +163,17 @@ const openMenuSelect = (event) => {
 									<div class="flex items-center"><a href="/liquijobs"><img src="/images/logos/liquis-logo.png" alt="LiquiTraq" class="block md:w-40 sm:w-20"></a></div>
 								</div>
 							</div>
-							<div class="relative w-full border-divider pt-6">
+							<div class="relative w-full border-divider pt-3">
 								<!-- AVATAR -->
-								<div class="relative flex items-center lg:items-end">
-									<div class="mx-auto relative flex items-center lg:items-end">
+								<div class="relative flex flex-col items-center lg:items-end">
+									<div class="w-full text-center primary-gray font-rethinksansmedium text-sm">{{ props.currentdatetime }}</div>
+									<div class="pt-3 mx-auto relative flex items-center lg:items-end">
 										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl" src="/images/logos/avatar.jpg" alt="User dropdown">
 									</div>
 								</div>
 								<!-- END OF AVATAR -->
 								<!-- MY ACCOUNT -->
-								<div class="w-full text-center relative pt-6 pb-6">
+								<div class="w-full text-center relative py-3">
 									<Dropdown align="center">
 										<template #trigger>
 											<button v-if="$page.props.jetstream.managesProfilePhotos" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
@@ -218,8 +219,8 @@ const openMenuSelect = (event) => {
 								<form @submit.prevent="searchanything" class="relative">
 									<!-- <h1>{{ searchkey }}</h1> -->
 									<input type="hidden" name="key" v-model="searchkey" />
-									<input v-model="searchkey" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#e9ebef] bg-white rounded-lg focus:outline-none" type="search" name="search" placeholder="Search anything..." />
-									<!-- <button type="submit"><svg class="size-6 shrink-0 stroke-[#8c8c97] absolute inset-y-4 right-0 w-12" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></button> -->
+									<input v-model="searchkey" required class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#e9ebef] bg-white rounded-lg focus:outline-none" type="search" name="search" placeholder="Search anything..." />
+									<button type="submit" class="bg-white absolute inset-y-5 right-5 w-12 z-9 px-0 w-auto"><svg class="size-5 shrink-0 stroke-[#8c8c97]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 19.9 19.7" stroke-width="2"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></svg></button>
 								</form>
 							</div>
 							<!-- END OF: Search Anything -->
@@ -418,7 +419,7 @@ const openMenuSelect = (event) => {
 												</div>
 											</div>
 										</li>
-										<li class="text-center">
+										<li class="text-center m-0">
 											<!-- <button class="w-half bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"> VIEW ASSETS <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </button> -->
 											<a v-bind:href="viewallliquiassetsurl" class="text-white py-3 px-4 rounded-full bg-gradient-blue block sm:inline-block text-center font-rethinksansbold hover:opacity-90"> All Assets <svg class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" style="display: inline; float: inline-end; margin-left: 5px;"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"></path></svg></a>
 										</li>
@@ -436,151 +437,151 @@ const openMenuSelect = (event) => {
 								<!-- add asset form from create.vue(asset) -->
 								<!-- <section :class="isOpenForm ? 'block' : 'hidden' "> -->
 								<section>
-                                    <form @submit.prevent="submitaddasset" class="mt-6 space-y-2" enctype="multipart/form-data">
-                                        <!-- Asset Details Form Fields -->
-                                        <div class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
-                                            <InputLabel for="asset_category" value="Category" class="w-full lg:w-[60%]"/>
-                                            <select v-model="formasset.asset_category" id="type" class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_category" required @change="openMenuSelect">
-                                            	<option value=""disabled hidden>Select Category</option>
-                                                <option value="it">IT</option>
-                                                <option value="infrastructure">Infrastructure</option>
-                                                <option value="furniture">Furniture</option>
-                                            </select>
-                                            <InputError class="mt-2 w-full lg:w-[40%]" :message="formasset.errors.asset_category"/>
-                                        </div>
-                                        <div class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
-                                            <InputLabel for="asset_type" value="Type" class="w-full lg:w-[60%]"/>
-                                            <select v-model="formasset.asset_type" id="furniture_asset_type" class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_type" required  :class="isOpenFurniture ? 'block' : 'hidden' ">
-                                            	<optgroup label="Furniture">
-                                            		<option value="" disabled hidden>Select Type</option>
-	                                                <option value="furniture-cubicle">Cubicle</option>
-	                                                <option value="furniture-casegood">Case Good</option>
-	                                                <option value="furniture-chair">Chair</option>
-	                                                <option value="furniture-wallhanging">Wall Hanging</option>
-	                                                <option value="furniture-appliance">Appliance</option>
-	                                                <option value="furniture-others">Others</option>
-                                            	</optgroup>
-                                            </select>
-                                            <select v-model="formasset.asset_type" id="it_asset_type" class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_type" required  :class="isOpenIt ? 'block' : 'hidden' ">
-                                            	<optgroup label="IT">
-                                            		<option value="" disabled hidden>Select Type</option>
-	                                                <option value="it-networkgear">Network Gear</option>
-	                                                <option value="it-servers">Servers</option>
-	                                                <option value="it-pcs">PCs</option>
-	                                                <option value="it-laptops">Laptops</option>
-	                                                <option value="it-rack">Rack</option>
-	                                                <option value="it-telecom">Telecom</option>
-	                                                <option value="it-monitors">Monitors</option>
-	                                                <option value="it-camera">Camera</option>
-	                                                <option value="it-printers">Printers</option>
-	                                                <option value="it-others">Others</option>
-                                            	</optgroup>
-                                            </select>
-                                            <select v-model="formasset.asset_type" id="infrastructure_asset_type" class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_type" required  :class="isOpenInfrastructure ? 'block' : 'hidden' ">
-                                            	<optgroup label="Infrastructure">
-                                            		<option value="" disabled hidden>Select Type</option>
-	                                                <option value="infrastructure-generator">Generator</option>
-	                                                <option value="infrastructure-cracunit">CRAC Unit</option>
-	                                                <option value="infrastructure-ups">UPS</option>
-	                                                <option value="infrastructure-ats">ATS</option>
-	                                                <option value="infrastructure-bypass">Bypass</option>
-	                                                <option value="infrastructure-switchgear">Switchgear</option>
-	                                                <option value="infrastructure-batteries">Batteries</option>
-	                                                <option value="infrastructure-wiringlowvoltage">Wiring, Low-Voltage</option>
-	                                                <option value="infrastructure-wiringhighvoltage">Wiring, High-Voltage</option>
-	                                                <option value="infrastructure-firesuppressant">Fire Suppressant</option>
-	                                                <option value="infrastructure-raisedflooring">Raised Flooring</option>
-	                                                <option value="infrastructure-paintchemical">Paint/Chemical</option>
-	                                                <option value="infrastructure-others">Others</option>
-                                            	</optgroup>
-                                            </select>
-                                            <InputError class="mt-2 w-full lg:w-[40%]" :message="formasset.errors.asset_type" />
+									<form @submit.prevent="submitaddasset" class="mt-6 space-y-2" enctype="multipart/form-data">
+										<!-- Asset Details Form Fields -->
+										<div class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<InputLabel for="asset_category" value="Category" class="w-full lg:w-[60%]"/>
+											<select v-model="formasset.asset_category" id="type" class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_category" required @change="openMenuSelect">
+												<option value=""disabled hidden>Select Category</option>
+												<option value="it">IT</option>
+												<option value="infrastructure">Infrastructure</option>
+												<option value="furniture">Furniture</option>
+											</select>
+											<InputError class="mt-2 w-full lg:w-[40%]" :message="formasset.errors.asset_category"/>
+										</div>
+										<div class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<InputLabel for="asset_type" value="Type" class="w-full lg:w-[60%]"/>
+											<select v-model="formasset.asset_type" id="furniture_asset_type" class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_type" required  :class="isOpenFurniture ? 'block' : 'hidden' ">
+												<optgroup label="Furniture">
+													<option value="" disabled hidden>Select Type</option>
+													<option value="furniture-cubicle">Cubicle</option>
+													<option value="furniture-casegood">Case Good</option>
+													<option value="furniture-chair">Chair</option>
+													<option value="furniture-wallhanging">Wall Hanging</option>
+													<option value="furniture-appliance">Appliance</option>
+													<option value="furniture-others">Others</option>
+												</optgroup>
+											</select>
+											<select v-model="formasset.asset_type" id="it_asset_type" class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_type" required  :class="isOpenIt ? 'block' : 'hidden' ">
+												<optgroup label="IT">
+													<option value="" disabled hidden>Select Type</option>
+													<option value="it-networkgear">Network Gear</option>
+													<option value="it-servers">Servers</option>
+													<option value="it-pcs">PCs</option>
+													<option value="it-laptops">Laptops</option>
+													<option value="it-rack">Rack</option>
+													<option value="it-telecom">Telecom</option>
+													<option value="it-monitors">Monitors</option>
+													<option value="it-camera">Camera</option>
+													<option value="it-printers">Printers</option>
+													<option value="it-others">Others</option>
+												</optgroup>
+											</select>
+											<select v-model="formasset.asset_type" id="infrastructure_asset_type" class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_type" required  :class="isOpenInfrastructure ? 'block' : 'hidden' ">
+												<optgroup label="Infrastructure">
+													<option value="" disabled hidden>Select Type</option>
+													<option value="infrastructure-generator">Generator</option>
+													<option value="infrastructure-cracunit">CRAC Unit</option>
+													<option value="infrastructure-ups">UPS</option>
+													<option value="infrastructure-ats">ATS</option>
+													<option value="infrastructure-bypass">Bypass</option>
+													<option value="infrastructure-switchgear">Switchgear</option>
+													<option value="infrastructure-batteries">Batteries</option>
+													<option value="infrastructure-wiringlowvoltage">Wiring, Low-Voltage</option>
+													<option value="infrastructure-wiringhighvoltage">Wiring, High-Voltage</option>
+													<option value="infrastructure-firesuppressant">Fire Suppressant</option>
+													<option value="infrastructure-raisedflooring">Raised Flooring</option>
+													<option value="infrastructure-paintchemical">Paint/Chemical</option>
+													<option value="infrastructure-others">Others</option>
+												</optgroup>
+											</select>
+											<InputError class="mt-2 w-full lg:w-[40%]" :message="formasset.errors.asset_type" />
 											<div class="w-[40%]"></div>
-                                        </div>
-                                        <div class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
-                                            <InputLabel for="asset_quantity" value="Quantity" class="w-full lg:w-[60%]"/>
-                                            <TextInput
-												class="w-full lg:w-[40%]"
-                                                id="asset_quantity"
-                                                type="number"
-                                                placeholder="Quantity"
-                                                v-model="formasset.asset_quantity"
-                                                required
-                                            />
-                                            <InputError class="mt-2 w-full lg:w-[40%]" :message="formasset.errors.asset_quantity" />
-                                        </div>
-                                        <div class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
-                                            <InputLabel for="asset_make" value="Make" class="w-full lg:w-[60%]"/>
-                                            <TextInput
-												class="w-full lg:w-[40%]"
-                                                id="asset_make"
-                                                type="text"
-                                                placeholder="ex. Simmons, Philips, Toshiba.."
-                                                v-model="formasset.asset_make"
-                                                required
-                                            />
-                                            <InputError class="mt-2 w-full lg:w-[40%]" :message="formasset.errors.asset_make" />
-                                        </div>
-                                        <div class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
-                                            <InputLabel for="asset_model" value=" Model" class="w-full lg:w-[60%]"/>
-                                            <TextInput
-												class="w-full lg:w-[40%]"
-                                                id="asset_model"
-                                                type="text"
-                                                placeholder="ex. SQ-12.."
-                                                v-model="formasset.asset_model"
-                                                required
-                                            />
-                                            <InputError class="mt-2" :message="formasset.errors.asset_model" />
-                                        </div>
-                                        <div class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
-                                            <InputLabel for="asset_serial" value=" Serial" class="w-full lg:w-[60%]"/>
-                                            <TextInput
-												class="w-full lg:w-[40%]"
-                                                id="asset_serial"
-                                                type="text"
-                                                placeholder="ex. HFIOE18DHIN23-23"
-                                                v-model="formasset.asset_serial"
-                                                required
-                                            />
-                                            <InputError class="mt-2 w-full lg:w-[40%]" :message="formasset.errors.asset_serial" />
-                                        </div>
-                                        <div class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
-                                            <InputLabel for="asset_weight_each" value="Weight Each" class="w-full lg:w-[60%]"/>
-                                            <TextInput
-												class="w-full lg:w-[40%]"
-                                                id="asset_weight_each"
-                                                type="text"
-                                                placeholder="ex. 12 lbs"
-                                                v-model="formasset.asset_weight_each"
-                                                required
-                                            />
-                                            <InputError class="mt-2 w-full lg:w-[40%]" :message="formasset.errors.asset_weight_each" />
-                                        </div>
-                                        <div class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
-                                            <InputLabel for="asset_description" value="Description" class="w-full lg:w-[60%]"/>
-                                            <TextInput
-												class="w-full lg:w-[40%]"
-                                                id="asset_description"
-                                                type="text"
-                                                placeholder="Description"
-                                                v-model="formasset.asset_description"
-                                                required
-                                            />
-                                            <InputError class="mt-2 w-full lg:w-[40%]" :message="formasset.errors.asset_description" />
-                                        </div>
-                                        <div class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
-                                        <InputLabel for="asset_status" value="Status" class="w-full lg:w-[60%]"/>
-                                            <select v-model="formasset.asset_status" id="asset_status" class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_status" required>
-                                            	<option value="">Select Status</option>
-                                                <option value="originalstate">Original State</option>
-                                                <option value="workinprogress">Work In Progress</option>
-                                                <option value="completed">Completed</option>
-                                            </select>
-                                            <InputError class="mt-2 w-full lg:w-[40%]" :message="formasset.errors.asset_status" />
-                                        </div>
-                                        <!-- END OF : Asset Details Form Fields -->
-                                        <div class="flex items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+										</div>
+										<div class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<InputLabel for="asset_quantity" value="Quantity" class="w-full lg:w-[60%]"/>
+											<TextInput
+												class="w-full lg:w-[40%] px-4 py-2"
+												id="asset_quantity"
+												type="number"
+												placeholder="Quantity"
+												v-model="formasset.asset_quantity"
+												required
+											/>
+											<InputError class="mt-2 w-full lg:w-[40%]" :message="formasset.errors.asset_quantity" />
+										</div>
+										<div class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<InputLabel for="asset_make" value="Make" class="w-full lg:w-[60%]"/>
+											<TextInput
+												class="w-full lg:w-[40%] px-4 py-2"
+												id="asset_make"
+												type="text"
+												placeholder="ex. Simmons, Philips, Toshiba.."
+												v-model="formasset.asset_make"
+												required
+											/>
+											<InputError class="mt-2 w-full lg:w-[40%]" :message="formasset.errors.asset_make" />
+										</div>
+										<div class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<InputLabel for="asset_model" value=" Model" class="w-full lg:w-[60%]"/>
+											<TextInput
+												class="w-full lg:w-[40%] px-4 py-2"
+												id="asset_model"
+												type="text"
+												placeholder="ex. SQ-12.."
+												v-model="formasset.asset_model"
+												required
+											/>
+											<InputError class="mt-2 w-full lg:w-[40%]" :message="formasset.errors.asset_model" />
+										</div>
+										<div class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<InputLabel for="asset_serial" value=" Serial" class="w-full lg:w-[60%]"/>
+											<TextInput
+												class="w-full lg:w-[40%] px-4 py-2"
+												id="asset_serial"
+												type="text"
+												placeholder="ex. HFIOE18DHIN23-23"
+												v-model="formasset.asset_serial"
+												required
+											/>
+											<InputError class="mt-2 w-full lg:w-[40%]" :message="formasset.errors.asset_serial" />
+										</div>
+										<div class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<InputLabel for="asset_weight_each" value="Weight Each" class="w-full lg:w-[60%]"/>
+											<TextInput
+												class="w-full lg:w-[40%] px-4 py-2"
+												id="asset_weight_each"
+												type="text"
+												placeholder="ex. 12 lbs"
+												v-model="formasset.asset_weight_each"
+												required
+											/>
+											<InputError class="mt-2 w-full lg:w-[40%]" :message="formasset.errors.asset_weight_each" />
+										</div>
+										<div class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<InputLabel for="asset_description" value="Description" class="w-full lg:w-[60%]"/>
+											<TextInput
+												class="w-full lg:w-[40%] px-4 py-2"
+												id="asset_description"
+												type="text"
+												placeholder="Description"
+												v-model="formasset.asset_description"
+												required
+											/>
+											<InputError class="mt-2 w-full lg:w-[40%]" :message="formasset.errors.asset_description" />
+										</div>
+										<div class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+										<InputLabel for="asset_status" value="Status" class="w-full lg:w-[60%]"/>
+											<select v-model="formasset.asset_status" id="asset_status" class="w-full lg:w-[40%] px-4 py-2 sm:mt-0 mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_status" required>
+												<option value="">Select Status</option>
+												<option value="originalstate">Original State</option>
+												<option value="workinprogress">Work In Progress</option>
+												<option value="completed">Completed</option>
+											</select>
+											<InputError class="mt-2 w-full lg:w-[40%]" :message="formasset.errors.asset_status" />
+										</div>
+										<!-- END OF : Asset Details Form Fields -->
+										<div class="flex items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
 											<div class="mt-6 sm:w-[60%] w-full flex flex-col">
 												<InputLabel for="job_asset" value="Job Asset" class="w-full lg:w-[60%]"/>
 												<!-- <input type="file" @input="form.avatar = $event.target.files[0]" name="job_asset" class="mt-1 block w-full" v-on:change="onImageChange" > -->
@@ -589,7 +590,7 @@ const openMenuSelect = (event) => {
 												<InputError class="mt-2 w-full lg:w-[40%]" :message="formasset.errors.job_asset" />
 												</div>
 											<div class="sm:w-[40%] w-full flex sm:justify-end justify-start sm:mt-0 mt-6">
-												<PrimaryButton :disabled="form.processing" class="py-3 px-4 sm:w-auto w-full">Go <svg class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" style="display: inline; float: inline-end; margin-left: 5px;"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"></path></svg></PrimaryButton>
+												<PrimaryButton :disabled="form.processing" class="py-3 px-4 sm:w-auto w-full"><span class="text-base">Go</span> <svg class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" style="display: inline; float: inline-end; margin-left: 5px;"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"></path></svg></PrimaryButton>
 												<Transition
 													enter-active-class="transition ease-in-out"
 													enter-from-class="opacity-0"
@@ -599,8 +600,8 @@ const openMenuSelect = (event) => {
 													<p v-if="formasset.recentlySuccessful" class="text-sm text-gray-600">Saved.</p>
 												</Transition>
 											</div>
-                                        </div>
-                                    </form>
+										</div>
+									</form>
                                 </section>
 								<!-- end of add assset -->
 							</div>	

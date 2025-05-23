@@ -35,7 +35,7 @@ class LiquijobController extends Controller
         // ->get();
 
         // get current date and time
-        $currentdatetime = now()->format('M d, Y - H:i:s');
+        $currentdatetime = now()->format('M d, Y - h:m A');
 
         /**
          * check here if user is Admin or Regular, if Admin query all jobs, if Regular, only query jobs created by Regular user
@@ -122,6 +122,8 @@ class LiquijobController extends Controller
         //dd($caddress);
 
         //Inertia::share('caddress', $caddress);
+        
+        $currentdatetime = now()->format('M d, Y - h:m A');
 
         return Inertia::render(
             'Liquijobs/Create',
@@ -131,7 +133,8 @@ class LiquijobController extends Controller
                 'cname' => $cname,
                 'coname' => $coname,
                 'loaddress' => $loaddress,
-                'sdate' => $sdate
+                'sdate' => $sdate,
+                'currentdatetime' => $currentdatetime,
             ]
         );
     }
@@ -214,6 +217,9 @@ class LiquijobController extends Controller
         //dd($job_assets);
         //
 
+        // get current date and time
+        $currentdatetime = now()->format('M d, Y - h:m A');
+
         $furniturejobassets = Liquiasset::query()
             ->select(['id','job_asset', 'job_id'])
             ->where('job_id', $liquijob['id'])
@@ -250,6 +256,7 @@ class LiquijobController extends Controller
                     'itjobassets' => $itjobassets,
                     'infrastructurejobassets' => $infrastructurejobassets,
                     'furniturejobassets' => $furniturejobassets,
+                    'currentdatetime' => $currentdatetime,
                 ]
             );
         }else{
@@ -265,6 +272,7 @@ class LiquijobController extends Controller
                     'itjobassets' => $itjobassets,
                     'infrastructurejobassets' => $infrastructurejobassets,
                     'furniturejobassets' => $furniturejobassets,
+                    'currentdatetime' => $currentdatetime,
                 ]
             );
         }
@@ -279,11 +287,14 @@ class LiquijobController extends Controller
     {
         //
         //dd($liquijob);exit();
+        
+        $currentdatetime = now()->format('M d, Y - h:m A');
 
         return Inertia::render(
             'Liquijobs/Edit',
             [
-                'liquijobs' => $liquijob
+                'liquijobs' => $liquijob,
+                'currentdatetime' => $currentdatetime,
             ]
         );
     }
@@ -349,6 +360,12 @@ class LiquijobController extends Controller
         //     // 'filters' => $request->all('filter'),
         //     // 'message' => session('message'),
         // ]);
-        return Inertia::render('Liquijobs/Search');
+        $currentdatetime = now()->format('M d, Y - h:m A');
+        
+        return Inertia::render('Liquijobs/Search',
+            [
+                'currentdatetime' => $currentdatetime,
+            ]
+        );
     }
 }

@@ -11,12 +11,17 @@ use App\Models\Liquijob;
 class AlljobsController extends Controller
 {
     //
+    
     public function index(Request $request)
     {
         //$results = \DB::table('liquijobs')
                     // ->groupBy('liquijobs.id')
                     // ->limit('20')
                     // ->get();
+                    
+        // get current date and time
+        $currentdatetime = now()->format('M d, Y - h:m A');
+        
         $keyword = isset($_GET['key']) ? $_GET['key'] : 'jobs';
         //$results = Liquijob::whereLike(['company_name', 'corporate_address', 'contact_name', 'contact_email'], $keyword)->get();
         $results = Liquijob::whereLike('company_name', $keyword)
@@ -31,7 +36,8 @@ class AlljobsController extends Controller
         //return Inertia::render('Liquijobs/Search');
         return Inertia::render('Liquijobs/Search', [
             'results' => $results,
-            'keyword' => $keyword
+            'keyword' => $keyword,
+            'currentdatetime' => $currentdatetime,
         ]);
     }
 }

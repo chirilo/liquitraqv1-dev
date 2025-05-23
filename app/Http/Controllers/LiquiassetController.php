@@ -26,10 +26,15 @@ class LiquiassetController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
+    {   
+        // get current date and time
+        $currentdatetime = now()->format('M d, Y - h:m A');
+
         //
         return Inertia::render(
-            'Liquiassets/Index'
+            'Liquiassets/Index', [
+                'currentdatetime' => $currentdatetime,
+            ]
         );
     }
 
@@ -118,11 +123,14 @@ class LiquiassetController extends Controller
             ->get();
 
         //dd($job_assets);
+        // get current date and time
+        $currentdatetime = now()->format('M d, Y - h:m A');
 
         return Inertia::render('Liquiassets/View',
             [
                 'liquijobs' => $liquijob_id,
-                'job_assets' => $job_assets
+                'job_assets' => $job_assets,
+                'currentdatetime' => $currentdatetime,
             ]
         );
 
