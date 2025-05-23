@@ -206,7 +206,7 @@ class LiquijobController extends Controller
         //$job_assets = DB::table('liquiassets')->where('id', $liquijob->id)->first();
 
         $job_assets = Liquiasset::query()
-            ->select(['id','job_asset', 'job_id'])
+            ->select(['id','job_asset', 'job_id', 'asset_category', 'asset_status'])
             ->where('job_id', $liquijob['id'])
             ->orderBy('created_at', 'DESC')
             ->limit(10)->get();
@@ -236,7 +236,7 @@ class LiquijobController extends Controller
         $all = isset( $_GET['all'] ) ? $_GET['all'] : '';
 
         if ( $all ){
-            //dd($liquijob);
+            //dd($job_assets);
             $jobassetscount = count($job_assets); // total number of assets
             $itjobassets = count($itjobassets);
             $infrastructurejobassets = count($infrastructurejobassets);

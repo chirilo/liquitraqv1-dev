@@ -366,7 +366,17 @@ let totalreturn = 0;
 													</div>
 													<div class="pt-3 pb-1 m-0 border-b border-[#e9ebef] flex">
 														<div class="font-rethinksansbold primary-dark-blue width-60">Status: </div>
-														<div class="font-rethinksanssemibold primary-gray width-40">{{ item.asset_status }}</div>
+														<div class="font-rethinksanssemibold primary-gray width-40">
+															<span v-if="item.asset_status == 'workinprogress'" >
+																Work In Progress
+															</span>
+															<span v-if="item.asset_status == 'completed'" >
+																Completed
+															</span>
+															<span v-if="item.asset_status == 'originalstate'" >
+																Original Stat
+															</span>
+														</div>
 													</div>
 													<div class="mt-3">
 														<a v-bind:href="viewsingleliquiasseturl+item.id" class="text-white py-2 px-4 rounded-full bg-gradient-blue text-center text-sm font-rethinksansbold hover:opacity-90">View</a>
