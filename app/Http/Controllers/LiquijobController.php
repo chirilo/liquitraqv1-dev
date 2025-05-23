@@ -237,11 +237,19 @@ class LiquijobController extends Controller
 
         if ( $all ){
             //dd($liquijob);
+            $jobassetscount = count($job_assets); // total number of assets
+            $itjobassets = count($itjobassets);
+            $infrastructurejobassets = count($infrastructurejobassets);
+            $furniturejobassets = count($furniturejobassets);
             return Inertia::render('Liquijobs/All',
                 [
                     'liquijobs' => $liquijob,
                     'liquijobid' => $liquijob['id'],
-                    'job_assets' => $job_assets
+                    'job_assets' => $job_assets,
+                    'jobassetscount' => $jobassetscount,
+                    'itjobassets' => $itjobassets,
+                    'infrastructurejobassets' => $infrastructurejobassets,
+                    'furniturejobassets' => $furniturejobassets,
                 ]
             );
         }else{

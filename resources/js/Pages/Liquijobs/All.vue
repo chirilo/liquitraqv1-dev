@@ -51,6 +51,13 @@ const deleteTrade = (id) => {
 	   });
     }
 };
+
+let totalresold = 0;
+let totalrecycled = 0;
+let totaldisposed = 0;
+let totalreturn = 0;
+
+
 </script>
 
 <template>
@@ -313,16 +320,16 @@ const deleteTrade = (id) => {
 												</div>
 												<div class="w-full">
 													<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
-														<span class="font-rethinksansbold primary-dark-blue">Total Resold: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count}}</span>
+														<span class="font-rethinksansbold primary-dark-blue">Total Resold: </span><span class="font-rethinksanssemibold primary-gray">{{ totalresold }}</span>
 													</div>
 													<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
-														<span class="font-rethinksansbold primary-dark-blue">Total Recycled </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count}}</span>
+														<span class="font-rethinksansbold primary-dark-blue">Total Recycled </span><span class="font-rethinksanssemibold primary-gray">{{ totalrecycled }}</span>
 													</div>
 													<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
-														<span class="font-rethinksansbold primary-dark-blue">Total Disposed </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count}}</span>
+														<span class="font-rethinksansbold primary-dark-blue">Total Disposed </span><span class="font-rethinksanssemibold primary-gray">{{ totaldisposed }}</span>
 													</div>
 													<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
-														<span class="font-rethinksansbold primary-dark-blue">Total Return </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count}}</span>
+														<span class="font-rethinksansbold primary-dark-blue">Total Return </span><span class="font-rethinksanssemibold primary-gray">{{ totalreturn }}</span>
 													</div>
 												</div>
 											</div>
