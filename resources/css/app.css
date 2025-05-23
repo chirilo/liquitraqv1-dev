@@ -173,11 +173,3 @@ h1, h2 {
 .font-rethinksanssemibolditalic {
   font-family: RethinkSans-SemiBoldItalic;
 }
-
-
-/* Recent Jobs */
-@media (max-width: 767px) {
-  #recent-jobs-info {
-    flex-direction: column !important;
-  }
-}

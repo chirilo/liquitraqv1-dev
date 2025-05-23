@@ -299,7 +299,7 @@ const openMenu = () => {
 									</div>
 									<div v-if="props.liquijobs" class="w-full relative flex flex-col">
 										<ul class="p-0">
-											<li class="mb-6 last:mb-0" v-for="entry in props.liquijobs" :key="entry.id">
+											<li class="mb-6 last:mb-0" v-for="entry in props.liquijobs.slice(0, 3)" :key="entry.id">
 												<div class="w-full relative flex flex-col bg-white border border-[#e9ebef] rounded-lg">      
 													<div class="p-4">
 														<button @click="openMenu" type="button" class="float-right text-base color-[#98a2b3] ml-3">
@@ -326,7 +326,7 @@ const openMenu = () => {
 															City: {{ entry.location_address }}
 														</p>
 													</div>
-													<div id="recent-jobs-info" class="flex justify-between bg-[#f2f4f7] px-4 py-2">
+													<div class="flex justify-between bg-[#f2f4f7] px-4 py-2  flex-col sm:flex-row">
 														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'facilitydecomissioning'">
 														Type: Facility Decomissioning
 														</span>
@@ -386,7 +386,7 @@ const openMenu = () => {
 										<h3 class="block w-full text-lg primary-light-blue font-rethinksansextrabold uppercase">Jobs Last 7 Days</h3>
 									</div>
 									<ul class="p-0">
-										<li class="px-4 py-2 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none" v-for="entry in props.liquijobs" :key="entry.id">
+										<li class="px-4 py-2 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none" v-for="entry in props.liquijobs.slice(0, 3)" :key="entry.id">
 											<div >
 												<!-- <PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="float-right">View</PrimaryLink> -->
 												<a :href="route('liquijobs.show', {'id': entry.id})" class="primary-dark-blue font-rethinksansbold text-base hover:opacity-80">
@@ -407,7 +407,7 @@ const openMenu = () => {
 										<h3 class="block w-full text-lg primary-light-blue font-rethinksansextrabold uppercase">Upcoming Jobs</h3>
 									</div>
 									<ul class="p-0">
-										<li class="px-4 py-2 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none"  v-for="entry in props.liquijobs" :key="entry.id">
+										<li class="px-4 py-2 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none"  v-for="entry in props.liquijobs.slice(0, 3)" :key="entry.id">
 											<!-- <PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="float-right">View</PrimaryLink> -->
 											<div class="flex sm:flex-row flex-col justify-start sm:justify-between">
 												<div class="w-full sm:w-auto">
