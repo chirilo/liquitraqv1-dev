@@ -4,6 +4,7 @@ import { Head, Link, useForm, usePage, router } from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import PrimaryLink from '@/Components/PrimaryLink.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
 import Pagination from '@/Components/Pagination.vue';
 import TextInput from '@/Components/TextInput.vue';
 import Dropdown from '@/Components/Dropdown.vue';
@@ -83,7 +84,7 @@ const openAssetForm = () => {
 
 const formasset = useForm({
     job_asset: '',
-    jobid: props.jobid,
+    jobid: props.liquijobs.id,
     asset_category: '',
     asset_quantity: '',
     asset_type: '',
@@ -96,7 +97,7 @@ const formasset = useForm({
 });
 
 const submitaddasset = (e) => {
-    form.post(route("liquiassets.store"));
+    formasset.post(route("liquiassets.store"));
 };
 
 let isOpenFurniture = ref(false);
@@ -104,7 +105,7 @@ let isOpenIt = ref(false);
 let isOpenInfrastructure = ref(false);
 
 const openMenuSelect = (event) => {
-	const it_asset_type = document.getElementById('asset_type');
+	const it_asset_type = document.getElementById('it_asset_type');
 	const furniture_asset_type = document.getElementById('furniture_asset_type');
 	const infrastructure_asset_type = document.getElementById('infrastructure_asset_type');
 	// Access the selected value using event.target.value

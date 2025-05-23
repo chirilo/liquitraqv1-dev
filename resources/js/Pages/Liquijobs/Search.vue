@@ -365,7 +365,7 @@ const searchanything = () => {
 								<!-- search results here -->
 								 
 								<div class="w-full relative flex flex-col mt-3">
-									<h1 style="text-align: center;">Results for: {{ keyword }}</h1>
+									<!-- <h1 style="text-align: center;">Results for: {{ keyword }}</h1> -->
 									<div v-if="results.length">
 										<ul class="p-0">
 											<!-- <li v-for="(val, index) in results" :key="index">
