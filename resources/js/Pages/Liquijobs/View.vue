@@ -9,6 +9,7 @@ import Pagination from '@/Components/Pagination.vue';
 import TextInput from '@/Components/TextInput.vue';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
+import InputLabel from '@/Components/InputLabel.vue';
 
 import SearchBarSideBar from '@/Components/SearchBarSideBar.vue';
 import Calendar from '@/Components/Calendar.vue';
@@ -17,6 +18,8 @@ import JobsLastSevenDays from '@/Components/JobsLastSevenDays.vue';
 import UpcomingJobs from '@/Components/UpcomingJobs.vue';
 
 import { ref } from 'vue';
+
+import moment from "moment";
 
 const props = defineProps({
     liquijobs : Object,
@@ -236,7 +239,6 @@ const openMenuSelect = (event) => {
 										<form @submit.prevent="submitaddjob" class="w-full">
 											<div class="flex flex-wrap">
 												<div class="w-full">
-													<InputLabel for="company_name" value="Job Co Name" />
 													<TextInput
 		                                                id="company_name"
 		                                                type="text"
@@ -247,7 +249,6 @@ const openMenuSelect = (event) => {
 		                                            <InputError class="mt-2" :message="form.errors.company_name" />
 												</div>
 												<div class="w-full mt-3">
-													<InputLabel for="corporate_address" value="Address" />
 													<TextInput
 		                                                id="corporate_address"
 		                                                type="text"
@@ -258,7 +259,6 @@ const openMenuSelect = (event) => {
 		                                            <InputError class="mt-2" :message="form.errors.corporate_address" />
 												</div>
 												<div class="w-full mt-3">
-													<InputLabel for="contact_name" value="Contact Name" />
 													<TextInput
 		                                                id="contact_name"
 		                                                type="text"
@@ -269,7 +269,6 @@ const openMenuSelect = (event) => {
 		                                            <InputError class="mt-2" :message="form.errors.contact_name" />
 												</div>
 												<div class="w-full mt-3">
-													<InputLabel for="contact_email" value="Email" />
 													<TextInput
 		                                                id="contact_email"
 		                                                type="email"
@@ -280,7 +279,6 @@ const openMenuSelect = (event) => {
 		                                            <InputError class="mt-2" :message="form.errors.contact_email" />
 												</div>
 												<div class="w-full mt-3">
-													<InputLabel for="contact_telephone" value="Phone" />
 													<TextInput
 		                                                id="contact_telephone"
 		                                                type="text"
@@ -291,7 +289,6 @@ const openMenuSelect = (event) => {
 		                                            <InputError class="mt-2" :message="form.errors.contact_telephone" />
 												</div>
 												<div class="w-full mt-3">
-													<InputLabel for="location_address" value="Location Address" />
 													<TextInput
 		                                                id="location_address"
 		                                                type="text"
@@ -302,7 +299,6 @@ const openMenuSelect = (event) => {
 		                                            <InputError class="mt-2" :message="form.errors.location_address" />
 												</div>
 												<div class="w-full mt-3">
-													<InputLabel for="start_date" value="Start Date" />
 		                                            <TextInput
 		                                                id="start_date"
 		                                                type="date"
@@ -312,7 +308,6 @@ const openMenuSelect = (event) => {
 		                                            <InputError class="mt-2" :message="form.errors.start_date" />
 												</div>
 												<div class="w-full mt-3">
-		                                            <InputLabel for="type" value="Job Type"/>
 		                                            <select v-model="form.type" id="type" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="type">
 		                                            	<option value="">Job Type</option>
 		                                                <option value="facilitydecomissioning">Facility Decomissioning</option>
@@ -329,7 +324,7 @@ const openMenuSelect = (event) => {
 		                                            <InputError class="mt-2" :message="form.errors.type" />
 		                                        </div>
 											</div>
-											<button id="send" type="submit" class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Add New Job <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></button>
+											<button id="send" type="submit" class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Add New <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></button>
 										</form>
 									</div>
 								</div>
@@ -341,13 +336,14 @@ const openMenuSelect = (event) => {
 							<!-- current job selected /recent jobs -->
 							<div class="rounded-lg bg-white p-6">
 								<div id="recent-jobs">
-									<div class="flex sm:justify-end">
+									<div class="relative flex justify-between items-start">
+										<h1 class="w-[60%] block sm:text-2xl text-xl primary-light-blue font-rethinksansextrabold uppercase">
+											Job: 
+											<span class="sm:inline block">{{props.liquijobs.company_name}}</span>
+										</h1>
 										<a href="/liquijobs" class="text-white py-2 px-4 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
-											<img class="w-4 mr-2" src="/images/logos/back.png"> Go Back
+											<img class="w-4 mr-2" src="/images/logos/back.png"> Back
 										</a>
-									</div>
-									<div class="relative flex flex-col w-full mt-3">
-										<h1 class="block text-center text-2xl primary-light-blue font-rethinksansextrabold uppercase">{{props.liquijobs.building}}</h1>
 									</div>
 									<ul class="p-0">
 										<li>
@@ -379,7 +375,12 @@ const openMenuSelect = (event) => {
 												</div>
 												<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
 													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Start Date: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.start_date}}</span>
+														<span class="font-rethinksansbold primary-dark-blue">
+															Start Date: 
+														</span>
+														<span class="font-rethinksanssemibold primary-gray">
+															{{ moment(props.liquijobs.start_date).format("MMMM D, YYYY") }}
+														</span>
 													</p>
 												</div>
 											</div>
@@ -425,62 +426,33 @@ const openMenuSelect = (event) => {
 								</div> 
 							</div>
 							<div class="rounded-lg bg-white p-6 mt-6">
-								<div id="recent-assets">
-									<!-- images -->
-									<ul class="m-0 p-0 flex justify-start mb-3">
-											<li class="m-0 p-0 w-40 pr-3" v-for="item in job_assets">
-											<!-- <img :src="'/uploads/images/' + item.job_asset" style="margin: 0 1em 0 1em;" width="300" height="300" onerror="https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0" /> -->
-											<!-- <img class="aspect-square object-cover h-auto " style="background-image: url('https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0');" :src="'/storage/job_assets/'+item.job_asset" /> -->
-											<a v-bind:href="viewsingleliquiasseturl+item.id">
-												<img class="aspect-square object-cover h-auto " style="background-image: url('https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0');" :src="item.job_asset" />
-											</a>
-										</li>
-									</ul>
-								</div>
 								<div class="text-center">
+									<h2 class="block sm:text-2xl text-xl primary-light-blue font-rethinksansextrabold uppercase">
+										Add New Asset
+									</h2>
 									<!-- <a v-bind:href="liquiassetsurl" class="text-white py-3 px-4 rounded-full bg-gradient-blue block sm:inline-block text-center font-rethinksansbold hover:opacity-90">Add Asset</a>  -->
-									<a @click="openAssetForm" class="text-white py-3 px-4 rounded-full bg-gradient-blue block sm:inline-block text-center font-rethinksansbold hover:opacity-90">Add Asset</a> 
+									<!-- <a @click="openAssetForm" class="text-white py-3 px-4 rounded-full bg-gradient-blue block sm:inline-block text-center font-rethinksansbold hover:opacity-90">Add Asset</a>  -->
 								</div>
 								<!-- add asset form from create.vue(asset) -->
-								<section :class="isOpenForm ? 'block' : 'hidden' ">
-                                    <form @submit.prevent="submitaddasset" class="mt-6 space-y-6" enctype="multipart/form-data">
-                                        
-                                        <div>
-                                            <InputLabel for="job_asset" value="Job Asset" />
-
-                                            <!-- <input type="file" @input="form.avatar = $event.target.files[0]" name="job_asset" class="mt-1 block w-full" v-on:change="onImageChange" > -->
-                                                <input required type="file" @input="formasset.job_asset = $event.target.files[0]" name="job_asset" class="mt-1 block w-full">
-                                            <input type="hidden" name="job_id" v-model="formasset.jobid" >
-                                            <InputError class="mt-2" :message="formasset.errors.job_asset" />
-                                        </div>
-                                        
+								<!-- <section :class="isOpenForm ? 'block' : 'hidden' "> -->
+								<section>
+                                    <form @submit.prevent="submitaddasset" class="mt-6 space-y-2" enctype="multipart/form-data">
                                         <!-- Asset Details Form Fields -->
-                                        <div>
-                                            <InputLabel for="asset_category" value="Category" />
-
-                                            <select v-model="formasset.asset_category" id="type" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_category" required @change="openMenuSelect">
-                                            	<option value="">Select Category</option>
+                                        <div class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+                                            <InputLabel for="asset_category" value="Category" class="w-full lg:w-[60%]"/>
+                                            <select v-model="formasset.asset_category" id="type" class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_category" required @change="openMenuSelect">
+                                            	<option value=""disabled hidden>Select Category</option>
                                                 <option value="it">IT</option>
                                                 <option value="infrastructure">Infrastructure</option>
                                                 <option value="furniture">Furniture</option>
                                             </select>
-
-                                            <InputError class="mt-2" :message="formasset.errors.asset_category" />
+                                            <InputError class="mt-2 w-full lg:w-[40%]" :message="formasset.errors.asset_category"/>
                                         </div>
-                                        <div>
-                                            <InputLabel for="asset_type" value="Type" />
-
-                                            <!-- <TextInput
-                                                id="asset_type"
-                                                type="text"
-                                                placeholder="ex. Chair, Tables, PCs , etc."
-                                                v-model="form.asset_type"
-                                                required
-                                                autofocus
-                                            /> -->
-                                            <select v-model="formasset.asset_type" id="furniture_asset_type" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_type" required  :class="isOpenFurniture ? 'block' : 'hidden' ">
+                                        <div class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+                                            <InputLabel for="asset_type" value="Type" class="w-full lg:w-[60%]"/>
+                                            <select v-model="formasset.asset_type" id="furniture_asset_type" class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_type" required  :class="isOpenFurniture ? 'block' : 'hidden' ">
                                             	<optgroup label="Furniture">
-                                            		<option value="">Select Type</option>
+                                            		<option value="" disabled hidden>Select Type</option>
 	                                                <option value="furniture-cubicle">Cubicle</option>
 	                                                <option value="furniture-casegood">Case Good</option>
 	                                                <option value="furniture-chair">Chair</option>
@@ -489,9 +461,9 @@ const openMenuSelect = (event) => {
 	                                                <option value="furniture-others">Others</option>
                                             	</optgroup>
                                             </select>
-                                            <select v-model="formasset.asset_type" id="it_asset_type" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_type" required  :class="isOpenIt ? 'block' : 'hidden' ">
+                                            <select v-model="formasset.asset_type" id="it_asset_type" class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_type" required  :class="isOpenIt ? 'block' : 'hidden' ">
                                             	<optgroup label="IT">
-                                            		<option value="">Select Type</option>
+                                            		<option value="" disabled hidden>Select Type</option>
 	                                                <option value="it-networkgear">Network Gear</option>
 	                                                <option value="it-servers">Servers</option>
 	                                                <option value="it-pcs">PCs</option>
@@ -504,9 +476,9 @@ const openMenuSelect = (event) => {
 	                                                <option value="it-others">Others</option>
                                             	</optgroup>
                                             </select>
-                                            <select v-model="formasset.asset_type" id="infrastructure_asset_type" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_type" required  :class="isOpenInfrastructure ? 'block' : 'hidden' ">
+                                            <select v-model="formasset.asset_type" id="infrastructure_asset_type" class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_type" required  :class="isOpenInfrastructure ? 'block' : 'hidden' ">
                                             	<optgroup label="Infrastructure">
-                                            		<option value="">Select Type</option>
+                                            		<option value="" disabled hidden>Select Type</option>
 	                                                <option value="infrastructure-generator">Generator</option>
 	                                                <option value="infrastructure-cracunit">CRAC Unit</option>
 	                                                <option value="infrastructure-ups">UPS</option>
@@ -522,129 +494,118 @@ const openMenuSelect = (event) => {
 	                                                <option value="infrastructure-others">Others</option>
                                             	</optgroup>
                                             </select>
-
-                                            <InputError class="mt-2" :message="formasset.errors.asset_type" />
+                                            <InputError class="mt-2 w-full lg:w-[40%]" :message="formasset.errors.asset_type" />
+											<div class="w-[40%]"></div>
                                         </div>
-                                        <div>
-                                            <InputLabel for="asset_quantity" value="Quantity" />
-
+                                        <div class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+                                            <InputLabel for="asset_quantity" value="Quantity" class="w-full lg:w-[60%]"/>
                                             <TextInput
+												class="w-full lg:w-[40%]"
                                                 id="asset_quantity"
                                                 type="number"
                                                 placeholder="Quantity"
                                                 v-model="formasset.asset_quantity"
                                                 required
-                                                
                                             />
-
-                                            <InputError class="mt-2" :message="formasset.errors.asset_quantity" />
+                                            <InputError class="mt-2 w-full lg:w-[40%]" :message="formasset.errors.asset_quantity" />
                                         </div>
-                                        
-                                        <div>
-                                            <InputLabel for="asset_make" value="Make" />
-
+                                        <div class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+                                            <InputLabel for="asset_make" value="Make" class="w-full lg:w-[60%]"/>
                                             <TextInput
+												class="w-full lg:w-[40%]"
                                                 id="asset_make"
                                                 type="text"
                                                 placeholder="ex. Simmons, Philips, Toshiba.."
                                                 v-model="formasset.asset_make"
                                                 required
-                                                
                                             />
-
-                                            <InputError class="mt-2" :message="formasset.errors.asset_make" />
+                                            <InputError class="mt-2 w-full lg:w-[40%]" :message="formasset.errors.asset_make" />
                                         </div>
-                                        <div>
-                                            <InputLabel for="asset_model" value=" Model" />
-
+                                        <div class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+                                            <InputLabel for="asset_model" value=" Model" class="w-full lg:w-[60%]"/>
                                             <TextInput
+												class="w-full lg:w-[40%]"
                                                 id="asset_model"
                                                 type="text"
                                                 placeholder="ex. SQ-12.."
                                                 v-model="formasset.asset_model"
                                                 required
-                                                
                                             />
-
                                             <InputError class="mt-2" :message="formasset.errors.asset_model" />
                                         </div>
-                                        <div>
-                                            <InputLabel for="asset_serial" value=" Serial" />
-
+                                        <div class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+                                            <InputLabel for="asset_serial" value=" Serial" class="w-full lg:w-[60%]"/>
                                             <TextInput
+												class="w-full lg:w-[40%]"
                                                 id="asset_serial"
                                                 type="text"
                                                 placeholder="ex. HFIOE18DHIN23-23"
                                                 v-model="formasset.asset_serial"
                                                 required
-                                                
                                             />
-
-                                            <InputError class="mt-2" :message="formasset.errors.asset_serial" />
+                                            <InputError class="mt-2 w-full lg:w-[40%]" :message="formasset.errors.asset_serial" />
                                         </div>
-                                        <div>
-                                            <InputLabel for="asset_weight_each" value="Weight Each" />
-
+                                        <div class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+                                            <InputLabel for="asset_weight_each" value="Weight Each" class="w-full lg:w-[60%]"/>
                                             <TextInput
+												class="w-full lg:w-[40%]"
                                                 id="asset_weight_each"
                                                 type="text"
                                                 placeholder="ex. 12 lbs"
                                                 v-model="formasset.asset_weight_each"
                                                 required
-                                                
                                             />
-
-                                            <InputError class="mt-2" :message="formasset.errors.asset_weight_each" />
+                                            <InputError class="mt-2 w-full lg:w-[40%]" :message="formasset.errors.asset_weight_each" />
                                         </div>
-                                        
-                                        <div>
-                                            <InputLabel for="asset_description" value="Description" />
-
+                                        <div class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+                                            <InputLabel for="asset_description" value="Description" class="w-full lg:w-[60%]"/>
                                             <TextInput
+												class="w-full lg:w-[40%]"
                                                 id="asset_description"
                                                 type="text"
                                                 placeholder="Description"
                                                 v-model="formasset.asset_description"
                                                 required
-                                                
                                             />
-
-                                            <InputError class="mt-2" :message="formasset.errors.asset_description" />
+                                            <InputError class="mt-2 w-full lg:w-[40%]" :message="formasset.errors.asset_description" />
                                         </div>
-                                        <div>
-                                        <InputLabel for="asset_status" value="Status"/>
-
-                                            <select v-model="formasset.asset_status" id="asset_status" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_status" required>
+                                        <div class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+                                        <InputLabel for="asset_status" value="Status" class="w-full lg:w-[60%]"/>
+                                            <select v-model="formasset.asset_status" id="asset_status" class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_status" required>
                                             	<option value="">Select Status</option>
                                                 <option value="originalstate">Original State</option>
                                                 <option value="workinprogress">Work In Progress</option>
                                                 <option value="completed">Completed</option>
                                             </select>
-
-                                            <InputError class="mt-2" :message="formasset.errors.asset_status" />
+                                            <InputError class="mt-2 w-full lg:w-[40%]" :message="formasset.errors.asset_status" />
                                         </div>
                                         <!-- END OF : Asset Details Form Fields -->
-
-                                        
-
-                                        <div class="flex items-center gap-4">
-                                            <PrimaryButton :disabled="form.processing" style="background-color: #292d73;">Save</PrimaryButton>
-
-                                            <Transition
-                                                enter-active-class="transition ease-in-out"
-                                                enter-from-class="opacity-0"
-                                                leave-active-class="transition ease-in-out"
-                                                leave-to-class="opacity-0"
-                                            >
-                                                <p v-if="formasset.recentlySuccessful" class="text-sm text-gray-600">Saved.</p>
-                                            </Transition>
+                                        <div class="flex items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<div class="mt-6 sm:w-[60%] w-full flex flex-col">
+												<InputLabel for="job_asset" value="Job Asset" class="w-full lg:w-[60%]"/>
+												<!-- <input type="file" @input="form.avatar = $event.target.files[0]" name="job_asset" class="mt-1 block w-full" v-on:change="onImageChange" > -->
+												<input required type="file" @input="formasset.job_asset = $event.target.files[0]" name="job_asset" class="mt-1 block w-full">
+												<input type="hidden" name="job_id" v-model="formasset.jobid" >
+												<InputError class="mt-2 w-full lg:w-[40%]" :message="formasset.errors.job_asset" />
+												</div>
+											<div class="sm:w-[40%] w-full flex sm:justify-end justify-start sm:mt-0 mt-6">
+												<PrimaryButton :disabled="form.processing" class="py-3 px-4 sm:w-auto w-full">Go <svg class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" style="display: inline; float: inline-end; margin-left: 5px;"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"></path></svg></PrimaryButton>
+												<Transition
+													enter-active-class="transition ease-in-out"
+													enter-from-class="opacity-0"
+													leave-active-class="transition ease-in-out"
+													leave-to-class="opacity-0"
+												>
+													<p v-if="formasset.recentlySuccessful" class="text-sm text-gray-600">Saved.</p>
+												</Transition>
+											</div>
                                         </div>
                                     </form>
                                 </section>
 								<!-- end of add assset -->
 							</div>	
 						</div>
-							<!-- current job selected / recent jobs -->
+						<!-- current job selected / recent jobs -->
 					</div>
 					<!-- CALENDAR -->
 					<div class="mt-6 grid gap-6 lg:grid-cols-1 lg:gap-8" style="display: none;">

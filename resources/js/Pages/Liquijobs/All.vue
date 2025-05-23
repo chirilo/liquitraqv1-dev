@@ -233,7 +233,7 @@ const deleteTrade = (id) => {
 											</div>
 											
 											<!-- <a v-bind:href="liquijobsCreate" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" style="display: inline-block; width: 100% !important; text-align: center;"> ADD NEW JOB <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </a> -->
-											<button id="send" type="submit" class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Add New <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></button>
+											<button id="send" type="submit" class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Add New Job <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></button>
 										
 										</form>
 									</div>
@@ -247,14 +247,14 @@ const deleteTrade = (id) => {
 							<!-- current job selected /recent jobs -->
 							<div class="rounded-lg bg-white p-6">
 								<div id="recent-jobs">
-									<div class="flex sm:justify-end">
+									<div class="relative flex justify-between items-start">
+										<h1 class="width-60 block sm:text-2xl text-xl primary-light-blue font-rethinksansextrabold uppercase">
+											All Asset for Job: 
+											<span class="sm:inline block">{{props.liquijobs.company_name}}</span>
+										</h1>
 										<a href="/liquijobs" class="text-white py-2 px-4 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
-											<img class="w-4 mr-2" src="/images/logos/back.png"> Go Back
+											<img class="w-4 mr-2" src="/images/logos/back.png"> Back
 										</a>
-									</div>
-										 <!-- class="block text-center text-2xl primary-light-blue font-rethinksansextrabold uppercase" -->
-									<div class="relative flex flex-col w-full mt-6">
-										<h1 class="block text-center text-2xl primary-light-blue font-rethinksansextrabold uppercase">All Asset for Job: {{props.liquijobs.company_name}}</h1>
 									</div>
 									<ul class="p-0">
 										<li>
@@ -294,12 +294,10 @@ const deleteTrade = (id) => {
 												</div>
 											</div>
 										</li>
-
 										<!-- Additional Data for Job and Assets -->
 										<li>
-											
-											<div class="w-full relative flex flex-row flex-wrap">
-												<div class="width-50 pr-6">
+											<div class="w-full relative flex sm:flex-row flex-col">
+												<div class="w-full pr-0 sm:pr-6 pb-6 sm:pb-0">
 													<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
 															<span class="font-rethinksansbold primary-dark-blue">Total Assets: </span><span class="font-rethinksanssemibold primary-gray">{{ props.jobassetscount }}</span>
 													</div>
@@ -313,7 +311,7 @@ const deleteTrade = (id) => {
 															<span class="font-rethinksansbold primary-dark-blue">Infrastructure: </span><span class="font-rethinksanssemibold primary-gray">{{props.infrastructurejobassets}}</span>
 													</div>
 												</div>
-												<div class="width-50">
+												<div class="w-full">
 													<div class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
 														<span class="font-rethinksansbold primary-dark-blue">Total Resold: </span><span class="font-rethinksanssemibold primary-gray">{{props.liquijobs.count}}</span>
 													</div>

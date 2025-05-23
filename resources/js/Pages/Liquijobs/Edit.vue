@@ -206,14 +206,14 @@ const updatejob = (id) => {
 							<!-- current job selected /recent jobs -->
 
 							<div class="grid items-start rounded-lg bg-white p-6 mb-6">
-                                <div class="flex sm:justify-end">
+                                <div class="relative flex justify-between items-start">
+                                    <h1 class="w-[60%] block sm:text-2xl text-xl primary-light-blue font-rethinksansextrabold uppercase">
+                                        Edit Job: <span class="sm:inline block">{{props.liquijobs.company_name}}</span>
+                                    </h1>
+                                    <!-- LINK TO JOBS archive page -->
                                     <a href="/liquijobs" class="text-white py-2 px-4 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
-                                        <img class="w-4 mr-2" src="/images/logos/back.png"> Go Back
+                                        <img class="w-4 mr-2" src="/images/logos/back.png"> Back
                                     </a>
-                                </div>
-                                        <!-- class="block text-center text-2xl primary-light-blue font-rethinksansextrabold uppercase" -->
-                                <div class="relative flex flex-col w-full mt-3">
-                                    <h1 class="block text-center text-2xl primary-light-blue font-rethinksansextrabold uppercase">Edit Job</h1>
                                 </div>
 								<form @submit.prevent="updatejob" class="mt-6 space-y-6" enctype="multipart/form-data">
                                         

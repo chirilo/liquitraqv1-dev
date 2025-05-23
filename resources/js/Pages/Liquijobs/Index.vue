@@ -109,17 +109,17 @@ const openMenu = () => {
 									<div class="flex items-center"><a href="/liquijobs"><img src="/images/logos/liquis-logo.png" alt="LiquiTraq" class="block md:w-40 sm:w-20"></a></div>
 								</div>
 							</div>
-							<div class="relative w-full border-divider pt-6">
+							<div class="relative w-full border-divider pt-3">
 							<!-- AVATAR -->
-								<div class="relative flex items-center lg:items-end">
-									{{ props.currentdatetime }}
-									<div class="mx-auto relative flex items-center lg:items-end">
+								<div class="relative flex flex-col items-center lg:items-end">
+									<div class="w-full text-center primary-gray text-sm">{{ props.currentdatetime }}</div>
+									<div class="pt-3 mx-auto relative flex items-center lg:items-end">
 										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl" src="/images/logos/avatar.jpg" alt="User dropdown">
 									</div>
 								</div>
 								<!-- END OF AVATAR -->
 								<!-- MY ACCOUNT -->
-								<div class="w-full text-center relative pt-6 pb-6">
+								<div class="w-full text-center relative py-3">
 									<Dropdown align="center">
 										<template #trigger>
 											<button v-if="$page.props.jetstream.managesProfilePhotos" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
@@ -281,7 +281,7 @@ const openMenu = () => {
 		                                            <InputError class="mt-2" :message="form.errors.type" />
 		                                        </div>
 											</div>
-											<button id="send" type="submit" class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Add New Job <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></button>
+											<button id="send" type="submit" class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Add New <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></button>
 										</form>
 									</div>
 								</div>
@@ -294,18 +294,21 @@ const openMenu = () => {
 							<div class="grid items-start rounded-lg bg-white p-6 mb-6">
 								<!-- recent jobs -->
 								<div id="recent-jobs">
-									<div class="relative flex flex-col">
-										<h3 class="block text-center text-2xl primary-light-blue font-rethinksansextrabold uppercase">Recent Jobs</h3>
+									<div class="relative flex justify-between items-end">
+										<h3 class="w-[60%] block text-2xl primary-light-blue font-rethinksansextrabold uppercase">Recent Jobs</h3>
+										<!-- LINK TO JOBS archive page -->
+                                    	<a href="#" class="text-white py-2 px-4 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
+											View All
+										</a>
 									</div>
 									<div v-if="props.liquijobs" class="w-full relative flex flex-col">
 										<ul class="p-0">
 											<li class="mb-6 last:mb-0" v-for="entry in props.liquijobs.slice(0, 3)" :key="entry.id">
 												<div class="w-full relative flex flex-col bg-white border border-[#e9ebef] rounded-lg">      
-													<div class="p-4">
-														<button @click="openMenu" type="button" class="float-right text-base color-[#98a2b3] ml-3">
+													<div class="p-4 sm:pr-4 pr-2">
+														<button @click="openMenu" type="button" class="float-right text-xl font-bold color-[#98a2b3] ml-3 px-3 rounded-full hover:color-[#323581] hover:bg-[#f2f4f7]">
 															&#8942;
 														</button>
-
 														<div id="actionbuttons" :class="isOpen ? 'block' : 'hidden' ">
 															<PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="max-w-xl ml-2 float-right">View</PrimaryLink>
 															<!-- {{ props.showeditdelete }} -->
@@ -401,7 +404,6 @@ const openMenu = () => {
 								</div>
 								<!-- jobs last 7 days -->
 								<!-- <UpcomingJobs /> -->
-								<!-- upcoming jobs -->
 								<div id="upcoming-jobs" class="mt-6 w-full relative flex flex-col bg-white border border-[#e9ebef] rounded-lg">
 									<div class="relative flex flex-col pt-4 sm:pb-2 sm-0 px-4">
 										<h3 class="block w-full text-lg primary-light-blue font-rethinksansextrabold uppercase">Upcoming Jobs</h3>
@@ -410,15 +412,15 @@ const openMenu = () => {
 										<li class="px-4 py-2 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none"  v-for="entry in props.liquijobs.slice(0, 3)" :key="entry.id">
 											<!-- <PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="float-right">View</PrimaryLink> -->
 											<div class="flex sm:flex-row flex-col justify-start sm:justify-between">
-												<div class="w-full sm:w-auto">
-												<a :href="route('liquijobs.show', {'id': entry.id})" class="primary-dark-blue font-rethinksansbold text-base hover:opacity-80">
-												Building: {{ entry.corporate_address }}
-												</a>
+												<div class="sm:w-[60%] w-full">
+													<a :href="route('liquijobs.show', {'id': entry.id})" class="primary-dark-blue font-rethinksansbold text-base hover:opacity-80">
+													Building: {{ entry.corporate_address }}
+													</a>
 												</div>
 												<div class="inline">
-													<span class="primary-dark-blue font-rethinksansmedium text-base">
+													<div class="primary-dark-blue font-rethinksansmedium text-base">
 														{{ moment(entry.start_date).format("MMMM D, YYYY") }}
-													</span>
+													</div>
 												</div>
 											</div>
 										</li>                        
