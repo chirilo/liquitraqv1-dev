@@ -51,7 +51,7 @@ class AlljobsController extends Controller
             //dd($keyword);
             $results = Liquijob::where('company_name', 'LIKE', "%{$keyword}%" )
                     ->orWhere('id', $keyword)
-                    ->orWhere('status', 'workinprogress')
+                    ->orWhere('status', 'Work in Progress')
                     ->orWhere('status', 'completed')
                     ->orWhere('status', 'originalstate')
                     ->orWhere('contact_name', $keyword)
