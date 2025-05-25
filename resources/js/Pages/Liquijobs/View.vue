@@ -203,6 +203,17 @@ const filteranything = () => {
             </h2>
         </template>
 		<div class="max-w-7xl mx-auto p-5">
+			<!-- Toast message -->
+			<div
+				v-if="props.message"
+				class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+				role="alert"
+			>
+				<span class="font-medium">
+					{{ props.message }}
+				</span>
+			</div>
+			<!-- END OF Toast message -->
 			<div class="dark:bg-gray-800 overflow-hidden sm:rounded-lg">
 				<div>
 					<div class="grid gap-6 lg:grid-cols-3 md:grid-cols-5 lg:gap-8">

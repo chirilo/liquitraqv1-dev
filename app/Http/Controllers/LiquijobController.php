@@ -188,7 +188,7 @@ class LiquijobController extends Controller
             'building' => $request->location_address,
             'city' => '1',
             'state' => '1',
-            'status' => 'Work in Progress',
+            'status' => 'New',
             'expected_qty' => '1',
             'serial_number' => '1',
             'hid_employee_name' => '1',

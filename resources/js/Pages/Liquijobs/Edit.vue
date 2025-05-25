@@ -63,7 +63,8 @@ const form = useForm({
     contact_email: props.liquijobs.contact_email ? props.liquijobs.contact_email : '',
     location_address: props.liquijobs.location_address ? props.liquijobs.location_address : '',
     start_date: props.liquijobs.start_date ? props.liquijobs.start_date : '',
-    type: props.liquijobs.type ? props.liquijobs.type : ''
+    type: props.liquijobs.type ? props.liquijobs.type : '',
+    status: props.liquijobs.status ? props.liquijobs.status : 'New',
 });
 // from Create.vue
 const submitaddjob = () => {
@@ -361,6 +362,20 @@ const filteranything = () => {
                                             <option value="industrialremoval">Industrial Removal</option>
                                         </select>
                                         <InputError class="mt-2 w-full lg:w-[40%]" :message="form.errors.type" />
+                                    </div>
+
+                                    <div
+                                        class="flex pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+                                        <InputLabel for="status" value="Status" class="w-full lg:w-[60%]" />
+                                        <select v-model="form.status" id="status"
+                                            class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+                                            name="status">
+                                            <option value=''>Select Status</option>
+                                            <option value="New">New</option>
+                                            <option value="Work in Progress">Work in Progress</option>
+                                            <option value="Completed">Completed</option>
+                                        </select>
+                                        <InputError class="mt-2 w-full lg:w-[40%]" :message="form.errors.status" />
                                     </div>
                                     <!-- assets below -->
                                     <div style="display: none;">
