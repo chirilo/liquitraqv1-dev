@@ -16,11 +16,11 @@ class Liquijob extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        // 'so_number',
+        'so_number',
         // 'building',
         // 'city',
         // 'state',
-        // 'status',
+        'status',
         // 'expected_qty',
         // 'serial_number',
         // 'hid_employee_name',

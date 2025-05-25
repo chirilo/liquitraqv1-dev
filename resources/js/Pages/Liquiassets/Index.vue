@@ -59,24 +59,26 @@ const submit = () => {
 </script>
 
 <template>
-    <AppLayout title="Dashboard">
+    <AppLayout title="Assets Dashboard">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                Dashboard
+                Assets Dashboard
             </h2>
         </template>
-        	<!-- message prompt -->
-		<div
-			v-if="props.message"
-			class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
-			role="alert"
-		>
-			<span class="font-medium">
-				{{ props.message }}
-			</span>
-		</div>
+        	
 
 		<div class="max-w-7xl mx-auto p-5">
+			<!-- Toast Message -->
+			<div
+				v-if="props.message"
+				class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+				role="alert"
+			>
+				<span class="font-medium">
+					{{ props.message }}
+				</span>
+			</div>
+			<!-- END OF Toast message -->
 			<div class="dark:bg-gray-800 overflow-hidden sm:rounded-lg">
 				<div>
 					<div class="grid gap-6 lg:grid-cols-3 md:grid-cols-5 lg:gap-8">

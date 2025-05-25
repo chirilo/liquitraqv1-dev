@@ -64,18 +64,49 @@ class AlljobsController extends Controller
          * For querying SO Number
          */
         elseif( $keyword === 'sonumber' ){
-            //dd($sonumberkey);
+            //dd(13401002);
             //$keyword = 9;
             //$results = Liquijob::where('id', $keyword)->get();
+            // dissect sonumberkey, last digit is the real job id, first 8 digits are placeholders
+            $jid = str_replace('13401002','',$sonumberkey);
+            $query_so_number = '13401002';
             // gets All latest jobs limit 100 
-
+            //dd($jid);
             if( $id == 5 || $user->email == 'webteamsupprt@gmail.com' ){
                 // query all jobs since this is admin
-                $results = Liquijob::where('id', $sonumberkey)->orderBy('updated_at', 'DESC')->limit('10')->get();
+                if( $jid ){
+                    $results = Liquijob::where('id', intval($jid) )
+                    ->where('so_number', $query_so_number)
+                    ->orderBy('updated_at', 'DESC')
+                    ->limit('10')
+                    ->get();
+                }
+                else{
+                    $results = Liquijob::where('so_number', $query_so_number)
+                    ->orderBy('updated_at', 'DESC')
+                    ->limit('10')
+                    ->get();
+                }
+                
             }
             else{
                 // query all the current logged in users Jobs
-                $results = Liquijob::where('id', $sonumberkey)->where('job_owner_id', $id)->orderBy('updated_at', 'DESC')->limit('10')->get();
+                if( $jid ){
+                    $results = Liquijob::where('id', intval($jid) )
+                    ->where('job_owner_id', $id)
+                    ->where('so_number', $query_so_number)
+                    ->orderBy('updated_at', 'DESC')
+                    ->limit('10')
+                    ->get();
+                }
+                else{
+                    $results = Liquijob::where('job_owner_id', $id)
+                    ->whereLike('so_number', $query_so_number)
+                    ->orderBy('updated_at', 'DESC')
+                    ->limit('10')
+                    ->get();
+                }
+                
             }
             
         }

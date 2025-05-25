@@ -123,22 +123,25 @@ const openMenu = () => {
 </script>
 
 <template>
-    <AppLayout title="Dashboard">
+    <AppLayout title="Job Dashboard">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 Job Dashboard
             </h2>
         </template>
-		<div
-			v-if="props.message"
-			class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
-			role="alert"
-		>
-			<span class="font-medium">
-				{{ props.message }}
-			</span>
-		</div>
+
 		<div class="max-w-7xl mx-auto p-5">
+			<!-- Toast message -->
+			<div
+				v-if="props.message"
+				class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+				role="alert"
+			>
+				<span class="font-medium">
+					{{ props.message }}
+				</span>
+			</div>
+			<!-- END OF Toast message -->
 			<div class="dark:bg-gray-800 overflow-hidden sm:rounded-lg">
 				<div>
 					<div class="grid gap-6 lg:grid-cols-3 md:grid-cols-5 lg:gap-8">
@@ -219,8 +222,8 @@ const openMenu = () => {
 										<option class="text-base primary-dark-blue" value="status">Status</option>
 										<option class="text-base primary-dark-blue" value="sonumber">SO NUmber</option>
 									</select>
-									<input :class="isSoNumberOpen ? 'block' : 'hidden' " id="filter_sonumber" type="number" v-model="filtersonumberkey" placeholder="SO Number" name="filter_sonumber" required />
-									<input :class="isStatusOpen ? 'block' : 'hidden' " id="filter_status" type="text" v-model="filterstatuskey" placeholder="Status" name="filter_status" required />
+									<input class="mt-2 appearance-none block w-full p-4 primary-gray placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg" :class="isSoNumberOpen ? 'block' : 'hidden' " id="filter_sonumber" type="number" v-model="filtersonumberkey" placeholder="ex. 134010022" name="filter_sonumber" required />
+									<input class="mt-2 appearance-none block w-full p-4 primary-gray placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg" :class="isStatusOpen ? 'block' : 'hidden' " id="filter_status" type="text" v-model="filterstatuskey" placeholder="ex. Work in Progress" name="filter_status" required />
 									<button type="submit" class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Go <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></button>
 								</form>
 							</div>

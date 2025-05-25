@@ -72,7 +72,7 @@ class LiquijobController extends Controller
         //dd($user->email);
 
         $showeditdelete = 'normal';
-        if( $id == 5 || $user->email == 'webteamsupprt@gmail.com' ){
+        if( $id == 1 || $user->email == 'webteamsupprt@gmail.com' ){
             $showeditdelete = 'admin';
         }
         
@@ -184,7 +184,7 @@ class LiquijobController extends Controller
             'type' => $request->type,
             'job_owner_id' => $id,
 
-            'so_number' => 1,
+            'so_number' => 13401002,
             'building' => $request->location_address,
             'city' => '1',
             'state' => '1',
@@ -198,7 +198,7 @@ class LiquijobController extends Controller
             'invoice_number' => '1',
 
         ]);
-        return redirect()->route('liquijobs.index')->with('message', 'Job Created Successfully');
+        return redirect()->route('liquijobs.index')->with('message', 'Liquijob Created Successfully');
     }
 
     /**
