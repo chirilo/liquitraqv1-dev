@@ -35,6 +35,15 @@ class AlljobsController extends Controller
         $escaped_str = str_replace("%", "", $keyword);
         $keyword = $escaped_str;
         $keyword = mb_convert_encoding($keyword, 'UTF-8', 'UTF-8');
+
+        //main key
+
+        //sonumber key
+        $sonumberkey = isset($_GET['sonumber']) ? $_GET['sonumber'] : 2;
+
+        //status key
+        $statuskey = isset($_GET['status']) ? $_GET['status'] : 'workinprogress';
+
         //dd($keyword);
         //$results = Liquijob::whereLike(['company_name', 'corporate_address', 'contact_name', 'contact_email'], $keyword)->get();
         if( $keyword === "status" ){
@@ -50,18 +59,23 @@ class AlljobsController extends Controller
                     ->orWhere('location_address', $keyword)
                     ->get();
         }
+
+        /**
+         * For querying SO Number
+         */
         elseif( $keyword === 'sonumber' ){
+            //dd($sonumberkey);
             //$keyword = 9;
             //$results = Liquijob::where('id', $keyword)->get();
             // gets All latest jobs limit 100 
 
             if( $id == 5 || $user->email == 'webteamsupprt@gmail.com' ){
                 // query all jobs since this is admin
-                $results = Liquijob::orderBy('updated_at', 'DESC')->limit('10')->get();
+                $results = Liquijob::where('id', $sonumberkey)->orderBy('updated_at', 'DESC')->limit('10')->get();
             }
             else{
                 // query all the current logged in users Jobs
-                $results = Liquijob::where('job_owner_id', $id)->orderBy('updated_at', 'DESC')->limit('10')->get();
+                $results = Liquijob::where('id', $sonumberkey)->where('job_owner_id', $id)->orderBy('updated_at', 'DESC')->limit('10')->get();
             }
             
         }

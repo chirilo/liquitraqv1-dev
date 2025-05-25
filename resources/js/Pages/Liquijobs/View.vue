@@ -146,15 +146,52 @@ const logout = () => {
     router.post(route('logout'));
 };
 
+let isSoNumberOpen = ref(false);
+let isStatusOpen = ref(false);
+const handleFilterSelectChange = () => {
+	let selectedval = event.target.value;
+	console.log('selected'+selectedval);
+	if( selectedval === 'sonumber' ){
+		isSoNumberOpen.value = !isSoNumberOpen.value;
+
+		// close other
+		isStatusOpen.value = false;
+		document.getElementById('filter_status').removeAttribute('required');
+	}
+	
+
+
+	if( selectedval === 'status' ){
+		isStatusOpen.value = !isStatusOpen.value;
+
+		// close other
+		isSoNumberOpen.value = false;
+		document.getElementById('filter_sonumber').removeAttribute('required');
+	}
+	
+}
+
 let searchkey = ref("");
 let filterkey = ref("");
+let filterstatuskey = ref("");
+let filtersonumberkey = ref("");
 
 const searchanything = () => {
 	router.get( route("search.index") + '?key=' + '%'+searchkey.value+'%' );
 }
 
 const filteranything = () => {
-	router.get( route("search.index") + '?key=' + '%'+filterkey.value+'%' );
+	//alert('here');
+	//alert(filterstatuskey.value);
+	//router.get( route("search.index") + '?key=' + '%'+filterkey.value+'%'+ '?sonumber=' + '%'+filtersonumberkey.value+'%'+ '?status=' + '%'+filterstatuskey.value+'%'  );
+	if ( filterstatuskey.value == '' && filtersonumberkey.value ){
+		router.get( route("search.index") + '?key=' + '%'+filterkey.value+'%'+ '&sonumber=' + filtersonumberkey.value  );
+	}
+	if (filterstatuskey.value && filtersonumberkey.value == ''){
+		router.get( route("search.index") + '?key=' + '%'+filterkey.value+'%'+ '&status=' + '%'+filterstatuskey.value+'%'  );
+	}
+	
+	
 }
 </script>
 
@@ -241,12 +278,14 @@ const filteranything = () => {
 							<div class="w-full pr-6 pl-6 pb-6 mt-6 border-divider">
 								<form @submit.prevent="filteranything">
 									<h2 class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">Filter Jobs By</h2>
-									<select v-model="filterkey" class="appearance-none block w-full p-4 mt-3 text-base primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none">
+									<select @change="handleFilterSelectChange" v-model="filterkey" class="appearance-none block w-full p-4 mt-3 text-base primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none">
 										<input type="hidden" name="key" v-model="filterkey">
 										<option class="text-base primary-dark-blue" value="">Select filter</option>
 										<option class="text-base primary-dark-blue" value="status">Status</option>
 										<option class="text-base primary-dark-blue" value="sonumber">SO NUmber</option>
 									</select>
+									<input :class="isSoNumberOpen ? 'block' : 'hidden' " id="filter_sonumber" type="number" v-model="filtersonumberkey" placeholder="SO Number" name="filter_sonumber" required />
+									<input :class="isStatusOpen ? 'block' : 'hidden' " id="filter_status" type="text" v-model="filterstatuskey" placeholder="Status" name="filter_status" required />
 									<button type="submit" class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Go <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></button>
 								</form>
 							</div>
