@@ -142,6 +142,9 @@ const openMenuSelect = (event) => {
 	}
 };
 
+const logout = () => {
+    router.post(route('logout'));
+};
 </script>
 
 <template>

@@ -50,6 +50,10 @@ const deleteTrade = (id) => {
 	   });
     }
 };
+
+const logout = () => {
+    router.post(route('logout'));
+};
 </script>
 
 <template>

@@ -98,6 +98,10 @@ const openMenuSelect = (event) => {
 		furniture_asset_type.removeAttribute('required');
 	}
 };
+
+const logout = () => {
+    router.post(route('logout'));
+};
 </script>
 <template>
     <AppLayout title="Dashboard">

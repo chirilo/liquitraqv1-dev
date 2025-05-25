@@ -62,7 +62,9 @@ let totalrecycled = 0;
 let totaldisposed = 0;
 let totalreturn = 0;
 
-
+const logout = () => {
+    router.post(route('logout'));
+};
 </script>
 
 <template>

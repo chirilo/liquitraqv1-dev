@@ -65,6 +65,10 @@ const liquijobsCreate = '/liquijobs/create';
 const submit = () => {
     form.post(route("liquijobs.store"));
 };
+
+const logout = () => {
+    router.post(route('logout'));
+};
 </script>
 <template>
     <AppLayout title="Dashboard">

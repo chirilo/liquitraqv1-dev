@@ -83,6 +83,10 @@ const updatejob = (id) => {
     alert('hre');
     form.put(route('liquijobs.update', { id: props.liquijobs.id }));
 };
+
+const logout = () => {
+    router.post(route('logout'));
+};
 </script>
 
 <template>
