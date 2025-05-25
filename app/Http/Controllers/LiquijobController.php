@@ -44,12 +44,14 @@ class LiquijobController extends Controller
             // query all jobs
             $liquijobs = \DB::table('liquijobs')
             ->groupBy('liquijobs.id')
+            ->orderBy('updated_at', 'DESC')
             ->limit('10')->get();
         }
         else{
             $liquijobs = \DB::table('liquijobs')
             ->groupBy('liquijobs.id')
             ->where('job_owner_id', $id)
+            ->orderBy('updated_at', 'DESC')
             ->limit('10')->get();
         }
 
