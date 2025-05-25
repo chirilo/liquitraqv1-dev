@@ -114,8 +114,6 @@ const filteranything = () => {
 	
 	
 }
-
-
 </script>
 
 <template>
@@ -401,22 +399,28 @@ const filteranything = () => {
 											</li> -->
 											
 											<li v-for="(val, index) in results" :key="index">
-												<!-- <h5 class="mb-2 text-slate-800 text-xl font-semibold">
-													Building: {{props.liquijobs.so_number}}
-												</h5> -->
-												<div class="w-full relative flex flex-col">
-													<div class="py-3 last:mb-2 border-[#e9ebef] last:border-none">
-														<p>
-															<span class="font-rethinksansbold primary-dark-blue">Job Co Name: </span><span class="font-rethinksanssemibold primary-gray">{{val.company_name}}</span>
-														</p>
+												
+
+												<!-- Each job result is wrapped with anchor element, when clicked goes to view single job page -->
+												<a :href="'/liquijobs/' + val.id">
+													<h6 class="mb-2 text-slate-800 text-xl font-semibold">
+														SO Number: {{val.so_number}}
+													</h6>
+													<div class="jobcont w-full relative flex flex-col">
+														<div class=" last:mb-2 border-[#e9ebef] last:border-none">
+															<p>
+																<span class="font-rethinksansbold primary-dark-blue">Job Co Name: </span><span class="font-rethinksanssemibold primary-gray">{{val.company_name}}</span>
+															</p>
+														</div>
+														<div class=" last:mb-2 border-b border-[#e9ebef] last:border-none">
+															<p>
+																<span class="font-rethinksansbold primary-dark-blue">Address: </span><span class="font-rethinksanssemibold primary-gray">{{val.corporate_address}}</span>
+															</p>
+														</div>
+														
 													</div>
-													<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
-														<p>
-															<span class="font-rethinksansbold primary-dark-blue">Address: </span><span class="font-rethinksanssemibold primary-gray">{{val.corporate_address}}</span>
-														</p>
-													</div>
-													
-												</div>
+												</a>
+												<!-- END OF job result wrapper -->
 											</li>
 											<hr>
 										</ul>
