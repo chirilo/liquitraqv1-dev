@@ -423,7 +423,7 @@ const filteranything = () => {
 								</div>
 							</div>
 							<!-- CALENDAR -->
-							<div id="calendar-container" class="mt-6 grid items-start rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)]">
+							<div style="display: none;"  id="calendar-container" class="mt-6 grid items-start rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)]">
 								<Calendar />
 							</div>
 						</div>

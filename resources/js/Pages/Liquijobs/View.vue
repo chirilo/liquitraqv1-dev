@@ -666,7 +666,7 @@ const filteranything = () => {
 						<!-- current job selected / recent jobs -->
 					</div>
 					<!-- CALENDAR -->
-					<div class="mt-6 grid gap-6 lg:grid-cols-1 lg:gap-8" style="display: none;">
+					<div style="display: none;"  class="mt-6 grid gap-6 lg:grid-cols-1 lg:gap-8" style="display: none;">
 						<!-- Container for CALENDAR -->
 						<div id="calendar-container" class="flex flex-col items-start gap-12 overflow-hidden rounded-lg bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] md:row-span-3 lg:p-12 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]">
 							<Calendar />
