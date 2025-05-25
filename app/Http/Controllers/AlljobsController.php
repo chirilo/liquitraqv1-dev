@@ -8,12 +8,21 @@ use Inertia\Inertia;
 use App\Models\Liquiasset;
 use App\Models\Liquijob;
 
+use Illuminate\Support\Facades\Auth;
+
 class AlljobsController extends Controller
 {
     //
     
     public function index(Request $request)
     {
+
+        // Get the currently authenticated user...
+        $user = Auth::user(); 
+        // Get the currently authenticated user's ID...
+        $id = Auth::id();
+
+
         //$results = \DB::table('liquijobs')
                     // ->groupBy('liquijobs.id')
                     // ->limit('20')
@@ -23,13 +32,67 @@ class AlljobsController extends Controller
         $currentdatetime = now()->format('M d, Y - h:m A');
         
         $keyword = isset($_GET['key']) ? $_GET['key'] : 'jobs';
+        $escaped_str = str_replace("%", "", $keyword);
+        $keyword = $escaped_str;
+        $keyword = mb_convert_encoding($keyword, 'UTF-8', 'UTF-8');
+        //dd($keyword);
         //$results = Liquijob::whereLike(['company_name', 'corporate_address', 'contact_name', 'contact_email'], $keyword)->get();
-        $results = Liquijob::whereLike('company_name', $keyword)
+        if( $keyword === "status" ){
+            //
+            //dd($keyword);
+            $results = Liquijob::whereLike('company_name', $keyword)
+                    ->whereLike('id', $keyword)
+                    ->where('status', 'workinprogress')
+                    ->where('status', 'completed')
+                    ->where('status', 'originalstate')
+                    ->whereLike('contact_name', $keyword)
+                    ->whereLike('contact_email', $keyword)
+                    ->whereLike('location_address', $keyword)
+                    ->get();
+        }
+        elseif( $keyword === 'sonumber' ){
+            //$keyword = 9;
+            //$results = Liquijob::where('id', $keyword)->get();
+            // gets All latest jobs limit 100 
+
+            if( $id == 5 || $user->email == 'webteamsupprt@gmail.com' ){
+                // query all jobs since this is admin
+                $results = Liquijob::orderBy('updated_at', 'DESC')->limit('10')->get();
+            }
+            else{
+                // query all the current logged in users Jobs
+                $results = Liquijob::where('job_owner_id', $id)->orderBy('updated_at', 'DESC')->limit('10')->get();
+            }
+            
+        }
+        else{
+            if( $id == 5 || $user->email == 'webteamsupprt@gmail.com' ){
+                // query all jobs since this is admin
+                $results = Liquijob::whereLike('company_name', $keyword)
+                    ->whereLike('id', $keyword)
+                    ->whereLike('status', $keyword)
                     ->whereLike('corporate_address', $keyword)
                     ->whereLike('contact_name', $keyword)
                     ->whereLike('contact_email', $keyword)
                     ->whereLike('location_address', $keyword)
                     ->get();
+            }
+            else{
+                // query all the current logged in users Jobs
+                $results = Liquijob::where('job_owner_id', $id)
+                    ->whereLike('company_name', $keyword)
+                    ->whereLike('id', $keyword)
+                    ->whereLike('status', $keyword)
+                    ->whereLike('corporate_address', $keyword)
+                    ->whereLike('contact_name', $keyword)
+                    ->whereLike('contact_email', $keyword)
+                    ->whereLike('location_address', $keyword)
+                    ->get();
+                //$results = Liquijob::where('job_owner_id', $id)->orderBy('updated_at', 'DESC')->limit('10')->get();
+            }
+            
+        }
+        
         //$results = Liquijob::all();
 
         //dd($results);
