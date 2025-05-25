@@ -40,14 +40,14 @@ class AlljobsController extends Controller
         if( $keyword === "status" ){
             //
             //dd($keyword);
-            $results = Liquijob::whereLike('company_name', $keyword)
-                    ->whereLike('id', $keyword)
-                    ->where('status', 'workinprogress')
-                    ->where('status', 'completed')
-                    ->where('status', 'originalstate')
-                    ->whereLike('contact_name', $keyword)
-                    ->whereLike('contact_email', $keyword)
-                    ->whereLike('location_address', $keyword)
+            $results = Liquijob::where('company_name', 'LIKE', "%{$keyword}%" )
+                    ->orWhere('id', $keyword)
+                    ->orWhere('status', 'workinprogress')
+                    ->orWhere('status', 'completed')
+                    ->orWhere('status', 'originalstate')
+                    ->orWhere('contact_name', $keyword)
+                    ->orWhere('contact_email', $keyword)
+                    ->orWhere('location_address', $keyword)
                     ->get();
         }
         elseif( $keyword === 'sonumber' ){
@@ -68,25 +68,24 @@ class AlljobsController extends Controller
         else{
             if( $id == 5 || $user->email == 'webteamsupprt@gmail.com' ){
                 // query all jobs since this is admin
-                $results = Liquijob::whereLike('company_name', $keyword)
-                    ->whereLike('id', $keyword)
-                    ->whereLike('status', $keyword)
-                    ->whereLike('corporate_address', $keyword)
-                    ->whereLike('contact_name', $keyword)
-                    ->whereLike('contact_email', $keyword)
-                    ->whereLike('location_address', $keyword)
+                $results = Liquijob::where('company_name', 'LIKE', "%{$keyword}%" )
+                    ->orWhere('id', $keyword)
+                    ->orWhere('status', $keyword)
+                    ->orWhere('corporate_address', $keyword)
+                    ->orWhere('contact_name', $keyword)
+                    ->orWhere('contact_email', $keyword)
+                    ->orWhere('location_address', $keyword)
                     ->get();
             }
             else{
+                //dd($keyword);
                 // query all the current logged in users Jobs
                 $results = Liquijob::where('job_owner_id', $id)
-                    ->whereLike('company_name', $keyword)
-                    ->whereLike('id', $keyword)
-                    ->whereLike('status', $keyword)
-                    ->whereLike('corporate_address', $keyword)
-                    ->whereLike('contact_name', $keyword)
-                    ->whereLike('contact_email', $keyword)
-                    ->whereLike('location_address', $keyword)
+                    ->where('company_name', 'LIKE', "%{$keyword}%" )
+                    ->orWhere('corporate_address', $keyword)
+                    ->orWhere('contact_name', $keyword)
+                    ->orWhere('contact_email', $keyword)
+                    ->orWhere('location_address', $keyword)
                     ->get();
                 //$results = Liquijob::where('job_owner_id', $id)->orderBy('updated_at', 'DESC')->limit('10')->get();
             }
