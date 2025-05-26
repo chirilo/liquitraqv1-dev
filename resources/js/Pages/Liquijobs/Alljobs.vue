@@ -353,7 +353,7 @@ const openMenu = () => {
 									</div>
 									<div v-if="props.liquijobs" class="w-full relative flex flex-col">
 										<ul class="p-0">
-											<li class="mb-6 last:mb-0" v-for="entry in props.liquijobs.slice(0, 3)" :key="entry.id">
+											<li class="mb-6 last:mb-0" v-for="entry in props.liquijobs" :key="entry.id">
 												<div class="w-full relative flex flex-col bg-white border border-[#e9ebef] rounded-lg">      
 													<div class="p-3 sm:pr-4 pr-2">
 														<button @click="openMenu" type="button" class="float-right text-xl font-bold color-[#98a2b3] sm:ml-3 ml-1 px-3 rounded-full hover:color-[#323581] hover:bg-[#f2f4f7]">
