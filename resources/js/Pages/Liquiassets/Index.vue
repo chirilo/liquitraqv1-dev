@@ -198,7 +198,6 @@ const submit = () => {
 								<div class="mt-3 relative flex items-center lg:items-end">
 									<div id="docs-card-content" class="flex items-start lg:flex-col">
 										<form class="w-full" action="/liquijobs/create">
-											<!-- <form @submit.prevent="submit"  class="w-full"> -->
 											<div class="flex flex-wrap">
 												<div class="w-full">
 													<label class="hidden block tracking-wide mb-2 " for="grid-first-name">
@@ -209,9 +208,9 @@ const submit = () => {
 												</div>
 												<div class="w-full mt-3">
 													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													 Address
+													 Corporate Address
 													</label>
-													<input name="caddress" class="appearance-none block w-full p-4 primary-gray placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Address">
+													<input name="caddress" class="appearance-none block w-full p-4 primary-gray placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Corporate Address">
 													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
 												</div>
 												<div class="w-full mt-3">
@@ -237,9 +236,9 @@ const submit = () => {
 												</div>
 												<div class="w-full mt-3" style="display: none;">
 													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													Location Address
+													Location Name
 													</label>
-													<input name="loaddress" class="appearance-none block w-full p-4 primary-gray placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Location Address" value="Location Address">
+													<input name="loaddress" class="appearance-none block w-full p-4 primary-gray placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Location Address" value="Location Name">
 													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
 												</div>
 												<div class="w-full mt-3">
@@ -250,10 +249,7 @@ const submit = () => {
 													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
 												</div>
 											</div>
-											
-											<!-- <a v-bind:href="liquijobsCreate" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" style="display: inline-block; width: 100% !important; text-align: center;"> ADD NEW JOB <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </a> -->
 											<button id="send" type="submit" class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Add New <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></button>
-										
 										</form>
 									</div>
 

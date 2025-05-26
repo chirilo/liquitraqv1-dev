@@ -241,7 +241,7 @@ const filteranything = () => {
                                         <input type="hidden" name="key" v-model="filterkey">
                                         <option class="text-base primary-dark-blue" value="">Select filter</option>
                                         <option class="text-base primary-dark-blue" value="status">Status</option>
-                                        <option class="text-base primary-dark-blue" value="sonumber">SO NUmber</option>
+                                        <option class="text-base primary-dark-blue" value="sonumber">SO Number</option>
                                     </select>
                                     <input class="mt-2 appearance-none block w-full p-4 primary-gray placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg" :class="isSoNumberOpen ? 'block' : 'hidden' " id="filter_sonumber" type="number" v-model="filtersonumberkey" placeholder="ex. 134010022" name="filter_sonumber" required />
                                     <input class="mt-2 appearance-none block w-full p-4 primary-gray placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg" :class="isStatusOpen ? 'block' : 'hidden' " id="filter_status" type="text" v-model="filterstatuskey" placeholder="ex. Work in Progress" name="filter_status" required />
@@ -292,7 +292,7 @@ const filteranything = () => {
 												</div>
 												<div class="w-full py-1 px-3">
 													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													Location Address
+													Location Name
 													</label>
 													<input name="loaddress" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Location Address">
 													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
@@ -342,12 +342,12 @@ const filteranything = () => {
                                             <InputError class="mt-2" :message="form.errors.company_name" />
                                         </div>
                                         <div>
-                                            <InputLabel for="corporate_address" value="Address" />
+                                            <InputLabel for="corporate_address" value="Corporate Address" />
 
                                             <TextInput
                                                 id="corporate_address"
                                                 type="text"
-                                                placeholder="Address"
+                                                placeholder="Corporate Address"
                                                 v-model="form.corporate_address"
                                                 required
                                             />
@@ -394,12 +394,12 @@ const filteranything = () => {
                                             <InputError class="mt-2" :message="form.errors.contact_email" />
                                         </div>
                                         <div>
-                                            <InputLabel for="location_address" value="Location Address" />
+                                            <InputLabel for="location_address" value="Location Name" />
 
                                             <TextInput
                                                 id="location_address"
                                                 type="text"
-                                                placeholder="Location Address"
+                                                placeholder="Location Name"
                                                 v-model="form.location_address"
                                                 required
                                             />

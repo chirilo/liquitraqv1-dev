@@ -54,6 +54,8 @@ const deleteTrade = (id) => {
 const logout = () => {
 	router.post(route('logout'));
 };
+
+
 </script>
 
 <template>
@@ -167,7 +169,7 @@ const logout = () => {
 							</div>
 							<!-- END OF: Search Anything -->
 							<!-- <input class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="search" name="search" placeholder="Search anything" /> -->
-							<div class="w-full pr-6 pl-6 pb-6 mt-6 border-divider">
+							<div class="w-full pr-6 pl-6 mt-6">
 								<h2
 									class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">
 									Filter Jobs By</h2>
@@ -187,7 +189,7 @@ const logout = () => {
 							</div>
 
 							<!-- ADD JOB -->
-							<div class="w-full pr-6 pl-6 pb-6 mt-6">
+							<div class="w-full pr-6 pl-6 pb-6 mt-6 hidden">
 								<h2
 									class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">
 									Quick Add New Job</h2>
@@ -258,11 +260,11 @@ const logout = () => {
 												<div class="w-full mt-3">
 													<label class="hidden block tracking-wide mb-2"
 														for="grid-first-name">
-														Location Address
+														Location Name
 													</label>
 													<input name="loaddress"
 														class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
-														type="text" placeholder="Location Address">
+														type="text" placeholder="Location Name">
 													<p class="hidden text-red-500 text-xs italic">Please fill out this
 														field.
 													</p>
@@ -279,9 +281,83 @@ const logout = () => {
 														field.
 													</p>
 												</div>
+											</div><button id="send" type="submit"
+												class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Add
+												New <svg style="display: inline; float: inline-end;"
+													class="size-6 shrink-0 stroke-[#FFFFFF]"
+													xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+													stroke-width="1.5">
+													<path stroke-linecap="round" stroke-linejoin="round"
+														d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+											</svg></button>
+										</form>
+										<!-- <form @submit.prevent="submitaddjob" class="w-full">
+											<div class="flex flex-wrap">
+												<div class="w-full">
+													<InputLabel for="company_name" value="Job Co Name" />
+													<TextInput id="company_name" type="text" placeholder="Job Co Name"
+														v-model="form.company_name" required />
+													<InputError class="mt-2" :message="form.errors.company_name" />
+												</div>
+												<div class="w-full mt-3">
+													<InputLabel for="corporate_address" value="Corporate Address" />
+													<TextInput id="corporate_address" type="text" placeholder="Corporate Address"
+														v-model="form.corporate_address" required />
+													<InputError class="mt-2" :message="form.errors.corporate_address" />
+												</div>
+												<div class="w-full mt-3">
+													<InputLabel for="contact_name" value="Contact Name" />
+													<TextInput id="contact_name" type="text" placeholder="Contact Name"
+														v-model="form.contact_name" required />
+													<InputError class="mt-2" :message="form.errors.contact_name" />
+												</div>
+												<div class="w-full mt-3">
+													<InputLabel for="contact_email" value="Email" />
+													<TextInput id="contact_email" type="email" placeholder="Email"
+														v-model="form.contact_email" required />
+													<InputError class="mt-2" :message="form.errors.contact_email" />
+												</div>
+												<div class="w-full mt-3">
+													<InputLabel for="contact_telephone" value="Phone" />
+													<TextInput id="contact_telephone" type="tel" placeholder="Phone"
+														v-model="form.contact_telephone" required />
+													<InputError class="mt-2" :message="form.errors.contact_telephone" />
+												</div>
+												<div class="w-full mt-3">
+													<InputLabel for="location_address" value="Location Name" />
+													<TextInput id="location_address" type="text"
+														placeholder="Location Name" v-model="form.location_address"
+														required />
+													<InputError class="mt-2" :message="form.errors.location_address" />
+												</div>
+												<div class="w-full mt-3">
+													<InputLabel for="start_date" value="Start Date" />
+													<TextInput id="start_date" type="date" placeholder="YYYY-MM-DD"
+														v-model="form.start_date" required />
+													<InputError class="mt-2" :message="form.errors.start_date" />
+												</div>
+												<div class="w-full mt-3">
+													<InputLabel for="type" value="Job Type" />
+													<select v-model="form.type" id="type"
+														class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+														name="type">
+														<option value="" selected disabled hidden>Job Type</option>
+														<option value="facilitydecomissioning">Facility Decomissioning
+														</option>
+														<option value="datacenterdecommissioning">Data Center
+															Decommissioning
+														</option>
+														<option value="officefurniture">Office Furniture</option>
+														<option value="datadestruction">Data Destruction</option>
+														<option value="assetrecovery">Asset Recovery</option>
+														<option value="assetmanagement">Asset Management</option>
+														<option value="recycling">Recycling</option>
+														<option value="generatorremoval">Generator Removal</option>
+														<option value="industrialremoval">Industrial Removal</option>
+													</select>
+													<InputError class="mt-2" :message="form.errors.type" />
+												</div>
 											</div>
-
-											<!-- <a v-bind:href="liquijobsCreate" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" style="display: inline-block; width: 100% !important; text-align: center;"> ADD NEW JOB <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </a> -->
 											<button id="send" type="submit"
 												class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Add
 												New <svg style="display: inline; float: inline-end;"
@@ -291,11 +367,8 @@ const logout = () => {
 													<path stroke-linecap="round" stroke-linejoin="round"
 														d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
 												</svg></button>
-
-										</form>
+										</form> -->
 									</div>
-
-
 								</div>
 							</div>
 						</div>
@@ -306,16 +379,19 @@ const logout = () => {
 								<div id="recent-jobs">
 									<ul class="p-0">
 										<li class="m-0" v-for="item in job_assets" :key="id" :value="id">
-											<div class="relative flex justify-between items-start">
-												<h1
-													class="w-[60%] block sm:text-2xl text-xl primary-light-blue font-rethinksansextrabold uppercase">
-													Job:
-													<span class="sm:inline block">{{ props.liquijobs }}</span>
+											<div class="relative flex justify-between items-start sm:flex-row flex-col-reverse">
+												<h1 class="w-full sm:w-[60%] block text-2xl primary-light-blue font-rethinksansextrabold uppercase mt-6 sm:mt-0 text-center sm:text-left ">
+													Job: <span>{{ props.liquijobs }}</span>
 												</h1>
-												<a v-bind:href="parentjoburl + item.job_id"
-													class="text-white py-2 px-4 rounded-full bg-gradient-blue text-center text-sm font-rethinksansbold hover:opacity-90 flex">
-													<img class="w-4 mr-2" src="/images/logos/back.png"> Back
-												</a>
+												<div class="flex justify-center sm:justify-end sm:w-auto w-full">
+													<a v-bind:href="parentjoburl + item.job_id"
+														class="text-white py-2 px-4 rounded-full bg-gradient-blue text-center text-sm font-rethinksansbold hover:opacity-90 flex">
+														<img class="w-4 mr-2" src="/images/logos/back.png"> Back
+													</a>
+													<a href="/liquijobs" class="text-white ml-1 py-2 px-2 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
+														<img class="w-5" src="/images/logos/home.png">
+													</a>
+												</div>
 											</div>
 											<h5
 												class="w-full mt-6 block text-xl primary-dark-blue font-rethinksansextrabold uppercase">

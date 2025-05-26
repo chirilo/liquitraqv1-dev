@@ -72,7 +72,7 @@ class LiquijobController extends Controller
         //dd($user->email);
 
         $showeditdelete = 'normal';
-        if( $id == 1 || $user->email == 'webteamsupprt@gmail.com' ){
+        if( $id == 1 || $user->email == 'webteamsupport@gmail.com' ){
             $showeditdelete = 'admin';
         }
         
@@ -223,6 +223,11 @@ class LiquijobController extends Controller
      */
     public function show(Liquijob $liquijob)
     {
+        // Get the currently authenticated user...
+        $user = Auth::user(); 
+        // Get the currently authenticated user's ID...
+        $id = Auth::id();
+        
         //dd($liquijob['id']);
         // fetch assets
         //$job_assets = DB::table('liquiassets')->where('id', $liquijob->id)->first();
@@ -238,6 +243,11 @@ class LiquijobController extends Controller
 
         // get current date and time
         $currentdatetime = now()->format('M d, Y - h:m A');
+
+        $showeditdelete = 'normal';
+        if( $id == 1 || $user->email == 'webteamsupprt@gmail.com' ){
+            $showeditdelete = 'admin';
+        }
 
         $furniturejobassets = Liquiasset::query()
             ->select(['id','job_asset', 'job_id'])
@@ -276,6 +286,7 @@ class LiquijobController extends Controller
                     'infrastructurejobassets' => $infrastructurejobassets,
                     'furniturejobassets' => $furniturejobassets,
                     'currentdatetime' => $currentdatetime,
+                    'showeditdelete' => $showeditdelete,
                 ]
             );
         }else{
@@ -292,6 +303,7 @@ class LiquijobController extends Controller
                     'infrastructurejobassets' => $infrastructurejobassets,
                     'furniturejobassets' => $furniturejobassets,
                     'currentdatetime' => $currentdatetime,
+                    'showeditdelete' => $showeditdelete,
                 ]
             );
         }

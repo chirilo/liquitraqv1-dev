@@ -226,7 +226,7 @@ const filteranything = () => {
 										<input type="hidden" name="key" v-model="filterkey">
 										<option class="text-base primary-dark-blue" value="" selected disabled hidden>Select filter</option>
 										<option class="text-base primary-dark-blue" value="status">Status</option>
-										<option class="text-base primary-dark-blue" value="sonumber">SO NUmber</option>
+										<option class="text-base primary-dark-blue" value="sonumber">SO Number</option>
 									</select>
 									<input class="mt-2 appearance-none block w-full p-4 primary-gray placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg" :class="isSoNumberOpen ? 'block' : 'hidden' " id="filter_sonumber" type="number" v-model="filtersonumberkey" placeholder="ex. 134010022" name="filter_sonumber" required />
 									<input class="mt-2 appearance-none block w-full p-4 primary-gray placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg" :class="isStatusOpen ? 'block' : 'hidden' " id="filter_status" type="text" v-model="filterstatuskey" placeholder="ex. Work in Progress" name="filter_status" required />
@@ -297,11 +297,11 @@ const filteranything = () => {
 		                                            <InputError class="mt-2" :message="form.errors.contact_telephone" />
 												</div>
 												<div class="w-full mt-3">
-													<InputLabel for="location_address" value="Location Address" />
+													<InputLabel for="location_address" value="Location Name" />
 													<TextInput
 		                                                id="location_address"
 		                                                type="text"
-		                                                placeholder="Location Address"
+		                                                placeholder="Location Name"
 		                                                v-model="form.location_address"
 		                                                required
 		                                            />
@@ -347,16 +347,21 @@ const filteranything = () => {
 							<!-- current job selected /recent jobs -->
 							<div class="rounded-lg bg-white p-6">
 								<div id="recent-jobs">
-									<div class="relative flex justify-between items-start">
-										<h1 class="w-65% sm:w-[60%] block sm:text-2xl text-xl primary-light-blue font-rethinksansextrabold uppercase">
+									<div class="relative flex justify-between items-start sm:flex-row flex-col-reverse">
+										<h1 class="w-full sm:w-[60%] block text-2xl primary-light-blue font-rethinksansextrabold uppercase mt-6 sm:mt-0 text-center sm:text-left ">
 											All Asset for Job: 
-											<span class="sm:inline block">{{props.liquijobs.company_name}}</span>
+											<span>{{props.liquijobs.company_name}}</span>
 										</h1>
-										<a :href="backtoprevjob" class="text-white py-2 px-4 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
-											<img class="w-4 mr-2" src="/images/logos/back.png"> Back
-										</a>
+										<div class="flex justify-center sm:justify-end sm:w-auto w-full">
+											<a :href="backtoprevjob" class="text-white py-2 px-4 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
+												<img class="w-4 mr-2" src="/images/logos/back.png"> Back
+											</a>
+											<a href="/liquijobs" class="text-white ml-1 py-2 px-2 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
+												<img class="w-5" src="/images/logos/home.png">
+											</a>
+										</div>
 									</div>
-									<ul class="p-0">
+									<ul class="p-0 mt-3">
 										<li class="m-0">
 											<div class="w-full relative flex sm:flex-row flex-col">
 												<div class="w-full pr-0 sm:pr-6 pb-6 sm:pb-0">

@@ -257,11 +257,11 @@ const filteranything = () => {
 													<!-- <label class="hidden block tracking-wide mb-2" for="grid-first-name">
 													 Address
 													</label> -->
-													<InputLabel for="corporate_address" value="Address" />
+													<InputLabel for="corporate_address" value="Corporate Address" />
 													<TextInput
 		                                                id="corporate_address"
 		                                                type="text"
-		                                                placeholder="Address"
+		                                                placeholder="Corporate Address"
 		                                                v-model="form.corporate_address"
 		                                                required
 		                                            />
@@ -317,11 +317,11 @@ const filteranything = () => {
 													<!-- <label class="hidden block tracking-wide mb-2" for="grid-first-name">
 													Location Address
 													</label> -->
-													<InputLabel for="location_address" value="Location Address" />
+													<InputLabel for="location_address" value="Location Name" />
 													<TextInput
 		                                                id="location_address"
 		                                                type="text"
-		                                                placeholder="Location Address"
+		                                                placeholder="Location Name"
 		                                                v-model="form.location_address"
 		                                                required
 		                                            />

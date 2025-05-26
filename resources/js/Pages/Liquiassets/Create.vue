@@ -270,7 +270,7 @@ const logout = () => {
 													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
 													Location Address
 													</label>
-													<input name="loaddress" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Location Address">
+													<input name="loaddress" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Location Name">
 													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
 												</div>
 												<div class="w-full mt-3">
@@ -298,7 +298,7 @@ const logout = () => {
 								<div id="recent-jobs">
 									<div class="flex sm:justify-end">
 										<a href="/liquijobs" class="text-white py-2 px-4 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
-											<img class="w-4 mr-2" src="/images/logos/back.png"> Go Back
+											<img class="w-4 mr-2" src="/images/logos/back.png"> Back
 										</a>
 									</div>
                                     <div class="relative flex flex-col mt-5 w-full text-center">

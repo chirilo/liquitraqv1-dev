@@ -284,8 +284,8 @@ const openMenu = () => {
 													<InputError class="mt-2" :message="form.errors.company_name" />
 												</div>
 												<div class="w-full mt-3">
-													<InputLabel for="corporate_address" value="Address" />
-													<TextInput id="corporate_address" type="text" placeholder="Address"
+													<InputLabel for="corporate_address" value="Corporate Address" />
+													<TextInput id="corporate_address" type="text" placeholder="Corporate Address"
 														v-model="form.corporate_address" required />
 													<InputError class="mt-2" :message="form.errors.corporate_address" />
 												</div>
@@ -308,9 +308,9 @@ const openMenu = () => {
 													<InputError class="mt-2" :message="form.errors.contact_telephone" />
 												</div>
 												<div class="w-full mt-3">
-													<InputLabel for="location_address" value="Location Address" />
+													<InputLabel for="location_address" value="Location Name" />
 													<TextInput id="location_address" type="text"
-														placeholder="Location Address" v-model="form.location_address"
+														placeholder="Location Name" v-model="form.location_address"
 														required />
 													<InputError class="mt-2" :message="form.errors.location_address" />
 												</div>

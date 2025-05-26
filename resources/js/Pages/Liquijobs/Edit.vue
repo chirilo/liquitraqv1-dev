@@ -297,7 +297,7 @@ const filteranything = () => {
                                         class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
                                         <InputLabel for="corporate_address" value="Address" class="w-full lg:w-[60%]" />
                                         <TextInput class="w-full lg:w-[40%] px-4 py-2" id="corporate_address"
-                                            type="text" placeholder="Address" v-model="form.corporate_address"
+                                            type="text" placeholder="Corporate Address" v-model="form.corporate_address"
                                             required />
                                         <InputError class="mt-2 w-full lg:w-[40%]"
                                             :message="form.errors.corporate_address" />
@@ -329,7 +329,7 @@ const filteranything = () => {
                                     </div>
                                     <div
                                         class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
-                                        <InputLabel for="location_address" value="Location Address"
+                                        <InputLabel for="location_address" value="Location Name"
                                             class="w-full lg:w-[60%]" />
                                         <TextInput class="w-full lg:w-[40%] px-4 py-2" id="location_address" type="text"
                                             v-model="form.location_address" required />
