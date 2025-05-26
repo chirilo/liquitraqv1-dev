@@ -246,14 +246,14 @@ const filteranything = () => {
                                 </form>
                             </div>
                             <!-- END OF: Search Anything -->
-                            <div class="w-full pr-6 pl-6 pb-6 mt-6 border-divider">
+                            <div class="w-full pr-6 pl-6 pb-6 mt-6">
 								<form @submit.prevent="filteranything">
 									<h2 class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">Filter Jobs By</h2>
 									<select @change="handleFilterSelectChange" v-model="filterkey" class="appearance-none block w-full p-4 mt-3 text-base primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none">
 										<input type="hidden" name="key" v-model="filterkey">
-										<option class="text-base primary-dark-blue" value="">Select filter</option>
+										<option class="text-base primary-dark-blue" selected disabled hidden value="">Select filter</option>
 										<option class="text-base primary-dark-blue" value="status">Status</option>
-										<option class="text-base primary-dark-blue" value="sonumber">SO NUmber</option>
+										<option class="text-base primary-dark-blue" value="sonumber">SO Number</option>
 									</select>
 									<input class="mt-2 appearance-none block w-full p-4 primary-gray placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg" :class="isSoNumberOpen ? 'block' : 'hidden' " id="filter_sonumber" type="number" v-model="filtersonumberkey" placeholder="ex. 134010022" name="filter_sonumber" required />
 									<input class="mt-2 appearance-none block w-full p-4 primary-gray placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg" :class="isStatusOpen ? 'block' : 'hidden' " id="filter_status" type="text" v-model="filterstatuskey" placeholder="ex. Work in Progress" name="filter_status" required />
@@ -281,7 +281,7 @@ const filteranything = () => {
                                 <form @submit.prevent="updatejob" class="mt-6 space-y-2" enctype="multipart/form-data">
                                     <div
                                         class="flex border-divider pb-2 items-end justify-between sm:justify-end flex-row">
-                                        <InputLabel for="id" value="So Number" class="w-full lg:w-[60%]" />
+                                        <InputLabel for="id" value="SO Number" class="w-full lg:w-[60%]" />
                                         <input id="id" type="text" :value="form.id" disabled
                                             class="w-auto lg:w-[40%] appearance-none block w-full px-4 py-0 primary-dark-blue font-rethinksansmedium border-[#fff]" />
                                     </div>
@@ -370,7 +370,7 @@ const filteranything = () => {
                                         <select v-model="form.status" id="status"
                                             class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
                                             name="status">
-                                            <option value=''>Select Status</option>
+                                            <option value="" selected disabled hidden>Select Status</option>
                                             <option value="New">New</option>
                                             <option value="Work in Progress">Work in Progress</option>
                                             <option value="Completed">Completed</option>

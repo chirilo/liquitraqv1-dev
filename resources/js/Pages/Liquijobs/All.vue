@@ -208,7 +208,7 @@ const filteranything = () => {
 									<h2 class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">Filter Jobs By</h2>
 									<select @change="handleFilterSelectChange" v-model="filterkey" class="appearance-none block w-full p-4 mt-3 text-base primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none">
 										<input type="hidden" name="key" v-model="filterkey">
-										<option class="text-base primary-dark-blue" value="">Select filter</option>
+										<option class="text-base primary-dark-blue" value="" selected disabled hidden>Select filter</option>
 										<option class="text-base primary-dark-blue" value="status">Status</option>
 										<option class="text-base primary-dark-blue" value="sonumber">SO NUmber</option>
 									</select>

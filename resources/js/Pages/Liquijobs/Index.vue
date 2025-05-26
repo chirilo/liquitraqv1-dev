@@ -218,9 +218,9 @@ const openMenu = () => {
 									<h2 class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">Filter Jobs By</h2>
 									<select @change="handleFilterSelectChange" v-model="filterkey" class="appearance-none block w-full p-4 mt-3 text-base primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none">
 										<input type="hidden" name="key" v-model="filterkey">
-										<option class="text-base primary-dark-blue" value="">Select filter</option>
+										<option class="text-base primary-dark-blue" selected disabled hidden value="">Select filter</option>
 										<option class="text-base primary-dark-blue" value="status">Status</option>
-										<option class="text-base primary-dark-blue" value="sonumber">SO NUmber</option>
+										<option class="text-base primary-dark-blue" value="sonumber">SO Number</option>
 									</select>
 									<input class="mt-2 appearance-none block w-full p-4 primary-gray placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg" :class="isSoNumberOpen ? 'block' : 'hidden' " id="filter_sonumber" type="number" v-model="filtersonumberkey" placeholder="ex. 134010022" name="filter_sonumber" required />
 									<input class="mt-2 appearance-none block w-full p-4 primary-gray placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg" :class="isStatusOpen ? 'block' : 'hidden' " id="filter_status" type="text" v-model="filterstatuskey" placeholder="ex. Work in Progress" name="filter_status" required />
@@ -314,7 +314,7 @@ const openMenu = () => {
 												<div class="w-full mt-3">
 		                                            <InputLabel for="type" value="Job Type"/>
 		                                            <select v-model="form.type" id="type" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="type">
-		                                            	<option value="">Job Type</option>
+		                                            	<option value="" selected disabled hidden>Job Type</option>
 		                                                <option value="facilitydecomissioning">Facility Decomissioning</option>
 		                                                <option value="datacenterdecommissioning">Data Center Decommissioning</option>
 		                                                <option value="officefurniture">Office Furniture</option>
@@ -352,17 +352,17 @@ const openMenu = () => {
 										<ul class="p-0">
 											<li class="mb-6 last:mb-0" v-for="entry in props.liquijobs.slice(0, 3)" :key="entry.id">
 												<div class="w-full relative flex flex-col bg-white border border-[#e9ebef] rounded-lg">      
-													<div class="p-4 sm:pr-4 pr-2">
-														<button @click="openMenu" type="button" class="float-right text-xl font-bold color-[#98a2b3] ml-3 px-3 rounded-full hover:color-[#323581] hover:bg-[#f2f4f7]">
+													<div class="p-3 sm:pr-4 pr-2">
+														<button @click="openMenu" type="button" class="float-right text-xl font-bold color-[#98a2b3] sm:ml-3 ml-1 px-3 rounded-full hover:color-[#323581] hover:bg-[#f2f4f7]">
 															&#8942;
 														</button>
 														<div id="actionbuttons" :class="isOpen ? 'block' : 'hidden' ">
-															<PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="max-w-xl ml-2 float-right">View</PrimaryLink>
+															<PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="max-w-xl ml-2 float-right mb-3">View</PrimaryLink>
 															<!-- {{ props.showeditdelete }} -->
 															<div v-if="props.showeditdelete == 'admin'">
-																<PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.edit', {'id': entry.id})" class="max-w-xl ml-2 float-right" >Edit</PrimaryLink>
+																<PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.edit', {'id': entry.id})" class="max-w-xl ml-2 float-right mb-3" >Edit</PrimaryLink>
 															   	<DangerButton
-																class="ml-3 float-right"
+																class="ml-3 float-right mb-3"
 																@click="deleteTrade(entry.id)" v-if="entry.deleted_at == null"
 																>
 																Trash

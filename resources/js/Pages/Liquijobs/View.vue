@@ -291,7 +291,7 @@ const filteranything = () => {
 									<h2 class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">Filter Jobs By</h2>
 									<select @change="handleFilterSelectChange" v-model="filterkey" class="appearance-none block w-full p-4 mt-3 text-base primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none">
 										<input type="hidden" name="key" v-model="filterkey">
-										<option class="text-base primary-dark-blue" value="">Select filter</option>
+										<option class="text-base primary-dark-blue" selected disabled hidden value="">Select filter</option>
 										<option class="text-base primary-dark-blue" value="status">Status</option>
 										<option class="text-base primary-dark-blue" value="sonumber">SO NUmber</option>
 									</select>
@@ -378,7 +378,7 @@ const filteranything = () => {
 												</div>
 												<div class="w-full mt-3">
 		                                            <select v-model="form.type" id="type" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="type">
-		                                            	<option value="">Job Type</option>
+		                                            	<option value="" selected disabled hidden>Job Type</option>
 		                                                <option value="facilitydecomissioning">Facility Decomissioning</option>
 		                                                <option value="datacenterdecommissioning">Data Center Decommissioning</option>
 		                                                <option value="officefurniture">Office Furniture</option>
@@ -521,7 +521,7 @@ const filteranything = () => {
 											<InputLabel for="asset_type" value="Type" class="w-full lg:w-[60%]"/>
 											<select v-model="formasset.asset_type" id="furniture_asset_type" class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_type" required  :class="isOpenFurniture ? 'block' : 'hidden' ">
 												<optgroup label="Furniture">
-													<option value="" disabled hidden>Select Type</option>
+													<option value="" selected disabled hidden>Select Furniture Type</option>
 													<option value="furniture-cubicle">Cubicle</option>
 													<option value="furniture-casegood">Case Good</option>
 													<option value="furniture-chair">Chair</option>
@@ -532,7 +532,7 @@ const filteranything = () => {
 											</select>
 											<select v-model="formasset.asset_type" id="it_asset_type" class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_type" required  :class="isOpenIt ? 'block' : 'hidden' ">
 												<optgroup label="IT">
-													<option value="" disabled hidden>Select Type</option>
+													<option value="" selected disabled hidden>Select IT Type</option>
 													<option value="it-networkgear">Network Gear</option>
 													<option value="it-servers">Servers</option>
 													<option value="it-pcs">PCs</option>
@@ -547,7 +547,7 @@ const filteranything = () => {
 											</select>
 											<select v-model="formasset.asset_type" id="infrastructure_asset_type" class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_type" required  :class="isOpenInfrastructure ? 'block' : 'hidden' ">
 												<optgroup label="Infrastructure">
-													<option value="" disabled hidden>Select Type</option>
+													<option value="" selected disabled hidden>Select Infrastructure Type</option>
 													<option value="infrastructure-generator">Generator</option>
 													<option value="infrastructure-cracunit">CRAC Unit</option>
 													<option value="infrastructure-ups">UPS</option>
@@ -641,7 +641,7 @@ const filteranything = () => {
 										<div class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
 										<InputLabel for="asset_status" value="Status" class="w-full lg:w-[60%]"/>
 											<select v-model="formasset.asset_status" id="asset_status" class="w-full lg:w-[40%] px-4 py-2 sm:mt-0 mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_status" required>
-												<option value="">Select Status</option>
+												<option value="" selected disabled hidden>Select Status</option>
 												<option value="originalstate">Original State</option>
 												<option value="workinprogress">Work In Progress</option>
 												<option value="completed">Completed</option>
