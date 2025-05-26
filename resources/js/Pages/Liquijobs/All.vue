@@ -412,11 +412,22 @@ const filteranything = () => {
 													</h5>
 													<div class="pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex flex-wrap">
 														<div class="font-rethinksansbold primary-dark-blue lg:w-[60%] md:w-[40%] pr-2">Category: </div>
-														<div class="font-rethinksanssemibold primary-gray lg:w-[40%] md:w-[60%] uppercase">{{ item.asset_category }}</div>
+														<!-- <div class="font-rethinksanssemibold primary-gray lg:w-[40%] md:w-[60%]">{{ item.asset_category }}</div> -->
+														<div class="font-rethinksanssemibold primary-gray lg:w-[40%] md:w-[60%]">
+															<span v-if="item.asset_category == 'furniture'" >
+																Furniture
+															</span>
+															<span v-if="item.asset_category == 'infrastructure'" >
+																Infrastructure
+															</span>
+															<span v-if="item.asset_category == 'it'" >
+																IT
+															</span>
+														</div>
 													</div>
 													<div class="pt-1 pb-1 m-0 border-b border-[#e9ebef] flex flex-wrap">
 														<div class="font-rethinksansbold primary-dark-blue lg:w-[60%] md:w-[40%] pr-2">Status: </div>
-														<div class="font-rethinksanssemibold primary-gray lg:w-[40%] md:w-[60%] uppercase">
+														<div class="font-rethinksanssemibold primary-gray lg:w-[40%] md:w-[60%]">
 															<span v-if="item.asset_status == 'workinprogress'" >
 																Work In Progress
 															</span>
@@ -436,7 +447,11 @@ const filteranything = () => {
 										</li>
 										</div>
 										<div v-else>
-											<h1 style="text-align:center; font-size: 1.5em;">Job has no Assets</h1>
+											<h2 class="text-center text-lg primary-light-blue font-rethinksansextrabold uppercase">Job has no assets</h2>
+											
+											<div class="text-center mt-3">
+												<a v-bind:href="backtoprevjob+'#add-asset'" class="text-white py-3 px-4 rounded-full bg-gradient-blue block sm:inline-block text-center font-rethinksansbold hover:opacity-90"> Add Asset</a>
+											</div>
 										</div>
 									</ul>
 								</div>

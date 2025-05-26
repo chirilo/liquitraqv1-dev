@@ -90,7 +90,7 @@ class LiquiassetController extends Controller
             'asset_status' => $request->asset_status,
         ]);
 
-        return redirect()->route('liquijobs.index')->with('message', 'Asset Added Successfully');
+        return redirect()->route('liquijobs.index')->with('message', 'Asset added successfully.');
         //return redirect()->to('/liquijobs/'.$request->jobid )->with('message', 'Asset Added Successfully');
         //return redirect()->route('liquijobs.show', $request->jobid)->with('message', 'Asset Added Successfully');
     }

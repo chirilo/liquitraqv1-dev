@@ -18,11 +18,11 @@ import UpcomingJobs from '@/Components/UpcomingJobs.vue';
 import moment from "moment";
 
 const props = defineProps({
-    liquijobs : String,
-    job_assets: Object,
-    filters : Object,
-    message : String,
-    currentdatetime: String,
+	liquijobs: String,
+	job_assets: Object,
+	filters: Object,
+	message: String,
+	currentdatetime: String,
 });
 
 const liquijobsCreate = '/liquijobs/create';
@@ -44,25 +44,25 @@ const parentjoburl = '/liquijobs/';
 // const form = useForm(filters);
 
 const deleteTrade = (id) => {
-    if (confirm("Are you sure you want to move this to trash")) {
-	   form.delete(route('liquijobs.destroy',{id:id}), {
-		  preserveScroll: true,
-	   });
-    }
+	if (confirm("Are you sure you want to move this to trash")) {
+		form.delete(route('liquijobs.destroy', { id: id }), {
+			preserveScroll: true,
+		});
+	}
 };
 
 const logout = () => {
-    router.post(route('logout'));
+	router.post(route('logout'));
 };
 </script>
 
 <template>
-    <AppLayout title="View Asset">
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                View Asset
-            </h2>
-        </template>
+	<AppLayout title="View Asset">
+		<template #header>
+			<h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+				View Asset
+			</h2>
+		</template>
 
 		<div class="max-w-7xl mx-auto p-5">
 			<div class="dark:bg-gray-800 overflow-hidden sm:rounded-lg">
@@ -70,18 +70,25 @@ const logout = () => {
 					<div class="grid gap-6 lg:grid-cols-3 md:grid-cols-5 lg:gap-8">
 						<!-- LEFT PART -->
 						<!-- Container for Left Sidebar (search and quick add job) -->
-						<div id="left-side" class="w-full mx-auto flex flex-col items-start overflow-hidden pb-6 pt-6 rounded-lg bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] lg:col-span-1 md:col-span-2">
+						<div id="left-side"
+							class="w-full mx-auto flex flex-col items-start overflow-hidden pb-6 pt-6 rounded-lg bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] lg:col-span-1 md:col-span-2">
 							<div class="relative w-full flex items-center pb-6 border-divider">
 								<div class="mx-auto">
-									<div class="flex items-center"><a href="/liquijobs"><img src="/images/logos/liquis-logo.png" alt="LiquiTraq" class="block md:w-40 sm:w-20"></a></div>
+									<div class="flex items-center"><a href="/liquijobs"><img
+												src="/images/logos/liquis-logo.png" alt="LiquiTraq"
+												class="block md:w-40 sm:w-20"></a></div>
 								</div>
 							</div>
 							<div class="relative w-full border-divider pt-3">
 								<!-- AVATAR -->
 								<div class="relative flex flex-col items-center lg:items-end">
-									<div class="w-full text-center primary-gray font-rethinksansmedium text-sm">{{ props.currentdatetime }}</div>
+									<div class="w-full text-center primary-gray font-rethinksansmedium text-sm">{{
+										props.currentdatetime }}</div>
 									<div class="pt-3 mx-auto relative flex items-center lg:items-end">
-										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl" src="/images/logos/avatar.jpg" alt="User dropdown">
+										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
+											data-dropdown-placement="bottom-start"
+											class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl"
+											src="/images/logos/avatar.jpg" alt="User dropdown">
 									</div>
 								</div>
 								<!-- END OF AVATAR -->
@@ -89,16 +96,23 @@ const logout = () => {
 								<div class="w-full text-center relative py-3">
 									<Dropdown align="center">
 										<template #trigger>
-											<button v-if="$page.props.jetstream.managesProfilePhotos" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-												<img class="rounded-full object-cover" :src="$page.props.auth.user.profile_photo_url" :alt="$page.props.auth.user.name">
+											<button v-if="$page.props.jetstream.managesProfilePhotos"
+												class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
+												<img class="rounded-full object-cover"
+													:src="$page.props.auth.user.profile_photo_url"
+													:alt="$page.props.auth.user.name">
 											</button>
 
 											<span v-else class="inline-flex rounded-md">
-												<button type="button" class="inline-flex items-center border border-transparent text-base text-base primary-light-blue font-rethinksansextrabold uppercase dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
+												<button type="button"
+													class="inline-flex items-center border border-transparent text-base text-base primary-light-blue font-rethinksansextrabold uppercase dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
 													{{ $page.props.auth.user.name }}
 
-													<svg class="ms-2 -me-0.5 size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-														<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+													<svg class="ms-2 -me-0.5 size-4" xmlns="http://www.w3.org/2000/svg"
+														fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+														stroke="currentColor">
+														<path stroke-linecap="round" stroke-linejoin="round"
+															d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
 													</svg>
 												</button>
 											</span>
@@ -106,10 +120,11 @@ const logout = () => {
 
 										<template #content>
 											<!-- Account Management -->
-											<div class="block pl-4 pr-6 py-2 text-base primary-dark-blue font-rethinksansmedium">
+											<div
+												class="block pl-4 pr-6 py-2 text-base primary-dark-blue font-rethinksansmedium">
 												Manage Account
 											</div>
-											
+
 											<DropdownLink class="block w-full" :href="route('profile.show')">
 												Profile
 											</DropdownLink>
@@ -121,7 +136,7 @@ const logout = () => {
 											<div class="border-t border-gray-200 dark:border-gray-600" />
 
 											<!-- Authentication -->
-												
+
 											<form @submit.prevent="logout">
 												<DropdownLink class="block w-full" as="button">
 													Log Out
@@ -138,86 +153,149 @@ const logout = () => {
 								<form @submit.prevent="searchanything" class="relative">
 									<!-- <h1>{{ searchkey }}</h1> -->
 									<input type="hidden" name="key" v-model="searchkey" />
-									<input v-model="searchkey" required class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#e9ebef] bg-white rounded-lg focus:outline-none" type="search" name="search" placeholder="Search anything..." />
-									<button type="submit" class="bg-white absolute inset-y-5 right-5 w-12 z-9 px-0 w-auto"><svg class="size-5 shrink-0 stroke-[#8c8c97]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 19.9 19.7" stroke-width="2"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></svg></button>
+									<input v-model="searchkey" required
+										class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#e9ebef] bg-white rounded-lg focus:outline-none"
+										type="search" name="search" placeholder="Search anything..." />
+									<button type="submit"
+										class="bg-white absolute inset-y-5 right-5 w-12 z-9 px-0 w-auto"><svg
+											class="size-5 shrink-0 stroke-[#8c8c97]" xmlns="http://www.w3.org/2000/svg"
+											fill="none" viewBox="0 0 19.9 19.7" stroke-width="2">
+											<path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4" />
+											<circle cx="8" cy="8" r="7" />
+										</svg></button>
 								</form>
 							</div>
 							<!-- END OF: Search Anything -->
 							<!-- <input class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="search" name="search" placeholder="Search anything" /> -->
 							<div class="w-full pr-6 pl-6 pb-6 mt-6 border-divider">
-								<h2 class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">Filter Jobs By</h2>
-								<select class="appearance-none block w-full p-4 mt-3 text-base primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none">
+								<h2
+									class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">
+									Filter Jobs By</h2>
+								<select
+									class="appearance-none block w-full p-4 mt-3 text-base primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none">
 									<option class="text-base primary-dark-blue" value="state">State</option>
 									<option class="text-base primary-dark-blue" value="building">Building</option>
 								</select>
-								<a href="/liquijobs" class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Go <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></a>
+								<a href="/liquijobs"
+									class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Go
+									<svg style="display: inline; float: inline-end;"
+										class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg"
+										fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+										<path stroke-linecap="round" stroke-linejoin="round"
+											d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+									</svg></a>
 							</div>
 
 							<!-- ADD JOB -->
 							<div class="w-full pr-6 pl-6 pb-6 mt-6">
-								<h2 class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">Quick Add New Job</h2>
+								<h2
+									class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">
+									Quick Add New Job</h2>
 								<div class="mt-3 relative flex items-center lg:items-end">
 									<div id="docs-card-content" class="flex items-start lg:flex-col">
 										<form class="w-full" action="/liquijobs/create">
 											<div class="flex flex-wrap">
 												<div class="w-full">
-													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													Company Name
+													<label class="hidden block tracking-wide mb-2"
+														for="grid-first-name">
+														Company Name
 													</label>
-													<input name="cname" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Company Name">
-													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
+													<input name="cname"
+														class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+														type="text" placeholder="Company Name">
+													<p class="hidden text-red-500 text-xs italic">Please fill out this
+														field.
+													</p>
 												</div>
 												<div class="w-full mt-3">
-													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													Corporate Address
+													<label class="hidden block tracking-wide mb-2"
+														for="grid-first-name">
+														Corporate Address
 													</label>
-													<input name="caddress" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Corporate Address">
-													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
+													<input name="caddress"
+														class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+														type="text" placeholder="Corporate Address">
+													<p class="hidden text-red-500 text-xs italic">Please fill out this
+														field.
+													</p>
 												</div>
 												<div class="w-full mt-3">
-													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													Contact Name
+													<label class="hidden block tracking-wide mb-2"
+														for="grid-first-name">
+														Contact Name
 													</label>
-													<input name="coname" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Contact Name">
-													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
+													<input name="coname"
+														class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+														type="text" placeholder="Contact Name">
+													<p class="hidden text-red-500 text-xs italic">Please fill out this
+														field.
+													</p>
 												</div>
 												<div class="w-full mt-3">
-													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													Contact Email
+													<label class="hidden block tracking-wide mb-2"
+														for="grid-first-name">
+														Contact Email
 													</label>
-													<input name="cemail" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Contact Email">
-													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
+													<input name="cemail"
+														class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+														type="text" placeholder="Contact Email">
+													<p class="hidden text-red-500 text-xs italic">Please fill out this
+														field.
+													</p>
 												</div>
 												<div class="w-full mt-3">
-													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													Contact Telephone
+													<label class="hidden block tracking-wide mb-2"
+														for="grid-first-name">
+														Contact Telephone
 													</label>
-													<input name="cname"cotel class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Contact Telephone">
-													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
+													<input name="cname" cotel
+														class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+														type="text" placeholder="Contact Telephone">
+													<p class="hidden text-red-500 text-xs italic">Please fill out this
+														field.
+													</p>
 												</div>
 												<div class="w-full mt-3">
-													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													Location Address
+													<label class="hidden block tracking-wide mb-2"
+														for="grid-first-name">
+														Location Address
 													</label>
-													<input name="loaddress" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Location Address">
-													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
+													<input name="loaddress"
+														class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+														type="text" placeholder="Location Address">
+													<p class="hidden text-red-500 text-xs italic">Please fill out this
+														field.
+													</p>
 												</div>
 												<div class="w-full mt-3">
-													<label class="hidden block tracking-wide mb-2" for="grid-first-name">
-													Start Date
+													<label class="hidden block tracking-wide mb-2"
+														for="grid-first-name">
+														Start Date
 													</label>
-													<input name="sdate" class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" placeholder="Start Date">
-													<p class="hidden text-red-500 text-xs italic">Please fill out this field.</p>
+													<input name="sdate"
+														class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+														type="text" placeholder="Start Date">
+													<p class="hidden text-red-500 text-xs italic">Please fill out this
+														field.
+													</p>
 												</div>
 											</div>
-											
+
 											<!-- <a v-bind:href="liquijobsCreate" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" style="display: inline-block; width: 100% !important; text-align: center;"> ADD NEW JOB <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg> </a> -->
-											<button id="send" type="submit" class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Add New <svg style="display: inline; float: inline-end;" class="size-6 shrink-0 stroke-[#FFFFFF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg></button>
-										
+											<button id="send" type="submit"
+												class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Add
+												New <svg style="display: inline; float: inline-end;"
+													class="size-6 shrink-0 stroke-[#FFFFFF]"
+													xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+													stroke-width="1.5">
+													<path stroke-linecap="round" stroke-linejoin="round"
+														d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+												</svg></button>
+
 										</form>
 									</div>
 
-									
+
 								</div>
 							</div>
 						</div>
@@ -229,80 +307,226 @@ const logout = () => {
 									<ul class="p-0">
 										<li class="m-0" v-for="item in job_assets" :key="id" :value="id">
 											<div class="relative flex justify-between items-start">
-												<h1 class="w-[60%] block sm:text-2xl text-xl primary-light-blue font-rethinksansextrabold uppercase">
-													Job: 
-													<span class="sm:inline block">{{props.liquijobs.company_name}}</span>
+												<h1
+													class="w-[60%] block sm:text-2xl text-xl primary-light-blue font-rethinksansextrabold uppercase">
+													Job:
+													<span class="sm:inline block">{{ props.liquijobs }}</span>
 												</h1>
-												<a v-bind:href="parentjoburl+item.job_id" class="text-white py-2 px-4 rounded-full bg-gradient-blue text-center text-sm font-rethinksansbold hover:opacity-90 flex">
+												<a v-bind:href="parentjoburl + item.job_id"
+													class="text-white py-2 px-4 rounded-full bg-gradient-blue text-center text-sm font-rethinksansbold hover:opacity-90 flex">
 													<img class="w-4 mr-2" src="/images/logos/back.png"> Back
 												</a>
 											</div>
-											<h5 class="w-full mt-6 block text-xl primary-dark-blue font-rethinksansextrabold uppercase">
+											<h5
+												class="w-full mt-6 block text-xl primary-dark-blue font-rethinksansextrabold uppercase">
 												Asset #: {{ item.id }}
 											</h5>
 											<div class="w-full relative flex flex-col">
 												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Category: </div>
-													<div class="font-rethinksanssemibold primary-gray width-40 uppercase">{{ item.asset_category }}</div>
+													<div class="font-rethinksansbold primary-dark-blue w-[60%]">
+														Category: </div>
+													<!-- <div class="font-rethinksanssemibold primary-gray width-40">{{ item.asset_category }}</div> -->
+													<div
+														class="font-rethinksanssemibold primary-gray lg:w-[40%] md:w-[60%]">
+														<span v-if="item.asset_category == 'furniture'">
+															Furniture
+														</span>
+														<span v-if="item.asset_category == 'infrastructure'">
+															Infrastructure
+														</span>
+														<span v-if="item.asset_category == 'it'">
+															IT
+														</span>
+													</div>
 												</div>
 												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Quantity: </div>
-													<div class="font-rethinksanssemibold primary-gray width-40">{{ item.asset_quantity}}</div>
+													<div class="font-rethinksansbold primary-dark-blue w-[60%]">
+														Quantity: </div>
+													<div class="font-rethinksanssemibold primary-gray width-40">{{
+														item.asset_quantity }}</div>
 												</div>
 												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Type: </div>
-													<div class="font-rethinksanssemibold primary-gray width-40">{{ item.asset_type }}</div>
+													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Type:
+													</div>
+													<div class="font-rethinksanssemibold primary-gray width-40">
+														<!-- {{item.asset_type }} -->
+														<!-- Furniture -->
+														<span v-if="item.asset_type == 'furniture-cubicle'">
+															Cubicle
+														</span>
+														<span v-if="item.asset_type == 'furniture-casegood'">
+															Case Good
+														</span>
+														<span v-if="item.asset_type == 'furniture-chair'">
+															Chair
+														</span>
+														<span v-if="item.asset_type == 'furniture-wallhanging'">
+															Wall Hanging
+														</span>
+														<span v-if="item.asset_type == 'furniture-appliance'">
+															Appliance
+														</span>
+														<span v-if="item.asset_type == 'furniture-others'">
+															Others
+														</span>
+														<!-- End Furniture -->
+														<!-- IT -->
+														<span v-if="item.asset_type == 'it-networkgear'">
+															Network Gear
+														</span>
+														<span v-if="item.asset_type == 'it-servers'">
+															Servers
+														</span>
+														<span v-if="item.asset_type == 'it-pcs'">
+															PCs
+														</span>
+														<span v-if="item.asset_type == 'it-laptops'">
+															Laptops
+														</span>
+														<span v-if="item.asset_type == 'it-rack'">
+															Rack
+														</span>
+														<span v-if="item.asset_type == 'it-telecom'">
+															Telecom
+														</span>
+														<span v-if="item.asset_type == 'it-monitors'">
+															Monitors
+														</span>
+														<span v-if="item.asset_type == 'it-camera'">
+															Camera
+														</span>
+														<span v-if="item.asset_type == 'it-printers'">
+															Printers
+														</span>
+														<span v-if="item.asset_type == 'furniture-others'">
+															Others
+														</span>
+														<!-- End IT -->
+														<!-- Infrastructure -->
+														<span v-if="item.asset_type == 'infrastructure-generator'">
+															Generator
+														</span>
+														<span v-if="item.asset_type == 'infrastructure-cracunit'">
+															CRAC Unit
+														</span>
+														<span v-if="item.asset_type == 'infrastructure-ups'">
+															UPS
+														</span>
+														<span v-if="item.asset_type == 'infrastructure-ats'">
+															ATS
+														</span>
+														<span v-if="item.asset_type == 'infrastructure-bypass'">
+															Bypass
+														</span>
+														<span v-if="item.asset_type == 'infrastructure-switchgear'">
+															Switchgear
+														</span>
+														<span v-if="item.asset_type == 'infrastructure-batteries'">
+															Batteries
+														</span>
+														<span
+															v-if="item.asset_type == 'infrastructure-wiringlowvoltage'">
+															Wiring, Low-Voltage
+														</span>
+														<span
+															v-if="item.asset_type == 'infrastructure-wiringhighvoltage'">
+															Wiring, High-Voltage
+														</span>
+														<span
+															v-if="item.asset_type == 'infrastructure-firesuppressant'">
+															Fire Suppressant
+														</span>
+														<span v-if="item.asset_type == 'infrastructure-raisedflooring'">
+															Raised Flooring
+														</span>
+														<span v-if="item.asset_type == 'infrastructure-paintchemical'">
+															Paint/Chemical
+														</span>
+														<span v-if="item.asset_type == 'infrastructure-others'">
+															Others
+														</span>
+														<!-- End Infrastructure -->
+													</div>
 												</div>
 												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Make: </div>
-													<div class="font-rethinksanssemibold primary-gray width-40">{{ item.asset_make}}</div>
+													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Make:
+													</div>
+													<div class="font-rethinksanssemibold primary-gray width-40">{{
+														item.asset_make }}</div>
 												</div>
 												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Model: </div>
-													<div class="font-rethinksanssemibold primary-gray width-40">{{ item.asset_model }}</div>
+													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Model:
+													</div>
+													<div class="font-rethinksanssemibold primary-gray width-40">{{
+														item.asset_model }}</div>
 												</div>
 												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Serial: </div>
-													<div class="font-rethinksanssemibold primary-gray width-40">{{ item.asset_serial }}</div>
+													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Serial:
+													</div>
+													<div class="font-rethinksanssemibold primary-gray width-40">{{
+														item.asset_serial }}</div>
 												</div>
 												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Weight Each: </div>
-													<div class="font-rethinksanssemibold primary-gray width-40">{{ item.asset_weight_each }}</div>
+													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Weight
+														Each:
+													</div>
+													<div class="font-rethinksanssemibold primary-gray width-40">{{
+														item.asset_weight_each }}</div>
 												</div>
 												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Description: </div>
-													<div class="font-rethinksanssemibold primary-gray width-40">{{ item.asset_description }}</div>
+													<div class="font-rethinksansbold primary-dark-blue w-[60%]">
+														Description:
+													</div>
+													<div class="font-rethinksanssemibold primary-gray width-40">{{
+														item.asset_description }}</div>
 												</div>
 												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Status: </div>
-													<div class="font-rethinksanssemibold primary-gray width-40 uppercase">{{ item.asset_status }}</div>
+													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Status:
+													</div>
+													<!-- <div class="font-rethinksanssemibold primary-gray width-40 uppercase">{{ item.asset_status }}</div> -->
+													<div
+														class="font-rethinksanssemibold primary-gray lg:w-[40%] md:w-[60%]">
+														<span v-if="item.asset_status == 'workinprogress'">
+															Work In Progress
+														</span>
+														<span v-if="item.asset_status == 'completed'">
+															Completed
+														</span>
+														<span v-if="item.asset_status == 'originalstate'">
+															Original State
+														</span>
+													</div>
 												</div>
 											</div>
 											<ul class="mt-6 p-0 flex justify-between">
-													<li class="m-0 p-0 w-[45%]" v-for="item in job_assets" :key="id" :value="id">
-														<img class="h-auto w-full" style="background-image: url('https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0');" :src="item.job_asset" />
+												<li class="m-0 p-0 w-[45%]" v-for="item in job_assets" :key="id"
+													:value="id">
+													<img class="h-auto w-full"
+														style="background-image: url('https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0');"
+														:src="item.job_asset" />
 												</li>
 											</ul>
 										</li>
 									</ul>
-								</div> 
+								</div>
 							</div>
 						</div>
-							<!-- current job selected / recent jobs -->
+						<!-- current job selected / recent jobs -->
 					</div>
 					<!-- CALENDAR -->
 					<div class="mt-6 grid gap-6 lg:grid-cols-1 lg:gap-8" style="display: none;">
 						<!-- Container for CALENDAR -->
-						<div id="calendar-container" class="flex flex-col items-start gap-12 overflow-hidden rounded-lg bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] md:row-span-3 lg:p-12 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]">
+						<div id="calendar-container"
+							class="flex flex-col items-start gap-12 overflow-hidden rounded-lg bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] md:row-span-3 lg:p-12 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]">
 							<Calendar />
 						</div>
 					</div>
-				        
+
 				</div> <!-- end of unlabeled div -->
-            </div>
-        </div>
-        <!-- -->
-        
-    </AppLayout>
-    	
+			</div>
+		</div>
+		<!-- -->
+
+	</AppLayout>
+
 </template>

@@ -215,7 +215,7 @@ class LiquijobController extends Controller
             'invoice_number' => '1',
 
         ]);
-        return redirect()->route('liquijobs.index')->with('message', 'Liquijob Created Successfully');
+        return redirect()->route('liquijobs.index')->with('message', 'Liquijob created successfully.');
     }
 
     /**
@@ -349,7 +349,7 @@ class LiquijobController extends Controller
             'type' => $request->type,
         ]);
 
-        return redirect()->route('liquijobs.index')->with('message', 'Liquijob Updated Successfully');
+        return redirect()->route('liquijobs.index')->with('message', 'Liquijob updated successfully.');
     }
 
     /**
@@ -359,7 +359,7 @@ class LiquijobController extends Controller
     {
         //
         $liquijob->delete();
-        return redirect()->route('liquijobs.index')->with('message', 'Liquijob Deleted Successfully');
+        return redirect()->route('liquijobs.index')->with('message', 'Liquijob deleted successfully.');
     }
 
     /**

@@ -494,7 +494,7 @@ const filteranything = () => {
 									</ul>
 								</div> 
 							</div>
-							<div class="rounded-lg bg-white p-6 mt-6">
+							<div class="rounded-lg bg-white p-6 mt-6" id="add-asset">
 								<div class="text-center">
 									<h2 class="block sm:text-2xl text-xl primary-light-blue font-rethinksansextrabold uppercase">
 										Add New Asset
