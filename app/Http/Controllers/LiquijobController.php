@@ -76,14 +76,31 @@ class LiquijobController extends Controller
             $showeditdelete = 'admin';
         }
         
-        //dd($showeditdelete);exit;
-        return Inertia::render('Liquijobs/Index', [
-            'liquijobs' => $liquijobs,
-            'filters' => $request->all('filter'),
-            'message' => session('message'),
-            'showeditdelete' => $showeditdelete,
-            'currentdatetime' => $currentdatetime,
-        ]);
+
+        //dd($request);
+
+        if( isset($_GET['alljobs']) ){
+            //dd($showeditdelete);exit;
+            return Inertia::render('Liquijobs/Alljobs', [
+                'liquijobs' => $liquijobs,
+                'filters' => $request->all('filter'),
+                'message' => session('message'),
+                'showeditdelete' => $showeditdelete,
+                'currentdatetime' => $currentdatetime,
+            ]);
+        }
+        else{
+           //dd($showeditdelete);exit;
+            return Inertia::render('Liquijobs/Index', [
+                'liquijobs' => $liquijobs,
+                'filters' => $request->all('filter'),
+                'message' => session('message'),
+                'showeditdelete' => $showeditdelete,
+                'currentdatetime' => $currentdatetime,
+            ]); 
+        }
+
+        
     }
 
     /**

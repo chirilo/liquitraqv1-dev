@@ -342,10 +342,13 @@ const openMenu = () => {
 								<!-- recent jobs -->
 								<div id="recent-jobs">
 									<div class="relative flex justify-between items-end">
-										<h3 class="w-[60%] block text-2xl primary-light-blue font-rethinksansextrabold uppercase">Recent Jobs</h3>
+										<h3 class="w-[60%] block text-2xl primary-light-blue font-rethinksansextrabold uppercase">All Jobs</h3>
 										<!-- LINK TO JOBS archive page -->
-                                    	<a href="/liquijobs?&alljobs=1" class="text-white py-2 px-4 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
+                                    	<!-- <a href="/liquijobs?&alljobs=1" class="text-white py-2 px-4 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
 											View All
+										</a> -->
+										<a href="/liquijobs" class="text-white py-2 px-4 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
+											<img class="w-4 mr-2" src="/images/logos/back.png"> Back
 										</a>
 									</div>
 									<div v-if="props.liquijobs" class="w-full relative flex flex-col">
@@ -430,53 +433,10 @@ const openMenu = () => {
 									</div>
 								</div>
 								<!-- recent jobs -->
-								<!-- jobs last 7 days -->
-								<div id="job-last-7-days" class="mt-6 w-full relative flex flex-col bg-white border border-[#e9ebef] rounded-lg">
-									<div class="relative flex flex-col pt-4 sm:pb-2 sm-0 px-4">
-										<h3 class="block w-full text-lg primary-light-blue font-rethinksansextrabold uppercase">Jobs Last 7 Days</h3>
-									</div>
-									<ul class="p-0">
-										<li class="px-4 py-2 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none" v-for="entry in props.liquijobs.slice(0, 3)" :key="entry.id">
-											<div >
-												<!-- <PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="float-right">View</PrimaryLink> -->
-												<a :href="route('liquijobs.show', {'id': entry.id})" class="primary-dark-blue font-rethinksansbold text-base hover:opacity-80">
-												Building: {{ entry.corporate_address }}
-												</a>
-												<!-- <span class="primary-dark-blue font-rethinksansmedium text-base" style="float: inline-end;">
-													{{ entry.start_date }}
-												</span> -->
-											</div>
-										</li>
-									</ul>
-								</div>
-								<!-- jobs last 7 days -->
-								<!-- <UpcomingJobs /> -->
-								<div id="upcoming-jobs" class="mt-6 w-full relative flex flex-col bg-white border border-[#e9ebef] rounded-lg">
-									<div class="relative flex flex-col pt-4 sm:pb-2 sm-0 px-4">
-										<h3 class="block w-full text-lg primary-light-blue font-rethinksansextrabold uppercase">Upcoming Jobs</h3>
-									</div>
-									<ul class="p-0">
-										<li class="px-4 py-2 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none"  v-for="entry in props.liquijobs.slice(0, 3)" :key="entry.id">
-											<!-- <PrimaryLink v-if="entry.deleted_at == null" :href="route('liquijobs.show', {'id': entry.id})" class="float-right">View</PrimaryLink> -->
-											<div class="flex sm:flex-row flex-col justify-start sm:justify-between">
-												<div class="sm:w-[60%] w-full">
-													<a :href="route('liquijobs.show', {'id': entry.id})" class="primary-dark-blue font-rethinksansbold text-base hover:opacity-80">
-													Building: {{ entry.corporate_address }}
-													</a>
-												</div>
-												<div class="inline">
-													<div class="primary-dark-blue font-rethinksansmedium text-base">
-														{{ moment(entry.start_date).format("MMMM D, YYYY") }}
-													</div>
-												</div>
-											</div>
-										</li>                        
-									</ul>
-								</div>
-								<!-- upcoming jobs -->
+								
 							 </div>
 							<!-- CALENDAR -->
-							<div id="calendar-container" class="mt-6 grid items-start rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)]">
+							<div style="display: none;" id="calendar-container" class="mt-6 grid items-start rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)]">
 								<Calendar />
 							</div>
 						</div>
