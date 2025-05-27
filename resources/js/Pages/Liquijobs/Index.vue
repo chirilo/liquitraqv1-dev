@@ -120,6 +120,21 @@ const openMenu = () => {
 	console.log(isOpen);
 };
 
+if( props.message ){
+	setTimeout(() => {
+		//alert('here');
+		document.getElementById('toastmessage').style.display = 'none';
+	}, 5000);
+}
+
+// const shown = computed(() => {
+// 	if (props.message) {
+// 	  setTimeout(() => {
+// 	  	document.getElementById('toastmessage').style.visibility = "hidden";
+// 	  }, 2000);
+// 	}
+// 	//return props.show.value
+// })
 </script>
 
 <template>
@@ -132,7 +147,7 @@ const openMenu = () => {
 
 		<div class="max-w-7xl mx-auto p-5">
 			<!-- Toast message -->
-			<div v-if="props.message"
+			<div id="toastmessage" v-if="props.message"
 				class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
 				role="alert">
 				<span class="font-medium">
@@ -303,8 +318,8 @@ const openMenu = () => {
 												</div>
 												<div class="w-full mt-3">
 													<InputLabel for="contact_telephone" value="Phone" />
-													<TextInput id="contact_telephone" type="tel" placeholder="Phone"
-														v-model="form.contact_telephone" required />
+													<TextInput id="contact_telephone" type="number" placeholder="Phone"
+														v-model="form.contact_telephone" required @keydown="(e: KeyboardEvent) => { if (e.key === '-') e.preventDefault()}" />
 													<InputError class="mt-2" :message="form.errors.contact_telephone" />
 												</div>
 												<div class="w-full mt-3">

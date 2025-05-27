@@ -41,6 +41,11 @@ const submit = () => {
             {{ status }}
         </div>
 
+        <div class="py-3">
+            <a href="/login">Login</a>
+            <br>
+            <a href="/register">Register</a>
+        </div>
         <form @submit.prevent="submit">
             <div>
                 <InputLabel for="email" value="Email" />
