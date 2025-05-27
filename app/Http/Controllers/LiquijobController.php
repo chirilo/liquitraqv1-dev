@@ -35,7 +35,10 @@ class LiquijobController extends Controller
         // ->get();
 
         // get current date and time
-        $currentdatetime = now()->format('M d, Y - h:m A');
+        //$currentdatetime = now()->format('M d, Y - h:m A');
+        $currentdatetime = new \DateTime("now", new \DateTimeZone('America/Los_Angeles'));
+        $currentdatetime = $currentdatetime->format('M d, Y h:i A');
+        //$currentdatetime = date('M d, Y h:i:sA');
 
         /**
          * check here if user is Admin or Regular, if Admin query all jobs, if Regular, only query jobs created by Regular user

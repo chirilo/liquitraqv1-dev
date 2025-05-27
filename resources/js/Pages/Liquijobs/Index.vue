@@ -303,8 +303,8 @@ const openMenu = () => {
 												</div>
 												<div class="w-full mt-3">
 													<InputLabel for="contact_telephone" value="Phone" />
-													<TextInput id="contact_telephone" type="tel" placeholder="Phone"
-														v-model="form.contact_telephone" required />
+													<TextInput id="contact_telephone" type="number" placeholder="Phone"
+														v-model="form.contact_telephone" required @keydown="(e: KeyboardEvent) => { if (e.key === '-') e.preventDefault()}" />
 													<InputError class="mt-2" :message="form.errors.contact_telephone" />
 												</div>
 												<div class="w-full mt-3">
