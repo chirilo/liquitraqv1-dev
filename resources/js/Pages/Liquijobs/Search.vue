@@ -380,8 +380,7 @@ const filteranything = () => {
                                 <div class="relative flex justify-between items-start">
                                     <h1
                                         class="w-[60%] block sm:text-2xl text-xl primary-light-blue font-rethinksansextrabold">
-											<!-- Search results for: <span class="primary">"{{ props.keyword.slice(1, -1) }}"</span> -->
-											Search results: <!-- <span class="primary">"{{ props.keyword }}"</span> -->
+											Search results for: <span class="primary-gray">"{{ keyword }}"</span>
                                     </h1>
                                     <!-- LINK TO JOBS archive page -->
                                     <a href="/liquijobs"
@@ -394,30 +393,26 @@ const filteranything = () => {
 									<!-- <h1 style="text-align: center;">Results for: {{ keyword }}</h1> -->
 									<div v-if="results.length">
 										<ul class="p-0">
-											<!-- <li v-for="(val, index) in results" :key="index">
-											<span>{{ val.company_name }}</span>
-											</li> -->
-											
 											<li v-for="(val, index) in results" :key="index">
-												
-
 												<!-- Each job result is wrapped with anchor element, when clicked goes to view single job page -->
 												<a :href="'/liquijobs/' + val.id">
-													<h6 class="mb-2 text-slate-800 text-xl font-semibold">
-														SO Number: {{val.so_number}}
-													</h6>
-													<div class="jobcont w-full relative flex flex-col">
-														<div class=" last:mb-2 border-[#e9ebef] last:border-none">
+													<div class="w-full relative flex flex-col bg-white border border-[#e9ebef] rounded-lg hover:bg-[#f2f4f7]">
+														<div class="p-3 sm:pr-4 pr-2">
+															<h6 class="font-rethinksansbold primary-dark-blue text-base font-semibold">
+																SO Number: {{val.id + 13401002 }}
+															</h6>
 															<p>
 																<span class="font-rethinksansbold primary-dark-blue">Job Co Name: </span><span class="font-rethinksanssemibold primary-gray">{{val.company_name}}</span>
 															</p>
 														</div>
-														<div class=" last:mb-2 border-b border-[#e9ebef] last:border-none">
-															<p>
-																<span class="font-rethinksansbold primary-dark-blue">Address: </span><span class="font-rethinksanssemibold primary-gray">{{val.corporate_address}}</span>
-															</p>
+														<div class="flex justify-between bg-[#f2f4f7] px-4 py-2  flex-col sm:flex-row">
+															<span class="text-nowrap w-auto primary-dark-blue font-rethinksansmedium text-base">
+																Status: {{ val.status }}
+															</span>
+															<span class="text-nowrap w-auto primary-dark-blue font-rethinksansmedium text-base">
+																Start Date: {{ moment(val.start_date).format("MMMM D, YYYY") }}
+															</span>
 														</div>
-														
 													</div>
 												</a>
 												<!-- END OF job result wrapper -->

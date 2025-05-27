@@ -200,7 +200,6 @@ class LiquijobController extends Controller
             'start_date' => $request->start_date,
             'type' => $request->type,
             'job_owner_id' => $id,
-
             'so_number' => 13401002,
             'building' => $request->location_address,
             'city' => '1',
@@ -359,6 +358,7 @@ class LiquijobController extends Controller
             'location_address' => $request->location_address,
             'start_date' => $request->start_date,
             'type' => $request->type,
+            'status' => $request->status,
         ]);
 
         return redirect()->route('liquijobs.index')->with('message', 'Liquijob updated successfully.');

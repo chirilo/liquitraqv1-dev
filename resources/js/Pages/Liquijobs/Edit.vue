@@ -344,10 +344,10 @@ const filteranything = () => {
                                         <InputError class="mt-2 w-full lg:w-[40%]" :message="form.errors.start_date" />
                                     </div>
                                     <div
-                                        class="flex pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
                                         <InputLabel for="type" value="Job Type" class="w-full lg:w-[60%]" />
                                         <select v-model="form.type" id="type"
-                                            class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+                                            class="w-full lg:w-[40%] appearance-none block w-full mt-2 px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
                                             name="type">
                                             <option value="" disabled selected hidden>Select Job Type</option>
                                             <option value="facilitydecomissioning">Facility Decomissioning</option>
@@ -368,7 +368,7 @@ const filteranything = () => {
                                         class="flex pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
                                         <InputLabel for="status" value="Status" class="w-full lg:w-[60%]" />
                                         <select v-model="form.status" id="status"
-                                            class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+                                            class="w-full lg:w-[40%] appearance-none block w-full mt-2 px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
                                             name="status">
                                             <option value="" selected disabled hidden>Select Status</option>
                                             <option value="New">New</option>

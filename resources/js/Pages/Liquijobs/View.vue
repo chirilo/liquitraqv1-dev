@@ -462,48 +462,48 @@ const filteranything = () => {
 												<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
 													<p>
 														<span class="font-rethinksansbold primary-dark-blue">SO Number:
-														</span><span
-															class="font-rethinksanssemibold primary-gray">{{ props.liquijobs.id
+														</span><span class="font-rethinksanssemibold primary-gray">{{
+															props.liquijobs.id
 															+
-															13401002}}</span>
+															13401002 }}</span>
 													</p>
 												</div>
 												<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
 													<p>
 														<span class="font-rethinksansbold primary-dark-blue">Corporate
 															Address:
-														</span><span
-															class="font-rethinksanssemibold primary-gray">{{ props.liquijobs.corporate_address }}</span>
+														</span><span class="font-rethinksanssemibold primary-gray">{{
+															props.liquijobs.corporate_address }}</span>
 													</p>
 												</div>
 												<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
 													<p>
 														<span class="font-rethinksansbold primary-dark-blue">Contact
 															Name:
-														</span><span
-															class="font-rethinksanssemibold primary-gray">{{ props.liquijobs.contact_name }}</span>
+														</span><span class="font-rethinksanssemibold primary-gray">{{
+															props.liquijobs.contact_name }}</span>
 													</p>
 												</div>
 												<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
 													<p>
 														<span class="font-rethinksansbold primary-dark-blue">Phone:
-														</span><span
-															class="font-rethinksanssemibold primary-gray">{{ props.liquijobs.contact_telephone }}</span>
+														</span><span class="font-rethinksanssemibold primary-gray">{{
+															props.liquijobs.contact_telephone }}</span>
 													</p>
 												</div>
 												<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
 													<p>
 														<span class="font-rethinksansbold primary-dark-blue">Email:
-														</span><span
-															class="font-rethinksanssemibold primary-gray">{{ props.liquijobs.contact_email }}</span>
+														</span><span class="font-rethinksanssemibold primary-gray">{{
+															props.liquijobs.contact_email }}</span>
 													</p>
 												</div>
 												<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
 													<p>
 														<span class="font-rethinksansbold primary-dark-blue">Location
 															Name:
-														</span><span
-															class="font-rethinksanssemibold primary-gray">{{ props.liquijobs.location_address }}</span>
+														</span><span class="font-rethinksanssemibold primary-gray">{{
+															props.liquijobs.location_address }}</span>
 													</p>
 												</div>
 												<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
@@ -513,6 +513,17 @@ const filteranything = () => {
 														</span>
 														<span class="font-rethinksanssemibold primary-gray">
 															{{ moment(props.liquijobs.start_date).format("MMMM D, YYYY")
+															}}
+														</span>
+													</p>
+												</div>
+												<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
+													<p>
+														<span class="font-rethinksansbold primary-dark-blue">
+															Status:
+														</span>
+														<span class="font-rethinksanssemibold primary-gray">
+															{{ props.liquijobs.status
 															}}
 														</span>
 													</p>
@@ -541,7 +552,7 @@ const filteranything = () => {
 														<span class="font-rethinksansbold primary-dark-blue">IT:
 														</span><span class="font-rethinksanssemibold primary-gray">{{
 															props.itjobassets
-															}}</span>
+														}}</span>
 													</div>
 													<div
 														class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
@@ -633,7 +644,7 @@ const filteranything = () => {
 											<InputLabel for="asset_type" value="Type" class="w-full lg:w-[60%]" />
 											<select v-model="formasset.asset_type" id="furniture_asset_type"
 												class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
-												name="asset_type"  :required="isOpenFurniture ? 'true' : 'false'"
+												name="asset_type" :required="isOpenFurniture ? 'true' : 'false'"
 												:class="isOpenFurniture ? 'block' : 'hidden'">
 												<optgroup label="Furniture">
 													<option value="" selected disabled hidden>Select Furniture Type
@@ -648,7 +659,8 @@ const filteranything = () => {
 											</select>
 											<select v-model="formasset.asset_type" id="it_asset_type"
 												class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
-												name="asset_type" :required="isOpenIt ? 'true' : 'false'" :class="isOpenIt ? 'block' : 'hidden'">
+												name="asset_type" :required="isOpenIt ? 'true' : 'false'"
+												:class="isOpenIt ? 'block' : 'hidden'">
 												<optgroup label="IT">
 													<option value="" selected disabled hidden>Select IT Type</option>
 													<option value="it-networkgear">Network Gear</option>
