@@ -392,10 +392,11 @@ const filteranything = () => {
 												</a>
 												<!-- END OF job result wrapper -->
 											</li>
-											<hr>
 										</ul>
 									</div>
-        							<div v-else class="text-base font-rethinksansmedium primary-dark-blue">No results were found.</div>
+        							<div v-else class="mt-6">
+										<h2 class="text-center text-lg primary-light-blue font-rethinksansextrabold uppercase">No results were found.</h2>
+									</div>
 								</div>
 							</div>
 							<!-- CALENDAR -->

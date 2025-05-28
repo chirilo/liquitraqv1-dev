@@ -41,11 +41,6 @@ const submit = () => {
             {{ status }}
         </div>
 
-        <div class="py-3">
-            <a href="/login">Login</a>
-            <br>
-            <a href="/register">Register</a>
-        </div>
         <form @submit.prevent="submit">
             <div>
                 <InputLabel for="email" value="Email" />
@@ -81,14 +76,20 @@ const submit = () => {
                 </label>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <Link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
-                    Forgot your password?
-                </Link>
+            <div class="flex items-center justify-end mt-4 pb-4 border-divider">
+                <div>
+                    <Link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
+                        Forgot your password?</Link>
+                    <PrimaryButton style="background-color: rgb(41, 45, 115);" class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                        Log in
+                    </PrimaryButton>
+                </div>
+            </div>
 
-                <PrimaryButton style="background-color: rgb(41, 45, 115);" class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Log in
-                </PrimaryButton>
+            <div class="flex items-center justify-center mt-4">
+                <a href="/register" class="text-white py-2 px-4 rounded-full bg-[#00afef] inline-block text-center text-sm font-rethinksansbold hover:opacity-90">
+                    Create an account
+                </a>
             </div>
         </form>
     </AuthenticationCard>
