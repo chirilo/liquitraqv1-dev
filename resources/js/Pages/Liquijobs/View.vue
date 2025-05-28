@@ -656,7 +656,7 @@ const filteranything = () => {
 											<InputLabel for="asset_type" value="Type" class="w-full lg:w-[60%]" />
 											<select v-model="formasset.asset_type" id="furniture_asset_type"
 												class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
-												name="asset_type" :required="isOpenFurniture ? 'true' : 'false'"
+												name="asset_type" 
 												:class="isOpenFurniture ? 'block' : 'hidden'">
 												<optgroup label="Furniture">
 													<option value="" selected disabled hidden>Select Furniture Type
@@ -671,7 +671,7 @@ const filteranything = () => {
 											</select>
 											<select v-model="formasset.asset_type" id="it_asset_type"
 												class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
-												name="asset_type" :required="isOpenIt ? 'true' : 'false'"
+												name="asset_type" 
 												:class="isOpenIt ? 'block' : 'hidden'">
 												<optgroup label="IT">
 													<option value="" selected disabled hidden>Select IT Type</option>
@@ -689,7 +689,7 @@ const filteranything = () => {
 											</select>
 											<select v-model="formasset.asset_type" id="infrastructure_asset_type"
 												class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
-												name="asset_type" :required="isOpenInfrastructure ? 'true' : 'false'"
+												name="asset_type" 
 												:class="isOpenInfrastructure ? 'block' : 'hidden'">
 												<optgroup label="Infrastructure">
 													<option value="" selected disabled hidden>Select Infrastructure Type
