@@ -65,7 +65,7 @@ let isOpenIt = ref(false);
 let isOpenInfrastructure = ref(false);
 
 const openMenuSelect = (event) => {
-	const it_asset_type = document.getElementById('asset_type');
+	const it_asset_type = document.getElementById('it_asset_type');
 	const furniture_asset_type = document.getElementById('furniture_asset_type');
 	const infrastructure_asset_type = document.getElementById('infrastructure_asset_type');
 	// Access the selected value using event.target.value
@@ -77,8 +77,8 @@ const openMenuSelect = (event) => {
 		isOpenIt.value = !isOpenIt.value;
 		isOpenFurniture.value = isOpenFurniture.value;
 		isOpenInfrastructure.value = isOpenInfrastructure.value;
-		furniture_asset_type.removeAttribute('required');
-		infrastructure_asset_type.removeAttribute('required');
+		// furniture_asset_type.removeAttribute('required');
+		// infrastructure_asset_type.removeAttribute('required');
 		console.log(isOpenIt);
 	} else if (event.target.value === 'furniture') {
 		// Do something else
@@ -340,7 +340,7 @@ const logout = () => {
                                                     required
                                                     autofocus
                                                 /> -->
-                                                <select v-model="form.asset_type" id="furniture_asset_type" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_type" required  :class="isOpenFurniture ? 'block' : 'hidden' ">
+                                                <select v-model="form.asset_type" id="furniture_asset_type" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_type"  :class="isOpenFurniture ? 'block' : 'hidden' ">
                                                 	<optgroup label="Furniture">
                                                 		<option value="">Select Type</option>
 		                                                <option value="furniture-cubicle">Cubicle</option>
@@ -351,7 +351,7 @@ const logout = () => {
 		                                                <option value="furniture-others">Others</option>
                                                 	</optgroup>
                                                 </select>
-                                                <select v-model="form.asset_type" id="it_asset_type" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_type" required  :class="isOpenIt ? 'block' : 'hidden' ">
+                                                <select v-model="form.asset_type" id="it_asset_type" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_type"  :class="isOpenIt ? 'block' : 'hidden' ">
 	                                            	<optgroup label="IT">
                                                 		<option value="">Select Type</option>
 		                                                <option value="it-networkgear">Network Gear</option>
@@ -366,7 +366,7 @@ const logout = () => {
 		                                                <option value="it-others">Others</option>
                                                 	</optgroup>
                                                 </select>
-                                                <select v-model="form.asset_type" id="infrastructure_asset_type" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_type" required  :class="isOpenInfrastructure ? 'block' : 'hidden' ">
+                                                <select v-model="form.asset_type" id="infrastructure_asset_type" class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_type"  :class="isOpenInfrastructure ? 'block' : 'hidden' ">
                                                 	<optgroup label="Infrastructure">
                                                 		<option value="">Select Type</option>
 		                                                <option value="infrastructure-generator">Generator</option>

@@ -477,10 +477,7 @@ const filteranything = () => {
 												<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
 													<p>
 														<span class="font-rethinksansbold primary-dark-blue">SO Number:
-														</span><span class="font-rethinksanssemibold primary-gray">{{
-															props.liquijobs.id
-															+
-															13401002 }}</span>
+														</span><span class="font-rethinksanssemibold primary-gray">{{ '13401002' + props.liquijobs.id }}</span>
 													</p>
 												</div>
 												<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
