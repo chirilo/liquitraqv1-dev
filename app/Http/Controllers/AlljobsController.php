@@ -120,11 +120,11 @@ class AlljobsController extends Controller
                 // query all jobs since this is admin
                 $results = Liquijob::where('company_name', 'LIKE', "%{$keyword}%" )
                     ->orWhere('id', $keyword)
-                    ->orWhere('status', $keyword)
-                    ->orWhere('corporate_address', $keyword)
-                    ->orWhere('contact_name', $keyword)
-                    ->orWhere('contact_email', $keyword)
-                    ->orWhere('location_address', $keyword)
+                    ->orWhere('status', 'LIKE', $keyword)
+                    ->orWhere('corporate_address', 'LIKE', $keyword)
+                    ->orWhere('contact_name', 'LIKE', $keyword)
+                    ->orWhere('contact_email', 'LIKE', $keyword)
+                    ->orWhere('location_address', 'LIKE', $keyword)
                     ->get();
             }
             else{
@@ -132,10 +132,10 @@ class AlljobsController extends Controller
                 // query all the current logged in users Jobs
                 $results = Liquijob::where('job_owner_id', $id)
                     ->where('company_name', 'LIKE', "%{$keyword}%" )
-                    ->orWhere('corporate_address', $keyword)
-                    ->orWhere('contact_name', $keyword)
-                    ->orWhere('contact_email', $keyword)
-                    ->orWhere('location_address', $keyword)
+                    ->orWhere('corporate_address', 'LIKE', $keyword)
+                    ->orWhere('contact_name', 'LIKE', $keyword)
+                    ->orWhere('contact_email', 'LIKE', $keyword)
+                    ->orWhere('location_address', 'LIKE', $keyword)
                     ->get();
                 //$results = Liquijob::where('job_owner_id', $id)->orderBy('updated_at', 'DESC')->limit('10')->get();
             }

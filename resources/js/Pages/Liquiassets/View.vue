@@ -24,6 +24,7 @@ const props = defineProps({
 	filters: Object,
 	message: String,
 	currentdatetime: String,
+	thisjobcompanyname: String
 });
 
 const liquijobsCreate = '/liquijobs/create';
@@ -451,7 +452,7 @@ const filteranything = () => {
 										<li class="m-0" v-for="item in job_assets" :key="id" :value="id">
 											<div class="relative flex justify-between items-start sm:flex-row flex-col-reverse">
 												<h1 class="w-full sm:w-[60%] block text-2xl primary-light-blue font-rethinksansextrabold uppercase mt-6 sm:mt-0 text-center sm:text-left ">
-													Job: <span>{{ props.liquijobs }}</span>
+													Job: <span>{{ props.thisjobcompanyname }}</span>
 												</h1>
 												<div class="flex justify-center sm:justify-end sm:w-auto w-full">
 													<a v-bind:href="parentjoburl + item.job_id"

@@ -119,11 +119,26 @@ class LiquiassetController extends Controller
         //dd($job_assets);
         //
 
+        // $currenturl = url()->current();
+        // $exploded_url = explode('liquiassets', $currenturl);
+        // $exploded_url = explode('/', $exploded_url[1]);
+
+        
+
         $job_assets = Liquiasset::query()
             ->select('*')
             ->where('id', $liquiasset['id'])
             ->get();
 
+        $job_assets2 = Liquiasset::query()
+            ->select('*')
+            ->where('id', $liquiasset['id'])
+            ->get()->toArray();
+
+        $thisjob = Liquijob::query()->select('*')->where('id', $job_assets[0]['job_id'])->get()->toArray();
+        $thisjobcompanyname = $thisjob[0]['company_name'];
+
+        //dd($thisjob[0]['company_name']);
         //dd($job_assets);
         // get current date and time
         $currentdatetime = now()->format('M d, Y - h:m A');
@@ -133,6 +148,7 @@ class LiquiassetController extends Controller
                 'liquijobs' => $liquijob_id,
                 'job_assets' => $job_assets,
                 'currentdatetime' => $currentdatetime,
+                'thisjobcompanyname' => $thisjobcompanyname,
             ]
         );
 
