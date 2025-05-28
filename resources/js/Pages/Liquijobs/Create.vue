@@ -263,7 +263,7 @@ const filteranything = () => {
                                         <option class="text-base primary-dark-blue" selected disabled hidden value="">
                                             Select
                                             status</option>
-                                        <option class="text-base primary-dark-blue" value="New">Status</option>
+                                        <option class="text-base primary-dark-blue" value="New">New</option>
                                         <option class="text-base primary-dark-blue" value="Work In Progress">Work In Progress</option>
                                         <option class="text-base primary-dark-blue" value="Completed">Completed</option>
                                     </select>

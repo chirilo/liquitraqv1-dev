@@ -48,12 +48,17 @@ class AlljobsController extends Controller
         //$results = Liquijob::whereLike(['company_name', 'corporate_address', 'contact_name', 'contact_email'], $keyword)->get();
         if( $keyword === "status" ){
             //
-            //dd($keyword);
+            
+            $statuskeyword = isset($_GET['status']) ? $_GET['status'] : 'New';
+            $escaped_strs = str_replace("%", "", $statuskeyword);
+            $statuskeyword = $escaped_strs;
+            //dd($statuskeyword);
             $results = Liquijob::where('company_name', 'LIKE', "%{$keyword}%" )
                     ->orWhere('id', $keyword)
-                    ->orWhere('status', 'Work in Progress')
-                    ->orWhere('status', 'New')
-                    ->orWhere('status', 'Completed')
+                    // ->orWhere('status', 'Work in Progress')
+                    // ->orWhere('status', 'New')
+                    // ->orWhere('status', 'Completed')
+                    ->orWhere('status', $statuskeyword)
                     ->orWhere('contact_name', $keyword)
                     ->orWhere('contact_email', $keyword)
                     ->orWhere('location_address', $keyword)

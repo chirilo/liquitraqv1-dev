@@ -123,8 +123,9 @@ const openMenu = () => {
 if( props.message ){
 	setTimeout(() => {
 		//alert('here');
+		console.log('toast displayed');
 		document.getElementById('toastmessage').style.display = 'none';
-	}, 5000);
+	}, 10000);
 }
 
 // const shown = computed(() => {
@@ -278,7 +279,7 @@ if( props.message ){
 										<option class="text-base primary-dark-blue" selected disabled hidden value="">
 											Select
 											status</option>
-										<option class="text-base primary-dark-blue" value="New">Status</option>
+										<option class="text-base primary-dark-blue" value="New">New</option>
 										<option class="text-base primary-dark-blue" value="Work In Progress">Work In Progress</option>
 										<option class="text-base primary-dark-blue" value="Completed">Completed</option>
 									</select>
