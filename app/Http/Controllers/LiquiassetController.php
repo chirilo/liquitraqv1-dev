@@ -28,7 +28,12 @@ class LiquiassetController extends Controller
     public function index()
     {   
         // get current date and time
-        $currentdatetime = now()->format('M d, Y - h:m A');
+        //$currentdatetime = now()->format('M d, Y - h:m A');
+        $date_default_timezone_get = date_default_timezone_get();
+        //dd($date_default_timezone_get);
+        $currentdatetime = new \DateTime("now", new \DateTimeZone(''.$date_default_timezone_get.''));
+        $currentdatetime = $currentdatetime->format('M d, Y h:i A');
+        //$currentdatetime = date('M d, Y h:i:sA');
 
         //
         return Inertia::render(
