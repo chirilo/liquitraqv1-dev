@@ -246,7 +246,7 @@ const filteranything = () => {
                                 </form>
                             </div>
                             <!-- END OF: Search Anything -->
-                            <div class="w-full pr-6 pl-6 pb-6 mt-6 border-divider">
+                            <div class="w-full pr-6 pl-6 pb-6 mt-6">
 								<form @submit.prevent="filteranything">
 									<h2
 										class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">

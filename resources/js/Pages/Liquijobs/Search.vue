@@ -355,7 +355,8 @@ const filteranything = () => {
                                 <div class="relative flex justify-between items-start">
                                     <h1
                                         class="w-[60%] block sm:text-2xl text-xl primary-light-blue font-rethinksansextrabold">
-											Search results for: <span class="primary-gray">"{{ keyword }}"</span>
+											<!-- Search results for: <span class="primary-gray">"{{  }}"</span> -->
+											 Search Results:
                                     </h1>
                                     <!-- LINK TO JOBS archive page -->
                                     <a href="/liquijobs"

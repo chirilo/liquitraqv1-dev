@@ -123,7 +123,6 @@ const openMenu = () => {
 if( props.message ){
 	setTimeout(() => {
 		//alert('here');
-		console.log('toast displayed');
 		document.getElementById('toastmessage').style.display = 'none';
 	}, 10000);
 }
@@ -149,7 +148,7 @@ if( props.message ){
 		<div class="max-w-7xl mx-auto p-5">
 			<!-- Toast message -->
 			<div id="toastmessage" v-if="props.message"
-				class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+				class="p-4 mb-4 text-base font-rethinksansbold text-center text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
 				role="alert">
 				<span class="font-medium">
 					{{ props.message }}

@@ -362,50 +362,50 @@ const filteranything = () => {
 										<form @submit.prevent="submitaddjob" class="w-full">
 											<div class="flex flex-wrap">
 												<div class="w-full">
-													<InputLabel for="company_name" value="Job Co Name" />
+													<!-- <InputLabel for="company_name" value="Job Co Name" /> -->
 													<TextInput id="company_name" type="text" placeholder="Job Co Name"
 														v-model="form.company_name" required />
 													<InputError class="mt-2" :message="form.errors.company_name" />
 												</div>
 												<div class="w-full mt-3">
-													<InputLabel for="corporate_address" value="Corporate Address" />
+													<!-- <InputLabel for="corporate_address" value="Corporate Address" /> -->
 													<TextInput id="corporate_address" type="text" placeholder="Corporate Address"
 														v-model="form.corporate_address" required />
 													<InputError class="mt-2" :message="form.errors.corporate_address" />
 												</div>
 												<div class="w-full mt-3">
-													<InputLabel for="contact_name" value="Contact Name" />
+													<!-- <InputLabel for="contact_name" value="Contact Name" /> -->
 													<TextInput id="contact_name" type="text" placeholder="Contact Name"
 														v-model="form.contact_name" required />
 													<InputError class="mt-2" :message="form.errors.contact_name" />
 												</div>
 												<div class="w-full mt-3">
-													<InputLabel for="contact_email" value="Email" />
+													<!-- <InputLabel for="contact_email" value="Email" /> -->
 													<TextInput id="contact_email" type="email" placeholder="Email"
 														v-model="form.contact_email" required />
 													<InputError class="mt-2" :message="form.errors.contact_email" />
 												</div>
 												<div class="w-full mt-3">
-													<InputLabel for="contact_telephone" value="Phone" />
+													<!-- <InputLabel for="contact_telephone" value="Phone" /> -->
 													<TextInput id="contact_telephone" type="number" placeholder="Phone"
 														v-model="form.contact_telephone" required @keydown="(e: KeyboardEvent) => { if (e.key === '-') e.preventDefault()}" />
 													<InputError class="mt-2" :message="form.errors.contact_telephone" />
 												</div>
 												<div class="w-full mt-3">
-													<InputLabel for="location_address" value="Location Name" />
+													<!-- <InputLabel for="location_address" value="Location Name" /> -->
 													<TextInput id="location_address" type="text"
 														placeholder="Location Name" v-model="form.location_address"
 														required />
 													<InputError class="mt-2" :message="form.errors.location_address" />
 												</div>
 												<div class="w-full mt-3">
-													<InputLabel for="start_date" value="Start Date" />
+													<!-- <InputLabel for="start_date" value="Start Date" /> -->
 													<TextInput id="start_date" type="date" placeholder="YYYY-MM-DD"
 														v-model="form.start_date" required />
 													<InputError class="mt-2" :message="form.errors.start_date" />
 												</div>
 												<div class="w-full mt-3">
-													<InputLabel for="type" value="Job Type" />
+													<!-- <InputLabel for="type" value="Job Type" /> -->
 													<select v-model="form.type" id="type"
 														class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
 														name="type">
