@@ -339,15 +339,12 @@ const filteranything = () => {
                                         <InputError class="mt-2 w-full lg:w-[40%]"
                                             :message="form.errors.contact_name" />
                                     </div>
-                                    <div
-                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
-                                        <InputLabel for="contact_telephone" value="Phone" class="w-full lg:w-[60%]" />
-                                        <TextInput class="w-full lg:w-[40%] px-4 py-2" id="contact_telephone"
-                                            type="text" placeholder="+1234567890" v-model="form.contact_telephone"
-                                            required />
-                                        <InputError class="mt-2 w-full lg:w-[40%]"
-                                            :message="form.errors.contact_telephone" />
-                                    </div>
+                                    <div class="w-full mt-3">
+										<InputLabel for="contact_telephone" value="Phone" />
+										<TextInput id="contact_telephone" min="1" type="number" placeholder="Phone"
+											v-model="form.contact_telephone" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength)" required @keydown="(e: KeyboardEvent) => { if (e.key === '-') e.preventDefault()}" />
+										<InputError class="mt-2" :message="form.errors.contact_telephone" />
+									</div>
                                     <div
                                         class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
                                         <InputLabel for="contact_email" value="Email" class="w-full lg:w-[60%]" />

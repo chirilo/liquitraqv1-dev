@@ -316,8 +316,8 @@ const filteranything = () => {
 												</div>
 												<div class="w-full mt-3">
 													<InputLabel for="contact_telephone" value="Phone" />
-													<TextInput id="contact_telephone" type="number" placeholder="Phone"
-														v-model="form.contact_telephone" required @keydown="(e: KeyboardEvent) => { if (e.key === '-') e.preventDefault()}" />
+													<TextInput id="contact_telephone" min="1" type="number" placeholder="Phone"
+														v-model="form.contact_telephone" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength)" required @keydown="(e: KeyboardEvent) => { if (e.key === '-') e.preventDefault()}" />
 													<InputError class="mt-2" :message="form.errors.contact_telephone" />
 												</div>
 												<div class="w-full mt-3">

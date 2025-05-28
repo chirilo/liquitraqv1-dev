@@ -36,7 +36,9 @@ class LiquijobController extends Controller
 
         // get current date and time
         //$currentdatetime = now()->format('M d, Y - h:m A');
-        $currentdatetime = new \DateTime("now", new \DateTimeZone('America/Los_Angeles'));
+        $date_default_timezone_get = date_default_timezone_get();
+        //dd($date_default_timezone_get);
+        $currentdatetime = new \DateTime("now", new \DateTimeZone(''.$date_default_timezone_get.''));
         $currentdatetime = $currentdatetime->format('M d, Y h:i A');
         //$currentdatetime = date('M d, Y h:i:sA');
 
@@ -75,7 +77,7 @@ class LiquijobController extends Controller
         //dd($user->email);
 
         $showeditdelete = 'normal';
-        if( $id == 1 || $user->email == 'webteamsupport@gmail.com' ){
+        if( $id == 2 || $user->email == 'webteamsupprt@gmail.com' ){
             $showeditdelete = 'admin';
         }
         
