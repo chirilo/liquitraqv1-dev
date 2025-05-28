@@ -328,11 +328,20 @@ const filteranything = () => {
 										:class="isSoNumberOpen ? 'block' : 'hidden'" id="filter_sonumber" type="number"
 										v-model="filtersonumberkey" placeholder="ex. 134010022" name="filter_sonumber"
 										required />
-									<input
+									<!-- <input
 										class="mt-2 appearance-none block w-full p-4 primary-gray placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg"
 										:class="isStatusOpen ? 'block' : 'hidden'" id="filter_status" type="text"
 										v-model="filterstatuskey" placeholder="ex. Work in Progress"
-										name="filter_status" required />
+										name="filter_status" required /> -->
+									<select :class="isStatusOpen ? 'block' : 'hidden'" v-model="filterstatuskey"
+										class="appearance-none block w-full p-4 mt-3 text-base primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none">
+										<option class="text-base primary-dark-blue" selected disabled hidden value="">
+											Select
+											status</option>
+										<option class="text-base primary-dark-blue" value="New">Status</option>
+										<option class="text-base primary-dark-blue" value="Work In Progress">Work In Progress</option>
+										<option class="text-base primary-dark-blue" value="Completed">Completed</option>
+									</select>
 									<button type="submit"
 										class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Go
 										<svg style="display: inline; float: inline-end;"
