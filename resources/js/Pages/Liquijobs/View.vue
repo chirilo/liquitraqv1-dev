@@ -233,7 +233,13 @@ const filteranything = () => {
 								<div class="relative flex flex-col items-center lg:items-end">
 									<div class="w-full text-center primary-gray font-rethinksansmedium text-sm">{{
 										props.currentdatetime }}</div>
-									<div class="pt-3 mx-auto relative flex items-center lg:items-end">
+									<div class="pt-3 mx-auto relative flex items-center lg:items-end" v-if="$page.props.jetstream.managesProfilePhotos">
+										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
+											data-dropdown-placement="bottom-start"
+											class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl"
+											:src="$page.props.auth.user.profile_photo_url.replace('https://phplaravel-728976-5430189.cloudwaysapps.com/liquijobs', '')" alt="User dropdown">
+									</div>
+									<div v-else class="pt-3 mx-auto relative flex items-center lg:items-end">
 										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
 											data-dropdown-placement="bottom-start"
 											class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl"
@@ -245,13 +251,28 @@ const filteranything = () => {
 								<div class="w-full text-center relative py-3">
 									<Dropdown align="center">
 										<template #trigger>
-											<button v-if="$page.props.jetstream.managesProfilePhotos"
-												class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-												<img class="rounded-full object-cover"
-													:src="$page.props.auth.user.profile_photo_url"
-													:alt="$page.props.auth.user.name">
-											</button>
+											<div v-if="$page.props.jetstream.managesProfilePhotos">
+												<button 
+													class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
+													<!-- {{ $page.props.auth.user.profile_photo_url }}
+													<img class="rounded-full object-cover"
+														:src="$page.props.auth.user.profile_photo_url"
+														:alt="$page.props.auth.user.name"> -->
+												</button>
+												<span class="inline-flex rounded-md">
+													<button type="button"
+														class="inline-flex items-center border border-transparent text-base text-base primary-light-blue font-rethinksansextrabold uppercase dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
+														{{ $page.props.auth.user.name }}
 
+														<svg class="ms-2 -me-0.5 size-4" xmlns="http://www.w3.org/2000/svg"
+															fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+															stroke="currentColor">
+															<path stroke-linecap="round" stroke-linejoin="round"
+																d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+														</svg>
+													</button>
+												</span>
+											</div>
 											<span v-else class="inline-flex rounded-md">
 												<button type="button"
 													class="inline-flex items-center border border-transparent text-base text-base primary-light-blue font-rethinksansextrabold uppercase dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">

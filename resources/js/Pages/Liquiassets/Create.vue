@@ -124,75 +124,78 @@ const logout = () => {
 							</div>
 
 							<div class="relative w-full border-divider pt-6">
-							<!-- AVATAR -->
-								<div class="relative flex items-center lg:items-end">
-									<div class="mx-auto relative flex items-center lg:items-end">
-										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl" src="/images/logos/avatar.jpg" alt="User dropdown">
+								<!-- AVATAR -->
+								<div class="relative flex flex-col items-center lg:items-end">
+									<div class="w-full text-center primary-gray font-rethinksansmedium text-sm">{{
+										props.currentdatetime }}</div>
+									<div class="pt-3 mx-auto relative flex items-center lg:items-end" v-if="$page.props.jetstream.managesProfilePhotos">
+										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
+											data-dropdown-placement="bottom-start"
+											class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl"
+											:src="$page.props.auth.user.profile_photo_url.replace('https://phplaravel-728976-5430189.cloudwaysapps.com/liquijobs', '')" alt="User dropdown">
 									</div>
-
-									<!-- <div class="relative flex items-center gap-6 lg:items-end">
-										<h1>My Account</h1>
-									</div> -->
-									<!-- Dropdown menu -->
-									<div id="userDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
-										<div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-										<div>Chi Rilo</div>
-										<div class="font-medium truncate">name@flowbite.com</div>
-										</div>
-										<ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
-										<li>
-											<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-										</li>
-										<li>
-											<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-										</li>
-										<li>
-											<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-										</li>
-										</ul>
-										<div class="py-1">
-										<a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
-										</div>
+									<div v-else class="pt-3 mx-auto relative flex items-center lg:items-end">
+										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
+											data-dropdown-placement="bottom-start"
+											class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl"
+											src="/images/logos/avatar.jpg" alt="User dropdown">
 									</div>
 								</div>
 								<!-- END OF AVATAR -->
 								<!-- MY ACCOUNT -->
-								<div class="w-full text-center relative pt-6 pb-6">
+								<div class="w-full text-center relative py-3">
 									<Dropdown align="center">
 										<template #trigger>
-											<button v-if="$page.props.jetstream.managesProfilePhotos" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-												<img class="rounded-full object-cover" :src="$page.props.auth.user.profile_photo_url" :alt="$page.props.auth.user.name">
-											</button>
+											<div v-if="$page.props.jetstream.managesProfilePhotos">
+												<button 
+													class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
+													<!-- {{ $page.props.auth.user.profile_photo_url }}
+													<img class="rounded-full object-cover"
+														:src="$page.props.auth.user.profile_photo_url"
+														:alt="$page.props.auth.user.name"> -->
+												</button>
+												<span class="inline-flex rounded-md">
+													<button type="button"
+														class="inline-flex items-center border border-transparent text-base text-base primary-light-blue font-rethinksansextrabold uppercase dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
+														{{ $page.props.auth.user.name }}
 
+														<svg class="ms-2 -me-0.5 size-4" xmlns="http://www.w3.org/2000/svg"
+															fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+															stroke="currentColor">
+															<path stroke-linecap="round" stroke-linejoin="round"
+																d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+														</svg>
+													</button>
+												</span>
+											</div>
 											<span v-else class="inline-flex rounded-md">
-												<button type="button" class="inline-flex items-center border border-transparent text-base text-base primary-light-blue font-rethinksansextrabold uppercase dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
+												<button type="button"
+													class="inline-flex items-center border border-transparent text-base text-base primary-light-blue font-rethinksansextrabold uppercase dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
 													{{ $page.props.auth.user.name }}
 
-													<svg class="ms-2 -me-0.5 size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-														<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+													<svg class="ms-2 -me-0.5 size-4" xmlns="http://www.w3.org/2000/svg"
+														fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+														stroke="currentColor">
+														<path stroke-linecap="round" stroke-linejoin="round"
+															d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
 													</svg>
 												</button>
 											</span>
 										</template>
-
 										<template #content>
 											<!-- Account Management -->
-											<div class="block pl-4 pr-6 py-2 text-base primary-dark-blue font-rethinksansmedium">
+											<div
+												class="block pl-4 pr-6 py-2 text-base primary-dark-blue font-rethinksansmedium">
 												Manage Account
 											</div>
-											
 											<DropdownLink class="block w-full" :href="route('profile.show')">
 												Profile
 											</DropdownLink>
-
 											<!-- <DropdownLink v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')">
 												API Tokens
 											</DropdownLink> -->
-
 											<div class="border-t border-gray-200 dark:border-gray-600" />
-
 											<!-- Authentication -->
-												
 											<form @submit.prevent="logout">
 												<DropdownLink class="block w-full" as="button">
 													Log Out

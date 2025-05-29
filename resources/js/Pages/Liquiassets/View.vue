@@ -61,25 +61,25 @@ let isSoNumberOpen = ref(false);
 let isStatusOpen = ref(false);
 const handleFilterSelectChange = () => {
 	let selectedval = event.target.value;
-	console.log('selected'+selectedval);
-	if( selectedval === 'sonumber' ){
+	console.log('selected' + selectedval);
+	if (selectedval === 'sonumber') {
 		isSoNumberOpen.value = !isSoNumberOpen.value;
 
 		// close other
 		isStatusOpen.value = false;
 		document.getElementById('filter_status').removeAttribute('required');
 	}
-	
 
 
-	if( selectedval === 'status' ){
+
+	if (selectedval === 'status') {
 		isStatusOpen.value = !isStatusOpen.value;
 
 		// close other
 		isSoNumberOpen.value = false;
 		document.getElementById('filter_sonumber').removeAttribute('required');
 	}
-	
+
 }
 
 let searchkey = ref("");
@@ -88,20 +88,28 @@ let filterstatuskey = ref("");
 let filtersonumberkey = ref("");
 
 const searchanything = () => {
-	router.get( route("search.index") + '?key=' + '%'+searchkey.value+'%' );
+	router.get(route("search.index") + '?key=' + '%' + searchkey.value + '%');
 }
 
 const filteranything = () => {
 	//alert('here');
 	//alert(filterstatuskey.value);
 	//router.get( route("search.index") + '?key=' + '%'+filterkey.value+'%'+ '?sonumber=' + '%'+filtersonumberkey.value+'%'+ '?status=' + '%'+filterstatuskey.value+'%'  );
-	if ( filterstatuskey.value == '' && filtersonumberkey.value ){
-		router.get( route("search.index") + '?key=' + '%'+filterkey.value+'%'+ '&sonumber=' + filtersonumberkey.value  );
+	if (filterstatuskey.value == '' && filtersonumberkey.value) {
+		router.get(route("search.index") + '?key=' + '%' + filterkey.value + '%' + '&sonumber=' + filtersonumberkey.value);
 	}
-	if (filterstatuskey.value && filtersonumberkey.value == ''){
-		router.get( route("search.index") + '?key=' + '%'+filterkey.value+'%'+ '&status=' + '%'+filterstatuskey.value+'%'  );
+	if (filterstatuskey.value && filtersonumberkey.value == '') {
+		router.get(route("search.index") + '?key=' + '%' + filterkey.value + '%' + '&status=' + '%' + filterstatuskey.value + '%');
 	}
+
+
 }
+
+let isOpen = ref(false);
+const openMenu = () => {
+	isOpen.value = !isOpen.value;
+	console.log(isOpen);
+};
 </script>
 
 <template>
@@ -132,7 +140,13 @@ const filteranything = () => {
 								<div class="relative flex flex-col items-center lg:items-end">
 									<div class="w-full text-center primary-gray font-rethinksansmedium text-sm">{{
 										props.currentdatetime }}</div>
-									<div class="pt-3 mx-auto relative flex items-center lg:items-end">
+									<div class="pt-3 mx-auto relative flex items-center lg:items-end" v-if="$page.props.jetstream.managesProfilePhotos">
+										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
+											data-dropdown-placement="bottom-start"
+											class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl"
+											:src="$page.props.auth.user.profile_photo_url.replace('https://phplaravel-728976-5430189.cloudwaysapps.com/liquijobs', '')" alt="User dropdown">
+									</div>
+									<div v-else class="pt-3 mx-auto relative flex items-center lg:items-end">
 										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
 											data-dropdown-placement="bottom-start"
 											class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl"
@@ -144,13 +158,28 @@ const filteranything = () => {
 								<div class="w-full text-center relative py-3">
 									<Dropdown align="center">
 										<template #trigger>
-											<button v-if="$page.props.jetstream.managesProfilePhotos"
-												class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-												<img class="rounded-full object-cover"
-													:src="$page.props.auth.user.profile_photo_url"
-													:alt="$page.props.auth.user.name">
-											</button>
+											<div v-if="$page.props.jetstream.managesProfilePhotos">
+												<button 
+													class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
+													<!-- {{ $page.props.auth.user.profile_photo_url }}
+													<img class="rounded-full object-cover"
+														:src="$page.props.auth.user.profile_photo_url"
+														:alt="$page.props.auth.user.name"> -->
+												</button>
+												<span class="inline-flex rounded-md">
+													<button type="button"
+														class="inline-flex items-center border border-transparent text-base text-base primary-light-blue font-rethinksansextrabold uppercase dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
+														{{ $page.props.auth.user.name }}
 
+														<svg class="ms-2 -me-0.5 size-4" xmlns="http://www.w3.org/2000/svg"
+															fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+															stroke="currentColor">
+															<path stroke-linecap="round" stroke-linejoin="round"
+																d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+														</svg>
+													</button>
+												</span>
+											</div>
 											<span v-else class="inline-flex rounded-md">
 												<button type="button"
 													class="inline-flex items-center border border-transparent text-base text-base primary-light-blue font-rethinksansextrabold uppercase dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
@@ -165,26 +194,20 @@ const filteranything = () => {
 												</button>
 											</span>
 										</template>
-
 										<template #content>
 											<!-- Account Management -->
 											<div
 												class="block pl-4 pr-6 py-2 text-base primary-dark-blue font-rethinksansmedium">
 												Manage Account
 											</div>
-
 											<DropdownLink class="block w-full" :href="route('profile.show')">
 												Profile
 											</DropdownLink>
-
 											<!-- <DropdownLink v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')">
 												API Tokens
 											</DropdownLink> -->
-
 											<div class="border-t border-gray-200 dark:border-gray-600" />
-
 											<!-- Authentication -->
-
 											<form @submit.prevent="logout">
 												<DropdownLink class="block w-full" as="button">
 													Log Out
@@ -214,8 +237,7 @@ const filteranything = () => {
 								</form>
 							</div>
 							<!-- END OF: Search Anything -->
-							<!-- <input class="appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" type="search" name="search" placeholder="Search anything" /> -->
-							<div class="w-full pr-6 pl-6 mt-6">
+							<div class="w-full pr-6 pl-6 pb-6 mt-6 border-divider">
 								<form @submit.prevent="filteranything">
 									<h2
 										class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">
