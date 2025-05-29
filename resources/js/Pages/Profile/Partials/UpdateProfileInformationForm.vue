@@ -73,9 +73,16 @@ const clearPhotoFileInput = () => {
         photoInput.value.value = null;
     }
 };
+
+let ppurl = props.user.profile_photo_url;
+let newString = ppurl.replace("https://phplaravel-728976-5430189.cloudwaysapps.com/liquijobs", "");
+
 </script>
 
 <template>
+    <div>
+        
+    </div>
     <FormSection @submitted="updateProfileInformation">
         <template #title>
             Profile Information
@@ -101,7 +108,11 @@ const clearPhotoFileInput = () => {
 
                 <!-- Current Profile Photo -->
                 <div v-show="! photoPreview" class="mt-2">
-                    <img :src="user.profile_photo_url" :alt="user.name" class="rounded-full size-20 object-cover">
+                    <!-- {{ user.profile_photo_url }}
+                    {{  newString  }} -->
+                    <!-- <img :src="user.profile_photo_url" :alt="user.name" class="rounded-full size-20 object-cover"> -->
+                    <img :src="newString" :alt="user.name" class="rounded-full size-20 object-cover">
+                    
                 </div>
 
                 <!-- New Profile Photo Preview -->
