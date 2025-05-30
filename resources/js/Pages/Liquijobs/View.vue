@@ -99,7 +99,8 @@ const formasset = useForm({
 	asset_serial: '',
 	asset_weight_each: '',
 	asset_description: '',
-	asset_status: ''
+	asset_status: '',
+	asset_disposition: ''
 });
 
 const submitaddasset = (e) => {
@@ -109,8 +110,10 @@ const submitaddasset = (e) => {
 let isOpenFurniture = ref(false);
 let isOpenIt = ref(false);
 let isOpenInfrastructure = ref(false);
+let isOpenLabel = ref(false);
 
 const openMenuSelect = (event) => {
+	isOpenLabel.value = !isOpenLabel.value;
 	const it_asset_type = document.getElementById('it_asset_type');
 	const furniture_asset_type = document.getElementById('furniture_asset_type');
 	const infrastructure_asset_type = document.getElementById('infrastructure_asset_type');
@@ -673,8 +676,8 @@ const filteranything = () => {
 												:message="formasset.errors.asset_category" />
 										</div>
 										<div
-											class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
-											<InputLabel for="asset_type" value="Type" class="w-full lg:w-[60%]" />
+											class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap" :class="isOpenLabel ? 'block' : 'hidden'">
+											<InputLabel for="asset_type" value="Type" class="w-full lg:w-[60%]" :class="isOpenLabel ? 'block' : 'hidden'" />
 											<select v-model="formasset.asset_type" id="furniture_asset_type"
 												class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
 												name="asset_type" 
@@ -800,12 +803,28 @@ const filteranything = () => {
 											<InputLabel for="asset_status" value="Status" class="w-full lg:w-[60%]" />
 											<select v-model="formasset.asset_status" id="asset_status"
 												class="w-full lg:w-[40%] px-4 py-2 sm:mt-0 mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
-												name="asset_status" required>
+												name="asset_status" required @change="openStatusMenuSelect">
 												<option value="" selected disabled hidden>Select Status</option>
 												<option value="originalstate">Original State</option>
 												<option value="workinprogress">Work In Progress</option>
 												<option value="completed">Completed</option>
 											</select>
+
+											<!-- <InputLabel for="asset_status" value="Asset Disposition" class="w-full lg:w-[60%]" /> -->
+											<!-- <select v-model="formasset.asset_disposition" id="asset_status"
+												class="w-full lg:w-[40%] px-4 py-2 sm:mt-0 mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+												name="asset_status" @change="openAssetStatusMiniForm">
+												<option value="" selected disabled hidden>Select Disposition</option>
+												<option value="resold">Resold</option>
+												<option value="recycled">Recycled</option>
+												<option value="disposed">Disposed</option>
+												<option value="returne">Returned</option>
+											</select>
+											<div>
+												<input type="text" name="date" placeholder="Date" />
+												<input type="text" name="who" placeholder="Who" />
+												<input type="text" name="shippingticketinfo" placeholder="Shipping/Ticket Info" />
+											</div> -->
 											<InputError class="mt-2 w-full lg:w-[40%]"
 												:message="formasset.errors.asset_status" />
 										</div>
