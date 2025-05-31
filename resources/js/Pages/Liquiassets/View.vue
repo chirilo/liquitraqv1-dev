@@ -487,7 +487,7 @@ const openMenu = () => {
 												</div>
 											</div>
 											<h5
-												class="w-full mt-6 block text-xl primary-dark-blue font-rethinksansextrabold uppercase">
+												class="hidden w-full mt-6 block text-xl primary-dark-blue font-rethinksansextrabold uppercase">
 												Asset #: {{ item.id }}
 											</h5>
 											<div class="w-full relative flex flex-col">
@@ -664,6 +664,47 @@ const openMenu = () => {
 														<span v-if="item.asset_status == 'originalstate'">
 															Original State
 														</span>
+													</div>
+												</div>
+												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
+													<div class="font-rethinksansbold primary-dark-blue w-[60%]">
+														Asset Disposition:
+													</div>
+													<div class="font-rethinksanssemibold primary-gray width-40"><!-- {{
+														item.asset_disposition }} -->
+														<span v-if="item.asset_disposition == 'resold'">
+															Resold
+														</span>
+														<span v-if="item.asset_disposition == 'recycled'">
+															Recycled
+														</span>
+														<span v-if="item.asset_disposition == 'disposed'">
+															Disposed
+														</span>
+														<span v-if="item.asset_disposition == 'returned'">
+															Returned
+														</span>
+													</div>
+												</div>
+												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
+													<div class="font-rethinksansbold primary-dark-blue w-[60%]">
+														Asset Disposition Information:
+													</div>
+													<div class="font-rethinksanssemibold primary-gray width-40">
+														<span>
+															Date: {{ item.assetdisdate }}
+														</span>
+													</div>
+													<div class="font-rethinksanssemibold primary-gray width-40">
+														<span>
+															Who: {{ item.assetdiswho }}
+														</span>
+													</div>
+													<div class="font-rethinksanssemibold primary-gray width-40">
+														<span>
+															Ticket / Shipping Info: {{ item.assetdisticketshippinginfo }}
+														</span>
+														
 													</div>
 												</div>
 											</div>

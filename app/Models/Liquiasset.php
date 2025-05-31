@@ -28,6 +28,11 @@ class Liquiasset extends Model
         'asset_weight_each',
         'asset_description',
         'asset_status',
+        'asset_disposition',
+        'assetdisdate',
+        'assetdiswho',
+        'assetdiswho',
+        'assetdisticketshippinginfo',
     ];
 
     /**

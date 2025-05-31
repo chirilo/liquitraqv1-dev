@@ -204,7 +204,7 @@ const filteranything = () => {
 
 }
 
-const browsertimezone  = Intl.DateTimeFormat().resolvedOptions().timeZone;
+const browsertimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 //console.log('browsertimezone' + browsertimezone);
 const today = new Date();
 const monthName = today.toLocaleString('default', { month: 'long' });
@@ -213,10 +213,10 @@ const year = today.getFullYear();
 
 const date = new Date();
 const formatter = new Intl.DateTimeFormat('en-US', {
-    timeZone: browsertimezone,
-    hour: 'numeric',
-    minute: 'numeric',
-    //second: 'numeric',
+	timeZone: browsertimezone,
+	hour: 'numeric',
+	minute: 'numeric',
+	//second: 'numeric',
 });
 
 const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - " + formatter.format(date);
@@ -249,6 +249,15 @@ const openAssetStatusMiniForm = () => {
 		// document.getElementById('recycled').classList.add('hidden');
 		// document.getElementById('disposed').classList.add('hidden');
 		// document.getElementById('returned').classList.add('hidden');
+	}
+	else if( selecteddispoval == 'recycled' ){
+		document.getElementById('resold').classList.remove('hidden');
+	}
+	else if( selecteddispoval == 'disposed' ){
+		document.getElementById('resold').classList.remove('hidden');
+	}
+	else if( selecteddispoval == 'resold' ){
+		document.getElementById('returned').classList.remove('hidden');
 	}
 	// else if( selecteddispoval == 'recycled' ){
 	// 	document.getElementById('recycled').classList.remove('hidden');
@@ -314,11 +323,13 @@ const openAssetStatusMiniForm = () => {
 								<div class="relative flex flex-col items-center lg:items-end">
 									<div class="w-full text-center primary-gray font-rethinksansmedium text-sm">{{
 										fulldatebasedonbrowser }}</div>
-									<div class="pt-3 mx-auto relative flex items-center lg:items-end" v-if="$page.props.jetstream.managesProfilePhotos">
+									<div class="pt-3 mx-auto relative flex items-center lg:items-end"
+										v-if="$page.props.jetstream.managesProfilePhotos">
 										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
 											data-dropdown-placement="bottom-start"
 											class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl"
-											:src="$page.props.auth.user.profile_photo_url.replace('https://phplaravel-728976-5430189.cloudwaysapps.com/liquijobs', '')" alt="User dropdown">
+											:src="$page.props.auth.user.profile_photo_url.replace('https://phplaravel-728976-5430189.cloudwaysapps.com/liquijobs', '')"
+											alt="User dropdown">
 									</div>
 									<div v-else class="pt-3 mx-auto relative flex items-center lg:items-end">
 										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
@@ -333,7 +344,7 @@ const openAssetStatusMiniForm = () => {
 									<Dropdown align="center">
 										<template #trigger>
 											<div v-if="$page.props.jetstream.managesProfilePhotos">
-												<button 
+												<button
 													class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
 													<!-- {{ $page.props.auth.user.profile_photo_url }}
 													<img class="rounded-full object-cover"
@@ -345,8 +356,9 @@ const openAssetStatusMiniForm = () => {
 														class="inline-flex items-center border border-transparent text-base text-base primary-light-blue font-rethinksansextrabold uppercase dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
 														{{ $page.props.auth.user.name }}
 
-														<svg class="ms-2 -me-0.5 size-4" xmlns="http://www.w3.org/2000/svg"
-															fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+														<svg class="ms-2 -me-0.5 size-4"
+															xmlns="http://www.w3.org/2000/svg" fill="none"
+															viewBox="0 0 24 24" stroke-width="1.5"
 															stroke="currentColor">
 															<path stroke-linecap="round" stroke-linejoin="round"
 																d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
@@ -417,7 +429,7 @@ const openAssetStatusMiniForm = () => {
 										class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">
 										Filter Jobs By</h2>
 									<select @change="handleFilterSelectChange" v-model="filterkey"
-										class="appearance-none block w-full p-4 mt-3 text-base primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none">
+										class="appearance-none block w-full p-4 mt-3 text-base primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none">
 										<input type="hidden" name="key" v-model="filterkey">
 										<option class="text-base primary-dark-blue" selected disabled hidden value="">
 											Select
@@ -436,12 +448,14 @@ const openAssetStatusMiniForm = () => {
 										v-model="filterstatuskey" placeholder="ex. Work in Progress"
 										name="filter_status" required /> -->
 									<select :class="isStatusOpen ? 'block' : 'hidden'" v-model="filterstatuskey"
-										class="appearance-none block w-full p-4 mt-3 text-base primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none">
+										class="appearance-none block w-full p-4 mt-3 text-base primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none">
 										<option class="text-base primary-dark-blue" selected disabled hidden value="">
 											Select
 											status</option>
 										<option class="text-base primary-dark-blue" value="New">New</option>
-										<option class="text-base primary-dark-blue" value="Work In Progress">Work In Progress</option>
+										<option class="text-base primary-dark-blue" value="Work In Progress">Work In
+											Progress
+										</option>
 										<option class="text-base primary-dark-blue" value="Completed">Completed</option>
 									</select>
 									<button type="submit"
@@ -471,8 +485,9 @@ const openAssetStatusMiniForm = () => {
 												</div>
 												<div class="w-full mt-3">
 													<!-- <InputLabel for="corporate_address" value="Corporate Address" /> -->
-													<TextInput id="corporate_address" type="text" placeholder="Corporate Address"
-														v-model="form.corporate_address" required />
+													<TextInput id="corporate_address" type="text"
+														placeholder="Corporate Address" v-model="form.corporate_address"
+														required />
 													<InputError class="mt-2" :message="form.errors.corporate_address" />
 												</div>
 												<div class="w-full mt-3">
@@ -489,8 +504,12 @@ const openAssetStatusMiniForm = () => {
 												</div>
 												<div class="w-full mt-3">
 													<!-- <InputLabel for="contact_telephone" value="Phone" /> -->
-													<TextInput id="contact_telephone" min="1" type="number" placeholder="Phone"
-														v-model="form.contact_telephone" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength)" required @keydown="(e: KeyboardEvent) => { if (e.key === '-') e.preventDefault()}" />
+													<TextInput id="contact_telephone" min="1" type="number"
+														placeholder="Phone" v-model="form.contact_telephone"
+														maxlength="10"
+														oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength)"
+														required
+														@keydown="(e: KeyboardEvent) => { if (e.key === '-') e.preventDefault() }" />
 													<InputError class="mt-2" :message="form.errors.contact_telephone" />
 												</div>
 												<div class="w-full mt-3">
@@ -509,7 +528,7 @@ const openAssetStatusMiniForm = () => {
 												<div class="w-full mt-3">
 													<!-- <InputLabel for="type" value="Job Type" /> -->
 													<select v-model="form.type" id="type"
-														class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+														class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
 														name="type">
 														<option value="" selected disabled hidden>Job Type</option>
 														<option value="facilitydecomissioning">Facility Decomissioning
@@ -579,14 +598,19 @@ const openAssetStatusMiniForm = () => {
 												<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
 													<p>
 														<span class="font-rethinksansbold primary-dark-blue">SO Number:
-														</span><span class="font-rethinksanssemibold primary-gray">{{ '13401002' + props.liquijobs.id }}</span>
+														</span><span class="font-rethinksanssemibold primary-gray">{{
+															'13401002'
+															+ props.liquijobs.id }}</span>
 													</p>
 												</div>
 
 												<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
 													<p>
-														<span class="font-rethinksansbold primary-dark-blue">Liquis Employee Name:
-														</span><span class="font-rethinksanssemibold primary-gray">{{ props.jobownername }}</span>
+														<span class="font-rethinksansbold primary-dark-blue">Liquis
+															Employee
+															Name:
+														</span><span class="font-rethinksanssemibold primary-gray">{{
+															props.jobownername }}</span>
 													</p>
 												</div>
 												<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
@@ -750,7 +774,7 @@ const openAssetStatusMiniForm = () => {
 											<InputLabel for="asset_category" value="Category"
 												class="w-full lg:w-[60%]" />
 											<select v-model="formasset.asset_category" id="type"
-												class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+												class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
 												name="asset_category" required @change="openMenuSelect">
 												<option value="" disabled hidden>Select Category</option>
 												<option value="it">IT</option>
@@ -760,13 +784,13 @@ const openAssetStatusMiniForm = () => {
 											<InputError class="mt-2 w-full lg:w-[40%]"
 												:message="formasset.errors.asset_category" />
 										</div>
-										<div
-											class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap" :class="isOpenLabel ? 'block' : 'hidden'">
-											<InputLabel for="asset_type" value="Type" class="w-full lg:w-[60%]" :class="isOpenLabel ? 'block' : 'hidden'" />
+										<div class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap"
+											:class="isOpenLabel ? 'block' : 'hidden'">
+											<InputLabel for="asset_type" value="Type" class="w-full lg:w-[60%]"
+												:class="isOpenLabel ? 'block' : 'hidden'" />
 											<select v-model="formasset.asset_type" id="furniture_asset_type"
-												class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
-												name="asset_type" 
-												:class="isOpenFurniture ? 'block' : 'hidden'">
+												class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+												name="asset_type" :class="isOpenFurniture ? 'block' : 'hidden'">
 												<optgroup label="Furniture">
 													<option value="" selected disabled hidden>Select Furniture Type
 													</option>
@@ -779,9 +803,8 @@ const openAssetStatusMiniForm = () => {
 												</optgroup>
 											</select>
 											<select v-model="formasset.asset_type" id="it_asset_type"
-												class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
-												name="asset_type" 
-												:class="isOpenIt ? 'block' : 'hidden'">
+												class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+												name="asset_type" :class="isOpenIt ? 'block' : 'hidden'">
 												<optgroup label="IT">
 													<option value="" selected disabled hidden>Select IT Type</option>
 													<option value="it-networkgear">Network Gear</option>
@@ -797,9 +820,8 @@ const openAssetStatusMiniForm = () => {
 												</optgroup>
 											</select>
 											<select v-model="formasset.asset_type" id="infrastructure_asset_type"
-												class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
-												name="asset_type" 
-												:class="isOpenInfrastructure ? 'block' : 'hidden'">
+												class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+												name="asset_type" :class="isOpenInfrastructure ? 'block' : 'hidden'">
 												<optgroup label="Infrastructure">
 													<option value="" selected disabled hidden>Select Infrastructure Type
 													</option>
@@ -887,7 +909,7 @@ const openAssetStatusMiniForm = () => {
 											class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
 											<InputLabel for="asset_status" value="Status" class="w-full lg:w-[60%]" />
 											<select v-model="formasset.asset_status" id="asset_status"
-												class="w-full lg:w-[40%] px-4 py-2 sm:mt-0 mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+												class="w-full lg:w-[40%] px-4 py-2 sm:mt-0 mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
 												name="asset_status" required @change="openStatusMenuSelect">
 												<option value="" selected disabled hidden>Select Status</option>
 												<option value="originalstate">Original State</option>
@@ -895,38 +917,48 @@ const openAssetStatusMiniForm = () => {
 												<option value="completed">Completed</option>
 											</select>
 										</div>
+
 										<div
 											id="assetdispositiondiv" class="hidden flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
 											<InputLabel for="asset_disposition" value="Asset Disposition" class="w-full lg:w-[60%]" />
-											<select v-model="formasset.asset_disposition" id="asset_disposition"
-												class="w-full lg:w-[40%] px-4 py-2 sm:mt-0 mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
-												name="asset_status" @change="openAssetStatusMiniForm">
+											
+											<select v-model="formasset.asset_disposition" id="asset_status"
+												class="w-full lg:w-[40%] px-4 py-2 sm:mt-0 mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_status" @change="openAssetStatusMiniForm">
 												<option value="" selected disabled hidden>Select Disposition</option>
 												<option value="resold">Resold</option>
 												<option value="recycled">Recycled</option>
 												<option value="disposed">Disposed</option>
 												<option value="returned">Returned</option>
 											</select>
-											<div id="resold" class="hidden">
-												<input type="text" name="assetdisdate" placeholder="Date" />
-												<input type="text" name="assetdiswho" placeholder="Who" />
-												<input type="text" name="assetdisticketshippinginfo" placeholder="Shipping/Ticket Info" />
+
+											
+											<div class="w-full lg:w-[70%] float-none md:float-right mt-3">
+												<div id="resold" class="hidden flex sm:flex-row flex-col justify-end gap-1">
+													<input v-model="formasset.assetdisdate" class="p-2 w-full lg:w-[25%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none" type="date" name="assetdisdate" placeholder="Date" />
+													<input v-model="formasset.assetdiswho" class="p-2 w-full lg:w-[25%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" name="assetdiswho" placeholder="Who" />
+													<input v-model="formasset.assetdisticketshippinginfo" class="p-2 w-full lg:w-[40%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" name="assetdisticketshippinginfo"
+														placeholder="Shipping/Ticket Info" />
+												</div>
+												<!-- <div id="recycled" class="flex sm:flex-row flex-col justify-end mt-1 gap-1">
+													<input class="p-2 w-full lg:w-[25%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none" type="date" name="recycleddate" placeholder="Date" />
+													<input class="p-2 w-full lg:w-[25%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" name="recycledwho" placeholder="Who" />
+													<input class="p-2 w-full lg:w-[40%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" name="recycledticketinfo"
+														placeholder="Ticket Info" />
+												</div>
+												<div id="disposed" class="flex sm:flex-row flex-col justify-end mt-1 gap-1">
+													<input class="p-2 w-full lg:w-[25%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none" type="date" name="disposeddate" placeholder="Date" />
+													<input class="p-2 w-full lg:w-[25%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" name="disposedwho" placeholder="Who" />
+													<input class="p-2 w-full lg:w-[40%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" name="disposedticketinfo"
+														placeholder="Ticket Info" />
+												</div>
+												<div id="returned" class="flex sm:flex-row flex-col justify-end mt-1 gap-1">
+													<input class="p-2 w-full lg:w-[25%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none" type="date" name="returneddate" placeholder="Date" />
+													<input class="p-2 w-full lg:w-[25%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" name="returnedwho" placeholder="Who" />
+													<input class="p-2 w-full lg:w-[40%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" name="returnedticketinfo"
+														placeholder="Ticket Info" />
+												</div> -->
 											</div>
-											<!-- <div id="recycled" class="hidden">
-												<input type="text" name="assetdisdate" placeholder="Date" />
-												<input type="text" name="assetdiswho" placeholder="Who" />
-												<input type="text" name="assetdisticketshippinginfo" placeholder="Ticket Info" />
-											</div>
-											<div id="disposed" class="hidden">
-												<input type="text" name="assetdisdate" placeholder="Date" />
-												<input type="text" name="assetdiswho" placeholder="Who" />
-												<input type="text" name="assetdisticketshippinginfo" placeholder="Ticket Info" />
-											</div>
-											<div id="returned" class="hidden">
-												<input type="text" name="assetdisdate" placeholder="Date" />
-												<input type="text" name="assetdiswho" placeholder="Who" />
-												<input type="text" name="assetdisticketshippinginfo" placeholder="Ticket Info" />
-											</div> -->
+											
 											<InputError class="mt-2 w-full lg:w-[40%]"
 												:message="formasset.errors.asset_status" />
 										</div>

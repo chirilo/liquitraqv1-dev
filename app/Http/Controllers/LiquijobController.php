@@ -267,7 +267,7 @@ class LiquijobController extends Controller
         //$currentdatetime = date('M d, Y h:i:sA');
 
         $showeditdelete = 'normal';
-        if( $id == 1 || $user->email == 'webteamsupprt@gmail.com' ){
+        if( $user->email == 'webteamsupprt@gmail.com' ){
             $showeditdelete = 'admin';
         }
 

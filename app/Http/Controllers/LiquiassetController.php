@@ -65,7 +65,7 @@ class LiquiassetController extends Controller
     public function store(Request $request)
     {
 
-        // dd($request);
+        //dd($request);
         // exit;
 
         $image = $request->file('job_asset');
@@ -93,10 +93,10 @@ class LiquiassetController extends Controller
             'asset_weight_each' => $request->asset_weight_each,
             'asset_description' => $request->asset_description,
             'asset_status' => $request->asset_status,
-            'asset_disposition' => isset($request->asset_disposition) ? $request->asset_disposition : '',
-            'assetdisdate' => isset($request->asset_disposition) ? $request->asset_disposition : '',
-            'assetdiswho' => isset($request->asset_disposition) ? $request->asset_disposition : '',
-            'assetdisticketshippinginfo' => isset($request->asset_disposition) ? $request->asset_disposition : '',
+            'asset_disposition' => $request->asset_disposition,
+            'assetdisdate' => $request->assetdisdate,
+            'assetdiswho' => $request->assetdiswho,
+            'assetdisticketshippinginfo' => $request->assetdisticketshippinginfo,
 
         ]);
 
