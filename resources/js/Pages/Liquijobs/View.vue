@@ -122,37 +122,69 @@ let isOpenInfrastructure = ref(false);
 let isOpenLabel = ref(false);
 
 const openMenuSelect = (event) => {
-	isOpenLabel.value = !isOpenLabel.value;
+	//isOpenLabel.value = !isOpenLabel.value;
 	const it_asset_type = document.getElementById('it_asset_type');
 	const furniture_asset_type = document.getElementById('furniture_asset_type');
 	const infrastructure_asset_type = document.getElementById('infrastructure_asset_type');
 	// Access the selected value using event.target.value
 	console.log('Selected option:', event.target.value);
 	// Perform actions based on the selected option
-	if (event.target.value === 'it') {
+	if (event.target.value == 'it') {
 		// Do something
 		//alert('it here');
 		isOpenIt.value = !isOpenIt.value;
-		isOpenFurniture.value = false;
-		isOpenInfrastructure.value = false;
-		furniture_asset_type.removeAttribute('required');
-		infrastructure_asset_type.removeAttribute('required');
-	} else if (event.target.value === 'furniture') {
+		isOpenLabel.value = !isOpenLabel.value;
+		// isOpenFurniture.value = false;
+		// isOpenInfrastructure.value = false;
+		// furniture_asset_type.removeAttribute('required');
+		// infrastructure_asset_type.removeAttribute('required');
+
+		// manually add the hidden class to furniture and infrastructure
+		document.getElementById('furniture_asset_type').classList.add('hidden');
+		document.getElementById('infrastructure_asset_type').classList.add('hidden');
+
+		document.getElementById('it_asset_type').classList.remove('hidden');
+		document.getElementById('it_asset_type').classList.add('block');
+
+		document.getElementById('assettypediv').classList.remove('hidden');
+	} 
+	else if (event.target.value == 'furniture') {
 		// Do something else
 		//alert('furniture ');
 		isOpenFurniture.value = !isOpenFurniture.value;
-		isOpenIt.value = false;
-		isOpenInfrastructure.value = false;
-		it_asset_type.removeAttribute('required');
-		infrastructure_asset_type.removeAttribute('required');
-	} else if (event.target.value === 'infrastructure') {
+		isOpenLabel.value = !isOpenLabel.value;
+		// isOpenIt.value = false;
+		// isOpenInfrastructure.value = false;
+		// it_asset_type.removeAttribute('required');
+		// infrastructure_asset_type.removeAttribute('required');
+
+		// manually add the hidden class to furniture and infrastructure
+		document.getElementById('it_asset_type').classList.add('hidden');
+		document.getElementById('infrastructure_asset_type').classList.add('hidden');
+
+		document.getElementById('furniture_asset_type').classList.remove('hidden');
+		document.getElementById('furniture_asset_type').classList.add('block');
+
+		document.getElementById('assettypediv').classList.remove('hidden');
+	} 
+	else if (event.target.value == 'infrastructure') {
 		// Do something else
 		//alert('infrastructure ');
 		isOpenInfrastructure.value = !isOpenInfrastructure.value;
-		isOpenIt.value = false;
-		isOpenFurniture.value = false;
-		it_asset_type.removeAttribute('required');
-		furniture_asset_type.removeAttribute('required');
+		isOpenLabel.value = !isOpenLabel.value;
+		// isOpenIt.value = false;
+		// isOpenFurniture.value = false;
+		// it_asset_type.removeAttribute('required');
+		// furniture_asset_type.removeAttribute('required');
+
+		// manually add the hidden class to furniture and infrastructure
+		document.getElementById('furniture_asset_type').classList.add('hidden');
+		document.getElementById('it_asset_type').classList.add('hidden');
+
+		document.getElementById('infrastructure_asset_type').classList.remove('hidden');
+		document.getElementById('infrastructure_asset_type').classList.add('block');
+
+		document.getElementById('assettypediv').classList.remove('hidden');
 	}
 };
 
@@ -771,10 +803,9 @@ const openAssetStatusMiniForm = () => {
 											<InputError class="mt-2 w-full lg:w-[40%]"
 												:message="formasset.errors.asset_category" />
 										</div>
-										<div class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap"
-											:class="isOpenLabel ? 'block' : 'hidden'">
-											<InputLabel for="asset_type" value="Type" class="w-full lg:w-[60%]"
-												:class="isOpenLabel ? 'block' : 'hidden'" />
+										<div id="assettypediv" class="hidden flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap"
+											>
+											<InputLabel for="asset_type" value="Type" class="w-full lg:w-[60%]" />
 											<select v-model="formasset.asset_type" id="furniture_asset_type"
 												class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
 												name="asset_type" :class="isOpenFurniture ? 'block' : 'hidden'">
@@ -1004,17 +1035,7 @@ const openAssetStatusMiniForm = () => {
 				</div><!-- end of unlabeled div -->
 			</div>
 		</div>
-		<!-- -->
-		<!-- <h1>VIEW VUE PAGE</h1> -->
-		<div class="py-12" style="display: none;">
-			<div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-				<h1 class="text-2xl">{{ props.liquijobs.so_number }}</h1>
-				<div>
-					{{ props.liquijobs.so_number }}
-				</div>
-			</div>
-		</div>
-		<!-- -->
+		
 	</AppLayout>
 
 </template>
