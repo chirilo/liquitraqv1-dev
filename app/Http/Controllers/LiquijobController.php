@@ -238,7 +238,14 @@ class LiquijobController extends Controller
         // Get the currently authenticated user's ID...
         $id = Auth::id();
         
-        //dd($liquijob['id']);
+        
+
+        $jobowner = \DB::table('users')
+                ->where('id', $liquijob['job_owner_id'])
+                ->get()->toArray();
+        $jobownername = $jobowner[0]->name;
+
+        //dd();
         // fetch assets
         //$job_assets = DB::table('liquiassets')->where('id', $liquijob->id)->first();
 
@@ -302,6 +309,7 @@ class LiquijobController extends Controller
                     'furniturejobassets' => $furniturejobassets,
                     'currentdatetime' => $currentdatetime,
                     'showeditdelete' => $showeditdelete,
+                    'jobownername' => $jobownername,
                 ]
             );
         }else{
@@ -319,6 +327,7 @@ class LiquijobController extends Controller
                     'furniturejobassets' => $furniturejobassets,
                     'currentdatetime' => $currentdatetime,
                     'showeditdelete' => $showeditdelete,
+                    'jobownername' => $jobownername,
                 ]
             );
         }

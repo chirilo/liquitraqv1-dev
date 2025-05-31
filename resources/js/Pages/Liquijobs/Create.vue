@@ -119,6 +119,25 @@ const filteranything = () => {
     
     
 }
+
+const browsertimezone  = Intl.DateTimeFormat().resolvedOptions().timeZone;
+console.log('browsertimezone' + browsertimezone);
+const today = new Date();
+const monthName = today.toLocaleString('default', { month: 'long' });
+const dayNumber = today.getDate();
+const year = today.getFullYear();
+
+const date = new Date();
+const formatter = new Intl.DateTimeFormat('en-US', {
+    timeZone: browsertimezone,
+    hour: 'numeric',
+    minute: 'numeric',
+    //second: 'numeric',
+});
+
+const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - " + formatter.format(date);
+// console.log(monthName + dayNumber + formatter.format(date));
+// console.log(fulldatebasedonbrowser);
 </script>
 <template>
     <AppLayout title="Add Job">
@@ -145,7 +164,7 @@ const filteranything = () => {
 							    <!-- AVATAR -->
                                 <div class="relative flex flex-col items-center lg:items-end">
                                     <div class="w-full text-center primary-gray font-rethinksansmedium text-sm">{{
-                                        props.currentdatetime }}</div>
+                                        fulldatebasedonbrowser }}</div>
                                     <div class="pt-3 mx-auto relative flex items-center lg:items-end" v-if="$page.props.jetstream.managesProfilePhotos">
                                         <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
                                             data-dropdown-placement="bottom-start"
