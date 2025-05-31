@@ -219,6 +219,22 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 // console.log(monthName + dayNumber + formatter.format(date));
 // console.log(fulldatebasedonbrowser);
 
+
+
+const openStatusMenuSelect = () => {
+	let selectedassetstatus = event.target.value;
+	console.log('selected' + selectedassetstatus);
+	if (selectedassetstatus === 'completed') {
+		// isSoNumberOpen.value = !isSoNumberOpen.value;
+
+		// // close other
+		// isStatusOpen.value = false;
+		// document.getElementById('filter_status').removeAttribute('required');
+		alert('here')
+		document.getElementById('assetdispositiondiv').classList.remove('hidden');
+	}
+}
+
 </script>
 
 <template>
@@ -837,9 +853,11 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 												<option value="workinprogress">Work In Progress</option>
 												<option value="completed">Completed</option>
 											</select>
-
-											<!-- <InputLabel for="asset_status" value="Asset Disposition" class="w-full lg:w-[60%]" /> -->
-											<!-- <select v-model="formasset.asset_disposition" id="asset_status"
+										</div>
+										<div
+											id="assetdispositiondiv" class="hidden flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<InputLabel for="asset_status" value="Asset Disposition" class="w-full lg:w-[60%]" />
+											<select v-model="formasset.asset_disposition" id="asset_status"
 												class="w-full lg:w-[40%] px-4 py-2 sm:mt-0 mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
 												name="asset_status" @change="openAssetStatusMiniForm">
 												<option value="" selected disabled hidden>Select Disposition</option>
@@ -848,11 +866,26 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 												<option value="disposed">Disposed</option>
 												<option value="returne">Returned</option>
 											</select>
-											<div>
-												<input type="text" name="date" placeholder="Date" />
-												<input type="text" name="who" placeholder="Who" />
-												<input type="text" name="shippingticketinfo" placeholder="Shipping/Ticket Info" />
-											</div> -->
+											<div id="resold" class="">
+												<input type="text" name="resolddate" placeholder="Date" />
+												<input type="text" name="resoldwho" placeholder="Who" />
+												<input type="text" name="resoldshippinginfo" placeholder="Shipping/Ticket Info" />
+											</div>
+											<div id="recycled" class="">
+												<input type="text" name="recycleddate" placeholder="Date" />
+												<input type="text" name="recycledwho" placeholder="Who" />
+												<input type="text" name="recycledticketinfo" placeholder="Ticket Info" />
+											</div>
+											<div id="disposed" class="">
+												<input type="text" name="disposeddate" placeholder="Date" />
+												<input type="text" name="disposedwho" placeholder="Who" />
+												<input type="text" name="disposedticketinfo" placeholder="Ticket Info" />
+											</div>
+											<div id="returned" class="">
+												<input type="text" name="returneddate" placeholder="Date" />
+												<input type="text" name="returnedwho" placeholder="Who" />
+												<input type="text" name="returnedticketinfo" placeholder="Ticket Info" />
+											</div>
 											<InputError class="mt-2 w-full lg:w-[40%]"
 												:message="formasset.errors.asset_status" />
 										</div>
