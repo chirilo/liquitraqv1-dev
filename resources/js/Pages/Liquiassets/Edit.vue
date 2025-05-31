@@ -4,10 +4,12 @@ import { Head, Link, useForm, usePage, router } from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import PrimaryLink from '@/Components/PrimaryLink.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
 import Pagination from '@/Components/Pagination.vue';
 import TextInput from '@/Components/TextInput.vue';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
+import InputLabel from '@/Components/InputLabel.vue';
 
 import SearchBarSideBar from '@/Components/SearchBarSideBar.vue';
 import Calendar from '@/Components/Calendar.vue';
@@ -16,7 +18,7 @@ import JobsLastSevenDays from '@/Components/JobsLastSevenDays.vue';
 import UpcomingJobs from '@/Components/UpcomingJobs.vue';
 
 import moment from "moment";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 
 const props = defineProps({
 	liquiasset: Object,
@@ -55,6 +57,7 @@ const deleteTrade = (id) => {
 
 const form2 = useForm({
     id: props.liquiasset.id,
+    job_asset_url: props.liquiasset.job_asset,
     asset_category: props.liquiasset.asset_category,
     asset_quantity: props.liquiasset.asset_quantity,
     asset_type: props.liquiasset.asset_type,
@@ -72,8 +75,10 @@ const form2 = useForm({
 
 // from Create.vue
 const updateasset = (id) => {
+	console.log(form2)
     form2.put(route('liquiassets.update', { id: props.liquiasset.id }));
 };
+
 
 const form = useForm({
 	company_name: '',
@@ -88,6 +93,78 @@ const form = useForm({
 // from Create.vue
 const submitaddjob = () => {
 	form.post(route("liquijobs.store"));
+};
+
+let isOpenFurniture = ref(false);
+let isOpenIt = ref(false);
+let isOpenInfrastructure = ref(false);
+let isOpenLabel = ref(false);
+
+const openMenuSelect = (event) => {
+	//isOpenLabel.value = !isOpenLabel.value;
+	const it_asset_type = document.getElementById('it_asset_type');
+	const furniture_asset_type = document.getElementById('furniture_asset_type');
+	const infrastructure_asset_type = document.getElementById('infrastructure_asset_type');
+	// Access the selected value using event.target.value
+	console.log('Selected option:', event.target.value);
+	// Perform actions based on the selected option
+	if (event.target.value == 'it') {
+		// Do something
+		//alert('it here');
+		// isOpenIt.value = !isOpenIt.value;
+		// isOpenLabel.value = !isOpenLabel.value;
+		// isOpenFurniture.value = false;
+		// isOpenInfrastructure.value = false;
+		// furniture_asset_type.removeAttribute('required');
+		// infrastructure_asset_type.removeAttribute('required');
+
+		// manually add the hidden class to furniture and infrastructure
+		document.getElementById('furniture_asset_type').classList.add('hidden');
+		document.getElementById('infrastructure_asset_type').classList.add('hidden');
+
+		document.getElementById('it_asset_type').classList.remove('hidden');
+		document.getElementById('it_asset_type').classList.add('block');
+
+		document.getElementById('assettypediv').classList.remove('hidden');
+	} 
+	else if (event.target.value == 'furniture') {
+		// Do something else
+		//alert('furniture ');
+		// isOpenFurniture.value = !isOpenFurniture.value;
+		// isOpenLabel.value = !isOpenLabel.value;
+		// isOpenIt.value = false;
+		// isOpenInfrastructure.value = false;
+		// it_asset_type.removeAttribute('required');
+		// infrastructure_asset_type.removeAttribute('required');
+
+		// manually add the hidden class to furniture and infrastructure
+		document.getElementById('it_asset_type').classList.add('hidden');
+		document.getElementById('infrastructure_asset_type').classList.add('hidden');
+
+		document.getElementById('furniture_asset_type').classList.remove('hidden');
+		document.getElementById('furniture_asset_type').classList.add('block');
+
+		document.getElementById('assettypediv').classList.remove('hidden');
+	} 
+	else if (event.target.value == 'infrastructure') {
+		// Do something else
+		//alert('infrastructure ');
+		// isOpenInfrastructure.value = !isOpenInfrastructure.value;
+		// isOpenLabel.value = !isOpenLabel.value;
+		// isOpenIt.value = false;
+		// isOpenFurniture.value = false;
+		// it_asset_type.removeAttribute('required');
+		// furniture_asset_type.removeAttribute('required');
+
+		// manually add the hidden class to furniture and infrastructure
+		document.getElementById('furniture_asset_type').classList.add('hidden');
+		document.getElementById('it_asset_type').classList.add('hidden');
+
+		document.getElementById('infrastructure_asset_type').classList.remove('hidden');
+		document.getElementById('infrastructure_asset_type').classList.add('block');
+
+		document.getElementById('assettypediv').classList.remove('hidden');
+	}
 };
 
 const logout = () => {
@@ -207,6 +284,68 @@ const formatter = new Intl.DateTimeFormat('en-US', {
 const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - " + formatter.format(date);
 // console.log(monthName + dayNumber + formatter.format(date));
 // console.log(fulldatebasedonbrowser);
+
+const openStatusMenuSelect = () => {
+	let selectedassetstatus = event.target.value;
+	console.log('selected' + selectedassetstatus);
+	if ( selectedassetstatus === 'completed' ) {
+		// isSoNumberOpen.value = !isSoNumberOpen.value;
+
+		// // close other
+		// isStatusOpen.value = false;
+		// document.getElementById('filter_status').removeAttribute('required');
+		//alert('here')
+		document.getElementById('assetdispositiondiv').classList.remove('hidden');
+	}
+	else if( selectedassetstatus === 'originalstate' || selectedassetstatus === 'workinprogress'  ){
+		document.getElementById('assetdispositiondiv').classList.add('hidden');
+	}
+}
+
+const openAssetStatusMiniForm = () => {
+	let selecteddispoval = event.target.value;
+	console.log('selecteddispoval' + selecteddispoval);
+	if( selecteddispoval == 'resold' ){
+		document.getElementById('resold').classList.remove('hidden');
+
+		// hide others
+		// document.getElementById('recycled').classList.add('hidden');
+		// document.getElementById('disposed').classList.add('hidden');
+		// document.getElementById('returned').classList.add('hidden');
+	}
+	else if( selecteddispoval == 'recycled' ){
+		document.getElementById('resold').classList.remove('hidden');
+	}
+	else if( selecteddispoval == 'disposed' ){
+		document.getElementById('resold').classList.remove('hidden');
+	}
+	else if( selecteddispoval == 'returned' ){
+		document.getElementById('resold').classList.remove('hidden');
+	}
+}
+
+
+onMounted(() => {
+	//alert('heresss');
+	let assetcategoryfromdb = props.liquiasset.asset_category;
+	let assetimagefromdb = props.liquiasset.job_asset;
+	//alert(assetimagefromdb);
+	if( assetcategoryfromdb == 'furniture' ){
+		document.getElementById('furniture_asset_type').classList.remove('hidden');
+		document.getElementById('furniture_asset_type').classList.add('block');
+	}
+	else if( assetcategoryfromdb == 'it' ){
+		document.getElementById('it_asset_type').classList.remove('hidden');
+		document.getElementById('it_asset_type').classList.add('block');
+	}
+	else if( assetcategoryfromdb == 'infrastructure' ){
+		document.getElementById('infrastructure_asset_type').classList.remove('hidden');
+		document.getElementById('infrastructure_asset_type').classList.add('block');
+	}
+})
+
+
+
 </script>
 
 <template>
@@ -478,14 +617,87 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 	                                        <input id="id" type="text" :value="form.id" disabled
 	                                            class="w-auto lg:w-[40%] appearance-none block w-full px-4 py-0 primary-dark-blue font-rethinksansmedium border-[#fff]" />
 	                                    </div> -->
+	                                    <div class="text-center">
+	                                    	<h2 class="block sm:text-2xl text-xl primary-light-blue font-rethinksansextrabold uppercase"> Edit Asset </h2>
+	                                    </div>
 	                                    <div
 	                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
 	                                        <InputLabel for="asset_category" value="Category" class="w-full lg:w-[60%]" />
-	                                        <TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_category" type="text"
-	                                            v-model="form2.asset_category" required />
+	                                        <select v-model="form2.asset_category" id="type"
+												class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+												name="asset_category" required @change="openMenuSelect">
+												<option value="" disabled hidden>Select Category</option>
+												<option value="it">IT</option>
+												<option value="infrastructure">Infrastructure</option>
+												<option value="furniture">Furniture</option>
+											</select>
 	                                        <InputError class="mt-2 w-full lg:w-[40%]"
 	                                            :message="form2.errors.asset_category" />
 	                                    </div>
+	                                    <div id="assettypediv" class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap"
+											>
+											<InputLabel for="asset_type" value="Type" class="w-full lg:w-[60%]" />
+											<select v-model="form2.asset_type" id="furniture_asset_type"
+												class="hidden w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+												name="asset_type">
+												<optgroup label="Furniture">
+													<option value="" selected disabled hidden>Select Furniture Type
+													</option>
+													<option value="furniture-cubicle">Cubicle</option>
+													<option value="furniture-casegood">Case Good</option>
+													<option value="furniture-chair">Chair</option>
+													<option value="furniture-wallhanging">Wall Hanging</option>
+													<option value="furniture-appliance">Appliance</option>
+													<option value="furniture-others">Others</option>
+												</optgroup>
+											</select>
+											<select v-model="form2.asset_type" id="it_asset_type"
+												class="hidden w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+												name="asset_type">
+												<optgroup label="IT">
+													<option value="" selected disabled hidden>Select IT Type</option>
+													<option value="it-networkgear">Network Gear</option>
+													<option value="it-servers">Servers</option>
+													<option value="it-pcs">PCs</option>
+													<option value="it-laptops">Laptops</option>
+													<option value="it-rack">Rack</option>
+													<option value="it-telecom">Telecom</option>
+													<option value="it-monitors">Monitors</option>
+													<option value="it-camera">Camera</option>
+													<option value="it-printers">Printers</option>
+													<option value="it-others">Others</option>
+												</optgroup>
+											</select>
+											<select v-model="form2.asset_type" id="infrastructure_asset_type"
+												class="hidden w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+												name="asset_type">
+												<optgroup label="Infrastructure">
+													<option value="" selected disabled hidden>Select Infrastructure Type
+													</option>
+													<option value="infrastructure-generator">Generator</option>
+													<option value="infrastructure-cracunit">CRAC Unit</option>
+													<option value="infrastructure-ups">UPS</option>
+													<option value="infrastructure-ats">ATS</option>
+													<option value="infrastructure-bypass">Bypass</option>
+													<option value="infrastructure-switchgear">Switchgear</option>
+													<option value="infrastructure-batteries">Batteries</option>
+													<option value="infrastructure-wiringlowvoltage">Wiring, Low-Voltage
+													</option>
+													<option value="infrastructure-wiringhighvoltage">Wiring,
+														High-Voltage
+													</option>
+													<option value="infrastructure-firesuppressant">Fire Suppressant
+													</option>
+													<option value="infrastructure-raisedflooring">Raised Flooring
+													</option>
+													<option value="infrastructure-paintchemical">Paint/Chemical</option>
+													<option value="infrastructure-others">Others</option>
+												</optgroup>
+											</select>
+											<InputError class="mt-2 w-full lg:w-[40%]"
+												:message="form2.errors.asset_type" />
+											<div class="w-[40%]"></div>
+										</div>
 	                                    <div
 	                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
 	                                        <InputLabel for="asset_quantity" value="Quantity" class="w-full lg:w-[60%]" />
@@ -494,14 +706,14 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 	                                        <InputError class="mt-2 w-full lg:w-[40%]"
 	                                            :message="form2.errors.asset_quantity" />
 	                                    </div>
-	                                    <div
+	                                    <!-- <div
 	                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
 	                                        <InputLabel for="asset_type" value="Type" class="w-full lg:w-[60%]" />
 	                                        <TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_type" type="text"
 	                                            v-model="form2.asset_type" required />
 	                                        <InputError class="mt-2 w-full lg:w-[40%]"
 	                                            :message="form2.errors.asset_type" />
-	                                    </div>
+	                                    </div> -->
 	                                    <div
 	                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
 	                                        <InputLabel for="asset_make" value="Make" class="w-full lg:w-[60%]" />
@@ -546,31 +758,76 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 	                                    <div
 	                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
 	                                        <InputLabel for="asset_status" value="Status" class="w-full lg:w-[60%]" />
-	                                        <TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_status" type="text"
-	                                            v-model="form2.asset_status" required />
+	                                        <!-- <TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_status" type="text"
+	                                            v-model="form2.asset_status" required /> -->
+	                                        <select v-model="form2.asset_status" id="asset_status"
+												class="w-full lg:w-[40%] px-4 py-2 sm:mt-0 mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+												name="asset_status" required @change="openStatusMenuSelect">
+												<option value="" selected disabled hidden>Select Status</option>
+												<option value="originalstate">Original State</option>
+												<option value="workinprogress">Work In Progress</option>
+												<option value="completed">Completed</option>
+											</select>
 	                                        <InputError class="mt-2 w-full lg:w-[40%]"
 	                                            :message="form2.errors.asset_status" />
 	                                    </div>
-	                                    <div
+	                                    <div id="assetdispositiondiv"
 	                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
 	                                        <InputLabel for="asset_disposition" value="Asset Disposition" class="w-full lg:w-[60%]" />
-	                                        <TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_disposition" type="text"
-	                                            v-model="form2.asset_disposition" required />
+	                                        <select v-model="form2.asset_disposition" id="asset_status"
+												class="w-full lg:w-[40%] px-4 py-2 sm:mt-0 mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_status" @change="openAssetStatusMiniForm">
+												<option value="" selected disabled hidden>Select Disposition</option>
+												<option value="resold">Resold</option>
+												<option value="recycled">Recycled</option>
+												<option value="disposed">Disposed</option>
+												<option value="returned">Returned</option>
+											</select>
+											<div class="w-full lg:w-[70%] float-none md:float-right mt-3">
+												<div id="resold" class="flex sm:flex-row flex-col justify-end gap-1">
+													<input v-model="form2.assetdisdate" class="p-2 w-full lg:w-[25%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none" type="date" name="assetdisdate" placeholder="Date" />
+													<input v-model="form2.assetdiswho" class="p-2 w-full lg:w-[25%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" name="assetdiswho" placeholder="Who" />
+													<input v-model="form2.assetdisticketshippinginfo" class="p-2 w-full lg:w-[40%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" name="assetdisticketshippinginfo"
+														placeholder="Shipping/Ticket Info" />
+												</div>
+											</div>
 	                                        <InputError class="mt-2 w-full lg:w-[40%]"
 	                                            :message="form2.errors.asset_disposition" />
 	                                    </div>
 
+	                                    <!-- <div class="float-right mt-6 sm:w-[60%] w-full flex flex-col">
+	                                    	<img :src="form2.job_asset ? form2.job_asset : $event.target.files[0]" alt="Job Asset Preview" />
+	                                    	<InputLabel for="job_asset" value="Job Asset Preview" class="w-full lg:w-[60%]" />
+	                                    </div> -->
+
 	                                    <div class="mt-6 sm:w-[60%] w-full flex flex-col">
-												<InputLabel for="job_asset" value="Job Asset"
-													class="w-full lg:w-[60%]" />
-												<!-- <input type="file" @input="form.avatar = $event.target.files[0]" name="job_asset" class="mt-1 block w-full" v-on:change="onImageChange" > -->
-												<input required type="file"
-													@input="form2.job_asset = $event.target.files[0]"
-													name="job_asset" class="mt-1 block w-full">
-												<input type="hidden" name="job_id" v-model="form2.jobid">
-												<InputError class="mt-2 w-full lg:w-[40%]"
-													:message="form2.errors.job_asset" />
-											</div>
+											<InputLabel for="job_asset_url" value="Job Asset"
+												class="w-full lg:w-[60%]" />
+											<!-- <input type="file" @input="form.avatar = $event.target.files[0]" name="job_asset" class="mt-1 block w-full" v-on:change="onImageChange" > -->
+											<input type="file"
+												@input="form2.job_asset_url = $event.target.files[0]"
+												name="job_asset_url" class="mt-1 block w-full">
+											<!-- <input type="hidden" name="job_id" v-model="form2.jobid"> -->
+											<InputError class="mt-2 w-full lg:w-[40%]"
+												:message="form2.errors.job_asset_url" />
+										</div>
+
+										<div class="flex justify-end">
+	                                        <PrimaryButton :disabled="form.processing" class="py-3 px-4 sm:w-auto w-full">
+	                                            <span class="text-base">Update</span> <svg
+	                                                class="size-6 shrink-0 stroke-[#FFFFFF]"
+	                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+	                                                stroke-width="1.5"
+	                                                style="display: inline; float: inline-end; margin-left: 5px;">
+	                                                <path stroke-linecap="round" stroke-linejoin="round"
+	                                                    d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"></path>
+	                                            </svg>
+	                                        </PrimaryButton>
+	                                        <Transition enter-active-class="transition ease-in-out"
+	                                            enter-from-class="opacity-0" leave-active-class="transition ease-in-out"
+	                                            leave-to-class="opacity-0">
+	                                            <p v-if="form.recentlySuccessful" class="text-sm text-gray-600">Saved.</p>
+	                                        </Transition>
+	                                    </div>
                                 	</form>
 								</div>
 							</div>

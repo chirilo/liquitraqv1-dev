@@ -48,6 +48,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('liquiassets', LiquiassetController::class);
     Route::post('/liquiassets/create', 'LiquiassetController@store');
     //Route::get('/liquiassets/allassets', 'LiquiassetController@show');
+    Route::post('liquiassets/{id}/update', 'LiquiassetController@update');
 });
 
 

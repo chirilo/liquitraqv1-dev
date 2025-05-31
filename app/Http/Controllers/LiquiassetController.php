@@ -190,6 +190,36 @@ class LiquiassetController extends Controller
     public function update(Request $request, Liquiasset $liquiasset)
     {
         //
+
+        // dd($request->file('job_asset_url'));
+        // exit();
+
+        $image = $request->file('job_asset');
+        $fname = $request->file('job_asset')->getClientOriginalName();
+
+        $storagePath = Storage::disk('public')->put('job_assets', $image);
+        $storageName = basename($storagePath);
+
+
+        $liquiasset->update([
+            'job_asset' => '/storage/job_assets/'.$storageName,
+            //'job_id' => $request->jobid,
+            'asset_category' => $request->asset_category,
+            'asset_quantity' => $request->asset_quantity,
+            'asset_type' => $request->asset_type,
+            'asset_make' => $request->asset_make,
+            'asset_model' => $request->asset_model,
+            'asset_serial' => $request->asset_serial,
+            'asset_weight_each' => $request->asset_weight_each,
+            'asset_description' => $request->asset_description,
+            'asset_status' => $request->asset_status,
+            'asset_disposition' => $request->asset_disposition,
+            'assetdisdate' => $request->assetdisdate,
+            'assetdiswho' => $request->assetdiswho,
+            'assetdisticketshippinginfo' => $request->assetdisticketshippinginfo,
+        ]);
+
+        return redirect()->route('liquijobs.edit')->with('message', 'Asset added successfully.');
     }
 
     /**
