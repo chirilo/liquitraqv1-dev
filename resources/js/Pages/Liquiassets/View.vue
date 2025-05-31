@@ -690,19 +690,40 @@ const openMenu = () => {
 													<div class="font-rethinksansbold primary-dark-blue w-[60%]">
 														Asset Disposition Information:
 													</div>
+												</div>
+												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
 													<div class="font-rethinksanssemibold primary-gray width-40">
 														<span>
-															Date: {{ item.assetdisdate }}
+															Date:
 														</span>
 													</div>
 													<div class="font-rethinksanssemibold primary-gray width-40">
 														<span>
-															Who: {{ item.assetdiswho }}
+															{{ item.assetdisdate }}
+														</span>
+													</div>
+												</div>
+												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
+													<div class="font-rethinksanssemibold primary-gray width-40">
+														<span>
+															Who:
 														</span>
 													</div>
 													<div class="font-rethinksanssemibold primary-gray width-40">
 														<span>
-															Ticket / Shipping Info: {{ item.assetdisticketshippinginfo }}
+															{{ item.assetdiswho }}
+														</span>
+													</div>
+												</div>
+												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
+													<div class="font-rethinksanssemibold primary-gray width-40">
+														<span>
+															Ticket / Shipping Info:
+														</span>
+													</div>
+													<div class="font-rethinksanssemibold primary-gray width-40">
+														<span>
+															{{ item.assetdisticketshippinginfo }}
 														</span>
 														
 													</div>
