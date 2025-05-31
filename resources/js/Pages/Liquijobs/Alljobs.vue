@@ -115,9 +115,29 @@ const filteranything = () => {
 }
 
 let isOpen = ref(false);
-const openMenu = () => {
-  isOpen.value = !isOpen.value;
-  console.log(isOpen);
+const openMenu = (e) => {
+	let thisid = e.target.id;
+	//alert(e.target.id)
+	console.log('target'+ e.target.nextSibling);
+	let nextsibling = e.target.nextSibling;
+	let nextsiblingid = nextsibling.id;
+	//alert(nextsiblingid)
+	let hiddenclasscontain = document.getElementById(nextsiblingid).classList.contains('hidden');
+	let blockclasscontain = document.getElementById(nextsiblingid).classList.contains('block');
+	//alert(classcontain);
+	if( hiddenclasscontain == true ){
+		//alert(classcontain);
+		document.getElementById(nextsiblingid).classList.remove('hidden');
+		document.getElementById(nextsiblingid).classList.add('block');
+	}
+	else if( blockclasscontain == true ){
+		document.getElementById(nextsiblingid).classList.remove('block');
+		document.getElementById(nextsiblingid).classList.add('hidden');
+	}
+	
+	// console.log(nextsiblingid);
+	// isOpen.value = !isOpen.value;
+	// console.log(isOpen);
 };
 
 
