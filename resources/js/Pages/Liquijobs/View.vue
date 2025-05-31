@@ -260,8 +260,8 @@ const openAssetStatusMiniForm = () => {
 	else if( selecteddispoval == 'disposed' ){
 		document.getElementById('resold').classList.remove('hidden');
 	}
-	else if( selecteddispoval == 'resold' ){
-		document.getElementById('returned').classList.remove('hidden');
+	else if( selecteddispoval == 'returned' ){
+		document.getElementById('resold').classList.remove('hidden');
 	}
 }
 
