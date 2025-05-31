@@ -35,6 +35,7 @@ const props = defineProps({
     jobownername: String,
     jobownerid: String,
     liquisemployees: Object,
+    showassingemployee: String,
 });
 
 const liquijobsCreate = '/liquijobs/create';
@@ -362,7 +363,7 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
                                     </div>
 
                                     <div
-                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap" v-if="props.showassingemployee == 'admin'">
                                         <InputLabel for="liquis_employee_name" value="Liquis Employee Name" class="w-full lg:w-[60%]" />
                                         <select v-model="form.liquis_employee" id="liquis_employee"
 											class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"

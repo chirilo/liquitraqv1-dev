@@ -77,7 +77,7 @@ class LiquijobController extends Controller
         //dd($user->email);
 
         $showeditdelete = 'normal';
-        if( $id == 2 || $user->email == 'webteamsupprt@gmail.com' ){
+        if( $id == 5 || $user->email == 'webteamsupprt@gmail.com' ){
             $showeditdelete = 'admin';
         }
         
@@ -396,6 +396,11 @@ class LiquijobController extends Controller
     {
         //
         //dd($liquijob);exit();
+
+        // Get the currently authenticated user...
+        $user = Auth::user(); 
+        // Get the currently authenticated user's ID...
+        $id = Auth::id();
         
         // get current date and time
         //$currentdatetime = now()->format('M d, Y - h:m A');
@@ -420,6 +425,12 @@ class LiquijobController extends Controller
                 //->where('id', $liquijob['job_owner_id'])
                 ->get();
 
+        // Show the Assign to Employee field if ADMIN
+        $showassingemployee = 'normal';
+        if( $id == 5 || $user->email == 'webteamsupprt@gmail.com' ){
+            $showassingemployee = 'admin';
+        }
+
         return Inertia::render(
             'Liquijobs/Edit',
             [
@@ -428,6 +439,7 @@ class LiquijobController extends Controller
                 'jobownername' => $jobownername,
                 'jobownerid' => $jobownerid,
                 'liquisemployees' => $liquisemployees,
+                'showassingemployee' => $showassingemployee,
             ]
         );
     }
