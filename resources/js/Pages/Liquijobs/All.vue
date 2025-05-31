@@ -580,6 +580,8 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 														<div class="mt-3">
 															<a v-bind:href="viewsingleliquiasseturl + item.id"
 																class="text-white py-2 px-4 rounded-full bg-gradient-blue text-center text-sm font-rethinksansbold hover:opacity-90">View</a>
+															<a v-bind:href="/liquiassets/+item.id+'/edit'"
+																class="text-white py-2 px-4 rounded-full bg-gradient-blue text-center text-sm font-rethinksansbold hover:opacity-90">Edit</a>
 														</div>
 													</div>
 												</div>

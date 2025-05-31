@@ -56,6 +56,25 @@ const form = useForm({
 const submit = () => {
     form.post(route("liquijobs.store"));
 };
+
+const browsertimezone  = Intl.DateTimeFormat().resolvedOptions().timeZone;
+console.log('browsertimezone' + browsertimezone);
+const today = new Date();
+const monthName = today.toLocaleString('default', { month: 'long' });
+const dayNumber = today.getDate();
+const year = today.getFullYear();
+
+const date = new Date();
+const formatter = new Intl.DateTimeFormat('en-US', {
+    timeZone: browsertimezone,
+    hour: 'numeric',
+    minute: 'numeric',
+    //second: 'numeric',
+});
+
+const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - " + formatter.format(date);
+// console.log(monthName + dayNumber + formatter.format(date));
+// console.log(fulldatebasedonbrowser);
 </script>
 
 <template>

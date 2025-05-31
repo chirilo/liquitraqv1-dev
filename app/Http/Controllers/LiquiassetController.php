@@ -176,6 +176,12 @@ class LiquiassetController extends Controller
     public function edit(Liquiasset $liquiasset)
     {
         //
+        return Inertia::render(
+            'Liquiassets/Edit',
+            [
+                'liquiasset' => $liquiasset,
+            ]
+        );
     }
 
     /**

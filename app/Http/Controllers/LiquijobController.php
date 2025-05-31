@@ -405,11 +405,29 @@ class LiquijobController extends Controller
         $currentdatetime = $currentdatetime->format('M d, Y h:i A');
         //$currentdatetime = date('M d, Y h:i:sA');
 
+
+        // Get the Job Owner details
+        $jobowner = \DB::table('users')
+                ->where('id', $liquijob['job_owner_id'])
+                ->get()->toArray();
+        $jobownername = $jobowner[0]->name;
+        $jobownerid = $jobowner[0]->id;
+
+
+        // Get all available Liquis Employees
+        $liquisemployees = \DB::table('users')
+                ->select(['id','name'])
+                //->where('id', $liquijob['job_owner_id'])
+                ->get();
+
         return Inertia::render(
             'Liquijobs/Edit',
             [
                 'liquijobs' => $liquijob,
                 'currentdatetime' => $currentdatetime,
+                'jobownername' => $jobownername,
+                'jobownerid' => $jobownerid,
+                'liquisemployees' => $liquisemployees,
             ]
         );
     }
@@ -421,7 +439,7 @@ class LiquijobController extends Controller
     {
         //
         //dd($liquijob);
-        // dd($request);
+        //dd($request);
         // exit();
 
         // $request->validate([
@@ -434,6 +452,9 @@ class LiquijobController extends Controller
         //     'description' => $request->description
         // ]);
 
+        // get the assigned liquis employee
+        $assignedliquisemployee = isset($request->liquis_employee) ? $request->liquis_employee : $id;
+
         $liquijob->update([
             'company_name' => $request->company_name,
             'corporate_address' => $request->corporate_address,
@@ -444,6 +465,8 @@ class LiquijobController extends Controller
             'start_date' => $request->start_date,
             'type' => $request->type,
             'status' => $request->status,
+            'job_owner_id' => $assignedliquisemployee,
+            'liquis_employee_name' => $assignedliquisemployee ? $assignedliquisemployee : '1',
         ]);
 
         return redirect()->route('liquijobs.index')->with('message', 'Liquijob updated successfully.');

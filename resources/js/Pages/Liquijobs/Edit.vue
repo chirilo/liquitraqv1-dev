@@ -32,6 +32,9 @@ const props = defineProps({
     filters: Object,
     message: String,
     currentdatetime: String,
+    jobownername: String,
+    jobownerid: String,
+    liquisemployees: Object,
 });
 
 const liquijobsCreate = '/liquijobs/create';
@@ -65,6 +68,7 @@ const form = useForm({
     start_date: props.liquijobs.start_date ? props.liquijobs.start_date : '',
     type: props.liquijobs.type ? props.liquijobs.type : '',
     status: props.liquijobs.status ? props.liquijobs.status : 'New',
+    liquis_employee: props.jobownerid ? props.jobownerid : '',
 });
 // from Create.vue
 const submitaddjob = () => {
@@ -355,6 +359,24 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
                                             v-model="form.company_name" required />
                                         <InputError class="mt-2 w-full lg:w-[40%]"
                                             :message="form.errors.company_name" />
+                                    </div>
+
+                                    <div
+                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+                                        <InputLabel for="liquis_employee_name" value="Liquis Employee Name" class="w-full lg:w-[60%]" />
+                                        <select v-model="form.liquis_employee" id="liquis_employee"
+											class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+											name="liquis_employee" required>
+											<option value="" disabled hidden>Select Employee</option>
+											
+											<option v-for="entry in props.liquisemployees"
+												:key="entry.id" :value="entry.id" v-if="props.jobownerid != id">
+												<span>
+													{{ entry.name }}
+												</span>
+											</option>
+										</select>
+                                        <InputError class="mt-2 w-full lg:w-[40%]" :message="form.errors.liquis_employee" />
                                     </div>
                                     <div
                                         class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">

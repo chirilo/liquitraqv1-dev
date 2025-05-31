@@ -19,12 +19,12 @@ import moment from "moment";
 import { ref } from "vue";
 
 const props = defineProps({
-	liquijobs: String,
-	job_assets: Object,
-	filters: Object,
-	message: String,
-	currentdatetime: String,
-	thisjobcompanyname: String
+	liquiasset: Object,
+	// job_assets: Object,
+	// filters: Object,
+	// message: String,
+	// currentdatetime: String,
+	// thisjobcompanyname: String
 });
 
 const liquijobsCreate = '/liquijobs/create';
@@ -51,6 +51,28 @@ const deleteTrade = (id) => {
 			preserveScroll: true,
 		});
 	}
+};
+
+const form2 = useForm({
+    id: props.liquiasset.id,
+    asset_category: props.liquiasset.asset_category,
+    asset_quantity: props.liquiasset.asset_quantity,
+    asset_type: props.liquiasset.asset_type,
+    asset_make: props.liquiasset.asset_make,
+    asset_model: props.liquiasset.asset_model,
+    asset_serial: props.liquiasset.asset_serial,
+    asset_weight_each: props.liquiasset.asset_weight_each,
+    asset_description: props.liquiasset.asset_description,
+    asset_status: props.liquiasset.asset_status,
+    asset_disposition: props.liquiasset.asset_disposition,
+    assetdisdate: props.liquiasset.assetdisdate,
+    assetdiswho: props.liquiasset.assetdiswho,
+    assetdisticketshippinginfo: props.liquiasset.assetdisticketshippinginfo,
+});
+
+// from Create.vue
+const updateasset = (id) => {
+    form2.put(route('liquiassets.update', { id: props.liquiasset.id }));
 };
 
 const form = useForm({
@@ -449,275 +471,107 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 							<!-- current job selected /recent jobs -->
 							<div class="rounded-lg bg-white p-6">
 								<div id="recent-jobs">
-									<ul class="p-0">
-										<li class="m-0" v-for="item in job_assets" :key="id" :value="id">
-											<div class="relative flex justify-between items-start sm:flex-row flex-col-reverse">
-												<h1 class="w-full sm:w-[60%] block text-2xl primary-light-blue font-rethinksansextrabold uppercase mt-6 sm:mt-0 text-center sm:text-left ">
-													Job: <span>{{ props.thisjobcompanyname }}</span>
-												</h1>
-												<div class="flex justify-center sm:justify-end sm:w-auto w-full">
-													<a v-bind:href="parentjoburl + item.job_id"
-														class="text-white py-2 px-4 rounded-full bg-gradient-blue text-center text-sm font-rethinksansbold hover:opacity-90 flex">
-														<img class="w-4 mr-2" src="/images/logos/back.png"> Back
-													</a>
-													<a href="/liquijobs" class="text-white ml-1 py-2 px-2 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
-														<img class="w-5" src="/images/logos/home.png">
-													</a>
-												</div>
+									<form @submit.prevent="updateasset" class="mt-6 space-y-2" enctype="multipart/form-data">
+	                                    <!-- <div
+	                                        class="flex border-divider pb-2 items-end justify-between sm:justify-end flex-row">
+	                                        <InputLabel for="id" value="SO Number" class="w-full lg:w-[60%]" />
+	                                        <input id="id" type="text" :value="form.id" disabled
+	                                            class="w-auto lg:w-[40%] appearance-none block w-full px-4 py-0 primary-dark-blue font-rethinksansmedium border-[#fff]" />
+	                                    </div> -->
+	                                    <div
+	                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+	                                        <InputLabel for="asset_category" value="Category" class="w-full lg:w-[60%]" />
+	                                        <TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_category" type="text"
+	                                            v-model="form2.asset_category" required />
+	                                        <InputError class="mt-2 w-full lg:w-[40%]"
+	                                            :message="form2.errors.asset_category" />
+	                                    </div>
+	                                    <div
+	                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+	                                        <InputLabel for="asset_quantity" value="Quantity" class="w-full lg:w-[60%]" />
+	                                        <TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_quantity" type="text"
+	                                            v-model="form2.asset_quantity" required />
+	                                        <InputError class="mt-2 w-full lg:w-[40%]"
+	                                            :message="form2.errors.asset_quantity" />
+	                                    </div>
+	                                    <div
+	                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+	                                        <InputLabel for="asset_type" value="Type" class="w-full lg:w-[60%]" />
+	                                        <TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_type" type="text"
+	                                            v-model="form2.asset_type" required />
+	                                        <InputError class="mt-2 w-full lg:w-[40%]"
+	                                            :message="form2.errors.asset_type" />
+	                                    </div>
+	                                    <div
+	                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+	                                        <InputLabel for="asset_make" value="Make" class="w-full lg:w-[60%]" />
+	                                        <TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_make" type="text"
+	                                            v-model="form2.asset_make" required />
+	                                        <InputError class="mt-2 w-full lg:w-[40%]"
+	                                            :message="form2.errors.asset_make" />
+	                                    </div>
+	                                    <div
+	                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+	                                        <InputLabel for="asset_model" value="Model" class="w-full lg:w-[60%]" />
+	                                        <TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_model" type="text"
+	                                            v-model="form2.asset_model" required />
+	                                        <InputError class="mt-2 w-full lg:w-[40%]"
+	                                            :message="form2.errors.asset_model" />
+	                                    </div>
+	                                    <div
+	                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+	                                        <InputLabel for="asset_serial" value="Serial" class="w-full lg:w-[60%]" />
+	                                        <TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_serial" type="text"
+	                                            v-model="form2.asset_serial" required />
+	                                        <InputError class="mt-2 w-full lg:w-[40%]"
+	                                            :message="form2.errors.asset_serial" />
+	                                    </div>
+	                                    <div
+	                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+	                                        <InputLabel for="asset_weight_each" value="Weight Each" class="w-full lg:w-[60%]" />
+	                                        <TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_weight_each" type="text"
+	                                            v-model="form2.asset_weight_each" required />
+	                                        <InputError class="mt-2 w-full lg:w-[40%]"
+	                                            :message="form2.errors.asset_weight_each" />
+	                                    </div>
+	                                    <div
+	                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+	                                        <InputLabel for="asset_description" value="Description
+	                                        " class="w-full lg:w-[60%]" />
+	                                        <TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_description" type="text"
+	                                            v-model="form2.asset_description" required />
+	                                        <InputError class="mt-2 w-full lg:w-[40%]"
+	                                            :message="form2.errors.asset_description" />
+	                                    </div>
+	                                    <div
+	                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+	                                        <InputLabel for="asset_status" value="Status" class="w-full lg:w-[60%]" />
+	                                        <TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_status" type="text"
+	                                            v-model="form2.asset_status" required />
+	                                        <InputError class="mt-2 w-full lg:w-[40%]"
+	                                            :message="form2.errors.asset_status" />
+	                                    </div>
+	                                    <div
+	                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+	                                        <InputLabel for="asset_disposition" value="Asset Disposition" class="w-full lg:w-[60%]" />
+	                                        <TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_disposition" type="text"
+	                                            v-model="form2.asset_disposition" required />
+	                                        <InputError class="mt-2 w-full lg:w-[40%]"
+	                                            :message="form2.errors.asset_disposition" />
+	                                    </div>
+
+	                                    <div class="mt-6 sm:w-[60%] w-full flex flex-col">
+												<InputLabel for="job_asset" value="Job Asset"
+													class="w-full lg:w-[60%]" />
+												<!-- <input type="file" @input="form.avatar = $event.target.files[0]" name="job_asset" class="mt-1 block w-full" v-on:change="onImageChange" > -->
+												<input required type="file"
+													@input="form2.job_asset = $event.target.files[0]"
+													name="job_asset" class="mt-1 block w-full">
+												<input type="hidden" name="job_id" v-model="form2.jobid">
+												<InputError class="mt-2 w-full lg:w-[40%]"
+													:message="form2.errors.job_asset" />
 											</div>
-											<h5
-												class="hidden w-full mt-6 block text-xl primary-dark-blue font-rethinksansextrabold uppercase">
-												Asset #: {{ item.id }}
-											</h5>
-											<div class="w-full relative flex flex-col">
-												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-													<div class="font-rethinksansbold primary-dark-blue w-[60%]">
-														Category: </div>
-													<!-- <div class="font-rethinksanssemibold primary-gray width-40">{{ item.asset_category }}</div> -->
-													<div
-														class="font-rethinksanssemibold primary-gray lg:w-[40%] md:w-[60%]">
-														<span v-if="item.asset_category == 'furniture'">
-															Furniture
-														</span>
-														<span v-if="item.asset_category == 'infrastructure'">
-															Infrastructure
-														</span>
-														<span v-if="item.asset_category == 'it'">
-															IT
-														</span>
-													</div>
-												</div>
-												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-													<div class="font-rethinksansbold primary-dark-blue w-[60%]">
-														Quantity: </div>
-													<div class="font-rethinksanssemibold primary-gray width-40">{{
-														item.asset_quantity }}</div>
-												</div>
-												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Type:
-													</div>
-													<div class="font-rethinksanssemibold primary-gray width-40">
-														<!-- {{item.asset_type }} -->
-														<!-- Furniture -->
-														<span v-if="item.asset_type == 'furniture-cubicle'">
-															Cubicle
-														</span>
-														<span v-if="item.asset_type == 'furniture-casegood'">
-															Case Good
-														</span>
-														<span v-if="item.asset_type == 'furniture-chair'">
-															Chair
-														</span>
-														<span v-if="item.asset_type == 'furniture-wallhanging'">
-															Wall Hanging
-														</span>
-														<span v-if="item.asset_type == 'furniture-appliance'">
-															Appliance
-														</span>
-														<span v-if="item.asset_type == 'furniture-others'">
-															Others
-														</span>
-														<!-- End Furniture -->
-														<!-- IT -->
-														<span v-if="item.asset_type == 'it-networkgear'">
-															Network Gear
-														</span>
-														<span v-if="item.asset_type == 'it-servers'">
-															Servers
-														</span>
-														<span v-if="item.asset_type == 'it-pcs'">
-															PCs
-														</span>
-														<span v-if="item.asset_type == 'it-laptops'">
-															Laptops
-														</span>
-														<span v-if="item.asset_type == 'it-rack'">
-															Rack
-														</span>
-														<span v-if="item.asset_type == 'it-telecom'">
-															Telecom
-														</span>
-														<span v-if="item.asset_type == 'it-monitors'">
-															Monitors
-														</span>
-														<span v-if="item.asset_type == 'it-camera'">
-															Camera
-														</span>
-														<span v-if="item.asset_type == 'it-printers'">
-															Printers
-														</span>
-														<span v-if="item.asset_type == 'furniture-others'">
-															Others
-														</span>
-														<!-- End IT -->
-														<!-- Infrastructure -->
-														<span v-if="item.asset_type == 'infrastructure-generator'">
-															Generator
-														</span>
-														<span v-if="item.asset_type == 'infrastructure-cracunit'">
-															CRAC Unit
-														</span>
-														<span v-if="item.asset_type == 'infrastructure-ups'">
-															UPS
-														</span>
-														<span v-if="item.asset_type == 'infrastructure-ats'">
-															ATS
-														</span>
-														<span v-if="item.asset_type == 'infrastructure-bypass'">
-															Bypass
-														</span>
-														<span v-if="item.asset_type == 'infrastructure-switchgear'">
-															Switchgear
-														</span>
-														<span v-if="item.asset_type == 'infrastructure-batteries'">
-															Batteries
-														</span>
-														<span
-															v-if="item.asset_type == 'infrastructure-wiringlowvoltage'">
-															Wiring, Low-Voltage
-														</span>
-														<span
-															v-if="item.asset_type == 'infrastructure-wiringhighvoltage'">
-															Wiring, High-Voltage
-														</span>
-														<span
-															v-if="item.asset_type == 'infrastructure-firesuppressant'">
-															Fire Suppressant
-														</span>
-														<span v-if="item.asset_type == 'infrastructure-raisedflooring'">
-															Raised Flooring
-														</span>
-														<span v-if="item.asset_type == 'infrastructure-paintchemical'">
-															Paint/Chemical
-														</span>
-														<span v-if="item.asset_type == 'infrastructure-others'">
-															Others
-														</span>
-														<!-- End Infrastructure -->
-													</div>
-												</div>
-												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Make:
-													</div>
-													<div class="font-rethinksanssemibold primary-gray width-40">{{
-														item.asset_make }}</div>
-												</div>
-												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Model:
-													</div>
-													<div class="font-rethinksanssemibold primary-gray width-40">{{
-														item.asset_model }}</div>
-												</div>
-												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Serial:
-													</div>
-													<div class="font-rethinksanssemibold primary-gray width-40">{{
-														item.asset_serial }}</div>
-												</div>
-												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Weight
-														Each:
-													</div>
-													<div class="font-rethinksanssemibold primary-gray width-40">{{
-														item.asset_weight_each }}</div>
-												</div>
-												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-													<div class="font-rethinksansbold primary-dark-blue w-[60%]">
-														Description:
-													</div>
-													<div class="font-rethinksanssemibold primary-gray width-40">{{
-														item.asset_description }}</div>
-												</div>
-												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Status:
-													</div>
-													<!-- <div class="font-rethinksanssemibold primary-gray width-40 uppercase">{{ item.asset_status }}</div> -->
-													<div
-														class="font-rethinksanssemibold primary-gray lg:w-[40%] md:w-[60%]">
-														<span v-if="item.asset_status == 'workinprogress'">
-															Work In Progress
-														</span>
-														<span v-if="item.asset_status == 'completed'">
-															Completed
-														</span>
-														<span v-if="item.asset_status == 'originalstate'">
-															Original State
-														</span>
-													</div>
-												</div>
-												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-													<div class="font-rethinksansbold primary-dark-blue w-[60%]">
-														Asset Disposition:
-													</div>
-													<div class="font-rethinksanssemibold primary-gray width-40"><!-- {{
-														item.asset_disposition }} -->
-														<span v-if="item.asset_disposition == 'resold'">
-															Resold
-														</span>
-														<span v-if="item.asset_disposition == 'recycled'">
-															Recycled
-														</span>
-														<span v-if="item.asset_disposition == 'disposed'">
-															Disposed
-														</span>
-														<span v-if="item.asset_disposition == 'returned'">
-															Returned
-														</span>
-													</div>
-												</div>
-												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-													<div class="font-rethinksansbold primary-dark-blue w-[60%]">
-														Asset Disposition Information:
-													</div>
-												</div>
-												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-													<div class="font-rethinksanssemibold primary-gray width-40">
-														<span>
-															Date:
-														</span>
-													</div>
-													<div class="font-rethinksanssemibold primary-gray width-40">
-														<span>
-															{{ item.assetdisdate }}
-														</span>
-													</div>
-												</div>
-												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-													<div class="font-rethinksanssemibold primary-gray width-40">
-														<span>
-															Who:
-														</span>
-													</div>
-													<div class="font-rethinksanssemibold primary-gray width-40">
-														<span>
-															{{ item.assetdiswho }}
-														</span>
-													</div>
-												</div>
-												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-													<div class="font-rethinksanssemibold primary-gray width-40">
-														<span>
-															Ticket / Shipping Info:
-														</span>
-													</div>
-													<div class="font-rethinksanssemibold primary-gray width-40">
-														<span>
-															{{ item.assetdisticketshippinginfo }}
-														</span>
-														
-													</div>
-												</div>
-											</div>
-											<ul class="mt-6 p-0 flex justify-between">
-												<li class="m-0 p-0 w-[45%]" v-for="item in job_assets" :key="id"
-													:value="id">
-													<img class="h-auto w-full"
-														style="background-image: url('https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0');"
-														:src="item.job_asset" />
-												</li>
-											</ul>
-										</li>
-									</ul>
+                                	</form>
 								</div>
 							</div>
 						</div>
