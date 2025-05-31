@@ -32,6 +32,10 @@ const props = defineProps({
 	currentdatetime: String,
 	showeditdelete: String,
 	jobownername: String,
+	resoldjobassets: String,
+	recycledjobassets: String,
+	disposedjobassets: String,
+	returnedjobassets: String,
 });
 
 const liquijobsCreate = '/liquijobs/create';
@@ -77,10 +81,10 @@ const deleteTrade = (id) => {
 	}
 };
 
-let totalresold = 0;
-let totalrecycled = 0;
-let totaldisposed = 0;
-let totalreturn = 0;
+// let totalresold = 0;
+// let totalrecycled = 0;
+// let totaldisposed = 0;
+// let totalreturn = 0;
 
 
 let isOpenForm = ref(false);
@@ -259,30 +263,6 @@ const openAssetStatusMiniForm = () => {
 	else if( selecteddispoval == 'resold' ){
 		document.getElementById('returned').classList.remove('hidden');
 	}
-	// else if( selecteddispoval == 'recycled' ){
-	// 	document.getElementById('recycled').classList.remove('hidden');
-
-	// 	// hide others
-	// 	document.getElementById('resold').classList.add('hidden');
-	// 	document.getElementById('disposed').classList.add('hidden');
-	// 	document.getElementById('returned').classList.add('hidden');
-	// }
-	// else if( selecteddispoval == 'disposed' ){
-	// 	document.getElementById('disposed').classList.remove('hidden');
-
-	// 	// hide others
-	// 	document.getElementById('recycled').classList.add('hidden');
-	// 	document.getElementById('resold').classList.add('hidden');
-	// 	document.getElementById('returned').classList.add('hidden');
-	// }
-	// else if( selecteddispoval == 'returned' ){
-	// 	document.getElementById('returned').classList.remove('hidden');
-
-	// 	// hide others
-	// 	document.getElementById('recycled').classList.add('hidden');
-	// 	document.getElementById('disposed').classList.add('hidden');
-	// 	document.getElementById('resold').classList.add('hidden');
-	// }
 }
 
 </script>
@@ -710,31 +690,35 @@ const openAssetStatusMiniForm = () => {
 												<div class="w-full">
 													<div
 														class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
-														<span class="font-rethinksansbold primary-dark-blue">Total
-															Resold:
-														</span><span class="font-rethinksanssemibold primary-gray">{{
-															totalresold }}</span>
+														<span class="font-rethinksansbold primary-dark-blue">Total Resold:
+														</span>
+														<span class="font-rethinksanssemibold primary-gray">
+															{{ props.resoldjobassets }}
+														</span>
 													</div>
 													<div
 														class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
-														<span class="font-rethinksansbold primary-dark-blue">Total
-															Recycled:
-														</span><span class="font-rethinksanssemibold primary-gray">{{
-															totalrecycled }}</span>
+														<span class="font-rethinksansbold primary-dark-blue">Total Recycled:
+														</span>
+														<span class="font-rethinksanssemibold primary-gray">
+															{{ props.recycledjobassets }}
+														</span>
 													</div>
 													<div
 														class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
-														<span class="font-rethinksansbold primary-dark-blue">Total
-															Disposed:
-														</span><span class="font-rethinksanssemibold primary-gray">{{
-															totaldisposed }}</span>
+														<span class="font-rethinksansbold primary-dark-blue">Total Disposed:
+														</span>
+														<span class="font-rethinksanssemibold primary-gray">
+															{{ props.disposedjobassets }}
+														</span>
 													</div>
 													<div
 														class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
-														<span class="font-rethinksansbold primary-dark-blue">Total
-															Return:
-														</span><span class="font-rethinksanssemibold primary-gray">{{
-															totalreturn }}</span>
+														<span class="font-rethinksansbold primary-dark-blue">Total Return:
+														</span>
+														<span class="font-rethinksanssemibold primary-gray">
+															{{ props.returnedjobassets }}
+														</span>
 													</div>
 												</div>
 											</div>

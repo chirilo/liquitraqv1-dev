@@ -28,6 +28,10 @@ const props = defineProps({
 	filters: Object,
 	message: String,
 	currentdatetime: String,
+	resoldjobassets: String,
+	recycledjobassets: String,
+	disposedjobassets: String,
+	returnedjobassets: String,
 });
 
 const liquijobsCreate = '/liquijobs/create';
@@ -74,10 +78,10 @@ const submitaddjob = () => {
 };
 
 
-let totalresold = 0;
-let totalrecycled = 0;
-let totaldisposed = 0;
-let totalreturn = 0;
+// let totalresold = 0;
+// let totalrecycled = 0;
+// let totaldisposed = 0;
+// let totalreturn = 0;
 
 const logout = () => {
 	router.post(route('logout'));
@@ -476,33 +480,37 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 														class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
 														<span class="font-rethinksansbold primary-dark-blue">Total
 															Resold:
-														</span><span class="font-rethinksanssemibold primary-gray">{{
-															totalresold
-															}}</span>
+														</span>
+														<span class="font-rethinksanssemibold primary-gray">
+															{{ props.resoldjobassets }}
+														</span>
 													</div>
 													<div
 														class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
 														<span class="font-rethinksansbold primary-dark-blue">Total
 															Recycled
-														</span><span class="font-rethinksanssemibold primary-gray">{{
-															totalrecycled
-															}}</span>
+														</span>
+														<span class="font-rethinksanssemibold primary-gray">
+															{{ props.recycledjobassets }}
+														</span>
 													</div>
 													<div
 														class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
 														<span class="font-rethinksansbold primary-dark-blue">Total
 															Disposed
-														</span><span class="font-rethinksanssemibold primary-gray">{{
-															totaldisposed
-															}}</span>
+														</span>
+														<span class="font-rethinksanssemibold primary-gray">
+															{{ props.disposedjobassets }}
+														</span>
 													</div>
 													<div
 														class="py-3 m-0 last:pb-0  border-b border-[#e9ebef] last:border-none">
 														<span class="font-rethinksansbold primary-dark-blue">Total
 															Return
-														</span><span class="font-rethinksanssemibold primary-gray">{{
-															totalreturn
-															}}</span>
+														</span>
+														<span class="font-rethinksanssemibold primary-gray">
+															{{ props.returnedjobassets }}
+														</span>
 													</div>
 												</div>
 											</div>

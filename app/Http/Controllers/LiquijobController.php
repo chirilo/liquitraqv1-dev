@@ -239,7 +239,7 @@ class LiquijobController extends Controller
         $id = Auth::id();
         
         
-
+        // Get the Job Owner details
         $jobowner = \DB::table('users')
                 ->where('id', $liquijob['job_owner_id'])
                 ->get()->toArray();
@@ -271,18 +271,21 @@ class LiquijobController extends Controller
             $showeditdelete = 'admin';
         }
 
+        // Get Furniture Assets
         $furniturejobassets = Liquiasset::query()
             ->select(['id','job_asset', 'job_id'])
             ->where('job_id', $liquijob['id'])
             ->where('asset_category', 'furniture')
             ->orderBy('created_at', 'DESC')
             ->get();
+        // Get IT Assets
         $itjobassets = Liquiasset::query()
             ->select(['id','job_asset', 'job_id'])
             ->where('job_id', $liquijob['id'])
             ->where('asset_category', 'it')
             ->orderBy('created_at', 'DESC')
             ->get();
+        // Get Infrastructure Assets
         $infrastructurejobassets = Liquiasset::query()
             ->select(['id','job_asset', 'job_id'])
             ->where('job_id', $liquijob['id'])
@@ -290,7 +293,42 @@ class LiquijobController extends Controller
             ->orderBy('created_at', 'DESC')
             ->get();
 
+        // Get Resold Assets
+        $resoldjobassets = Liquiasset::query()
+            ->select(['id','job_asset', 'job_id'])
+            ->where('job_id', $liquijob['id'])
+            ->where('asset_status', 'completed')
+            ->where('asset_disposition', 'resold')
+            ->orderBy('created_at', 'DESC')
+            ->get();
+        // Get Recycled Assets
+        $recycledjobassets = Liquiasset::query()
+            ->select(['id','job_asset', 'job_id'])
+            ->where('job_id', $liquijob['id'])
+            ->where('asset_status', 'completed')
+            ->where('asset_disposition', 'recycled')
+            ->orderBy('created_at', 'DESC')
+            ->get();
+        // Get Disposed Assets
+        $disposedjobassets = Liquiasset::query()
+            ->select(['id','job_asset', 'job_id'])
+            ->where('job_id', $liquijob['id'])
+            ->where('asset_status', 'completed')
+            ->where('asset_disposition', 'disposed')
+            ->orderBy('created_at', 'DESC')
+            ->get();
+        // Get Returned Assets
+        $returnedjobassets = Liquiasset::query()
+            ->select(['id','job_asset', 'job_id'])
+            ->where('job_id', $liquijob['id'])
+            ->where('asset_status', 'completed')
+            ->where('asset_disposition', 'returned')
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
         $all = isset( $_GET['all'] ) ? $_GET['all'] : '';
+
+        //dd($returnedjobassets);
 
         if ( $all ){
             //dd($job_assets);
@@ -298,6 +336,10 @@ class LiquijobController extends Controller
             $itjobassets = count($itjobassets);
             $infrastructurejobassets = count($infrastructurejobassets);
             $furniturejobassets = count($furniturejobassets);
+            $resoldjobassets = count($resoldjobassets);
+            $recycledjobassets = count($recycledjobassets);
+            $disposedjobassets = count($disposedjobassets);
+            $returnedjobassets = count($returnedjobassets);
             return Inertia::render('Liquijobs/All',
                 [
                     'liquijobs' => $liquijob,
@@ -310,6 +352,10 @@ class LiquijobController extends Controller
                     'currentdatetime' => $currentdatetime,
                     'showeditdelete' => $showeditdelete,
                     'jobownername' => $jobownername,
+                    'resoldjobassets' => $resoldjobassets,
+                    'recycledjobassets' => $recycledjobassets,
+                    'disposedjobassets' => $disposedjobassets,
+                    'returnedjobassets' => $returnedjobassets,
                 ]
             );
         }else{
@@ -317,6 +363,10 @@ class LiquijobController extends Controller
             $itjobassets = count($itjobassets);
             $infrastructurejobassets = count($infrastructurejobassets);
             $furniturejobassets = count($furniturejobassets);
+            $resoldjobassets = count($resoldjobassets);
+            $recycledjobassets = count($recycledjobassets);
+            $disposedjobassets = count($disposedjobassets);
+            $returnedjobassets = count($returnedjobassets);
             return Inertia::render('Liquijobs/View',
                 [
                     'liquijobs' => $liquijob,
@@ -328,6 +378,10 @@ class LiquijobController extends Controller
                     'currentdatetime' => $currentdatetime,
                     'showeditdelete' => $showeditdelete,
                     'jobownername' => $jobownername,
+                    'resoldjobassets' => $resoldjobassets,
+                    'recycledjobassets' => $recycledjobassets,
+                    'disposedjobassets' => $disposedjobassets,
+                    'returnedjobassets' => $returnedjobassets,
                 ]
             );
         }
