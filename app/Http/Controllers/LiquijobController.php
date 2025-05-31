@@ -147,7 +147,13 @@ class LiquijobController extends Controller
 
         //Inertia::share('caddress', $caddress);
         
-        $currentdatetime = now()->format('M d, Y - h:m A');
+        // get current date and time
+        //$currentdatetime = now()->format('M d, Y - h:m A');
+        $date_default_timezone_get = date_default_timezone_get();
+        //dd($date_default_timezone_get);
+        $currentdatetime = new \DateTime("now", new \DateTimeZone(''.$date_default_timezone_get.''));
+        $currentdatetime = $currentdatetime->format('M d, Y h:i A');
+        //$currentdatetime = date('M d, Y h:i:sA');
 
         return Inertia::render(
             'Liquijobs/Create',
@@ -246,7 +252,12 @@ class LiquijobController extends Controller
         //
 
         // get current date and time
-        $currentdatetime = now()->format('M d, Y - h:m A');
+        //$currentdatetime = now()->format('M d, Y - h:m A');
+        $date_default_timezone_get = date_default_timezone_get();
+        //dd($date_default_timezone_get);
+        $currentdatetime = new \DateTime("now", new \DateTimeZone(''.$date_default_timezone_get.''));
+        $currentdatetime = $currentdatetime->format('M d, Y h:i A');
+        //$currentdatetime = date('M d, Y h:i:sA');
 
         $showeditdelete = 'normal';
         if( $id == 1 || $user->email == 'webteamsupprt@gmail.com' ){
@@ -323,7 +334,13 @@ class LiquijobController extends Controller
         //
         //dd($liquijob);exit();
         
-        $currentdatetime = now()->format('M d, Y - h:m A');
+        // get current date and time
+        //$currentdatetime = now()->format('M d, Y - h:m A');
+        $date_default_timezone_get = date_default_timezone_get();
+        //dd($date_default_timezone_get);
+        $currentdatetime = new \DateTime("now", new \DateTimeZone(''.$date_default_timezone_get.''));
+        $currentdatetime = $currentdatetime->format('M d, Y h:i A');
+        //$currentdatetime = date('M d, Y h:i:sA');
 
         return Inertia::render(
             'Liquijobs/Edit',
@@ -396,7 +413,13 @@ class LiquijobController extends Controller
         //     // 'filters' => $request->all('filter'),
         //     // 'message' => session('message'),
         // ]);
-        $currentdatetime = now()->format('M d, Y - h:m A');
+        // get current date and time
+        //$currentdatetime = now()->format('M d, Y - h:m A');
+        $date_default_timezone_get = date_default_timezone_get();
+        //dd($date_default_timezone_get);
+        $currentdatetime = new \DateTime("now", new \DateTimeZone(''.$date_default_timezone_get.''));
+        $currentdatetime = $currentdatetime->format('M d, Y h:i A');
+        //$currentdatetime = date('M d, Y h:i:sA');
         
         return Inertia::render('Liquijobs/Search',
             [
