@@ -232,7 +232,7 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 const openStatusMenuSelect = () => {
 	let selectedassetstatus = event.target.value;
 	console.log('selected' + selectedassetstatus);
-	if (selectedassetstatus === 'completed') {
+	if ( selectedassetstatus === 'completed' ) {
 		// isSoNumberOpen.value = !isSoNumberOpen.value;
 
 		// // close other
@@ -240,6 +240,9 @@ const openStatusMenuSelect = () => {
 		// document.getElementById('filter_status').removeAttribute('required');
 		//alert('here')
 		document.getElementById('assetdispositiondiv').classList.remove('hidden');
+	}
+	else if( selectedassetstatus === 'originalstate' || selectedassetstatus === 'workinprogress'  ){
+		document.getElementById('assetdispositiondiv').classList.add('hidden');
 	}
 }
 
