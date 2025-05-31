@@ -101,7 +101,11 @@ const formasset = useForm({
 	asset_weight_each: '',
 	asset_description: '',
 	asset_status: '',
-	asset_disposition: ''
+	asset_disposition: '',
+	assetdisdate: '',
+	assetdiswho: '',
+	assetdisticketshippinginfo: '',
+
 });
 
 const submitaddasset = (e) => {
@@ -230,9 +234,46 @@ const openStatusMenuSelect = () => {
 		// // close other
 		// isStatusOpen.value = false;
 		// document.getElementById('filter_status').removeAttribute('required');
-		alert('here')
+		//alert('here')
 		document.getElementById('assetdispositiondiv').classList.remove('hidden');
 	}
+}
+
+const openAssetStatusMiniForm = () => {
+	let selecteddispoval = event.target.value;
+	console.log('selecteddispoval' + selecteddispoval);
+	if( selecteddispoval == 'resold' ){
+		document.getElementById('resold').classList.remove('hidden');
+
+		// hide others
+		// document.getElementById('recycled').classList.add('hidden');
+		// document.getElementById('disposed').classList.add('hidden');
+		// document.getElementById('returned').classList.add('hidden');
+	}
+	// else if( selecteddispoval == 'recycled' ){
+	// 	document.getElementById('recycled').classList.remove('hidden');
+
+	// 	// hide others
+	// 	document.getElementById('resold').classList.add('hidden');
+	// 	document.getElementById('disposed').classList.add('hidden');
+	// 	document.getElementById('returned').classList.add('hidden');
+	// }
+	// else if( selecteddispoval == 'disposed' ){
+	// 	document.getElementById('disposed').classList.remove('hidden');
+
+	// 	// hide others
+	// 	document.getElementById('recycled').classList.add('hidden');
+	// 	document.getElementById('resold').classList.add('hidden');
+	// 	document.getElementById('returned').classList.add('hidden');
+	// }
+	// else if( selecteddispoval == 'returned' ){
+	// 	document.getElementById('returned').classList.remove('hidden');
+
+	// 	// hide others
+	// 	document.getElementById('recycled').classList.add('hidden');
+	// 	document.getElementById('disposed').classList.add('hidden');
+	// 	document.getElementById('resold').classList.add('hidden');
+	// }
 }
 
 </script>
@@ -856,36 +897,36 @@ const openStatusMenuSelect = () => {
 										</div>
 										<div
 											id="assetdispositiondiv" class="hidden flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
-											<InputLabel for="asset_status" value="Asset Disposition" class="w-full lg:w-[60%]" />
-											<select v-model="formasset.asset_disposition" id="asset_status"
+											<InputLabel for="asset_disposition" value="Asset Disposition" class="w-full lg:w-[60%]" />
+											<select v-model="formasset.asset_disposition" id="asset_disposition"
 												class="w-full lg:w-[40%] px-4 py-2 sm:mt-0 mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
 												name="asset_status" @change="openAssetStatusMiniForm">
 												<option value="" selected disabled hidden>Select Disposition</option>
 												<option value="resold">Resold</option>
 												<option value="recycled">Recycled</option>
 												<option value="disposed">Disposed</option>
-												<option value="returne">Returned</option>
+												<option value="returned">Returned</option>
 											</select>
-											<div id="resold" class="">
-												<input type="text" name="resolddate" placeholder="Date" />
-												<input type="text" name="resoldwho" placeholder="Who" />
-												<input type="text" name="resoldshippinginfo" placeholder="Shipping/Ticket Info" />
+											<div id="resold" class="hidden">
+												<input type="text" name="assetdisdate" placeholder="Date" />
+												<input type="text" name="assetdiswho" placeholder="Who" />
+												<input type="text" name="assetdisticketshippinginfo" placeholder="Shipping/Ticket Info" />
 											</div>
-											<div id="recycled" class="">
-												<input type="text" name="recycleddate" placeholder="Date" />
-												<input type="text" name="recycledwho" placeholder="Who" />
-												<input type="text" name="recycledticketinfo" placeholder="Ticket Info" />
+											<!-- <div id="recycled" class="hidden">
+												<input type="text" name="assetdisdate" placeholder="Date" />
+												<input type="text" name="assetdiswho" placeholder="Who" />
+												<input type="text" name="assetdisticketshippinginfo" placeholder="Ticket Info" />
 											</div>
-											<div id="disposed" class="">
-												<input type="text" name="disposeddate" placeholder="Date" />
-												<input type="text" name="disposedwho" placeholder="Who" />
-												<input type="text" name="disposedticketinfo" placeholder="Ticket Info" />
+											<div id="disposed" class="hidden">
+												<input type="text" name="assetdisdate" placeholder="Date" />
+												<input type="text" name="assetdiswho" placeholder="Who" />
+												<input type="text" name="assetdisticketshippinginfo" placeholder="Ticket Info" />
 											</div>
-											<div id="returned" class="">
-												<input type="text" name="returneddate" placeholder="Date" />
-												<input type="text" name="returnedwho" placeholder="Who" />
-												<input type="text" name="returnedticketinfo" placeholder="Ticket Info" />
-											</div>
+											<div id="returned" class="hidden">
+												<input type="text" name="assetdisdate" placeholder="Date" />
+												<input type="text" name="assetdiswho" placeholder="Who" />
+												<input type="text" name="assetdisticketshippinginfo" placeholder="Ticket Info" />
+											</div> -->
 											<InputError class="mt-2 w-full lg:w-[40%]"
 												:message="formasset.errors.asset_status" />
 										</div>

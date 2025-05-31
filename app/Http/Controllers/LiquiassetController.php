@@ -93,6 +93,11 @@ class LiquiassetController extends Controller
             'asset_weight_each' => $request->asset_weight_each,
             'asset_description' => $request->asset_description,
             'asset_status' => $request->asset_status,
+            'asset_disposition' => isset($request->asset_disposition) ? $request->asset_disposition : '',
+            'assetdisdate' => isset($request->asset_disposition) ? $request->asset_disposition : '',
+            'assetdiswho' => isset($request->asset_disposition) ? $request->asset_disposition : '',
+            'assetdisticketshippinginfo' => isset($request->asset_disposition) ? $request->asset_disposition : '',
+
         ]);
 
         return redirect()->route('liquijobs.index')->with('message', 'Asset added successfully.');
