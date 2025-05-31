@@ -54,9 +54,9 @@ const viewsingleliquiasseturl = "/liquiassets/";
 // }
 // const form = useForm(filters);
 
-const deleteTrade = (id) => {
-	if (confirm("Are you sure you want to move this to trash?")) {
-		form.delete(route('liquijobs.destroy', { id: id }), {
+const deleteTradeAsset = (id) => {
+	if (confirm("Are you sure you want to move this asset to trash?")) {
+		form.delete(route('liquiassets.destroy', { id: id }), {
 			preserveScroll: true,
 		});
 	}
@@ -582,6 +582,11 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 																class="text-white py-2 px-4 rounded-full bg-gradient-blue text-center text-sm font-rethinksansbold hover:opacity-90">View</a>
 															<a v-bind:href="/liquiassets/+item.id+'/edit'"
 																class="text-white py-2 px-4 rounded-full bg-gradient-blue text-center text-sm font-rethinksansbold hover:opacity-90">Edit</a>
+															<DangerButton class="ml-3 float-right mb-3"
+																	@click="deleteTradeAsset(item.id)"
+																	v-if="item.deleted_at == null">
+																	Trash
+																</DangerButton>
 														</div>
 													</div>
 												</div>

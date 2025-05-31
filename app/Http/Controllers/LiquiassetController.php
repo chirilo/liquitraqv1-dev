@@ -198,5 +198,8 @@ class LiquiassetController extends Controller
     public function destroy(Liquiasset $liquiasset)
     {
         //
+        //
+        $liquiasset->delete();
+        return redirect()->route('liquijobs.index')->with('message', 'Job Asset deleted successfully.');
     }
 }
