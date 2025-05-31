@@ -448,6 +448,12 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 																Trash
 															   </DangerButton>
 															</div>
+															<div v-else>
+																<PrimaryLink v-if="entry.deleted_at == null"
+																	:href="route('liquijobs.edit', { 'id': entry.id })"
+																	class="max-w-xl ml-1 float-right mb-3">Edit
+																</PrimaryLink>
+															</div>
 														</div>
 														<h5 class="mb-2 primary-dark-blue font-rethinksansbold text-base">
 															<a :href="route('liquijobs.show', {'id': entry.id})" class="hover:opacity-80">Building: {{ entry.corporate_address }}</a>
