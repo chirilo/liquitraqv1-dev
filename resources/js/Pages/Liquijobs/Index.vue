@@ -115,9 +115,29 @@ const filteranything = () => {
 }
 
 let isOpen = ref(false);
-const openMenu = () => {
-	isOpen.value = !isOpen.value;
-	console.log(isOpen);
+const openMenu = (e) => {
+	let thisid = e.target.id;
+	//alert(e.target.id)
+	console.log('target'+ e.target.nextSibling);
+	let nextsibling = e.target.nextSibling;
+	let nextsiblingid = nextsibling.id;
+	//alert(nextsiblingid)
+	let hiddenclasscontain = document.getElementById(nextsiblingid).classList.contains('hidden');
+	let blockclasscontain = document.getElementById(nextsiblingid).classList.contains('block');
+	//alert(classcontain);
+	if( hiddenclasscontain == true ){
+		//alert(classcontain);
+		document.getElementById(nextsiblingid).classList.remove('hidden');
+		document.getElementById(nextsiblingid).classList.add('block');
+	}
+	else if( blockclasscontain == true ){
+		document.getElementById(nextsiblingid).classList.remove('block');
+		document.getElementById(nextsiblingid).classList.add('hidden');
+	}
+	
+	// console.log(nextsiblingid);
+	// isOpen.value = !isOpen.value;
+	// console.log(isOpen);
 };
 
 if( props.message ){
@@ -432,11 +452,11 @@ if( props.message ){
 												<div
 													class="w-full relative flex flex-col bg-white border border-[#e9ebef] rounded-lg">
 													<div class="p-3 sm:pr-4 pr-2">
-														<button @click="openMenu" type="button"
+														<button :id="entry.id" @click="openMenu" type="button"
 															class="float-right text-xl font-bold color-[#98a2b3] ml-1 px-3 rounded-full hover:color-[#323581] hover:bg-[#f2f4f7]">
 															&#8942;
 														</button>
-														<div id="actionbuttons" :class="isOpen ? 'block' : 'hidden'">
+														<div :id="'actionbuttons'+entry.id" :class="isOpen ? 'block' : 'hidden'">
 															<PrimaryLink v-if="entry.deleted_at == null"
 																:href="route('liquijobs.show', { 'id': entry.id })"
 																class="max-w-xl ml-1 float-right mb-3">View
