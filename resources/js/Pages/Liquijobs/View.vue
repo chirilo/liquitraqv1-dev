@@ -132,8 +132,8 @@ const openMenuSelect = (event) => {
 	if (event.target.value == 'it') {
 		// Do something
 		//alert('it here');
-		isOpenIt.value = !isOpenIt.value;
-		isOpenLabel.value = !isOpenLabel.value;
+		// isOpenIt.value = !isOpenIt.value;
+		// isOpenLabel.value = !isOpenLabel.value;
 		// isOpenFurniture.value = false;
 		// isOpenInfrastructure.value = false;
 		// furniture_asset_type.removeAttribute('required');
@@ -151,8 +151,8 @@ const openMenuSelect = (event) => {
 	else if (event.target.value == 'furniture') {
 		// Do something else
 		//alert('furniture ');
-		isOpenFurniture.value = !isOpenFurniture.value;
-		isOpenLabel.value = !isOpenLabel.value;
+		// isOpenFurniture.value = !isOpenFurniture.value;
+		// isOpenLabel.value = !isOpenLabel.value;
 		// isOpenIt.value = false;
 		// isOpenInfrastructure.value = false;
 		// it_asset_type.removeAttribute('required');
@@ -170,8 +170,8 @@ const openMenuSelect = (event) => {
 	else if (event.target.value == 'infrastructure') {
 		// Do something else
 		//alert('infrastructure ');
-		isOpenInfrastructure.value = !isOpenInfrastructure.value;
-		isOpenLabel.value = !isOpenLabel.value;
+		// isOpenInfrastructure.value = !isOpenInfrastructure.value;
+		// isOpenLabel.value = !isOpenLabel.value;
 		// isOpenIt.value = false;
 		// isOpenFurniture.value = false;
 		// it_asset_type.removeAttribute('required');
