@@ -28,11 +28,11 @@ defineProps({
                     </div>
 
                     <!-- Navigation Links -->
-                    <div class="space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <div class="sm:ml-10 ml-2 flex">
                         <!-- <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             Job Dashboard
                         </NavLink> -->
-                        <a href="/liquijobs" class="my-auto primary-dark-blue font-rethinksansbold text-base hover:opacity-80">Job Dashboard</a>
+                        <a href="/liquijobs" class="my-auto primary-dark-blue font-rethinksansbold text-base hover:opacity-80">Dashboard</a>
                     </div>
                 </div>
                 <div class="inline relative my-auto">

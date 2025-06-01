@@ -34,7 +34,6 @@ class LiquiassetController extends Controller
         $currentdatetime = new \DateTime("now", new \DateTimeZone(''.$date_default_timezone_get.''));
         $currentdatetime = $currentdatetime->format('M d, Y h:i A');
         //$currentdatetime = date('M d, Y h:i:sA');
-
         //
         return Inertia::render(
             'Liquiassets/Index', [
@@ -176,10 +175,14 @@ class LiquiassetController extends Controller
     public function edit(Liquiasset $liquiasset)
     {
         //
+        
+        $liquijob_id = isset( $_GET['jobid'] ) ? $_GET['jobid'] : 1;
+
         return Inertia::render(
             'Liquiassets/Edit',
             [
                 'liquiasset' => $liquiasset,
+                'job_id' => $liquijob_id,
             ]
         );
     }

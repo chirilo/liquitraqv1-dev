@@ -210,7 +210,7 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 								<div class="mx-auto">
 									<div class="flex items-center"><a href="/liquijobs"><img
 												src="/images/logos/liquis-logo.png" alt="LiquiTraq"
-												class="block md:w-40 sm:w-20"></a></div>
+												class="block sm:w-[160px] w-[140px]"></a></div>
 								</div>
 							</div>
 							<div class="relative w-full border-divider pt-3">
@@ -218,16 +218,16 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 								<div class="relative flex flex-col items-center lg:items-end">
 									<div class="w-full text-center primary-gray font-rethinksansmedium text-sm">{{
 										fulldatebasedonbrowser }}</div>
-									<div class="pt-3 mx-auto relative flex items-center lg:items-end" v-if="$page.props.jetstream.managesProfilePhotos">
+									<div class="w-full pt-3 mx-auto relative flex justify-center lg:items-end" v-if="$page.props.jetstream.managesProfilePhotos">
 										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
 											data-dropdown-placement="bottom-start"
-											class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl"
-											:src="$page.props.auth.user.profile_photo_url.replace('https://phplaravel-728976-5430189.cloudwaysapps.com/liquijobs', '')" alt="User dropdown">
+											class="sm:w-[160px] w-[140px] rounded-full cursor-pointer border-1 border-black shadow-xl"
+											:src="$page.props.auth.user.profile_photo_url.replace('https://phplaravel-728976-5430189.cloudwaysapps.com/liquijobs', '')" alt="Profile Picture">
 									</div>
 									<div v-else class="pt-3 mx-auto relative flex items-center lg:items-end">
 										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
 											data-dropdown-placement="bottom-start"
-											class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl"
+											class="sm:w-[160px] w-[140px] w-full rounded-full cursor-pointer border-1 border-black shadow-xl"
 											src="/images/logos/avatar.jpg" alt="User dropdown">
 									</div>
 								</div>
@@ -479,7 +479,6 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 																:href="route('liquijobs.show', { 'id': entry.id })"
 																class="max-w-xl ml-1 float-right mb-3">View
 															</PrimaryLink>
-															<!-- {{ props.showeditdelete }} -->
 															<div v-if="props.showeditdelete == 'admin'">
 																<PrimaryLink v-if="entry.deleted_at == null"
 																	:href="route('liquijobs.edit', { 'id': entry.id })"

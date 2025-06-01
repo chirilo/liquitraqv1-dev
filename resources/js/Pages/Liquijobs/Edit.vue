@@ -177,27 +177,27 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
                         <div id="left-side"
                             class="w-full mx-auto flex flex-col items-start overflow-hidden pb-6 pt-6 rounded-lg bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] lg:col-span-1 md:col-span-2">
                             <div class="relative w-full flex items-center pb-6 border-divider">
-                                <div class="mx-auto">
-                                    <div class="flex items-center"><a href="/liquijobs"><img
-                                                src="/images/logos/liquis-logo.png" alt="LiquiTraq"
-                                                class="block md:w-40 sm:w-20"></a></div>
-                                </div>
-                            </div>
-                            <div class="relative w-full border-divider pt-3">
-                                <!-- AVATAR -->
+								<div class="mx-auto">
+									<div class="flex items-center"><a href="/liquijobs"><img
+												src="/images/logos/liquis-logo.png" alt="LiquiTraq"
+												class="block sm:w-[160px] w-[140px]"></a></div>
+								</div>
+							</div>
+							<div class="relative w-full border-divider pt-3">
+								<!-- AVATAR -->
 								<div class="relative flex flex-col items-center lg:items-end">
 									<div class="w-full text-center primary-gray font-rethinksansmedium text-sm">{{
 										fulldatebasedonbrowser }}</div>
-									<div class="pt-3 mx-auto relative flex items-center lg:items-end" v-if="$page.props.jetstream.managesProfilePhotos">
+									<div class="w-full pt-3 mx-auto relative flex justify-center lg:items-end" v-if="$page.props.jetstream.managesProfilePhotos">
 										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
 											data-dropdown-placement="bottom-start"
-											class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl"
-											:src="$page.props.auth.user.profile_photo_url.replace('https://phplaravel-728976-5430189.cloudwaysapps.com/liquijobs', '')" alt="User dropdown">
+											class="sm:w-[160px] w-[140px] rounded-full cursor-pointer border-1 border-black shadow-xl"
+											:src="$page.props.auth.user.profile_photo_url.replace('https://phplaravel-728976-5430189.cloudwaysapps.com/liquijobs', '')" alt="Profile Picture">
 									</div>
 									<div v-else class="pt-3 mx-auto relative flex items-center lg:items-end">
 										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
 											data-dropdown-placement="bottom-start"
-											class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl"
+											class="sm:w-[160px] w-[140px] w-full rounded-full cursor-pointer border-1 border-black shadow-xl"
 											src="/images/logos/avatar.jpg" alt="User dropdown">
 									</div>
 								</div>

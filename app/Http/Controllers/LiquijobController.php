@@ -250,7 +250,7 @@ class LiquijobController extends Controller
         //$job_assets = DB::table('liquiassets')->where('id', $liquijob->id)->first();
 
         $job_assets = Liquiasset::query()
-            ->select(['id','job_asset', 'job_id', 'asset_category', 'asset_status'])
+            ->select(['id','job_asset', 'job_id', 'asset_category', 'asset_status', 'asset_disposition'])
             ->where('job_id', $liquijob['id'])
             ->orderBy('created_at', 'DESC')
             ->limit(10)->get();

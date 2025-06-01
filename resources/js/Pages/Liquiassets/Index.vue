@@ -106,40 +106,27 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 						<div id="left-side" class="mx-auto flex flex-col items-start overflow-hidden pb-6 pt-6 rounded-lg bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] lg:col-span-1 md:col-span-2">
 							<div class="relative w-full flex items-center pb-6 border-divider">
 								<div class="mx-auto">
-									<div class="flex items-center"><a href="/liquijobs"><img src="/images/logos/liquis-logo.png" alt="LiquiTraq" class="block md:w-40 sm:w-20"></a></div>
+									<div class="flex items-center"><a href="/liquijobs"><img
+												src="/images/logos/liquis-logo.png" alt="LiquiTraq"
+												class="block sm:w-[160px] w-[140px]"></a></div>
 								</div>
 							</div>
-
-							<div class="relative w-full border-divider pt-6">
-							<!-- AVATAR -->
-								<div class="relative flex items-center lg:items-end">
-									<div class="mx-auto relative flex items-center lg:items-end">
-										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl" src="/images/logos/avatar.jpg" alt="User dropdown">
+							<div class="relative w-full border-divider pt-3">
+								<!-- AVATAR -->
+								<div class="relative flex flex-col items-center lg:items-end">
+									<div class="w-full text-center primary-gray font-rethinksansmedium text-sm">{{
+										fulldatebasedonbrowser }}</div>
+									<div class="w-full pt-3 mx-auto relative flex justify-center lg:items-end" v-if="$page.props.jetstream.managesProfilePhotos">
+										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
+											data-dropdown-placement="bottom-start"
+											class="sm:w-[160px] w-[140px] rounded-full cursor-pointer border-1 border-black shadow-xl"
+											:src="$page.props.auth.user.profile_photo_url.replace('https://phplaravel-728976-5430189.cloudwaysapps.com/liquijobs', '')" alt="Profile Picture">
 									</div>
-
-									<!-- <div class="relative flex items-center gap-6 lg:items-end">
-										<h1>My Account</h1>
-									</div> -->
-									<!-- Dropdown menu -->
-									<div id="userDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
-										<div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-										<div>Chi Rilo</div>
-										<div class="font-medium truncate">name@flowbite.com</div>
-										</div>
-										<ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
-										<li>
-											<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-										</li>
-										<li>
-											<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-										</li>
-										<li>
-											<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-										</li>
-										</ul>
-										<div class="py-1">
-										<a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
-										</div>
+									<div v-else class="pt-3 mx-auto relative flex items-center lg:items-end">
+										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
+											data-dropdown-placement="bottom-start"
+											class="sm:w-[160px] w-[140px] w-full rounded-full cursor-pointer border-1 border-black shadow-xl"
+											src="/images/logos/avatar.jpg" alt="User dropdown">
 									</div>
 								</div>
 								<!-- END OF AVATAR -->

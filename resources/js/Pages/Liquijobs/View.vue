@@ -147,7 +147,7 @@ const openMenuSelect = (event) => {
 		document.getElementById('it_asset_type').classList.add('block');
 
 		document.getElementById('assettypediv').classList.remove('hidden');
-	} 
+	}
 	else if (event.target.value == 'furniture') {
 		// Do something else
 		//alert('furniture ');
@@ -166,7 +166,7 @@ const openMenuSelect = (event) => {
 		document.getElementById('furniture_asset_type').classList.add('block');
 
 		document.getElementById('assettypediv').classList.remove('hidden');
-	} 
+	}
 	else if (event.target.value == 'infrastructure') {
 		// Do something else
 		//alert('infrastructure ');
@@ -264,7 +264,7 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 const openStatusMenuSelect = () => {
 	let selectedassetstatus = event.target.value;
 	console.log('selected' + selectedassetstatus);
-	if ( selectedassetstatus === 'completed' ) {
+	if (selectedassetstatus === 'completed') {
 		// isSoNumberOpen.value = !isSoNumberOpen.value;
 
 		// // close other
@@ -273,7 +273,7 @@ const openStatusMenuSelect = () => {
 		//alert('here')
 		document.getElementById('assetdispositiondiv').classList.remove('hidden');
 	}
-	else if( selectedassetstatus === 'originalstate' || selectedassetstatus === 'workinprogress'  ){
+	else if (selectedassetstatus === 'originalstate' || selectedassetstatus === 'workinprogress') {
 		document.getElementById('assetdispositiondiv').classList.add('hidden');
 	}
 }
@@ -281,7 +281,7 @@ const openStatusMenuSelect = () => {
 const openAssetStatusMiniForm = () => {
 	let selecteddispoval = event.target.value;
 	console.log('selecteddispoval' + selecteddispoval);
-	if( selecteddispoval == 'resold' ){
+	if (selecteddispoval == 'resold') {
 		document.getElementById('resold').classList.remove('hidden');
 
 		// hide others
@@ -289,13 +289,13 @@ const openAssetStatusMiniForm = () => {
 		// document.getElementById('disposed').classList.add('hidden');
 		// document.getElementById('returned').classList.add('hidden');
 	}
-	else if( selecteddispoval == 'recycled' ){
+	else if (selecteddispoval == 'recycled') {
 		document.getElementById('resold').classList.remove('hidden');
 	}
-	else if( selecteddispoval == 'disposed' ){
+	else if (selecteddispoval == 'disposed') {
 		document.getElementById('resold').classList.remove('hidden');
 	}
-	else if( selecteddispoval == 'returned' ){
+	else if (selecteddispoval == 'returned') {
 		document.getElementById('resold').classList.remove('hidden');
 	}
 }
@@ -330,7 +330,7 @@ const openAssetStatusMiniForm = () => {
 								<div class="mx-auto">
 									<div class="flex items-center"><a href="/liquijobs"><img
 												src="/images/logos/liquis-logo.png" alt="LiquiTraq"
-												class="block md:w-40 sm:w-20"></a></div>
+												class="block sm:w-[160px] w-[140px]"></a></div>
 								</div>
 							</div>
 							<div class="relative w-full border-divider pt-3">
@@ -338,18 +338,16 @@ const openAssetStatusMiniForm = () => {
 								<div class="relative flex flex-col items-center lg:items-end">
 									<div class="w-full text-center primary-gray font-rethinksansmedium text-sm">{{
 										fulldatebasedonbrowser }}</div>
-									<div class="pt-3 mx-auto relative flex items-center lg:items-end"
-										v-if="$page.props.jetstream.managesProfilePhotos">
+									<div class="w-full pt-3 mx-auto relative flex justify-center lg:items-end" v-if="$page.props.jetstream.managesProfilePhotos">
 										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
 											data-dropdown-placement="bottom-start"
-											class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl"
-											:src="$page.props.auth.user.profile_photo_url.replace('https://phplaravel-728976-5430189.cloudwaysapps.com/liquijobs', '')"
-											alt="User dropdown">
+											class="sm:w-[160px] w-[140px] rounded-full cursor-pointer border-1 border-black shadow-xl"
+											:src="$page.props.auth.user.profile_photo_url.replace('https://phplaravel-728976-5430189.cloudwaysapps.com/liquijobs', '')" alt="Profile Picture">
 									</div>
 									<div v-else class="pt-3 mx-auto relative flex items-center lg:items-end">
 										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
 											data-dropdown-placement="bottom-start"
-											class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl"
+											class="sm:w-[160px] w-[140px] w-full rounded-full cursor-pointer border-1 border-black shadow-xl"
 											src="/images/logos/avatar.jpg" alt="User dropdown">
 									</div>
 								</div>
@@ -725,7 +723,8 @@ const openAssetStatusMiniForm = () => {
 												<div class="w-full">
 													<div
 														class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
-														<span class="font-rethinksansbold primary-dark-blue">Total Resold:
+														<span class="font-rethinksansbold primary-dark-blue">Total
+															Resold:
 														</span>
 														<span class="font-rethinksanssemibold primary-gray">
 															{{ props.resoldjobassets }}
@@ -733,7 +732,8 @@ const openAssetStatusMiniForm = () => {
 													</div>
 													<div
 														class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
-														<span class="font-rethinksansbold primary-dark-blue">Total Recycled:
+														<span class="font-rethinksansbold primary-dark-blue">Total
+															Recycled:
 														</span>
 														<span class="font-rethinksanssemibold primary-gray">
 															{{ props.recycledjobassets }}
@@ -741,7 +741,8 @@ const openAssetStatusMiniForm = () => {
 													</div>
 													<div
 														class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
-														<span class="font-rethinksansbold primary-dark-blue">Total Disposed:
+														<span class="font-rethinksansbold primary-dark-blue">Total
+															Disposed:
 														</span>
 														<span class="font-rethinksanssemibold primary-gray">
 															{{ props.disposedjobassets }}
@@ -749,7 +750,8 @@ const openAssetStatusMiniForm = () => {
 													</div>
 													<div
 														class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
-														<span class="font-rethinksansbold primary-dark-blue">Total Return:
+														<span class="font-rethinksansbold primary-dark-blue">Total
+															Return:
 														</span>
 														<span class="font-rethinksanssemibold primary-gray">
 															{{ props.returnedjobassets }}
@@ -803,8 +805,8 @@ const openAssetStatusMiniForm = () => {
 											<InputError class="mt-2 w-full lg:w-[40%]"
 												:message="formasset.errors.asset_category" />
 										</div>
-										<div id="assettypediv" class="hidden flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap"
-											>
+										<div id="assettypediv"
+											class="hidden flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
 											<InputLabel for="asset_type" value="Type" class="w-full lg:w-[60%]" />
 											<select v-model="formasset.asset_type" id="furniture_asset_type"
 												class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
@@ -936,12 +938,14 @@ const openAssetStatusMiniForm = () => {
 											</select>
 										</div>
 
-										<div
-											id="assetdispositiondiv" class="hidden flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
-											<InputLabel for="asset_disposition" value="Asset Disposition" class="w-full lg:w-[60%]" />
-											
+										<div id="assetdispositiondiv"
+											class="hidden flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<InputLabel for="asset_disposition" value="Asset Disposition"
+												class="w-full lg:w-[60%]" />
+
 											<select v-model="formasset.asset_disposition" id="asset_status"
-												class="w-full lg:w-[40%] px-4 py-2 sm:mt-0 mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_status" @change="openAssetStatusMiniForm">
+												class="w-full lg:w-[40%] px-4 py-2 sm:mt-0 mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+												name="asset_status" @change="openAssetStatusMiniForm">
 												<option value="" selected disabled hidden>Select Disposition</option>
 												<option value="resold">Resold</option>
 												<option value="recycled">Recycled</option>
@@ -949,12 +953,19 @@ const openAssetStatusMiniForm = () => {
 												<option value="returned">Returned</option>
 											</select>
 
-											
+
 											<div class="w-full lg:w-[70%] float-none md:float-right mt-3">
-												<div id="resold" class="hidden flex sm:flex-row flex-col justify-end gap-1">
-													<input v-model="formasset.assetdisdate" class="p-2 w-full lg:w-[25%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none" type="date" name="assetdisdate" placeholder="Date" />
-													<input v-model="formasset.assetdiswho" class="p-2 w-full lg:w-[25%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" name="assetdiswho" placeholder="Who" />
-													<input v-model="formasset.assetdisticketshippinginfo" class="p-2 w-full lg:w-[40%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" name="assetdisticketshippinginfo"
+												<div id="resold"
+													class="hidden flex sm:flex-row flex-col justify-end gap-1">
+													<input v-model="formasset.assetdisdate"
+														class="p-2 w-full lg:w-[25%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none"
+														type="date" name="assetdisdate" placeholder="Date" />
+													<input v-model="formasset.assetdiswho"
+														class="p-2 w-full lg:w-[25%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none"
+														type="text" name="assetdiswho" placeholder="Who" />
+													<input v-model="formasset.assetdisticketshippinginfo"
+														class="p-2 w-full lg:w-[40%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none"
+														type="text" name="assetdisticketshippinginfo"
 														placeholder="Shipping/Ticket Info" />
 												</div>
 												<!-- <div id="recycled" class="flex sm:flex-row flex-col justify-end mt-1 gap-1">
@@ -976,7 +987,7 @@ const openAssetStatusMiniForm = () => {
 														placeholder="Ticket Info" />
 												</div> -->
 											</div>
-											
+
 											<InputError class="mt-2 w-full lg:w-[40%]"
 												:message="formasset.errors.asset_status" />
 										</div>
@@ -1035,7 +1046,7 @@ const openAssetStatusMiniForm = () => {
 				</div><!-- end of unlabeled div -->
 			</div>
 		</div>
-		
+
 	</AppLayout>
 
 </template>

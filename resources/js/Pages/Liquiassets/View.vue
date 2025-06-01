@@ -33,6 +33,8 @@ const liquiassetsurl = "/liquiassets/create?jobid=" + props.liquijobs;
 
 const viewallliquiassetsurl = "/liquiassets/view?jobid=" + props.liquijobs;
 
+const backtoprevjob = "/liquijobs/" + props.liquijobs + '?all=1';
+
 const parentjoburl = '/liquijobs/';
 
 // import { useRoute } from 'vue-router';
@@ -207,7 +209,7 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 								<div class="mx-auto">
 									<div class="flex items-center"><a href="/liquijobs"><img
 												src="/images/logos/liquis-logo.png" alt="LiquiTraq"
-												class="block md:w-40 sm:w-20"></a></div>
+												class="block sm:w-[160px] w-[140px]"></a></div>
 								</div>
 							</div>
 							<div class="relative w-full border-divider pt-3">
@@ -215,16 +217,16 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 								<div class="relative flex flex-col items-center lg:items-end">
 									<div class="w-full text-center primary-gray font-rethinksansmedium text-sm">{{
 										fulldatebasedonbrowser }}</div>
-									<div class="pt-3 mx-auto relative flex items-center lg:items-end" v-if="$page.props.jetstream.managesProfilePhotos">
+									<div class="w-full pt-3 mx-auto relative flex justify-center lg:items-end" v-if="$page.props.jetstream.managesProfilePhotos">
 										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
 											data-dropdown-placement="bottom-start"
-											class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl"
-											:src="$page.props.auth.user.profile_photo_url.replace('https://phplaravel-728976-5430189.cloudwaysapps.com/liquijobs', '')" alt="User dropdown">
+											class="sm:w-[160px] w-[140px] rounded-full cursor-pointer border-1 border-black shadow-xl"
+											:src="$page.props.auth.user.profile_photo_url.replace('https://phplaravel-728976-5430189.cloudwaysapps.com/liquijobs', '')" alt="Profile Picture">
 									</div>
 									<div v-else class="pt-3 mx-auto relative flex items-center lg:items-end">
 										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
 											data-dropdown-placement="bottom-start"
-											class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl"
+											class="sm:w-[160px] w-[140px] w-full rounded-full cursor-pointer border-1 border-black shadow-xl"
 											src="/images/logos/avatar.jpg" alt="User dropdown">
 									</div>
 								</div>
@@ -456,7 +458,7 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 													Job: <span>{{ props.thisjobcompanyname }}</span>
 												</h1>
 												<div class="flex justify-center sm:justify-end sm:w-auto w-full">
-													<a v-bind:href="parentjoburl + item.job_id"
+													<a :href="backtoprevjob"
 														class="text-white py-2 px-4 rounded-full bg-gradient-blue text-center text-sm font-rethinksansbold hover:opacity-90 flex">
 														<img class="w-4 mr-2" src="/images/logos/back.png"> Back
 													</a>
@@ -473,7 +475,7 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
 													<div class="font-rethinksansbold primary-dark-blue w-[60%]">
 														Category: </div>
-													<!-- <div class="font-rethinksanssemibold primary-gray width-40">{{ item.asset_category }}</div> -->
+													<!-- <div class="font-rethinksanssemibold primary-gray w-[40%]">{{ item.asset_category }}</div> -->
 													<div
 														class="font-rethinksanssemibold primary-gray lg:w-[40%] md:w-[60%]">
 														<span v-if="item.asset_category == 'furniture'">
@@ -490,13 +492,13 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
 													<div class="font-rethinksansbold primary-dark-blue w-[60%]">
 														Quantity: </div>
-													<div class="font-rethinksanssemibold primary-gray width-40">{{
+													<div class="font-rethinksanssemibold primary-gray w-[40%]">{{
 														item.asset_quantity }}</div>
 												</div>
 												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
 													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Type:
 													</div>
-													<div class="font-rethinksanssemibold primary-gray width-40">
+													<div class="font-rethinksanssemibold primary-gray w-[40%]">
 														<!-- {{item.asset_type }} -->
 														<!-- Furniture -->
 														<span v-if="item.asset_type == 'furniture-cubicle'">
@@ -599,39 +601,39 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
 													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Make:
 													</div>
-													<div class="font-rethinksanssemibold primary-gray width-40">{{
+													<div class="font-rethinksanssemibold primary-gray w-[40%]">{{
 														item.asset_make }}</div>
 												</div>
 												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
 													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Model:
 													</div>
-													<div class="font-rethinksanssemibold primary-gray width-40">{{
+													<div class="font-rethinksanssemibold primary-gray w-[40%]">{{
 														item.asset_model }}</div>
 												</div>
 												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
 													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Serial:
 													</div>
-													<div class="font-rethinksanssemibold primary-gray width-40">{{
+													<div class="font-rethinksanssemibold primary-gray w-[40%]">{{
 														item.asset_serial }}</div>
 												</div>
 												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
 													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Weight
 														Each:
 													</div>
-													<div class="font-rethinksanssemibold primary-gray width-40">{{
+													<div class="font-rethinksanssemibold primary-gray w-[40%]">{{
 														item.asset_weight_each }}</div>
 												</div>
 												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
 													<div class="font-rethinksansbold primary-dark-blue w-[60%]">
 														Description:
 													</div>
-													<div class="font-rethinksanssemibold primary-gray width-40">{{
+													<div class="font-rethinksanssemibold primary-gray w-[40%]">{{
 														item.asset_description }}</div>
 												</div>
 												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
 													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Status:
 													</div>
-													<!-- <div class="font-rethinksanssemibold primary-gray width-40 uppercase">{{ item.asset_status }}</div> -->
+													<!-- <div class="font-rethinksanssemibold primary-gray w-[40%] uppercase">{{ item.asset_status }}</div> -->
 													<div
 														class="font-rethinksanssemibold primary-gray lg:w-[40%] md:w-[60%]">
 														<span v-if="item.asset_status == 'workinprogress'">
@@ -649,7 +651,7 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 													<div class="font-rethinksansbold primary-dark-blue w-[60%]">
 														Asset Disposition:
 													</div>
-													<div class="font-rethinksanssemibold primary-gray width-40"><!-- {{
+													<div class="font-rethinksanssemibold primary-gray w-[40%]"><!-- {{
 														item.asset_disposition }} -->
 														<span v-if="item.asset_disposition == 'resold'">
 															Resold
@@ -671,36 +673,36 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 													</div>
 												</div>
 												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-													<div class="font-rethinksanssemibold primary-gray width-40">
+													<div class="font-rethinksanssemibold primary-gray w-[30%]">
 														<span>
 															Date:
 														</span>
 													</div>
-													<div class="font-rethinksanssemibold primary-gray width-40">
+													<div class="font-rethinksanssemibold primary-gray w-[40%]">
 														<span>
 															{{ item.assetdisdate }}
 														</span>
 													</div>
 												</div>
 												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-													<div class="font-rethinksanssemibold primary-gray width-40">
+													<div class="font-rethinksanssemibold primary-gray w-[30%]">
 														<span>
 															Who:
 														</span>
 													</div>
-													<div class="font-rethinksanssemibold primary-gray width-40">
+													<div class="font-rethinksanssemibold primary-gray w-[40%]">
 														<span>
 															{{ item.assetdiswho }}
 														</span>
 													</div>
 												</div>
 												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-													<div class="font-rethinksanssemibold primary-gray width-40">
+													<div class="font-rethinksanssemibold primary-gray w-[30%]">
 														<span>
 															Ticket / Shipping Info:
 														</span>
 													</div>
-													<div class="font-rethinksanssemibold primary-gray width-40">
+													<div class="font-rethinksanssemibold primary-gray w-[40%]">
 														<span>
 															{{ item.assetdisticketshippinginfo }}
 														</span>

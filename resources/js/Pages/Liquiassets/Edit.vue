@@ -22,6 +22,7 @@ import { ref, onMounted } from "vue";
 
 const props = defineProps({
 	liquiasset: Object,
+	job_id: Object,
 	// job_assets: Object,
 	// filters: Object,
 	// message: String,
@@ -34,6 +35,8 @@ const liquijobsCreate = '/liquijobs/create';
 const liquiassetsurl = "/liquiassets/create?jobid=" + props.liquijobs;
 
 const viewallliquiassetsurl = "/liquiassets/view?jobid=" + props.liquijobs;
+
+const backtoprevjob = "/liquijobs/" + props.job_id + '?all=1';
 
 const parentjoburl = '/liquijobs/';
 
@@ -76,7 +79,7 @@ const form2 = useForm({
 // from Create.vue
 const updateasset = (id) => {
 	console.log(form2)
-    form2.put(route('liquiassets.update', { id: props.liquiasset.id }));
+	form2.put(route('liquiassets.update', { id: props.liquiasset.id }));
 };
 
 
@@ -126,7 +129,7 @@ const openMenuSelect = (event) => {
 		document.getElementById('it_asset_type').classList.add('block');
 
 		document.getElementById('assettypediv').classList.remove('hidden');
-	} 
+	}
 	else if (event.target.value == 'furniture') {
 		// Do something else
 		//alert('furniture ');
@@ -145,7 +148,7 @@ const openMenuSelect = (event) => {
 		document.getElementById('furniture_asset_type').classList.add('block');
 
 		document.getElementById('assettypediv').classList.remove('hidden');
-	} 
+	}
 	else if (event.target.value == 'infrastructure') {
 		// Do something else
 		//alert('infrastructure ');
@@ -223,29 +226,29 @@ let isOpen = ref(false);
 const openMenu = (e) => {
 	let thisid = e.target.id;
 	//alert(e.target.id)
-	console.log('target'+ e.target.nextSibling);
+	console.log('target' + e.target.nextSibling);
 	let nextsibling = e.target.nextSibling;
 	let nextsiblingid = nextsibling.id;
 	//alert(nextsiblingid)
 	let hiddenclasscontain = document.getElementById(nextsiblingid).classList.contains('hidden');
 	let blockclasscontain = document.getElementById(nextsiblingid).classList.contains('block');
 	//alert(classcontain);
-	if( hiddenclasscontain == true ){
+	if (hiddenclasscontain == true) {
 		//alert(classcontain);
 		document.getElementById(nextsiblingid).classList.remove('hidden');
 		document.getElementById(nextsiblingid).classList.add('block');
 	}
-	else if( blockclasscontain == true ){
+	else if (blockclasscontain == true) {
 		document.getElementById(nextsiblingid).classList.remove('block');
 		document.getElementById(nextsiblingid).classList.add('hidden');
 	}
-	
+
 	// console.log(nextsiblingid);
 	// isOpen.value = !isOpen.value;
 	// console.log(isOpen);
 };
 
-if( props.message ){
+if (props.message) {
 	setTimeout(() => {
 		//alert('here');
 		document.getElementById('toastmessage').style.display = 'none';
@@ -266,7 +269,7 @@ if( props.message ){
 // 	let newString = ppurl.replace("https://phplaravel-728976-5430189.cloudwaysapps.com/liquijobs", "");
 // }
 
-const browsertimezone  = Intl.DateTimeFormat().resolvedOptions().timeZone;
+const browsertimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 console.log('browsertimezone' + browsertimezone);
 const today = new Date();
 const monthName = today.toLocaleString('default', { month: 'long' });
@@ -275,10 +278,10 @@ const year = today.getFullYear();
 
 const date = new Date();
 const formatter = new Intl.DateTimeFormat('en-US', {
-    timeZone: browsertimezone,
-    hour: 'numeric',
-    minute: 'numeric',
-    //second: 'numeric',
+	timeZone: browsertimezone,
+	hour: 'numeric',
+	minute: 'numeric',
+	//second: 'numeric',
 });
 
 const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - " + formatter.format(date);
@@ -288,7 +291,7 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 const openStatusMenuSelect = () => {
 	let selectedassetstatus = event.target.value;
 	console.log('selected' + selectedassetstatus);
-	if ( selectedassetstatus === 'completed' ) {
+	if (selectedassetstatus === 'completed') {
 		// isSoNumberOpen.value = !isSoNumberOpen.value;
 
 		// // close other
@@ -297,7 +300,7 @@ const openStatusMenuSelect = () => {
 		//alert('here')
 		document.getElementById('assetdispositiondiv').classList.remove('hidden');
 	}
-	else if( selectedassetstatus === 'originalstate' || selectedassetstatus === 'workinprogress'  ){
+	else if (selectedassetstatus === 'originalstate' || selectedassetstatus === 'workinprogress') {
 		document.getElementById('assetdispositiondiv').classList.add('hidden');
 	}
 }
@@ -305,7 +308,7 @@ const openStatusMenuSelect = () => {
 const openAssetStatusMiniForm = () => {
 	let selecteddispoval = event.target.value;
 	console.log('selecteddispoval' + selecteddispoval);
-	if( selecteddispoval == 'resold' ){
+	if (selecteddispoval == 'resold') {
 		document.getElementById('resold').classList.remove('hidden');
 
 		// hide others
@@ -313,13 +316,13 @@ const openAssetStatusMiniForm = () => {
 		// document.getElementById('disposed').classList.add('hidden');
 		// document.getElementById('returned').classList.add('hidden');
 	}
-	else if( selecteddispoval == 'recycled' ){
+	else if (selecteddispoval == 'recycled') {
 		document.getElementById('resold').classList.remove('hidden');
 	}
-	else if( selecteddispoval == 'disposed' ){
+	else if (selecteddispoval == 'disposed') {
 		document.getElementById('resold').classList.remove('hidden');
 	}
-	else if( selecteddispoval == 'returned' ){
+	else if (selecteddispoval == 'returned') {
 		document.getElementById('resold').classList.remove('hidden');
 	}
 }
@@ -330,15 +333,15 @@ onMounted(() => {
 	let assetcategoryfromdb = props.liquiasset.asset_category;
 	let assetimagefromdb = props.liquiasset.job_asset;
 	//alert(assetimagefromdb);
-	if( assetcategoryfromdb == 'furniture' ){
+	if (assetcategoryfromdb == 'furniture') {
 		document.getElementById('furniture_asset_type').classList.remove('hidden');
 		document.getElementById('furniture_asset_type').classList.add('block');
 	}
-	else if( assetcategoryfromdb == 'it' ){
+	else if (assetcategoryfromdb == 'it') {
 		document.getElementById('it_asset_type').classList.remove('hidden');
 		document.getElementById('it_asset_type').classList.add('block');
 	}
-	else if( assetcategoryfromdb == 'infrastructure' ){
+	else if (assetcategoryfromdb == 'infrastructure') {
 		document.getElementById('infrastructure_asset_type').classList.remove('hidden');
 		document.getElementById('infrastructure_asset_type').classList.add('block');
 	}
@@ -368,7 +371,7 @@ onMounted(() => {
 								<div class="mx-auto">
 									<div class="flex items-center"><a href="/liquijobs"><img
 												src="/images/logos/liquis-logo.png" alt="LiquiTraq"
-												class="block md:w-40 sm:w-20"></a></div>
+												class="block sm:w-[160px] w-[140px]"></a></div>
 								</div>
 							</div>
 							<div class="relative w-full border-divider pt-3">
@@ -376,16 +379,16 @@ onMounted(() => {
 								<div class="relative flex flex-col items-center lg:items-end">
 									<div class="w-full text-center primary-gray font-rethinksansmedium text-sm">{{
 										fulldatebasedonbrowser }}</div>
-									<div class="pt-3 mx-auto relative flex items-center lg:items-end" v-if="$page.props.jetstream.managesProfilePhotos">
+									<div class="w-full pt-3 mx-auto relative flex justify-center lg:items-end" v-if="$page.props.jetstream.managesProfilePhotos">
 										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
 											data-dropdown-placement="bottom-start"
-											class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl"
-											:src="$page.props.auth.user.profile_photo_url.replace('https://phplaravel-728976-5430189.cloudwaysapps.com/liquijobs', '')" alt="User dropdown">
+											class="sm:w-[160px] w-[140px] rounded-full cursor-pointer border-1 border-black shadow-xl"
+											:src="$page.props.auth.user.profile_photo_url.replace('https://phplaravel-728976-5430189.cloudwaysapps.com/liquijobs', '')" alt="Profile Picture">
 									</div>
 									<div v-else class="pt-3 mx-auto relative flex items-center lg:items-end">
 										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
 											data-dropdown-placement="bottom-start"
-											class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl"
+											class="sm:w-[160px] w-[140px] w-full rounded-full cursor-pointer border-1 border-black shadow-xl"
 											src="/images/logos/avatar.jpg" alt="User dropdown">
 									</div>
 								</div>
@@ -395,7 +398,7 @@ onMounted(() => {
 									<Dropdown align="center">
 										<template #trigger>
 											<div v-if="$page.props.jetstream.managesProfilePhotos">
-												<button 
+												<button
 													class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
 													<!-- {{ $page.props.auth.user.profile_photo_url }}
 													<img class="rounded-full object-cover"
@@ -407,8 +410,9 @@ onMounted(() => {
 														class="inline-flex items-center border border-transparent text-base text-base primary-light-blue font-rethinksansextrabold uppercase dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
 														{{ $page.props.auth.user.name }}
 
-														<svg class="ms-2 -me-0.5 size-4" xmlns="http://www.w3.org/2000/svg"
-															fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+														<svg class="ms-2 -me-0.5 size-4"
+															xmlns="http://www.w3.org/2000/svg" fill="none"
+															viewBox="0 0 24 24" stroke-width="1.5"
 															stroke="currentColor">
 															<path stroke-linecap="round" stroke-linejoin="round"
 																d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
@@ -503,7 +507,9 @@ onMounted(() => {
 											Select
 											status</option>
 										<option class="text-base primary-dark-blue" value="New">New</option>
-										<option class="text-base primary-dark-blue" value="Work In Progress">Work In Progress</option>
+										<option class="text-base primary-dark-blue" value="Work In Progress">Work In
+											Progress
+										</option>
 										<option class="text-base primary-dark-blue" value="Completed">Completed</option>
 									</select>
 									<button type="submit"
@@ -533,8 +539,9 @@ onMounted(() => {
 												</div>
 												<div class="w-full mt-3">
 													<InputLabel for="corporate_address" value="Corporate Address" />
-													<TextInput id="corporate_address" type="text" placeholder="Corporate Address"
-														v-model="form.corporate_address" required />
+													<TextInput id="corporate_address" type="text"
+														placeholder="Corporate Address" v-model="form.corporate_address"
+														required />
 													<InputError class="mt-2" :message="form.errors.corporate_address" />
 												</div>
 												<div class="w-full mt-3">
@@ -551,8 +558,12 @@ onMounted(() => {
 												</div>
 												<div class="w-full mt-3">
 													<InputLabel for="contact_telephone" value="Phone" />
-													<TextInput id="contact_telephone" min="1" type="number" placeholder="Phone"
-														v-model="form.contact_telephone" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength)" required @keydown="(e: KeyboardEvent) => { if (e.key === '-') e.preventDefault()}" />
+													<TextInput id="contact_telephone" min="1" type="number"
+														placeholder="Phone" v-model="form.contact_telephone"
+														maxlength="10"
+														oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength)"
+														required
+														@keydown="(e: KeyboardEvent) => { if (e.key === '-') e.preventDefault() }" />
 													<InputError class="mt-2" :message="form.errors.contact_telephone" />
 												</div>
 												<div class="w-full mt-3">
@@ -609,21 +620,36 @@ onMounted(() => {
 						<div id="right-side" class="lg:col-span-2 md:col-span-3">
 							<!-- current job selected /recent jobs -->
 							<div class="rounded-lg bg-white p-6">
-								<div id="recent-jobs">
-									<form @submit.prevent="updateasset" class="mt-6 space-y-2" enctype="multipart/form-data">
-	                                    <!-- <div
+								<div id="assets-info">
+									<div class="relative flex justify-between items-start sm:flex-row flex-col-reverse">
+										<h1
+											class="w-full sm:w-[60%] block text-2xl primary-light-blue font-rethinksansextrabold uppercase mt-6 sm:mt-0 text-center sm:text-left ">
+											Edit Asset: {{ props.id }}
+										</h1>
+										<div class="flex justify-center sm:justify-end sm:w-auto w-full">
+											<a :href="backtoprevjob"
+												class="text-white py-2 px-4 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
+												<img class="w-4 mr-2" src="/images/logos/back.png"> Back
+											</a>
+											<a href="/liquijobs"
+												class="text-white ml-1 py-2 px-2 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
+												<img class="w-5" src="/images/logos/home.png">
+											</a>
+										</div>
+									</div>
+									<form @submit.prevent="updateasset" class="mt-6 space-y-2"
+										enctype="multipart/form-data">
+										<!-- <div
 	                                        class="flex border-divider pb-2 items-end justify-between sm:justify-end flex-row">
 	                                        <InputLabel for="id" value="SO Number" class="w-full lg:w-[60%]" />
 	                                        <input id="id" type="text" :value="form.id" disabled
 	                                            class="w-auto lg:w-[40%] appearance-none block w-full px-4 py-0 primary-dark-blue font-rethinksansmedium border-[#fff]" />
 	                                    </div> -->
-	                                    <div class="text-center">
-	                                    	<h2 class="block sm:text-2xl text-xl primary-light-blue font-rethinksansextrabold uppercase"> Edit Asset </h2>
-	                                    </div>
-	                                    <div
-	                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
-	                                        <InputLabel for="asset_category" value="Category" class="w-full lg:w-[60%]" />
-	                                        <select v-model="form2.asset_category" id="type"
+										<div
+											class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<InputLabel for="asset_category" value="Category"
+												class="w-full lg:w-[60%]" />
+											<select v-model="form2.asset_category" id="type"
 												class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
 												name="asset_category" required @change="openMenuSelect">
 												<option value="" disabled hidden>Select Category</option>
@@ -631,11 +657,11 @@ onMounted(() => {
 												<option value="infrastructure">Infrastructure</option>
 												<option value="furniture">Furniture</option>
 											</select>
-	                                        <InputError class="mt-2 w-full lg:w-[40%]"
-	                                            :message="form2.errors.asset_category" />
-	                                    </div>
-	                                    <div id="assettypediv" class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap"
-											>
+											<InputError class="mt-2 w-full lg:w-[40%]"
+												:message="form2.errors.asset_category" />
+										</div>
+										<div id="assettypediv"
+											class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
 											<InputLabel for="asset_type" value="Type" class="w-full lg:w-[60%]" />
 											<select v-model="form2.asset_type" id="furniture_asset_type"
 												class="hidden w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
@@ -698,15 +724,16 @@ onMounted(() => {
 												:message="form2.errors.asset_type" />
 											<div class="w-[40%]"></div>
 										</div>
-	                                    <div
-	                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
-	                                        <InputLabel for="asset_quantity" value="Quantity" class="w-full lg:w-[60%]" />
-	                                        <TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_quantity" type="text"
-	                                            v-model="form2.asset_quantity" required />
-	                                        <InputError class="mt-2 w-full lg:w-[40%]"
-	                                            :message="form2.errors.asset_quantity" />
-	                                    </div>
-	                                    <!-- <div
+										<div
+											class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<InputLabel for="asset_quantity" value="Quantity"
+												class="w-full lg:w-[60%]" />
+											<TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_quantity"
+												type="text" v-model="form2.asset_quantity" required />
+											<InputError class="mt-2 w-full lg:w-[40%]"
+												:message="form2.errors.asset_quantity" />
+										</div>
+										<!-- <div
 	                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
 	                                        <InputLabel for="asset_type" value="Type" class="w-full lg:w-[60%]" />
 	                                        <TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_type" type="text"
@@ -714,53 +741,54 @@ onMounted(() => {
 	                                        <InputError class="mt-2 w-full lg:w-[40%]"
 	                                            :message="form2.errors.asset_type" />
 	                                    </div> -->
-	                                    <div
-	                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
-	                                        <InputLabel for="asset_make" value="Make" class="w-full lg:w-[60%]" />
-	                                        <TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_make" type="text"
-	                                            v-model="form2.asset_make" required />
-	                                        <InputError class="mt-2 w-full lg:w-[40%]"
-	                                            :message="form2.errors.asset_make" />
-	                                    </div>
-	                                    <div
-	                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
-	                                        <InputLabel for="asset_model" value="Model" class="w-full lg:w-[60%]" />
-	                                        <TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_model" type="text"
-	                                            v-model="form2.asset_model" required />
-	                                        <InputError class="mt-2 w-full lg:w-[40%]"
-	                                            :message="form2.errors.asset_model" />
-	                                    </div>
-	                                    <div
-	                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
-	                                        <InputLabel for="asset_serial" value="Serial" class="w-full lg:w-[60%]" />
-	                                        <TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_serial" type="text"
-	                                            v-model="form2.asset_serial" required />
-	                                        <InputError class="mt-2 w-full lg:w-[40%]"
-	                                            :message="form2.errors.asset_serial" />
-	                                    </div>
-	                                    <div
-	                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
-	                                        <InputLabel for="asset_weight_each" value="Weight Each" class="w-full lg:w-[60%]" />
-	                                        <TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_weight_each" type="text"
-	                                            v-model="form2.asset_weight_each" required />
-	                                        <InputError class="mt-2 w-full lg:w-[40%]"
-	                                            :message="form2.errors.asset_weight_each" />
-	                                    </div>
-	                                    <div
-	                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
-	                                        <InputLabel for="asset_description" value="Description
+										<div
+											class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<InputLabel for="asset_make" value="Make" class="w-full lg:w-[60%]" />
+											<TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_make" type="text"
+												v-model="form2.asset_make" required />
+											<InputError class="mt-2 w-full lg:w-[40%]"
+												:message="form2.errors.asset_make" />
+										</div>
+										<div
+											class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<InputLabel for="asset_model" value="Model" class="w-full lg:w-[60%]" />
+											<TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_model" type="text"
+												v-model="form2.asset_model" required />
+											<InputError class="mt-2 w-full lg:w-[40%]"
+												:message="form2.errors.asset_model" />
+										</div>
+										<div
+											class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<InputLabel for="asset_serial" value="Serial" class="w-full lg:w-[60%]" />
+											<TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_serial" type="text"
+												v-model="form2.asset_serial" required />
+											<InputError class="mt-2 w-full lg:w-[40%]"
+												:message="form2.errors.asset_serial" />
+										</div>
+										<div
+											class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<InputLabel for="asset_weight_each" value="Weight Each"
+												class="w-full lg:w-[60%]" />
+											<TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_weight_each"
+												type="text" v-model="form2.asset_weight_each" required />
+											<InputError class="mt-2 w-full lg:w-[40%]"
+												:message="form2.errors.asset_weight_each" />
+										</div>
+										<div
+											class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<InputLabel for="asset_description" value="Description
 	                                        " class="w-full lg:w-[60%]" />
-	                                        <TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_description" type="text"
-	                                            v-model="form2.asset_description" required />
-	                                        <InputError class="mt-2 w-full lg:w-[40%]"
-	                                            :message="form2.errors.asset_description" />
-	                                    </div>
-	                                    <div
-	                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
-	                                        <InputLabel for="asset_status" value="Status" class="w-full lg:w-[60%]" />
-	                                        <!-- <TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_status" type="text"
+											<TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_description"
+												type="text" v-model="form2.asset_description" required />
+											<InputError class="mt-2 w-full lg:w-[40%]"
+												:message="form2.errors.asset_description" />
+										</div>
+										<div
+											class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<InputLabel for="asset_status" value="Status" class="w-full lg:w-[60%]" />
+											<!-- <TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_status" type="text"
 	                                            v-model="form2.asset_status" required /> -->
-	                                        <select v-model="form2.asset_status" id="asset_status"
+											<select v-model="form2.asset_status" id="asset_status"
 												class="w-full lg:w-[40%] px-4 py-2 sm:mt-0 mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
 												name="asset_status" required @change="openStatusMenuSelect">
 												<option value="" selected disabled hidden>Select Status</option>
@@ -768,14 +796,16 @@ onMounted(() => {
 												<option value="workinprogress">Work In Progress</option>
 												<option value="completed">Completed</option>
 											</select>
-	                                        <InputError class="mt-2 w-full lg:w-[40%]"
-	                                            :message="form2.errors.asset_status" />
-	                                    </div>
-	                                    <div id="assetdispositiondiv"
-	                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
-	                                        <InputLabel for="asset_disposition" value="Asset Disposition" class="w-full lg:w-[60%]" />
-	                                        <select v-model="form2.asset_disposition" id="asset_status"
-												class="w-full lg:w-[40%] px-4 py-2 sm:mt-0 mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none" name="asset_status" @change="openAssetStatusMiniForm">
+											<InputError class="mt-2 w-full lg:w-[40%]"
+												:message="form2.errors.asset_status" />
+										</div>
+										<div id="assetdispositiondiv"
+											class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<InputLabel for="asset_disposition" value="Asset Disposition"
+												class="w-full lg:w-[60%]" />
+											<select v-model="form2.asset_disposition" id="asset_status"
+												class="w-full lg:w-[40%] px-4 py-2 sm:mt-0 mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+												name="asset_status" @change="openAssetStatusMiniForm">
 												<option value="" selected disabled hidden>Select Disposition</option>
 												<option value="resold">Resold</option>
 												<option value="recycled">Recycled</option>
@@ -784,27 +814,32 @@ onMounted(() => {
 											</select>
 											<div class="w-full lg:w-[70%] float-none md:float-right mt-3">
 												<div id="resold" class="flex sm:flex-row flex-col justify-end gap-1">
-													<input v-model="form2.assetdisdate" class="p-2 w-full lg:w-[25%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none" type="date" name="assetdisdate" placeholder="Date" />
-													<input v-model="form2.assetdiswho" class="p-2 w-full lg:w-[25%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" name="assetdiswho" placeholder="Who" />
-													<input v-model="form2.assetdisticketshippinginfo" class="p-2 w-full lg:w-[40%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" name="assetdisticketshippinginfo"
+													<input v-model="form2.assetdisdate"
+														class="p-2 w-full lg:w-[25%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none"
+														type="date" name="assetdisdate" placeholder="Date" />
+													<input v-model="form2.assetdiswho"
+														class="p-2 w-full lg:w-[25%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none"
+														type="text" name="assetdiswho" placeholder="Who" />
+													<input v-model="form2.assetdisticketshippinginfo"
+														class="p-2 w-full lg:w-[40%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none"
+														type="text" name="assetdisticketshippinginfo"
 														placeholder="Shipping/Ticket Info" />
 												</div>
 											</div>
-	                                        <InputError class="mt-2 w-full lg:w-[40%]"
-	                                            :message="form2.errors.asset_disposition" />
-	                                    </div>
+											<InputError class="mt-2 w-full lg:w-[40%]"
+												:message="form2.errors.asset_disposition" />
+										</div>
 
-	                                    <!-- <div class="float-right mt-6 sm:w-[60%] w-full flex flex-col">
+										<!-- <div class="float-right mt-6 sm:w-[60%] w-full flex flex-col">
 	                                    	<img :src="form2.job_asset ? form2.job_asset : $event.target.files[0]" alt="Job Asset Preview" />
 	                                    	<InputLabel for="job_asset" value="Job Asset Preview" class="w-full lg:w-[60%]" />
 	                                    </div> -->
 
-	                                    <div class="mt-6 sm:w-[60%] w-full flex flex-col">
+										<div class="mt-6 sm:w-[60%] w-full flex flex-col">
 											<InputLabel for="job_asset_url" value="Job Asset"
 												class="w-full lg:w-[60%]" />
 											<!-- <input type="file" @input="form.avatar = $event.target.files[0]" name="job_asset" class="mt-1 block w-full" v-on:change="onImageChange" > -->
-											<input type="file"
-												@input="form2.job_asset_url = $event.target.files[0]"
+											<input type="file" @input="form2.job_asset_url = $event.target.files[0]"
 												name="job_asset_url" class="mt-1 block w-full">
 											<!-- <input type="hidden" name="job_id" v-model="form2.jobid"> -->
 											<InputError class="mt-2 w-full lg:w-[40%]"
@@ -812,23 +847,25 @@ onMounted(() => {
 										</div>
 
 										<div class="flex justify-end">
-	                                        <PrimaryButton :disabled="form.processing" class="py-3 px-4 sm:w-auto w-full">
-	                                            <span class="text-base">Update</span> <svg
-	                                                class="size-6 shrink-0 stroke-[#FFFFFF]"
-	                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-	                                                stroke-width="1.5"
-	                                                style="display: inline; float: inline-end; margin-left: 5px;">
-	                                                <path stroke-linecap="round" stroke-linejoin="round"
-	                                                    d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"></path>
-	                                            </svg>
-	                                        </PrimaryButton>
-	                                        <Transition enter-active-class="transition ease-in-out"
-	                                            enter-from-class="opacity-0" leave-active-class="transition ease-in-out"
-	                                            leave-to-class="opacity-0">
-	                                            <p v-if="form.recentlySuccessful" class="text-sm text-gray-600">Saved.</p>
-	                                        </Transition>
-	                                    </div>
-                                	</form>
+											<PrimaryButton :disabled="form.processing"
+												class="py-3 px-4 sm:w-auto w-full">
+												<span class="text-base">Update</span> <svg
+													class="size-6 shrink-0 stroke-[#FFFFFF]"
+													xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+													stroke-width="1.5"
+													style="display: inline; float: inline-end; margin-left: 5px;">
+													<path stroke-linecap="round" stroke-linejoin="round"
+														d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"></path>
+												</svg>
+											</PrimaryButton>
+											<Transition enter-active-class="transition ease-in-out"
+												enter-from-class="opacity-0" leave-active-class="transition ease-in-out"
+												leave-to-class="opacity-0">
+												<p v-if="form.recentlySuccessful" class="text-sm text-gray-600">Saved.
+												</p>
+											</Transition>
+										</div>
+									</form>
 								</div>
 							</div>
 						</div>

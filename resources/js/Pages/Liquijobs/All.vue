@@ -175,7 +175,7 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 								<div class="mx-auto">
 									<div class="flex items-center"><a href="/liquijobs"><img
 												src="/images/logos/liquis-logo.png" alt="LiquiTraq"
-												class="block md:w-40 sm:w-20"></a></div>
+												class="block sm:w-[160px] w-[140px]"></a></div>
 								</div>
 							</div>
 							<div class="relative w-full border-divider pt-3">
@@ -183,18 +183,16 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 								<div class="relative flex flex-col items-center lg:items-end">
 									<div class="w-full text-center primary-gray font-rethinksansmedium text-sm">{{
 										fulldatebasedonbrowser }}</div>
-									<div class="pt-3 mx-auto relative flex items-center lg:items-end"
-										v-if="$page.props.jetstream.managesProfilePhotos">
+									<div class="w-full pt-3 mx-auto relative flex justify-center lg:items-end" v-if="$page.props.jetstream.managesProfilePhotos">
 										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
 											data-dropdown-placement="bottom-start"
-											class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl"
-											:src="$page.props.auth.user.profile_photo_url.replace('https://phplaravel-728976-5430189.cloudwaysapps.com/liquijobs', '')"
-											alt="User dropdown">
+											class="sm:w-[160px] w-[140px] rounded-full cursor-pointer border-1 border-black shadow-xl"
+											:src="$page.props.auth.user.profile_photo_url.replace('https://phplaravel-728976-5430189.cloudwaysapps.com/liquijobs', '')" alt="Profile Picture">
 									</div>
 									<div v-else class="pt-3 mx-auto relative flex items-center lg:items-end">
 										<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
 											data-dropdown-placement="bottom-start"
-											class="w-full rounded-full cursor-pointer border-1 border-black shadow-xl"
+											class="sm:w-[160px] w-[140px] w-full rounded-full cursor-pointer border-1 border-black shadow-xl"
 											src="/images/logos/avatar.jpg" alt="User dropdown">
 									</div>
 								</div>
@@ -526,7 +524,7 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 											<li class="m-0 p-0 w-full mb-6 last:mb-0" v-for="item in job_assets">
 												<!-- <img :src="'/uploads/images/' + item.job_asset" style="margin: 0 1em 0 1em;" width="300" height="300" onerror="https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0" /> -->
 												<!-- <img class="aspect-square object-cover h-auto " style="background-image: url('https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0');" :src="'/storage/job_assets/'+item.job_asset" /> -->
-												<div class="flex flex-row sm:items-center">
+												<div class="flex flex-row">
 													<div class="lg:w-[20%] md:w-[40%] w-[30%]">
 														<a v-bind:href="viewsingleliquiasseturl + item.id">
 															<img class="aspect-square object-cover h-auto "
@@ -577,16 +575,26 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 																</span>
 															</div>
 														</div>
+														<div
+															class="pt-1 pb-1 m-0 border-b border-[#e9ebef] flex flex-wrap" v-if="item.asset_status == 'completed'">
+															<div
+																class="font-rethinksansbold primary-dark-blue lg:w-[60%] md:w-[40%] pr-2">
+																Disposition: </div>
+															<div
+																class="font-rethinksanssemibold primary-gray lg:w-[40%] md:w-[60%] capitalize">
+																{{ item.asset_disposition }}
+															</div>
+														</div>
 														<div class="mt-3">
 															<a v-bind:href="viewsingleliquiasseturl + item.id"
 																class="text-white py-2 px-4 rounded-full bg-gradient-blue text-center text-sm font-rethinksansbold hover:opacity-90">View</a>
 															<a v-bind:href="/liquiassets/+item.id+'/edit'"
-																class="text-white py-2 px-4 rounded-full bg-gradient-blue text-center text-sm font-rethinksansbold hover:opacity-90">Edit</a>
-															<DangerButton class="ml-3 float-right mb-3"
+																class="text-white py-2 ml-1 px-4 rounded-full bg-gradient-blue text-center text-sm font-rethinksansbold hover:opacity-90">Edit</a>
+															<DangerButton class="ml-1 mb-3"
 																	@click="deleteTradeAsset(item.id)"
 																	v-if="item.deleted_at == null">
 																	Trash
-																</DangerButton>
+															</DangerButton>
 														</div>
 													</div>
 												</div>
