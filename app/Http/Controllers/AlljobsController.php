@@ -88,13 +88,15 @@ class AlljobsController extends Controller
                 // query all jobs since this is admin
                 if( $jid ){
                     $results = Liquijob::where('id', intval($jid) )
-                    ->where('so_number', $query_so_number)
+                    ->orWhere('so_number', "%{$query_so_number}%")
+                    ->orWhere('so_number', 'LIKE', "%{$query_so_number}%")
                     ->orderBy('updated_at', 'DESC')
                     ->limit('10')
                     ->get();
                 }
                 else{
                     $results = Liquijob::where('so_number', $query_so_number)
+                    ->orWhere('so_number', 'LIKE', "%{$query_so_number}%")
                     ->orderBy('updated_at', 'DESC')
                     ->limit('10')
                     ->get();
@@ -105,15 +107,16 @@ class AlljobsController extends Controller
                 // query all the current logged in users Jobs
                 if( $jid ){
                     $results = Liquijob::where('id', intval($jid) )
-                    ->where('job_owner_id', $id)
-                    ->where('so_number', $query_so_number)
+                    ->orWhere('job_owner_id', $id)
+                    ->orWhere('so_number', "%{$query_so_number}%")
+                    ->orWhere('so_number', 'LIKE', "%{$query_so_number}%")
                     ->orderBy('updated_at', 'DESC')
                     ->limit('10')
                     ->get();
                 }
                 else{
                     $results = Liquijob::where('job_owner_id', $id)
-                    ->whereLike('so_number', $query_so_number)
+                    ->orWhere('so_number', 'LIKE', "%{$query_so_number}%")
                     ->orderBy('updated_at', 'DESC')
                     ->limit('10')
                     ->get();

@@ -57,7 +57,7 @@ const deleteTrade = (id) => {
 
 const form2 = useForm({
     id: props.liquiasset.id,
-    job_asset_url: props.liquiasset.job_asset,
+    job_asset_url: '',
     asset_category: props.liquiasset.asset_category,
     asset_quantity: props.liquiasset.asset_quantity,
     asset_type: props.liquiasset.asset_type,
