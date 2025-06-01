@@ -586,6 +586,10 @@ const openAssetStatusMiniForm = () => {
 											Job:
 											<span>{{ props.liquijobs.company_name }}</span>
 										</h1>
+										<a v-if="props.liquijobs.status == 'Work in Progress' || props.liquijobs.status == 'New' && props.showeditdelete == 'admin'" href="#"
+											class="text-white mr-1 py-2 px-4 rounded-full bg-[#00afef] inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
+											Complete Job
+										</a>
 										<div class="flex justify-center sm:justify-end sm:w-auto w-full">
 											<a href="/liquijobs"
 												class="text-white py-2 px-4 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">

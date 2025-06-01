@@ -22,7 +22,7 @@ import { ref, onMounted } from "vue";
 
 const props = defineProps({
 	liquiasset: Object,
-	job_id: Object,
+	thisjobid: String,
 	// job_assets: Object,
 	// filters: Object,
 	// message: String,
@@ -36,7 +36,7 @@ const liquiassetsurl = "/liquiassets/create?jobid=" + props.liquijobs;
 
 const viewallliquiassetsurl = "/liquiassets/view?jobid=" + props.liquijobs;
 
-const backtoprevjob = "/liquijobs/" + props.job_id + '?all=1';
+const backtoprevjob = "/liquijobs/" + props.thisjobid + '?all=1';
 
 const parentjoburl = '/liquijobs/';
 

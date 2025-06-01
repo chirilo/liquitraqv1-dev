@@ -115,19 +115,6 @@ class LiquiassetController extends Controller
         // dd($liquiasset);
         // exit;
 
-        //
-        $liquijob_id = isset( $_GET['jobid'] ) ? $_GET['jobid'] : 1;
-
-        // $job_assets = Liquiasset::query()
-        //     ->select(['job_asset', 'job_id'])
-        //     //->where('job_id', $liquijob_id)
-        //     ->where('id', $liquiasset['id'])
-        //     ->orderBy('created_at', 'DESC')
-        //     ->limit(10)->get();
-        //dd($job_assets);
-        //dd($job_assets);
-        //
-
         // $currenturl = url()->current();
         // $exploded_url = explode('liquiassets', $currenturl);
         // $exploded_url = explode('/', $exploded_url[1]);
@@ -146,6 +133,7 @@ class LiquiassetController extends Controller
 
         $thisjob = Liquijob::query()->select('*')->where('id', $job_assets[0]['job_id'])->get()->toArray();
         $thisjobcompanyname = $thisjob[0]['company_name'];
+        $thisjobid = $thisjob[0]['id'];
 
         //dd($thisjob[0]['company_name']);
         //dd($job_assets);
@@ -159,10 +147,10 @@ class LiquiassetController extends Controller
 
         return Inertia::render('Liquiassets/View',
             [
-                'liquijobs' => $liquijob_id,
                 'job_assets' => $job_assets,
                 'currentdatetime' => $currentdatetime,
                 'thisjobcompanyname' => $thisjobcompanyname,
+                'thisjobid' => $thisjobid,
             ]
         );
 
@@ -175,14 +163,19 @@ class LiquiassetController extends Controller
     public function edit(Liquiasset $liquiasset)
     {
         //
-        
-        $liquijob_id = isset( $_GET['jobid'] ) ? $_GET['jobid'] : 1;
+        $job_assets = Liquiasset::query()
+            ->select('*')
+            ->where('id', $liquiasset['id'])
+            ->get();
+            
+        $thisjob = Liquijob::query()->select('*')->where('id', $job_assets[0]['job_id'])->get()->toArray();
+        $thisjobid = $thisjob[0]['id'];
 
         return Inertia::render(
             'Liquiassets/Edit',
             [
                 'liquiasset' => $liquiasset,
-                'job_id' => $liquijob_id,
+                'thisjobid' => $thisjobid,
             ]
         );
     }

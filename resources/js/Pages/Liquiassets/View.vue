@@ -19,12 +19,12 @@ import moment from "moment";
 import { ref } from "vue";
 
 const props = defineProps({
-	liquijobs: String,
 	job_assets: Object,
 	filters: Object,
 	message: String,
 	currentdatetime: String,
-	thisjobcompanyname: String
+	thisjobcompanyname: String,
+	thisjobid: String,
 });
 
 const liquijobsCreate = '/liquijobs/create';
@@ -33,7 +33,7 @@ const liquiassetsurl = "/liquiassets/create?jobid=" + props.liquijobs;
 
 const viewallliquiassetsurl = "/liquiassets/view?jobid=" + props.liquijobs;
 
-const backtoprevjob = "/liquijobs/" + props.liquijobs + '?all=1';
+const backtoprevjob = "/liquijobs/" + props.thisjobid + '?all=1';
 
 const parentjoburl = '/liquijobs/';
 
@@ -647,66 +647,68 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 														</span>
 													</div>
 												</div>
-												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-													<div class="font-rethinksansbold primary-dark-blue w-[60%]">
-														Asset Disposition:
+												<div v-if="item.asset_status == 'completed'">
+													<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
+														<div class="font-rethinksansbold primary-dark-blue w-[60%]">
+															Asset Disposition:
+														</div>
+														<div class="font-rethinksanssemibold primary-gray w-[40%]"><!-- {{
+															item.asset_disposition }} -->
+															<span v-if="item.asset_disposition == 'resold'">
+																Resold
+															</span>
+															<span v-if="item.asset_disposition == 'recycled'">
+																Recycled
+															</span>
+															<span v-if="item.asset_disposition == 'disposed'">
+																Disposed
+															</span>
+															<span v-if="item.asset_disposition == 'returned'">
+																Returned
+															</span>
+														</div>
 													</div>
-													<div class="font-rethinksanssemibold primary-gray w-[40%]"><!-- {{
-														item.asset_disposition }} -->
-														<span v-if="item.asset_disposition == 'resold'">
-															Resold
-														</span>
-														<span v-if="item.asset_disposition == 'recycled'">
-															Recycled
-														</span>
-														<span v-if="item.asset_disposition == 'disposed'">
-															Disposed
-														</span>
-														<span v-if="item.asset_disposition == 'returned'">
-															Returned
-														</span>
+													<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
+														<div class="font-rethinksansbold primary-dark-blue w-[60%]">
+															Asset Disposition Information:
+														</div>
 													</div>
-												</div>
-												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-													<div class="font-rethinksansbold primary-dark-blue w-[60%]">
-														Asset Disposition Information:
+													<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
+														<div class="font-rethinksanssemibold primary-gray w-[30%]">
+															<span>
+																Date:
+															</span>
+														</div>
+														<div class="font-rethinksanssemibold primary-gray w-[40%]">
+															<span>
+																{{ item.assetdisdate }}
+															</span>
+														</div>
 													</div>
-												</div>
-												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-													<div class="font-rethinksanssemibold primary-gray w-[30%]">
-														<span>
-															Date:
-														</span>
+													<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
+														<div class="font-rethinksanssemibold primary-gray w-[30%]">
+															<span>
+																Who:
+															</span>
+														</div>
+														<div class="font-rethinksanssemibold primary-gray w-[40%]">
+															<span>
+																{{ item.assetdiswho }}
+															</span>
+														</div>
 													</div>
-													<div class="font-rethinksanssemibold primary-gray w-[40%]">
-														<span>
-															{{ item.assetdisdate }}
-														</span>
-													</div>
-												</div>
-												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-													<div class="font-rethinksanssemibold primary-gray w-[30%]">
-														<span>
-															Who:
-														</span>
-													</div>
-													<div class="font-rethinksanssemibold primary-gray w-[40%]">
-														<span>
-															{{ item.assetdiswho }}
-														</span>
-													</div>
-												</div>
-												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-													<div class="font-rethinksanssemibold primary-gray w-[30%]">
-														<span>
-															Ticket / Shipping Info:
-														</span>
-													</div>
-													<div class="font-rethinksanssemibold primary-gray w-[40%]">
-														<span>
-															{{ item.assetdisticketshippinginfo }}
-														</span>
-														
+													<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
+														<div class="font-rethinksanssemibold primary-gray w-[30%]">
+															<span>
+																Ticket / Shipping Info:
+															</span>
+														</div>
+														<div class="font-rethinksanssemibold primary-gray w-[40%]">
+															<span>
+																{{ item.assetdisticketshippinginfo }}
+															</span>
+															
+														</div>
 													</div>
 												</div>
 											</div>
