@@ -29,7 +29,7 @@ const props = defineProps({
     liquijobs : Object,
     filters : Object,
     message : String,
-    showeditdelete: String,
+    userole: String,
     currentdatetime: String,
 });
 
@@ -464,8 +464,7 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 																:href="route('liquijobs.show', { 'id': entry.id })"
 																class="max-w-xl ml-1 float-right mb-3">View
 															</PrimaryLink>
-															<!-- {{ props.showeditdelete }} -->
-															<div v-if="props.showeditdelete == 'admin'">
+															<div v-if="props.userole == 'admin'">
 																<PrimaryLink v-if="entry.deleted_at == null"
 																	:href="route('liquijobs.edit', { 'id': entry.id })"
 																	class="max-w-xl ml-1 float-right mb-3">Edit

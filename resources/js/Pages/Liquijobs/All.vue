@@ -524,8 +524,8 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 											<li class="m-0 p-0 w-full mb-6 last:mb-0" v-for="item in job_assets">
 												<!-- <img :src="'/uploads/images/' + item.job_asset" style="margin: 0 1em 0 1em;" width="300" height="300" onerror="https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0" /> -->
 												<!-- <img class="aspect-square object-cover h-auto " style="background-image: url('https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0');" :src="'/storage/job_assets/'+item.job_asset" /> -->
-												<div class="flex flex-row">
-													<div class="lg:w-[20%] md:w-[40%] w-[30%]">
+												<div class="flex flex-row sm:items-center item-start">
+													<div class="lg:w-[22.5%] md:w-[40%] w-[30%]">
 														<a v-bind:href="viewsingleliquiasseturl + item.id">
 															<img class="aspect-square object-cover h-auto "
 																style="background-image: url('https://lh3.googleusercontent.com/pw/AP1GczMGQYta83vV-qTtHVNR0Fz97llzvKe2OoGu6_OD-j6HSGe-eaTa7rcoshYfAUz4g75XPtnrA5aVzi2CC8MOHREyrIYJPYe0CzZy9D5AC0P_ffazpNPHRihvaGzKJ7IFkGwVroZM1-fqnmNZH1gIgHVabw=w1966-h1474-s-no-gm?authuser=0');"
@@ -533,7 +533,7 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 														</a>
 													</div>
 													<div
-														class="lg:w-[80%] md:w-[60%] w-[70%] pl-3 sm:mt-0 relative flex flex-col">
+														class="lg:w-[77.5%] md:w-[60%] w-[70%] pl-3 sm:mt-0 relative flex flex-col">
 														<h5
 															class="text-lg primary-light-blue font-rethinksansextrabold uppercase">
 															Asset #: {{ item.id }}
@@ -576,7 +576,7 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 															</div>
 														</div>
 														<div
-															class="pt-1 pb-1 m-0 border-b border-[#e9ebef] flex flex-wrap" v-if="item.asset_status == 'completed'">
+															class="pt-1 pb-1 m-0 flex flex-wrap" v-if="item.asset_status == 'completed'">
 															<div
 																class="font-rethinksansbold primary-dark-blue lg:w-[60%] md:w-[40%] pr-2">
 																Disposition: </div>
@@ -585,7 +585,7 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 																{{ item.asset_disposition }}
 															</div>
 														</div>
-														<div class="mt-3">
+														<div class="mt-2">
 															<a v-bind:href="viewsingleliquiasseturl + item.id"
 																class="text-white py-2 px-4 rounded-full bg-gradient-blue text-center text-sm font-rethinksansbold hover:opacity-90">View</a>
 															<a v-bind:href="/liquiassets/+item.id+'/edit'"

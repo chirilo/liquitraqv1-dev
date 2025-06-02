@@ -45,7 +45,7 @@ class LiquijobController extends Controller
         /**
          * check here if user is Admin or Regular, if Admin query all jobs, if Regular, only query jobs created by Regular user
          */
-        if( $id == 5 || $user->email == 'webteamsupprt@gmail.com' ){
+        if( $user->email == 'webteamsupprt@gmail.com' ){
             // query all jobs
             $liquijobs = \DB::table('liquijobs')
             ->groupBy('liquijobs.id')
@@ -60,47 +60,37 @@ class LiquijobController extends Controller
             ->limit('10')->get();
         }
 
-        
-
-        //dd($liquijobs);
-
-        // $liquijobs = Liquijob::query()
-        //     ->orderBy('created_at', 'DESC')
-        //     ->filter($request->only('filter'))
-        //     ->paginate(10)
-        //     ->withQueryString();
-
-
-
-        //dd($currentdatetime);
-
-        //dd($user->email);
-
-        $showeditdelete = 'normal';
-        if( $id == 5 || $user->email == 'webteamsupprt@gmail.com' ){
-            $showeditdelete = 'admin';
+        // dd($liquijobs[0]->job_owner_id);
+        // USER = 'admin' | 'owner' | 'employee'
+        $userrole = 'normal';
+        if( $user->email == 'webteamsupprt@gmail.com' ){
+            $userrole = 'admin';
+        }
+        else if( $user->id == $liquijobs[0]->job_owner_id ) {
+            $userrole = 'owner' ;
+        }
+        else{
+            $userrole = 'employee';
         }
         
 
         //dd($request);
 
         if( isset($_GET['alljobs']) ){
-            //dd($showeditdelete);exit;
             return Inertia::render('Liquijobs/Alljobs', [
                 'liquijobs' => $liquijobs,
                 'filters' => $request->all('filter'),
                 'message' => session('message'),
-                'showeditdelete' => $showeditdelete,
+                'userrole' => $userrole,
                 'currentdatetime' => $currentdatetime,
             ]);
         }
         else{
-           //dd($showeditdelete);exit;
             return Inertia::render('Liquijobs/Index', [
                 'liquijobs' => $liquijobs,
                 'filters' => $request->all('filter'),
                 'message' => session('message'),
-                'showeditdelete' => $showeditdelete,
+                'userrole' => $userrole,
                 'currentdatetime' => $currentdatetime,
             ]); 
         }
@@ -266,9 +256,16 @@ class LiquijobController extends Controller
         $currentdatetime = $currentdatetime->format('M d, Y h:i A');
         //$currentdatetime = date('M d, Y h:i:sA');
 
-        $showeditdelete = 'normal';
+        // USER = 'admin' | 'owner' | 'employee'
+        $userrole = 'normal';
         if( $user->email == 'webteamsupprt@gmail.com' ){
-            $showeditdelete = 'admin';
+            $userrole = 'admin';
+        }
+        else if( $user->id == $liquijob['job_owner_id'] ) {
+            $userrole = 'owner' ;
+        }
+        else{
+            $userrole = 'employee';
         }
 
         // Get Furniture Assets
@@ -350,12 +347,13 @@ class LiquijobController extends Controller
                     'infrastructurejobassets' => $infrastructurejobassets,
                     'furniturejobassets' => $furniturejobassets,
                     'currentdatetime' => $currentdatetime,
-                    'showeditdelete' => $showeditdelete,
+                    'userrole' => $userrole,
                     'jobownername' => $jobownername,
                     'resoldjobassets' => $resoldjobassets,
                     'recycledjobassets' => $recycledjobassets,
                     'disposedjobassets' => $disposedjobassets,
                     'returnedjobassets' => $returnedjobassets,
+                    'userrole' => $userrole,
                 ]
             );
         }else{
@@ -376,7 +374,7 @@ class LiquijobController extends Controller
                     'infrastructurejobassets' => $infrastructurejobassets,
                     'furniturejobassets' => $furniturejobassets,
                     'currentdatetime' => $currentdatetime,
-                    'showeditdelete' => $showeditdelete,
+                    'userrole' => $userrole,
                     'jobownername' => $jobownername,
                     'resoldjobassets' => $resoldjobassets,
                     'recycledjobassets' => $recycledjobassets,
@@ -426,9 +424,15 @@ class LiquijobController extends Controller
                 ->get();
 
         // Show the Assign to Employee field if ADMIN
-        $showassingemployee = 'normal';
-        if( $id == 5 || $user->email == 'webteamsupprt@gmail.com' ){
-            $showassingemployee = 'admin';
+        $userrole = 'normal';
+        if( $user->email == 'webteamsupprt@gmail.com' ){
+            $userrole = 'admin';
+        }
+        else if( $user->id == $liquijob['job_owner_id'] ) {
+            $userrole = 'owner' ;
+        }
+        else{
+            $userrole = 'employee';
         }
 
         return Inertia::render(
@@ -439,7 +443,7 @@ class LiquijobController extends Controller
                 'jobownername' => $jobownername,
                 'jobownerid' => $jobownerid,
                 'liquisemployees' => $liquisemployees,
-                'showassingemployee' => $showassingemployee,
+                'userrole' => $userrole,
             ]
         );
     }

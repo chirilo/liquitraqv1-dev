@@ -30,7 +30,7 @@ const props = defineProps({
 	filters: Object,
 	message: String,
 	currentdatetime: String,
-	showeditdelete: String,
+	userrole: String,
 	jobownername: String,
 	resoldjobassets: String,
 	recycledjobassets: String,
@@ -580,37 +580,39 @@ const openAssetStatusMiniForm = () => {
 							<!-- current job selected /recent jobs -->
 							<div class="rounded-lg bg-white p-6">
 								<div id="recent-jobs">
-									<div class="relative flex justify-between items-start sm:flex-row flex-col-reverse">
+									<div class="relative flex justify-between items-start lg:flex-row flex-col-reverse">
 										<h1
-											class="w-full sm:w-[60%] block text-2xl primary-light-blue font-rethinksansextrabold uppercase mt-6 sm:mt-0 text-center sm:text-left">
+											class=" lg:mt-0 mt-6 w-full lg:w-[50%] block text-2xl primary-light-blue font-rethinksansextrabold uppercase">
 											Job:
 											<span>{{ props.liquijobs.company_name }}</span>
 										</h1>
-										<a v-if="props.liquijobs.status == 'Work in Progress' || props.liquijobs.status == 'New' && props.showeditdelete == 'admin'" href="#"
-											class="text-white mr-1 py-2 px-4 rounded-full bg-[#00afef] inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
-											Complete Job
-										</a>
-										<div class="flex justify-center sm:justify-end sm:w-auto w-full">
+										<div class="lg:w-auto w-full flex justify-between">
 											<a href="/liquijobs"
 												class="text-white py-2 px-4 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
 												<img class="w-4 mr-2" src="/images/logos/back.png"> Back
 											</a>
-											<div class="ml-1 flex" v-if="props.showeditdelete == 'admin'">
-												<a v-if="props.liquijobs.deleted_at == null"
-													:href="route('liquijobs.edit', { 'id': props.liquijobs.id })"
-													class="text-white py-2 px-2 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
-													<img class="w-5" src="/images/logos/editing.png">
+											<div class="ml-1 flex justify-center sm:justify-end">
+												<a v-if="props.liquijobs.status != 'Completed' && props.userrole == 'admin'" href="#"
+													class="text-white py-2 px-4 rounded-full bg-[#00afef] inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
+													Complete Job
 												</a>
-												<a @click="deleteTrade(props.liquijobs.id)"
-													v-if="props.liquijobs.deleted_at == null"
-													class="cursor-pointer ml-1 text-white py-2 px-2 rounded-full bg-red-600 inline-block text-center text-sm font-rethinksansbold hover:opacity-90 flex">
-													<img class="w-5" src="/images/logos/trash-can.png">
-												</a>
+												<div class="ml-1 flex" v-if="props.userrole == 'admin' | props.userrole == 'owner'">
+													<a v-if="props.liquijobs.deleted_at == null"
+														:href="route('liquijobs.edit', { 'id': props.liquijobs.id })"
+														class="text-white py-2 px-2 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
+														<img class="w-5" src="/images/logos/editing.png">
+													</a>
+													<a @click="deleteTrade(props.liquijobs.id)"
+														v-if="props.liquijobs.deleted_at == null && props.userrole == 'admin'"
+														class="cursor-pointer ml-1 text-white py-2 px-2 rounded-full bg-red-600 inline-block text-center text-sm font-rethinksansbold hover:opacity-90 flex">
+														<img class="w-5" src="/images/logos/trash-can.png">
+													</a>
+												</div>
 											</div>
 										</div>
 									</div>
 									<ul class="p-0">
-										<li>
+										<li class="mt-2 lg:mt-6">
 											<div class="w-full relative flex flex-col">
 												<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
 													<p>

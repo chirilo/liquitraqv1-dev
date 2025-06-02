@@ -13,6 +13,7 @@ use App\Models\Liquijob;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\File;
 
@@ -118,7 +119,11 @@ class LiquiassetController extends Controller
         // $currenturl = url()->current();
         // $exploded_url = explode('liquiassets', $currenturl);
         // $exploded_url = explode('/', $exploded_url[1]);
-
+        
+        // Get the currently authenticated user...
+        $user = Auth::user(); 
+        // Get the currently authenticated user's ID...
+        $id = Auth::id();
         
 
         $job_assets = Liquiasset::query()
@@ -134,6 +139,18 @@ class LiquiassetController extends Controller
         $thisjob = Liquijob::query()->select('*')->where('id', $job_assets[0]['job_id'])->get()->toArray();
         $thisjobcompanyname = $thisjob[0]['company_name'];
         $thisjobid = $thisjob[0]['id'];
+
+        // USER = 'admin' | 'owner' | 'employee'
+        $userrole = 'normal';
+        if( $user->email == 'webteamsupprt@gmail.com' ){
+            $userrole = 'admin';
+        }
+        else if( $user->id == $thisjob[0]['job_owner_id'] ) {
+            $userrole = 'owner' ;
+        }
+        else{
+            $userrole = 'employee';
+        }
 
         //dd($thisjob[0]['company_name']);
         //dd($job_assets);
@@ -151,6 +168,7 @@ class LiquiassetController extends Controller
                 'currentdatetime' => $currentdatetime,
                 'thisjobcompanyname' => $thisjobcompanyname,
                 'thisjobid' => $thisjobid,
+                'userrole' => $userrole,
             ]
         );
 

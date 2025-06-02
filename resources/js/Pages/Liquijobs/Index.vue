@@ -29,7 +29,7 @@ const props = defineProps({
 	liquijobs: Object,
 	filters: Object,
 	message: String,
-	showeditdelete: String,
+	userrole: String,
 	currentdatetime: String,
 });
 
@@ -479,14 +479,14 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 																:href="route('liquijobs.show', { 'id': entry.id })"
 																class="max-w-xl ml-1 float-right mb-3">View
 															</PrimaryLink>
-															<div v-if="props.showeditdelete == 'admin'">
-																<PrimaryLink v-if="entry.deleted_at == null"
+															<div v-if="props.userrole == 'admin' | props.userrole == 'owner'">
+																<PrimaryLink v-if="entry.deleted_at == null" 
 																	:href="route('liquijobs.edit', { 'id': entry.id })"
 																	class="max-w-xl ml-1 float-right mb-3">Edit
 																</PrimaryLink>
 																<DangerButton class="ml-3 float-right mb-3"
 																	@click="deleteTrade(entry.id)"
-																	v-if="entry.deleted_at == null">
+																	v-if="entry.deleted_at == null && props.userrole == 'admin'">
 																	Trash
 																</DangerButton>
 															</div>

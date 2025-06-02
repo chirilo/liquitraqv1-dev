@@ -43,7 +43,7 @@ const alignmentClasses = computed(() => {
     }
 
     if (props.align === 'center') {
-        return 'mx-auto flex justify-center w-full';
+        return 'mx-auto flex justify-center w-full mt-2';
     }
     
 
@@ -53,8 +53,8 @@ const alignmentClasses = computed(() => {
 
 <template>
     <div class="relative">
-        <div @click="open = ! open">
-            <slot name="trigger" />
+        <div @click="open = ! open" class="h-[100%]">
+            <slot name="trigger"/>
         </div>
 
         <!-- Full Screen Dropdown Overlay -->
@@ -70,7 +70,7 @@ const alignmentClasses = computed(() => {
         >
             <div
                 v-show="open"
-                class="absolute z-50 mt-2"
+                class="absolute z-50"
                 :class="[widthClass, alignmentClasses]"
                 style="display: none;"
                 @click="open = false"
