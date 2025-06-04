@@ -180,7 +180,12 @@ class LiquiassetController extends Controller
      */
     public function edit(Liquiasset $liquiasset)
     {
-        //
+        // Get the currently authenticated user...
+        $user = Auth::user(); 
+        // Get the currently authenticated user's ID...
+        $id = Auth::id();
+
+
         $job_assets = Liquiasset::query()
             ->select('*')
             ->where('id', $liquiasset['id'])
@@ -189,11 +194,25 @@ class LiquiassetController extends Controller
         $thisjob = Liquijob::query()->select('*')->where('id', $job_assets[0]['job_id'])->get()->toArray();
         $thisjobid = $thisjob[0]['id'];
 
+        
+        // Show the Assign to Employee field if ADMIN
+        $userrole = 'normal';
+        if( $user->email == 'webteamsupprt@gmail.com' ){
+            $userrole = 'admin';
+        }
+        else if( $user->id == $thisjob[0]['job_owner_id'] ) {
+            $userrole = 'owner' ;
+        }
+        else{
+            $userrole = 'employee';
+        }
+
         return Inertia::render(
             'Liquiassets/Edit',
             [
                 'liquiasset' => $liquiasset,
                 'thisjobid' => $thisjobid,
+                'userrole' => $userrole,
             ]
         );
     }

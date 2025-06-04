@@ -285,7 +285,7 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
                                 </form>
                             </div>
                             <!-- END OF: Search Anything -->
-                            <div class="w-full pr-6 pl-6 pb-6 mt-6">
+                            <div class="w-full pr-6 pl-6 mt-6">
 								<form @submit.prevent="filteranything">
 									<h2
 										class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">
@@ -346,7 +346,7 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
                                         <img class="w-4 mr-2" src="/images/logos/back.png"> Back
                                     </a>
                                 </div>
-                                <form @submit.prevent="updatejob" class="mt-6 space-y-2" enctype="multipart/form-data">
+                                <form @submit.prevent="updatejob" class="mt-6" enctype="multipart/form-data">
                                     <div
                                         class="flex border-divider pb-2 items-end justify-between sm:justify-end flex-row">
                                         <InputLabel for="id" value="SO Number" class="w-full lg:w-[60%]" />
@@ -354,19 +354,18 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
                                             class="w-auto lg:w-[40%] appearance-none block w-full px-4 py-0 primary-dark-blue font-rethinksansmedium border-[#fff]" />
                                     </div>
                                     <div
-                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+                                        class="flex border-divider pb-2 sm:pt-0 pt-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
                                         <InputLabel for="company_name" value="Job Co Name" class="w-full lg:w-[60%]" />
                                         <TextInput class="w-full lg:w-[40%] px-4 py-2" id="company_name" type="text"
                                             v-model="form.company_name" required />
-                                        <InputError class="mt-2 w-full lg:w-[40%]"
-                                            :message="form.errors.company_name" />
+                                        <!-- <InputError class="mt-2 w-full lg:w-[40%]" :message="form.errors.company_name" /> -->
                                     </div>
 
                                     <div
-                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap" v-if="props.userrole == 'admin'">
+                                        class="flex border-divider pb-2 sm:pt-0 pt-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap" v-if="props.userrole == 'admin'">
                                         <InputLabel for="liquis_employee_name" value="Liquis Employee Name" class="w-full lg:w-[60%]" />
                                         <select v-model="form.liquis_employee" id="liquis_employee"
-											class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+											class="w-full lg:w-[40%] mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
 											name="liquis_employee" required>
 											<option value="" disabled hidden>Select Employee</option>
 											
@@ -377,61 +376,57 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 												</span>
 											</option>
 										</select>
-                                        <InputError class="mt-2 w-full lg:w-[40%]" :message="form.errors.liquis_employee" />
+                                        <!-- <InputError class="mt-2 w-full lg:w-[40%]" :message="form.errors.liquis_employee" /> -->
                                     </div>
                                     <div
-                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+                                        class="flex border-divider pb-2 sm:pt-0 pt-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
                                         <InputLabel for="corporate_address" value="Address" class="w-full lg:w-[60%]" />
                                         <TextInput class="w-full lg:w-[40%] px-4 py-2" id="corporate_address"
                                             type="text" placeholder="Corporate Address" v-model="form.corporate_address"
                                             required />
-                                        <InputError class="mt-2 w-full lg:w-[40%]"
-                                            :message="form.errors.corporate_address" />
+                                        <!-- <InputError class="mt-2 w-full lg:w-[40%]" :message="form.errors.corporate_address" /> -->
                                     </div>
                                     <div
-                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+                                        class="flex border-divider pb-2 sm:pt-0 pt-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
                                         <InputLabel for="contact_name" value="Contact Name" class="w-full lg:w-[60%]" />
                                         <TextInput class="w-full lg:w-[40%] px-4 py-2" id="contact_name" type="text"
                                             v-model="form.contact_name" required />
-                                        <InputError class="mt-2 w-full lg:w-[40%]"
-                                            :message="form.errors.contact_name" />
+                                        <!-- <InputError class="mt-2 w-full lg:w-[40%]" :message="form.errors.contact_name" /> -->
                                     </div>
                                     <div 
-                                    	class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+                                    	class="flex border-divider pb-2 sm:pt-0 pt-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
 										<InputLabel class="w-full lg:w-[60%]" for="contact_telephone" value="Phone" />
 										<TextInput class="w-full lg:w-[40%] px-4 py-2" id="contact_telephone" min="1" type="number" placeholder="Phone"
 											v-model="form.contact_telephone" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength)" required @keydown="(e: KeyboardEvent) => { if (e.key === '-') e.preventDefault()}" />
-										<InputError class="mt-2" :message="form.errors.contact_telephone" />
+										<!-- <InputError class="mt-2" :message="form.errors.contact_telephone" /> -->
 									</div>
                                     <div
-                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+                                        class="flex border-divider pb-2 sm:pt-0 pt-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
                                         <InputLabel for="contact_email" value="Email" class="w-full lg:w-[60%]" />
                                         <TextInput class="w-full lg:w-[40%] px-4 py-2" id="contact_email" type="email"
                                             v-model="form.contact_email" required />
-                                        <InputError class="mt-2 w-full lg:w-[40%]"
-                                            :message="form.errors.contact_email" />
+                                        <!-- <InputError class="mt-2 w-full lg:w-[40%]" :message="form.errors.contact_email" /> -->
                                     </div>
                                     <div
-                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+                                        class="flex border-divider pb-2 sm:pt-0 pt-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
                                         <InputLabel for="location_address" value="Location Name"
                                             class="w-full lg:w-[60%]" />
                                         <TextInput class="w-full lg:w-[40%] px-4 py-2" id="location_address" type="text"
                                             v-model="form.location_address" required />
-                                        <InputError class="mt-2 w-full lg:w-[40%]"
-                                            :message="form.errors.location_address" />
+                                        <!-- <InputError class="mt-2 w-full lg:w-[40%]" :message="form.errors.location_address" /> -->
                                     </div>
                                     <div
-                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+                                        class="flex border-divider pb-2 sm:pt-0 pt-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
                                         <InputLabel for="start_date" value="Start Date" class="w-full lg:w-[60%]" />
                                         <TextInput class="w-full lg:w-[40%] px-4 py-2" id="start_date" type="date"
                                             v-model="form.start_date" required />
-                                        <InputError class="mt-2 w-full lg:w-[40%]" :message="form.errors.start_date" />
+                                        <!-- <InputError class="mt-2 w-full lg:w-[40%]" :message="form.errors.start_date" /> -->
                                     </div>
                                     <div
-                                        class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+                                        class="flex border-divider pb-2 sm:pt-0 pt-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
                                         <InputLabel for="type" value="Job Type" class="w-full lg:w-[60%]" />
                                         <select v-model="form.type" id="type"
-                                            class="w-full lg:w-[40%] appearance-none block w-full mt-2 px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+                                            class="mt-2 w-full lg:w-[40%] appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
                                             name="type">
                                             <option value="" disabled selected hidden>Select Job Type</option>
                                             <option value="facilitydecomissioning">Facility Decomissioning</option>
@@ -445,21 +440,21 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
                                             <option value="generatorremoval">Generator Removal</option>
                                             <option value="industrialremoval">Industrial Removal</option>
                                         </select>
-                                        <InputError class="mt-2 w-full lg:w-[40%]" :message="form.errors.type" />
+                                        <!-- <InputError class="mt-2 w-full lg:w-[40%]" :message="form.errors.type" /> -->
                                     </div>
 
                                     <div
-                                        class="flex pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+                                        class="flex pb-2 sm:pt-0 pt-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
                                         <InputLabel for="status" value="Status" class="w-full lg:w-[60%]" />
                                         <select v-model="form.status" id="status"
-                                            class="w-full lg:w-[40%] appearance-none block w-full mt-2 px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+                                            class="mt-2 w-full lg:w-[40%] appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
                                             name="status">
                                             <option value="" selected disabled hidden>Select Status</option>
                                             <option value="New">New</option>
                                             <option value="Work in Progress">Work in Progress</option>
                                             <option value="Completed">Completed</option>
                                         </select>
-                                        <InputError class="mt-2 w-full lg:w-[40%]" :message="form.errors.status" />
+                                        <!-- <InputError class="mt-2 w-full lg:w-[40%]" :message="form.errors.status" /> -->
                                     </div>
                                     <!-- assets below -->
                                     <div style="display: none;">
@@ -467,10 +462,9 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
                                         <!-- <input type="file" class="form-control" v-on:change="onImageChange"> -->
                                         <TextInput name="additional_images" id="additional_images" type="file"
                                             class="mt-1 block w-full" v-model="form.additional_images" />
-                                        <InputError class="mt-2 w-full lg:w-[40%]"
-                                            :message="form.errors.additional_images" />
+                                        <!-- <InputError class="mt-2 w-full lg:w-[40%]" :message="form.errors.additional_images" /> -->
                                     </div>
-                                    <div class="flex justify-end">
+                                    <div class="flex justify-end mt-4">
                                         <DangerButton @click="deleteTrade(props.liquijobs.id)"
                                             v-if="props.liquijobs.deleted_at == null && props.userrole == 'admin'" class="py-3 px-4 mr-2 sm:w-auto w-[40%] flex justify-center items-center">
                                             <img class="w-4 mr-2" src="/images/logos/trash-can.png"> Delete

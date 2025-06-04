@@ -328,7 +328,7 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 							</div>
 
 							<!-- Quick Add New Job -->
-							<div class="w-full pr-6 pl-6 pb-6 mt-6">
+							<div class="w-full pr-6 pl-6 mt-6">
 								<h2
 									class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">
 									Quick Add New Job</h2>
@@ -337,31 +337,31 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 										<form @submit.prevent="submitaddjob" class="w-full">
 											<div class="flex flex-wrap">
 												<div class="w-full">
-													<InputLabel for="company_name" value="Job Co Name" />
+													<!-- <InputLabel for="company_name" value="Job Co Name" /> -->
 													<TextInput id="company_name" type="text" placeholder="Job Co Name"
 														v-model="form.company_name" required />
 													<InputError class="mt-2" :message="form.errors.company_name" />
 												</div>
-												<div class="w-full mt-3">
-													<InputLabel for="corporate_address" value="Address" />
-													<TextInput id="corporate_address" type="text" placeholder="Address"
+												<div class="w-full mt-1">
+													<!-- <InputLabel for="corporate_address" value="Address" /> -->
+													<TextInput id="corporate_address" type="text" placeholder="Corporate Address"
 														v-model="form.corporate_address" required />
 													<InputError class="mt-2" :message="form.errors.corporate_address" />
 												</div>
-												<div class="w-full mt-3">
-													<InputLabel for="contact_name" value="Contact Name" />
+												<div class="w-full mt-1">
+													<!-- <InputLabel for="contact_name" value="Contact Name" /> -->
 													<TextInput id="contact_name" type="text" placeholder="Contact Name"
 														v-model="form.contact_name" required />
 													<InputError class="mt-2" :message="form.errors.contact_name" />
 												</div>
-												<div class="w-full mt-3">
-													<InputLabel for="contact_email" value="Email" />
+												<div class="w-full mt-1">
+													<!-- <InputLabel for="contact_email" value="Email" /> -->
 													<TextInput id="contact_email" type="email" placeholder="Email"
 														v-model="form.contact_email" required />
 													<InputError class="mt-2" :message="form.errors.contact_email" />
 												</div>
-												<div class="w-full mt-3">
-													<InputLabel for="contact_telephone" value="Phone" />
+												<div class="w-full mt-1">
+													<!-- <InputLabel for="contact_telephone" value="Phone" /> -->
 													<TextInput id="contact_telephone" min="1" type="number"
 														placeholder="Phone" v-model="form.contact_telephone"
 														maxlength="10"
@@ -370,21 +370,21 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 														@keydown="(e: KeyboardEvent) => { if (e.key === '-') e.preventDefault() }" />
 													<InputError class="mt-2" :message="form.errors.contact_telephone" />
 												</div>
-												<div class="w-full mt-3">
-													<InputLabel for="location_address" value="Location Name" />
+												<div class="w-full mt-1">
+													<!-- <InputLabel for="location_address" value="Location Name" /> -->
 													<TextInput id="location_address" type="text"
 														placeholder="Location Name" v-model="form.location_address"
 														required />
 													<InputError class="mt-2" :message="form.errors.location_address" />
 												</div>
-												<div class="w-full mt-3">
-													<InputLabel for="start_date" value="Start Date" />
+												<div class="w-full mt-1">
+													<!-- <InputLabel for="start_date" value="Start Date" /> -->
 													<TextInput id="start_date" type="date" placeholder="YYYY-MM-DD"
 														v-model="form.start_date" required />
 													<InputError class="mt-2" :message="form.errors.start_date" />
 												</div>
-												<div class="w-full mt-3">
-													<InputLabel for="type" value="Job Type" />
+												<div class="w-full mt-1">
+													<!-- <InputLabel for="type" value="Job Type" /> -->
 													<select v-model="form.type" id="type"
 														class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
 														name="type">
@@ -425,29 +425,29 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 							<!-- current job selected /recent jobs -->
 							<div class="rounded-lg bg-white p-6">
 								<div id="recent-jobs">
-									<div class="relative flex justify-between items-start sm:flex-row flex-col-reverse">
+									<div class="relative flex justify-between items-start lg:flex-row flex-col-reverse">
 										<h1
-											class="w-full sm:w-[60%] block text-2xl primary-light-blue font-rethinksansextrabold uppercase mt-6 sm:mt-0 text-center sm:text-left ">
+											class="lg:mt-0 mt-6 w-full lg:w-[50%] block text-2xl primary-light-blue font-rethinksansextrabold uppercase">
 											All Asset for Job:
 											<span>{{ props.liquijobs.company_name }}</span>
 										</h1>
-										<div class="flex justify-center sm:justify-end sm:w-auto w-full">
+										<div class="lg:w-auto w-full flex justify-between">
 											<a :href="backtoprevjob"
 												class="text-white py-2 px-4 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
 												<img class="w-4 mr-2" src="/images/logos/back.png"> Back
 											</a>
 											<a href="/liquijobs"
-												class="text-white ml-1 py-2 px-2 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
-												<img class="w-5" src="/images/logos/home.png">
+												class="text-white ml-1 py-2 px-4 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
+												<img class="w-5 mr-2" src="/images/logos/home.png"> Home
 											</a>
 										</div>
 									</div>
-									<ul class="p-0 mt-3">
+									<ul class="p-0 mt-6">
 										<li class="m-0">
 											<div class="w-full relative flex sm:flex-row flex-col">
 												<div class="w-full pr-0 sm:pr-6 pb-6 sm:pb-0">
 													<div
-														class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
+														class="pb-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
 														<span class="font-rethinksansbold primary-dark-blue">Total
 															Assets:
 														</span><span class="font-rethinksanssemibold primary-gray">{{
@@ -473,9 +473,9 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 															props.infrastructurejobassets }}</span>
 													</div>
 												</div>
-												<div class="w-full">
+												<div class="w-full mt-1">
 													<div
-														class="py-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
+														class="pb-3 sm:pt-0 pt-3 m-0 last:mb-2 border-b border-[#e9ebef] last:border-none">
 														<span class="font-rethinksansbold primary-dark-blue">Total
 															Resold:
 														</span>

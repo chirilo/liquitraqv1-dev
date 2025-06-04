@@ -359,7 +359,7 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 								</form>
 							</div>
 							<!-- Quick Add New Job -->
-							<div class="w-full pr-6 pl-6 pb-6 mt-6">
+							<div class="w-full pr-6 pl-6 mt-6">
 								<h2
 									class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">
 									Quick Add New Job</h2>
@@ -368,50 +368,50 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 										<form @submit.prevent="submitaddjob" class="w-full">
 											<div class="flex flex-wrap">
 												<div class="w-full">
-													<InputLabel for="company_name" value="Job Co Name" />
+													<!-- <InputLabel for="company_name" value="Job Co Name" /> -->
 													<TextInput id="company_name" type="text" placeholder="Job Co Name"
 														v-model="form.company_name" required />
 													<InputError class="mt-2" :message="form.errors.company_name" />
 												</div>
-												<div class="w-full mt-3">
-													<InputLabel for="corporate_address" value="Corporate Address" />
+												<div class="w-full mt-1">
+													<!-- <InputLabel for="corporate_address" value="Corporate Address" /> -->
 													<TextInput id="corporate_address" type="text" placeholder="Corporate Address"
 														v-model="form.corporate_address" required />
 													<InputError class="mt-2" :message="form.errors.corporate_address" />
 												</div>
-												<div class="w-full mt-3">
-													<InputLabel for="contact_name" value="Contact Name" />
+												<div class="w-full mt-1">
+													<!-- <InputLabel for="contact_name" value="Contact Name" /> -->
 													<TextInput id="contact_name" type="text" placeholder="Contact Name"
 														v-model="form.contact_name" required />
 													<InputError class="mt-2" :message="form.errors.contact_name" />
 												</div>
-												<div class="w-full mt-3">
-													<InputLabel for="contact_email" value="Email" />
+												<div class="w-full mt-1">
+													<!-- <InputLabel for="contact_email" value="Email" /> -->
 													<TextInput id="contact_email" type="email" placeholder="Email"
 														v-model="form.contact_email" required />
 													<InputError class="mt-2" :message="form.errors.contact_email" />
 												</div>
-												<div class="w-full mt-3">
-													<InputLabel for="contact_telephone" value="Phone" />
+												<div class="w-full mt-1">
+													<!-- <InputLabel for="contact_telephone" value="Phone" /> -->
 													<TextInput id="contact_telephone" min="1" type="number" placeholder="Phone"
 														v-model="form.contact_telephone" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength)" required @keydown="(e: KeyboardEvent) => { if (e.key === '-') e.preventDefault()}" />
 													<InputError class="mt-2" :message="form.errors.contact_telephone" />
 												</div>
-												<div class="w-full mt-3">
-													<InputLabel for="location_address" value="Location Name" />
+												<div class="w-full mt-1">
+													<!-- <InputLabel for="location_address" value="Location Name" /> -->
 													<TextInput id="location_address" type="text"
 														placeholder="Location Name" v-model="form.location_address"
 														required />
 													<InputError class="mt-2" :message="form.errors.location_address" />
 												</div>
-												<div class="w-full mt-3">
-													<InputLabel for="start_date" value="Start Date" />
+												<div class="w-full mt-1">
+													<!-- <InputLabel for="start_date" value="Start Date" /> -->
 													<TextInput id="start_date" type="date" placeholder="YYYY-MM-DD"
 														v-model="form.start_date" required />
 													<InputError class="mt-2" :message="form.errors.start_date" />
 												</div>
-												<div class="w-full mt-3">
-													<InputLabel for="type" value="Job Type" />
+												<div class="w-full mt-1">
+													<!-- <InputLabel for="type" value="Job Type" /> -->
 													<select v-model="form.type" id="type"
 														class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
 														name="type">
@@ -454,19 +454,16 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 								<div id="recent-jobs">
 									<ul class="p-0">
 										<li class="m-0" v-for="item in job_assets" :key="id" :value="id">
-											<div class="relative flex justify-between items-start sm:flex-row flex-col-reverse">
-												<h1 class="w-full sm:w-[60%] block text-2xl primary-light-blue font-rethinksansextrabold uppercase mt-6 sm:mt-0 text-center sm:text-left ">
+											<div class="relative flex justify-between items-start lg:flex-row flex-col-reverse">
+												<h1 class="lg:mt-0 mt-6 w-full lg:w-[50%] block text-2xl primary-light-blue font-rethinksansextrabold uppercase">
 													Job: <span>{{ props.thisjobcompanyname }}</span>
 												</h1>
-												<div class="flex justify-center sm:justify-end sm:w-auto w-full">
+												<div class="lg:w-auto w-full flex justify-between">
 													<a :href="backtoprevjob"
 														class="text-white py-2 px-4 rounded-full bg-gradient-blue text-center text-sm font-rethinksansbold hover:opacity-90 flex">
 														<img class="w-4 mr-2" src="/images/logos/back.png"> Back
 													</a>
-													<a href="/liquijobs" class="text-white ml-1 py-2 px-2 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
-														<img class="w-5" src="/images/logos/home.png">
-													</a>
-													<div class="ml-1 flex" v-if="props.userrole == 'admin' | props.userrole == 'owner'">
+													<div class="ml-3 flex" v-if="props.userrole == 'admin' | props.userrole == 'owner'">
 														<a
 															 v-bind:href="/liquiassets/+item.id+'/edit'"
 															class="text-white py-2 px-2 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
@@ -477,6 +474,9 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 															class="cursor-pointer ml-1 text-white py-2 px-2 rounded-full bg-red-600 inline-block text-center text-sm font-rethinksansbold hover:opacity-90 flex">
 															<img class="w-5" src="/images/logos/trash-can.png">
 														</a>
+														<a href="/liquijobs" class="text-white ml-1 py-2 px-4 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
+															<img class="w-5 mr-2" src="/images/logos/home.png"> Home
+														</a>
 													</div>
 												</div>
 											</div>
@@ -484,13 +484,13 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 												class="hidden w-full mt-6 block text-xl primary-dark-blue font-rethinksansextrabold uppercase">
 												Asset #: {{ item.id }}
 											</h5>
-											<div class="w-full relative flex flex-col">
-												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
+											<div class="mt-6 w-full relative flex flex-col">
+												<div class="pb-1 m-0 border-b border-[#e9ebef] flex">
 													<div class="font-rethinksansbold primary-dark-blue w-[60%]">
 														Category: </div>
 													<!-- <div class="font-rethinksanssemibold primary-gray w-[40%]">{{ item.asset_category }}</div> -->
 													<div
-														class="font-rethinksanssemibold primary-gray lg:w-[40%] md:w-[60%]">
+														class="font-rethinksanssemibold primary-gray w-[40%]">
 														<span v-if="item.asset_category == 'furniture'">
 															Furniture
 														</span>
@@ -502,13 +502,13 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 														</span>
 													</div>
 												</div>
-												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
+												<div class="pt-3 pb-1 m-0 border-b border-[#e9ebef] flex">
 													<div class="font-rethinksansbold primary-dark-blue w-[60%]">
 														Quantity: </div>
 													<div class="font-rethinksanssemibold primary-gray w-[40%]">{{
 														item.asset_quantity }}</div>
 												</div>
-												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
+												<div class="pt-3 pb-1 m-0 border-b border-[#e9ebef] flex">
 													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Type:
 													</div>
 													<div class="font-rethinksanssemibold primary-gray w-[40%]">
@@ -611,44 +611,44 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 														<!-- End Infrastructure -->
 													</div>
 												</div>
-												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
+												<div class="pt-3 pb-1 m-0 border-b border-[#e9ebef] flex">
 													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Make:
 													</div>
 													<div class="font-rethinksanssemibold primary-gray w-[40%]">{{
 														item.asset_make }}</div>
 												</div>
-												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
+												<div class="pt-3 pb-1 m-0 border-b border-[#e9ebef] flex">
 													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Model:
 													</div>
 													<div class="font-rethinksanssemibold primary-gray w-[40%]">{{
 														item.asset_model }}</div>
 												</div>
-												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
+												<div class="pt-3 pb-1 m-0 border-b border-[#e9ebef] flex">
 													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Serial:
 													</div>
 													<div class="font-rethinksanssemibold primary-gray w-[40%]">{{
 														item.asset_serial }}</div>
 												</div>
-												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
+												<div class="pt-3 pb-1 m-0 border-b border-[#e9ebef] flex">
 													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Weight
 														Each:
 													</div>
 													<div class="font-rethinksanssemibold primary-gray w-[40%]">{{
 														item.asset_weight_each }}</div>
 												</div>
-												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
+												<div class="pt-3 pb-1 m-0 border-b border-[#e9ebef] flex">
 													<div class="font-rethinksansbold primary-dark-blue w-[60%]">
 														Description:
 													</div>
 													<div class="font-rethinksanssemibold primary-gray w-[40%]">{{
 														item.asset_description }}</div>
 												</div>
-												<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
+												<div class="pt-3 pb-1 m-0 border-b border-[#e9ebef] flex">
 													<div class="font-rethinksansbold primary-dark-blue w-[60%]">Status:
 													</div>
 													<!-- <div class="font-rethinksanssemibold primary-gray w-[40%] uppercase">{{ item.asset_status }}</div> -->
 													<div
-														class="font-rethinksanssemibold primary-gray lg:w-[40%] md:w-[60%]">
+														class="font-rethinksanssemibold primary-gray w-[40%]">
 														<span v-if="item.asset_status == 'workinprogress'">
 															Work In Progress
 														</span>
@@ -661,7 +661,7 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 													</div>
 												</div>
 												<div v-if="item.asset_status == 'completed'">
-													<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
+													<div class="pt-3 pb-1 m-0 border-b border-[#e9ebef] flex">
 														<div class="font-rethinksansbold primary-dark-blue w-[60%]">
 															Asset Disposition:
 														</div>
@@ -681,13 +681,13 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 															</span>
 														</div>
 													</div>
-													<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
+													<div class="pt-3 pb-1 m-0 border-b border-[#e9ebef] flex">
 														<div class="font-rethinksansbold primary-dark-blue w-[60%]">
 															Asset Disposition Information:
 														</div>
 													</div>
-													<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-														<div class="font-rethinksanssemibold primary-gray w-[30%]">
+													<div class="pt-3 pb-1 m-0 border-b border-[#e9ebef] flex">
+														<div class="font-rethinksanssemibold primary-gray w-[60%] pl-0 sm:pl-10">
 															<span>
 																Date:
 															</span>
@@ -699,8 +699,8 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 															</span>
 														</div>
 													</div>
-													<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-														<div class="font-rethinksanssemibold primary-gray w-[30%]">
+													<div class="pt-3 pb-1 m-0 border-b border-[#e9ebef] flex">
+														<div class="font-rethinksanssemibold primary-gray w-[60%] pl-0 sm:pl-10">
 															<span>
 																Who:
 															</span>
@@ -711,8 +711,8 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 															</span>
 														</div>
 													</div>
-													<div class="pt-3 pb-1 m-0 last:mb-2 border-b border-[#e9ebef] flex">
-														<div class="font-rethinksanssemibold primary-gray w-[30%]">
+													<div class="pt-3 pb-1 m-0 border-b border-[#e9ebef] flex">
+														<div class="font-rethinksanssemibold primary-gray w-[60%] pl-0 sm:pl-10">
 															<span>
 																Ticket / Shipping Info:
 															</span>

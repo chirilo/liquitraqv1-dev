@@ -30,6 +30,7 @@ onUnmounted(() => document.removeEventListener('keydown', closeOnEscape));
 const widthClass = computed(() => {
     return {
         '48': 'w-48',
+        '28': 'w-28'
     }[props.width.toString()];
 });
 
@@ -40,6 +41,10 @@ const alignmentClasses = computed(() => {
 
     if (props.align === 'right') {
         return 'ltr:origin-top-right rtl:origin-top-left end-0';
+    }
+
+    if (props.align === 'right job') {
+        return 'ltr:origin-top-right rtl:origin-top-left end-8 md:end-0 mt-0 md:mt-7';
     }
 
     if (props.align === 'center') {

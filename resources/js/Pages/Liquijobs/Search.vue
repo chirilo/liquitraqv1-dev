@@ -308,7 +308,7 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 							</div>
 
 							<!-- Quick Add New Job -->
-							<div class="w-full pr-6 pl-6 pb-6 mt-6">
+							<div class="w-full pr-6 pl-6 mt-6">
 								<h2
 									class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">
 									Quick Add New Job</h2>
@@ -317,50 +317,50 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 										<form @submit.prevent="submitaddjob" class="w-full">
 											<div class="flex flex-wrap">
 												<div class="w-full">
-													<InputLabel for="company_name" value="Job Co Name" />
+													<!-- <InputLabel for="company_name" value="Job Co Name" /> -->
 													<TextInput id="company_name" type="text" placeholder="Job Co Name"
 														v-model="form.company_name" required />
 													<InputError class="mt-2" :message="form.errors.company_name" />
 												</div>
-												<div class="w-full mt-3">
-													<InputLabel for="corporate_address" value="Corporate Address" />
+												<div class="w-full mt-1">
+													<!-- <InputLabel for="corporate_address" value="Corporate Address" /> -->
 													<TextInput id="corporate_address" type="text" placeholder="Corporate Address"
 														v-model="form.corporate_address" required />
 													<InputError class="mt-2" :message="form.errors.corporate_address" />
 												</div>
-												<div class="w-full mt-3">
-													<InputLabel for="contact_name" value="Contact Name" />
+												<div class="w-full mt-1">
+													<!-- <InputLabel for="contact_name" value="Contact Name" /> -->
 													<TextInput id="contact_name" type="text" placeholder="Contact Name"
 														v-model="form.contact_name" required />
 													<InputError class="mt-2" :message="form.errors.contact_name" />
 												</div>
-												<div class="w-full mt-3">
-													<InputLabel for="contact_email" value="Email" />
+												<div class="w-full mt-1">
+													<!-- <InputLabel for="contact_email" value="Email" /> -->
 													<TextInput id="contact_email" type="email" placeholder="Email"
 														v-model="form.contact_email" required />
 													<InputError class="mt-2" :message="form.errors.contact_email" />
 												</div>
-												<div class="w-full mt-3">
-													<InputLabel for="contact_telephone" value="Phone" />
+												<div class="w-full mt-1">
+													<!-- <InputLabel for="contact_telephone" value="Phone" /> -->
 													<TextInput id="contact_telephone" min="1" type="number" placeholder="Phone"
 														v-model="form.contact_telephone" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength)" required @keydown="(e: KeyboardEvent) => { if (e.key === '-') e.preventDefault()}" />
 													<InputError class="mt-2" :message="form.errors.contact_telephone" />
 												</div>
-												<div class="w-full mt-3">
-													<InputLabel for="location_address" value="Location Name" />
+												<div class="w-full mt-1">
+													<!-- <InputLabel for="location_address" value="Location Name" /> -->
 													<TextInput id="location_address" type="text"
 														placeholder="Location Name" v-model="form.location_address"
 														required />
 													<InputError class="mt-2" :message="form.errors.location_address" />
 												</div>
-												<div class="w-full mt-3">
-													<InputLabel for="start_date" value="Start Date" />
+												<div class="w-full mt-1">
+													<!-- <InputLabel for="start_date" value="Start Date" /> -->
 													<TextInput id="start_date" type="date" placeholder="YYYY-MM-DD"
 														v-model="form.start_date" required />
 													<InputError class="mt-2" :message="form.errors.start_date" />
 												</div>
-												<div class="w-full mt-3">
-													<InputLabel for="type" value="Job Type" />
+												<div class="w-full mt-1">
+													<!-- <InputLabel for="type" value="Job Type" /> -->
 													<select v-model="form.type" id="type"
 														class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
 														name="type">
@@ -413,11 +413,11 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
                                     </a>
                                 </div>
 								<!-- search results here -->
-								<div class="w-full relative flex flex-col mt-3">
+								<div class="w-full relative flex flex-col mt-6">
 									<!-- <h1 style="text-align: center;">Results for: {{ keyword }}</h1> -->
 									<div v-if="results.length">
 										<ul class="p-0">
-											<li v-for="(val, index) in results" :key="index">
+											<li class="m-0" v-for="(val, index) in results" :key="index">
 												<!-- Each job result is wrapped with anchor element, when clicked goes to view single job page -->
 												<a :href="'/liquijobs/' + val.id">
 													<div class="w-full relative flex flex-col bg-white border border-[#e9ebef] rounded-lg hover:bg-[#f2f4f7]">

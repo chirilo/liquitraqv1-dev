@@ -482,7 +482,7 @@ const openAssetStatusMiniForm = () => {
 								</form>
 							</div>
 							<!-- Quick Add New Job -->
-							<div class="w-full pr-6 pl-6 pb-6 mt-6">
+							<div class="w-full pr-6 pl-6 mt-6">
 								<h2
 									class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">
 									Quick Add New Job</h2>
@@ -496,26 +496,26 @@ const openAssetStatusMiniForm = () => {
 														v-model="form.company_name" required />
 													<InputError class="mt-2" :message="form.errors.company_name" />
 												</div>
-												<div class="w-full mt-3">
+												<div class="w-full mt-1">
 													<!-- <InputLabel for="corporate_address" value="Corporate Address" /> -->
 													<TextInput id="corporate_address" type="text"
 														placeholder="Corporate Address" v-model="form.corporate_address"
 														required />
 													<InputError class="mt-2" :message="form.errors.corporate_address" />
 												</div>
-												<div class="w-full mt-3">
+												<div class="w-full mt-1">
 													<!-- <InputLabel for="contact_name" value="Contact Name" /> -->
 													<TextInput id="contact_name" type="text" placeholder="Contact Name"
 														v-model="form.contact_name" required />
 													<InputError class="mt-2" :message="form.errors.contact_name" />
 												</div>
-												<div class="w-full mt-3">
+												<div class="w-full mt-1">
 													<!-- <InputLabel for="contact_email" value="Email" /> -->
 													<TextInput id="contact_email" type="email" placeholder="Email"
 														v-model="form.contact_email" required />
 													<InputError class="mt-2" :message="form.errors.contact_email" />
 												</div>
-												<div class="w-full mt-3">
+												<div class="w-full mt-1">
 													<!-- <InputLabel for="contact_telephone" value="Phone" /> -->
 													<TextInput id="contact_telephone" min="1" type="number"
 														placeholder="Phone" v-model="form.contact_telephone"
@@ -525,20 +525,20 @@ const openAssetStatusMiniForm = () => {
 														@keydown="(e: KeyboardEvent) => { if (e.key === '-') e.preventDefault() }" />
 													<InputError class="mt-2" :message="form.errors.contact_telephone" />
 												</div>
-												<div class="w-full mt-3">
+												<div class="w-full mt-1">
 													<!-- <InputLabel for="location_address" value="Location Name" /> -->
 													<TextInput id="location_address" type="text"
 														placeholder="Location Name" v-model="form.location_address"
 														required />
 													<InputError class="mt-2" :message="form.errors.location_address" />
 												</div>
-												<div class="w-full mt-3">
+												<div class="w-full mt-1">
 													<!-- <InputLabel for="start_date" value="Start Date" /> -->
 													<TextInput id="start_date" type="date" placeholder="YYYY-MM-DD"
 														v-model="form.start_date" required />
 													<InputError class="mt-2" :message="form.errors.start_date" />
 												</div>
-												<div class="w-full mt-3">
+												<div class="w-full mt-1">
 													<!-- <InputLabel for="type" value="Job Type" /> -->
 													<select v-model="form.type" id="type"
 														class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
@@ -582,7 +582,7 @@ const openAssetStatusMiniForm = () => {
 								<div id="recent-jobs">
 									<div class="relative flex justify-between items-start lg:flex-row flex-col-reverse">
 										<h1
-											class=" lg:mt-0 mt-6 w-full lg:w-[50%] block text-2xl primary-light-blue font-rethinksansextrabold uppercase">
+											class="lg:mt-0 mt-6 w-full lg:w-[50%] block text-2xl primary-light-blue font-rethinksansextrabold uppercase">
 											Job:
 											<span>{{ props.liquijobs.company_name }}</span>
 										</h1>
@@ -591,7 +591,7 @@ const openAssetStatusMiniForm = () => {
 												class="text-white py-2 px-4 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
 												<img class="w-4 mr-2" src="/images/logos/back.png"> Back
 											</a>
-											<div class="ml-1 flex justify-center sm:justify-end">
+											<div class="ml-3 flex justify-center sm:justify-end">
 												<a v-if="props.liquijobs.status != 'Completed' && props.userrole == 'admin'" href="#"
 													class="text-white py-2 px-4 rounded-full bg-[#00afef] inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
 													Complete Job
@@ -611,10 +611,10 @@ const openAssetStatusMiniForm = () => {
 											</div>
 										</div>
 									</div>
-									<ul class="p-0">
-										<li class="mt-2 lg:mt-6">
+									<ul class="p-0 mt-6">
+										<li class="m-0">
 											<div class="w-full relative flex flex-col">
-												<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
+												<div class="pb-1 sm:pb-3 border-b border-[#e9ebef] last:border-none">
 													<p>
 														<span class="font-rethinksansbold primary-dark-blue">SO Number:
 														</span><span class="font-rethinksanssemibold primary-gray">{{
@@ -623,7 +623,7 @@ const openAssetStatusMiniForm = () => {
 													</p>
 												</div>
 
-												<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
+												<div class="py-1 sm:py-3 border-b border-[#e9ebef] last:border-none">
 													<p>
 														<span class="font-rethinksansbold primary-dark-blue">Liquis
 															Employee
@@ -632,7 +632,7 @@ const openAssetStatusMiniForm = () => {
 															props.jobownername }}</span>
 													</p>
 												</div>
-												<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
+												<div class="py-1 sm:py-3 border-b border-[#e9ebef] last:border-none">
 													<p>
 														<span class="font-rethinksansbold primary-dark-blue">Corporate
 															Address:
@@ -640,7 +640,7 @@ const openAssetStatusMiniForm = () => {
 															props.liquijobs.corporate_address }}</span>
 													</p>
 												</div>
-												<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
+												<div class="py-1 sm:py-3 border-b border-[#e9ebef] last:border-none">
 													<p>
 														<span class="font-rethinksansbold primary-dark-blue">Contact
 															Name:
@@ -648,21 +648,21 @@ const openAssetStatusMiniForm = () => {
 															props.liquijobs.contact_name }}</span>
 													</p>
 												</div>
-												<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
+												<div class="py-1 sm:py-3 border-b border-[#e9ebef] last:border-none">
 													<p>
 														<span class="font-rethinksansbold primary-dark-blue">Phone:
 														</span><span class="font-rethinksanssemibold primary-gray">{{
 															props.liquijobs.contact_telephone }}</span>
 													</p>
 												</div>
-												<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
+												<div class="py-1 sm:py-3 border-b border-[#e9ebef] last:border-none">
 													<p>
 														<span class="font-rethinksansbold primary-dark-blue">Email:
 														</span><span class="font-rethinksanssemibold primary-gray">{{
 															props.liquijobs.contact_email }}</span>
 													</p>
 												</div>
-												<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
+												<div class="py-1 sm:py-3 border-b border-[#e9ebef] last:border-none">
 													<p>
 														<span class="font-rethinksansbold primary-dark-blue">Location
 															Name:
@@ -670,7 +670,7 @@ const openAssetStatusMiniForm = () => {
 															props.liquijobs.location_address }}</span>
 													</p>
 												</div>
-												<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
+												<div class="py-1 sm:py-3 border-b border-[#e9ebef] last:border-none">
 													<p>
 														<span class="font-rethinksansbold primary-dark-blue">
 															Start Date:
@@ -681,7 +681,7 @@ const openAssetStatusMiniForm = () => {
 														</span>
 													</p>
 												</div>
-												<div class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
+												<div class="py-1 sm:py-3 border-b border-[#e9ebef] last:border-none">
 													<p>
 														<span class="font-rethinksansbold primary-dark-blue">
 															Status:
@@ -699,27 +699,27 @@ const openAssetStatusMiniForm = () => {
 											<div class="w-full relative flex sm:flex-row flex-col">
 												<div class="w-full pr-0 sm:pr-6 pb-6 sm:pb-0">
 													<div
-														class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
+														class="pb-1 sm:pb-3 border-b border-[#e9ebef] last:border-none">
 														<span class="font-rethinksansbold primary-dark-blue">Total
 															Assets:
 														</span><span class="font-rethinksanssemibold primary-gray">{{
 															props.jobassetscount }}</span>
 													</div>
 													<div
-														class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
+														class="py-1 sm:py-3 border-b border-[#e9ebef] last:border-none">
 														<span class="font-rethinksansbold primary-dark-blue">Furniture:
 														</span><span class="font-rethinksanssemibold primary-gray">{{
 															props.furniturejobassets }}</span>
 													</div>
 													<div
-														class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
+														class="py-1 sm:py-3 border-b border-[#e9ebef] last:border-none">
 														<span class="font-rethinksansbold primary-dark-blue">IT:
 														</span><span class="font-rethinksanssemibold primary-gray">{{
 															props.itjobassets
 														}}</span>
 													</div>
 													<div
-														class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
+														class="py-1 sm:py-3 border-b border-[#e9ebef] last:border-none">
 														<span
 															class="font-rethinksansbold primary-dark-blue">Infrastructure:
 														</span><span class="font-rethinksanssemibold primary-gray">{{
@@ -728,7 +728,7 @@ const openAssetStatusMiniForm = () => {
 												</div>
 												<div class="w-full">
 													<div
-														class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
+														class="pb-1 sm:pb-3 border-b border-[#e9ebef] last:border-none">
 														<span class="font-rethinksansbold primary-dark-blue">Total
 															Resold:
 														</span>
@@ -737,7 +737,7 @@ const openAssetStatusMiniForm = () => {
 														</span>
 													</div>
 													<div
-														class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
+														class="py-1 sm:py-3 border-b border-[#e9ebef] last:border-none">
 														<span class="font-rethinksansbold primary-dark-blue">Total
 															Recycled:
 														</span>
@@ -746,7 +746,7 @@ const openAssetStatusMiniForm = () => {
 														</span>
 													</div>
 													<div
-														class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
+														class="py-1 sm:py-3 border-b border-[#e9ebef] last:border-none">
 														<span class="font-rethinksansbold primary-dark-blue">Total
 															Disposed:
 														</span>
@@ -755,7 +755,7 @@ const openAssetStatusMiniForm = () => {
 														</span>
 													</div>
 													<div
-														class="py-3 last:mb-2 border-b border-[#e9ebef] last:border-none">
+														class="pt-3 border-b border-[#e9ebef] last:border-none">
 														<span class="font-rethinksansbold primary-dark-blue">Total
 															Return:
 														</span>

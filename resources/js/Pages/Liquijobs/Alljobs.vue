@@ -29,7 +29,7 @@ const props = defineProps({
     liquijobs : Object,
     filters : Object,
     message : String,
-    userole: String,
+    userrole: String,
     currentdatetime: String,
 });
 
@@ -332,7 +332,7 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 								</form>
 							</div>
 							<!-- Quick Add New Job -->
-							<div class="w-full pr-6 pl-6 pb-6 mt-6">
+							<div class="w-full pr-6 pl-6 mt-6">
 								<h2 class="block w-full text-center text-base primary-light-blue font-rethinksansextrabold uppercase">Quick Add New Job</h2>
 								<div class="mt-3 relative flex items-center lg:items-end">
 									<div id="docs-card-content" class="flex items-start lg:flex-col">
@@ -437,7 +437,7 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 						<!-- RIGHT PART -->
 						<div id="right-side" class="lg:col-span-2 md:col-span-3">
 							
-							<div class="grid items-start rounded-lg bg-white p-6 mb-6">
+							<div class="grid items-start rounded-lg bg-white p-6">
 								<!-- recent jobs -->
 								<div id="recent-jobs">
 									<div class="relative flex justify-between items-end">
@@ -450,38 +450,71 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 											<img class="w-4 mr-2" src="/images/logos/back.png"> Back
 										</a>
 									</div>
-									<div v-if="props.liquijobs" class="w-full relative flex flex-col">
+									<div v-if="props.liquijobs" class="mt-6 w-full relative flex flex-col">
 										<ul class="p-0">
-											<li class="mb-6 last:mb-0" v-for="entry in props.liquijobs" :key="entry.id">
+											<li class="mt-0 mb-6 last:mb-0" v-for="entry in props.liquijobs" :key="entry.id">
 												<div class="w-full relative flex flex-col bg-white border border-[#e9ebef] rounded-lg">      
 													<div class="p-3 sm:pr-4 pr-2">
-														<button :id="entry.id" @click="openMenu" type="button"
+														<!-- HIDE OLD STYLING -->
+														<!-- <button :id="entry.id" @click="openMenu" type="button"
 															class="float-right text-xl font-bold color-[#98a2b3] ml-1 px-3 rounded-full hover:color-[#323581] hover:bg-[#f2f4f7]">
 															&#8942;
 														</button>
 														<div :id="'actionbuttons'+entry.id" :class="isOpen ? 'block' : 'hidden'">
-															<PrimaryLink v-if="entry.deleted_at == null"
-																:href="route('liquijobs.show', { 'id': entry.id })"
-																class="max-w-xl ml-1 float-right mb-3">View
-															</PrimaryLink>
-															<div v-if="props.userole == 'admin'">
+															<div class="float-right flex">
 																<PrimaryLink v-if="entry.deleted_at == null"
-																	:href="route('liquijobs.edit', { 'id': entry.id })"
-																	class="max-w-xl ml-1 float-right mb-3">Edit
+																	:href="route('liquijobs.show', { 'id': entry.id })"
+																	class="ml-1 mb-3">View
 																</PrimaryLink>
-																<DangerButton class="ml-3 float-right mb-3"
-																	@click="deleteTrade(entry.id)"
-																	v-if="entry.deleted_at == null">
-																	Trash
-																</DangerButton>
+																<div v-if="props.userrole == 'admin' || props.userrole == 'owner'">
+																		<PrimaryLink v-if="entry.deleted_at == null"
+																			:href="route('liquijobs.edit', { 'id': entry.id })"
+																			class="ml-1 mb-3">Edit
+																		</PrimaryLink>
+																		<DangerButton class="ml-1 mb-3"
+																			@click="deleteTrade(entry.id)"
+																			v-if="entry.deleted_at == null || props.userrole == 'admin'">
+																			Trash
+																		</DangerButton>
+																</div>
+																<div v-else>
+																	<PrimaryLink v-if="entry.deleted_at == null"
+																		:href="route('liquijobs.edit', { 'id': entry.id })"
+																		class="ml-1 float-right mb-3">Edit
+																	</PrimaryLink>
+																</div>
 															</div>
-															<div v-else>
-																<PrimaryLink v-if="entry.deleted_at == null"
-																	:href="route('liquijobs.edit', { 'id': entry.id })"
-																	class="max-w-xl ml-1 float-right mb-3">Edit
-																</PrimaryLink>
-															</div>
-														</div>
+														</div> -->
+														<!-- NEW DROPDOWN -->
+														<Dropdown align="right job" width="28">
+															<template #trigger>
+																<button :id="entry.id" type="button"
+																	class="float-right text-xl font-bold color-[#98a2b3] ml-1 px-3 rounded-full hover:color-[#323581] hover:bg-[#f2f4f7]">
+																	&#8942;
+																</button>
+															</template>
+															<template #content>
+																<DropdownLink v-if="entry.deleted_at == null"
+																	:href="route('liquijobs.show', { 'id': entry.id })">View
+																</DropdownLink>
+																<div v-if="props.userrole == 'admin' | props.userrole == 'owner'">
+																	<DropdownLink v-if="entry.deleted_at == null" 
+																		:href="route('liquijobs.edit', { 'id': entry.id })">Edit
+																	</DropdownLink>
+																	<DropdownLink class="border-t border-gray-200 dark:border-gray-600"
+																		@click="deleteTrade(entry.id)"
+																		v-if="entry.deleted_at == null && props.userrole == 'admin'">
+																		<span class="text-red-600">Trash</span>
+																	</DropdownLink>
+																</div>
+																<div v-else>
+																	<DropdownLink v-if="entry.deleted_at == null"
+																		:href="route('liquijobs.edit', { 'id': entry.id })"
+																		class="ml-1 mb-3">Edit
+																	</DropdownLink>
+																</div>
+															</template>
+														</Dropdown>
 														<h5 class="mb-2 primary-dark-blue font-rethinksansbold text-base">
 															<a :href="route('liquijobs.show', {'id': entry.id})" class="hover:opacity-80">Building: {{ entry.corporate_address }}</a>
 														</h5>
@@ -490,46 +523,48 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 														</p>
 													</div>
 													<div class="flex justify-between bg-[#f2f4f7] px-4 py-2  flex-col sm:flex-row">
-														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'facilitydecomissioning'">
-														Type: Facility Decomissioning
-														</span>
-														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'datacenterdecommissioning'">
-														Type: Data Center Decommissioning
-														</span>
-														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'officefurniture'">
-														Type: Office Furniture
-														</span>
-														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'datadestruction'">
-														Type: Data Destruction
-														</span>
-														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'assetrecovery'">
-														Type: Asset Recovery
-														</span>
-														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'assetmanagement'">
-														Type: Asset Management
-														</span>
-														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'recycling'">
-														Type: Recycling
-														</span>
-														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'generatorremoval'">
-														Type: Generator Removal
-														</span>
-														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'industrialremoval'">
-														Type: Industrial Removal
-														</span>
-														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'it'">
-														Type: IT
-														</span>
-														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'infrastructure'">
-														Type: Infrastructure
-														</span>
-														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'furniture'">
-														Type: Furniture
-														</span>
-														<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === null">
-														Type: Unspecified
-														</span>
-														<span class="text-nowrap w-auto primary-dark-blue font-rethinksansmedium text-base">
+														<div class="mr-0 sm:mr-2">
+															<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'facilitydecomissioning'">
+															Type: Facility Decomissioning
+															</span>
+															<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'datacenterdecommissioning'">
+															Type: Data Center Decommissioning
+															</span>
+															<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'officefurniture'">
+															Type: Office Furniture
+															</span>
+															<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'datadestruction'">
+															Type: Data Destruction
+															</span>
+															<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'assetrecovery'">
+															Type: Asset Recovery
+															</span>
+															<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'assetmanagement'">
+															Type: Asset Management
+															</span>
+															<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'recycling'">
+															Type: Recycling
+															</span>
+															<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'generatorremoval'">
+															Type: Generator Removal
+															</span>
+															<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'industrialremoval'">
+															Type: Industrial Removal
+															</span>
+															<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'it'">
+															Type: IT
+															</span>
+															<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'infrastructure'">
+															Type: Infrastructure
+															</span>
+															<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === 'furniture'">
+															Type: Furniture
+															</span>
+															<span class="primary-dark-blue font-rethinksansmedium text-base" v-if="entry.type === null">
+															Type: Unspecified
+															</span>
+														</div>
+														<span class="ml-0 sm:ml-2 text-nowrap w-auto primary-dark-blue font-rethinksansmedium text-base">
 														Start Date: {{ moment(entry.start_date).format("MMMM D, YYYY")  }} 
 														</span>
 													</div>
