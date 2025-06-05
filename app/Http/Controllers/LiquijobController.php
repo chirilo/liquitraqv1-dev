@@ -456,8 +456,48 @@ class LiquijobController extends Controller
         //
         //dd($liquijob);
         //dd($request);
+        $liquijobArray = $liquijob->toArray();
+        // dd($liquijobArray);
         // exit();
 
+        // Get the currently authenticated user...
+        $user = Auth::user(); 
+        // Get the currently authenticated user's ID...
+        $id = Auth::id();
+
+        // get the assigned liquis employee
+        $assignedliquisemployee = isset($request->liquis_employee) ? $request->liquis_employee : '1';
+
+        if( $request->completejob ){
+            $liquijob->update([
+                'company_name' => $liquijobArray['company_name'],
+                'corporate_address' => $liquijobArray['corporate_address'],
+                'contact_name' => $liquijobArray['contact_name'],
+                'contact_telephone' => $liquijobArray['contact_telephone'],
+                'contact_email' => $liquijobArray['contact_email'],
+                'location_address' => $liquijobArray['location_address'],
+                'start_date' => $liquijobArray['start_date'],
+                'type' => $liquijobArray['type'],
+                'status' => 'Completed',
+                'job_owner_id' => $liquijobArray['job_owner_id'],
+                'liquis_employee_name' => $liquijobArray['liquis_employee_name'],
+            ]);
+        }
+        else{
+            $liquijob->update([
+                'company_name' => $request->company_name,
+                'corporate_address' => $request->corporate_address,
+                'contact_name' => $request->contact_name,
+                'contact_telephone' => $request->contact_telephone,
+                'contact_email' => $request->contact_email,
+                'location_address' => $request->location_address,
+                'start_date' => $request->start_date,
+                'type' => $request->type,
+                'status' => $request->status,
+                'job_owner_id' => $assignedliquisemployee,
+                'liquis_employee_name' => $assignedliquisemployee ? $assignedliquisemployee : '1',
+            ]);
+        }
         // $request->validate([
         //     'heading' => 'required|string|max:255',
         //     'slug' => 'required||unique:liquijobs,slug,'.$blog->id.',id|string|max:255'
@@ -468,22 +508,9 @@ class LiquijobController extends Controller
         //     'description' => $request->description
         // ]);
 
-        // get the assigned liquis employee
-        $assignedliquisemployee = isset($request->liquis_employee) ? $request->liquis_employee : $id;
+        
 
-        $liquijob->update([
-            'company_name' => $request->company_name,
-            'corporate_address' => $request->corporate_address,
-            'contact_name' => $request->contact_name,
-            'contact_telephone' => $request->contact_telephone,
-            'contact_email' => $request->contact_email,
-            'location_address' => $request->location_address,
-            'start_date' => $request->start_date,
-            'type' => $request->type,
-            'status' => $request->status,
-            'job_owner_id' => $assignedliquisemployee,
-            'liquis_employee_name' => $assignedliquisemployee ? $assignedliquisemployee : '1',
-        ]);
+        
 
         return redirect()->route('liquijobs.index')->with('message', 'Liquijob updated successfully.');
     }

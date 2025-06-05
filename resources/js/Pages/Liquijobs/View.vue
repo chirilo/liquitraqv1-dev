@@ -300,6 +300,16 @@ const openAssetStatusMiniForm = () => {
 	}
 }
 
+const form3 = useForm({
+	asset_status: 'Completed',
+	completejob: '1'
+});
+
+// from Create.vue
+const completejob = (id) => {
+    form3.put(route('liquijobs.update', { id: props.liquijobs.id }));
+};
+
 </script>
 
 <template>
@@ -592,10 +602,13 @@ const openAssetStatusMiniForm = () => {
 												<img class="w-4 mr-2" src="/images/logos/back.png"> Back
 											</a>
 											<div class="ml-3 flex justify-center sm:justify-end">
-												<a v-if="props.liquijobs.status != 'Completed' && props.userrole == 'admin'" href="#"
-													class="text-white py-2 px-4 rounded-full bg-[#00afef] inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
-													Complete Job
-												</a>
+												<form @submit.prevent="completejob">
+													<input type="hidden" name="completejobindicator" value="1">
+													<button type="submit" v-if="props.liquijobs.status != 'Completed' && props.userrole == 'admin'" href="#"
+														class="text-white py-2 px-4 rounded-full bg-[#00afef] inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
+														Complete Job
+													</button>
+												</form>
 												<div class="ml-1 flex" v-if="props.userrole == 'admin' | props.userrole == 'owner'">
 													<a v-if="props.liquijobs.deleted_at == null"
 														:href="route('liquijobs.edit', { 'id': props.liquijobs.id })"
