@@ -417,7 +417,7 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 									<!-- <h1 style="text-align: center;">Results for: {{ keyword }}</h1> -->
 									<div v-if="results.length">
 										<ul class="p-0">
-											<li class="m-0" v-for="(val, index) in results" :key="index">
+											<li class="mt-0 mb-6 last:mb-0" v-for="(val, index) in results" :key="index">
 												<!-- Each job result is wrapped with anchor element, when clicked goes to view single job page -->
 												<a :href="'/liquijobs/' + val.id">
 													<div class="w-full relative flex flex-col bg-white border border-[#e9ebef] rounded-lg hover:bg-[#f2f4f7]">
