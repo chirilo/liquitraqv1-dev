@@ -29,13 +29,10 @@ class LiquiassetController extends Controller
     public function index()
     {   
         // get current date and time
-        //$currentdatetime = now()->format('M d, Y - h:m A');
         $date_default_timezone_get = date_default_timezone_get();
-        //dd($date_default_timezone_get);
         $currentdatetime = new \DateTime("now", new \DateTimeZone(''.$date_default_timezone_get.''));
         $currentdatetime = $currentdatetime->format('M d, Y h:i A');
-        //$currentdatetime = date('M d, Y h:i:sA');
-        //
+        
         return Inertia::render(
             'Liquiassets/Index', [
                 'currentdatetime' => $currentdatetime,
@@ -50,8 +47,6 @@ class LiquiassetController extends Controller
     {
         // $_GET data
         $jobid = $_GET['jobid'];
-
-        //dd($jobid);exit;
         //
         return Inertia::render('Liquiassets/Create', [
                 'jobid' => $jobid,
@@ -64,9 +59,6 @@ class LiquiassetController extends Controller
      */
     public function store(Request $request)
     {
-
-        //dd($request);
-        // exit;
 
         $image = $request->file('job_asset');
         $fname = $request->file('job_asset')->getClientOriginalName();

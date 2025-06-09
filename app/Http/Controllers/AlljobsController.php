@@ -21,28 +21,17 @@ class AlljobsController extends Controller
         $user = Auth::user(); 
         // Get the currently authenticated user's ID...
         $id = Auth::id();
-
-
-        //$results = \DB::table('liquijobs')
-                    // ->groupBy('liquijobs.id')
-                    // ->limit('20')
-                    // ->get();
-                    
+    
         // get current date and time
-        //$currentdatetime = now()->format('M d, Y - h:m A');
         $date_default_timezone_get = date_default_timezone_get();
-        //dd($date_default_timezone_get);
         $currentdatetime = new \DateTime("now", new \DateTimeZone(''.$date_default_timezone_get.''));
         $currentdatetime = $currentdatetime->format('M d, Y h:i A');
-        //$currentdatetime = date('M d, Y h:i:sA');
         
         $keyword = isset($_GET['key']) ? $_GET['key'] : 'jobs';
         $escaped_str = str_replace("%", "", $keyword);
         $keyword = $escaped_str;
         $keyword = mb_convert_encoding($keyword, 'UTF-8', 'UTF-8');
-
-        //dd($keyword);
-
+        
         //main key
 
         //sonumber key
