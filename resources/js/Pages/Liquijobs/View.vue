@@ -454,11 +454,11 @@ const completejob = (id) => {
 									<select @change="handleFilterSelectChange" v-model="filterkey"
 										class="appearance-none block w-full p-4 mt-3 text-base primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none">
 										<input type="hidden" name="key" v-model="filterkey">
-										<option class="text-base primary-dark-blue" selected disabled hidden value="">
+										<option class="text-base md:text-xs lg:text-base primary-dark-blue" selected disabled hidden value="">
 											Select
 											filter</option>
-										<option class="text-base primary-dark-blue" value="status">Status</option>
-										<option class="text-base primary-dark-blue" value="sonumber">SO Number</option>
+										<option class="text-base md:text-xs lg:text-base primary-dark-blue" value="status">Status</option>
+										<option class="text-base md:text-xs lg:text-base primary-dark-blue" value="sonumber">SO Number</option>
 									</select>
 									<input
 										class="mt-2 appearance-none block w-full p-4 primary-gray placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg"
@@ -472,14 +472,14 @@ const completejob = (id) => {
 										name="filter_status" required /> -->
 									<select :class="isStatusOpen ? 'block' : 'hidden'" v-model="filterstatuskey"
 										class="appearance-none block w-full p-4 mt-3 text-base primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none">
-										<option class="text-base primary-dark-blue" selected disabled hidden value="">
+										<option class="text-base md:text-xs lg:text-base primary-dark-blue" selected disabled hidden value="">
 											Select
 											status</option>
-										<option class="text-base primary-dark-blue" value="New">New</option>
-										<option class="text-base primary-dark-blue" value="Work In Progress">Work In
+										<option class="text-base md:text-xs lg:text-base primary-dark-blue" value="New">New</option>
+										<option class="text-base md:text-xs lg:text-base primary-dark-blue" value="Work In Progress">Work In
 											Progress
 										</option>
-										<option class="text-base primary-dark-blue" value="Completed">Completed</option>
+										<option class="text-base md:text-xs lg:text-base primary-dark-blue" value="Completed">Completed</option>
 									</select>
 									<button type="submit"
 										class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Go
@@ -553,19 +553,19 @@ const completejob = (id) => {
 													<select v-model="form.type" id="type"
 														class="mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
 														name="type">
-														<option value="" selected disabled hidden>Job Type</option>
-														<option value="facilitydecomissioning">Facility Decomissioning
+														<option class="text-base md:text-xs lg:text-base" value="" selected disabled hidden>Job Type</option>
+														<option class="text-base md:text-xs lg:text-base" value="facilitydecomissioning">Facility Decomissioning
 														</option>
-														<option value="datacenterdecommissioning">Data Center
+														<option class="text-base md:text-xs lg:text-base" value="datacenterdecommissioning">Data Center
 															Decommissioning
 														</option>
-														<option value="officefurniture">Office Furniture</option>
-														<option value="datadestruction">Data Destruction</option>
-														<option value="assetrecovery">Asset Recovery</option>
-														<option value="assetmanagement">Asset Management</option>
-														<option value="recycling">Recycling</option>
-														<option value="generatorremoval">Generator Removal</option>
-														<option value="industrialremoval">Industrial Removal</option>
+														<option class="text-base md:text-xs lg:text-base" value="officefurniture">Office Furniture</option>
+														<option class="text-base md:text-xs lg:text-base" value="datadestruction">Data Destruction</option>
+														<option class="text-base md:text-xs lg:text-base" value="assetrecovery">Asset Recovery</option>
+														<option class="text-base md:text-xs lg:text-base" value="assetmanagement">Asset Management</option>
+														<option class="text-base md:text-xs lg:text-base" value="recycling">Recycling</option>
+														<option class="text-base md:text-xs lg:text-base" value="generatorremoval">Generator Removal</option>
+														<option class="text-base md:text-xs lg:text-base" value="industrialremoval">Industrial Removal</option>
 													</select>
 													<InputError class="mt-2" :message="form.errors.type" />
 												</div>
@@ -816,10 +816,10 @@ const completejob = (id) => {
 											<select v-model="formasset.asset_category" id="type"
 												class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
 												name="asset_category" required @change="openMenuSelect">
-												<option value="" disabled hidden>Select Category</option>
-												<option value="it">IT</option>
-												<option value="infrastructure">Infrastructure</option>
-												<option value="furniture">Furniture</option>
+												<option class="text-base md:text-xs lg:text-base" value="" disabled hidden>Select Category</option>
+												<option class="text-base md:text-xs lg:text-base" value="it">IT</option>
+												<option class="text-base md:text-xs lg:text-base" value="infrastructure">Infrastructure</option>
+												<option class="text-base md:text-xs lg:text-base" value="furniture">Furniture</option>
 											</select>
 											<InputError class="mt-2 w-full lg:w-[40%]"
 												:message="formasset.errors.asset_category" />
@@ -830,58 +830,58 @@ const completejob = (id) => {
 											<select v-model="formasset.asset_type" id="furniture_asset_type"
 												class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
 												name="asset_type" :class="isOpenFurniture ? 'block' : 'hidden'">
-												<optgroup label="Furniture">
-													<option value="" selected disabled hidden>Select Furniture Type
+												<optgroup class="text-base md:text-xs lg:text-base" label="Furniture">
+													<option class="text-base md:text-xs lg:text-base" value="" selected disabled hidden>Select Furniture Type
 													</option>
-													<option value="furniture-cubicle">Cubicle</option>
-													<option value="furniture-casegood">Case Good</option>
-													<option value="furniture-chair">Chair</option>
-													<option value="furniture-wallhanging">Wall Hanging</option>
-													<option value="furniture-appliance">Appliance</option>
-													<option value="furniture-others">Others</option>
+													<option class="text-base md:text-xs lg:text-base" value="furniture-cubicle">Cubicle</option>
+													<option class="text-base md:text-xs lg:text-base" value="furniture-casegood">Case Good</option>
+													<option class="text-base md:text-xs lg:text-base" value="furniture-chair">Chair</option>
+													<option class="text-base md:text-xs lg:text-base" value="furniture-wallhanging">Wall Hanging</option>
+													<option class="text-base md:text-xs lg:text-base" value="furniture-appliance">Appliance</option>
+													<option class="text-base md:text-xs lg:text-base" value="furniture-others">Others</option>
 												</optgroup>
 											</select>
 											<select v-model="formasset.asset_type" id="it_asset_type"
 												class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
 												name="asset_type" :class="isOpenIt ? 'block' : 'hidden'">
-												<optgroup label="IT">
-													<option value="" selected disabled hidden>Select IT Type</option>
-													<option value="it-networkgear">Network Gear</option>
-													<option value="it-servers">Servers</option>
-													<option value="it-pcs">PCs</option>
-													<option value="it-laptops">Laptops</option>
-													<option value="it-rack">Rack</option>
-													<option value="it-telecom">Telecom</option>
-													<option value="it-monitors">Monitors</option>
-													<option value="it-camera">Camera</option>
-													<option value="it-printers">Printers</option>
-													<option value="it-others">Others</option>
+												<optgroup class="text-base md:text-xs lg:text-base" label="IT">
+													<option class="text-base md:text-xs lg:text-base" value="" selected disabled hidden>Select IT Type</option>
+													<option class="text-base md:text-xs lg:text-base" value="it-networkgear">Network Gear</option>
+													<option class="text-base md:text-xs lg:text-base" value="it-servers">Servers</option>
+													<option class="text-base md:text-xs lg:text-base" value="it-pcs">PCs</option>
+													<option class="text-base md:text-xs lg:text-base" value="it-laptops">Laptops</option>
+													<option class="text-base md:text-xs lg:text-base" value="it-rack">Rack</option>
+													<option class="text-base md:text-xs lg:text-base" value="it-telecom">Telecom</option>
+													<option class="text-base md:text-xs lg:text-base" value="it-monitors">Monitors</option>
+													<option class="text-base md:text-xs lg:text-base" value="it-camera">Camera</option>
+													<option class="text-base md:text-xs lg:text-base" value="it-printers">Printers</option>
+													<option class="text-base md:text-xs lg:text-base" value="it-others">Others</option>
 												</optgroup>
 											</select>
 											<select v-model="formasset.asset_type" id="infrastructure_asset_type"
 												class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
 												name="asset_type" :class="isOpenInfrastructure ? 'block' : 'hidden'">
-												<optgroup label="Infrastructure">
-													<option value="" selected disabled hidden>Select Infrastructure Type
+												<optgroup class="text-base md:text-xs lg:text-base" label="Infrastructure">
+													<option class="text-base md:text-xs lg:text-base" value="" selected disabled hidden>Select Infrastructure Type
 													</option>
-													<option value="infrastructure-generator">Generator</option>
-													<option value="infrastructure-cracunit">CRAC Unit</option>
-													<option value="infrastructure-ups">UPS</option>
-													<option value="infrastructure-ats">ATS</option>
-													<option value="infrastructure-bypass">Bypass</option>
-													<option value="infrastructure-switchgear">Switchgear</option>
-													<option value="infrastructure-batteries">Batteries</option>
-													<option value="infrastructure-wiringlowvoltage">Wiring, Low-Voltage
+													<option class="text-base md:text-xs lg:text-base" value="infrastructure-generator">Generator</option>
+													<option class="text-base md:text-xs lg:text-base" value="infrastructure-cracunit">CRAC Unit</option>
+													<option class="text-base md:text-xs lg:text-base" value="infrastructure-ups">UPS</option>
+													<option class="text-base md:text-xs lg:text-base" value="infrastructure-ats">ATS</option>
+													<option class="text-base md:text-xs lg:text-base" value="infrastructure-bypass">Bypass</option>
+													<option class="text-base md:text-xs lg:text-base" value="infrastructure-switchgear">Switchgear</option>
+													<option class="text-base md:text-xs lg:text-base" value="infrastructure-batteries">Batteries</option>
+													<option class="text-base md:text-xs lg:text-base" value="infrastructure-wiringlowvoltage">Wiring, Low-Voltage
 													</option>
-													<option value="infrastructure-wiringhighvoltage">Wiring,
+													<option class="text-base md:text-xs lg:text-base" value="infrastructure-wiringhighvoltage">Wiring,
 														High-Voltage
 													</option>
-													<option value="infrastructure-firesuppressant">Fire Suppressant
+													<option class="text-base md:text-xs lg:text-base" value="infrastructure-firesuppressant">Fire Suppressant
 													</option>
-													<option value="infrastructure-raisedflooring">Raised Flooring
+													<option class="text-base md:text-xs lg:text-base" value="infrastructure-raisedflooring">Raised Flooring
 													</option>
-													<option value="infrastructure-paintchemical">Paint/Chemical</option>
-													<option value="infrastructure-others">Others</option>
+													<option class="text-base md:text-xs lg:text-base" value="infrastructure-paintchemical">Paint/Chemical</option>
+													<option class="text-base md:text-xs lg:text-base" value="infrastructure-others">Others</option>
 												</optgroup>
 											</select>
 											<InputError class="mt-2 w-full lg:w-[40%]"
@@ -950,10 +950,10 @@ const completejob = (id) => {
 											<select v-model="formasset.asset_status" id="asset_status"
 												class="w-full lg:w-[40%] px-4 py-2 sm:mt-0 mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
 												name="asset_status" required @change="openStatusMenuSelect">
-												<option value="" selected disabled hidden>Select Status</option>
-												<option value="originalstate">Original State</option>
-												<option value="workinprogress">Work In Progress</option>
-												<option value="completed">Completed</option>
+												<option class="text-base md:text-xs lg:text-base" value="" selected disabled hidden>Select Status</option>
+												<option class="text-base md:text-xs lg:text-base" value="originalstate">Original State</option>
+												<option class="text-base md:text-xs lg:text-base" value="workinprogress">Work In Progress</option>
+												<option class="text-base md:text-xs lg:text-base" value="completed">Completed</option>
 											</select>
 										</div>
 
@@ -965,11 +965,11 @@ const completejob = (id) => {
 											<select v-model="formasset.asset_disposition" id="asset_status"
 												class="w-full lg:w-[40%] px-4 py-2 sm:mt-0 mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
 												name="asset_status" @change="openAssetStatusMiniForm">
-												<option value="" selected disabled hidden>Select Disposition</option>
-												<option value="resold">Resold</option>
-												<option value="recycled">Recycled</option>
-												<option value="disposed">Disposed</option>
-												<option value="returned">Returned</option>
+												<option class="text-base md:text-xs lg:text-base" value="" selected disabled hidden>Select Disposition</option>
+												<option class="text-base md:text-xs lg:text-base" value="resold">Resold</option>
+												<option class="text-base md:text-xs lg:text-base" value="recycled">Recycled</option>
+												<option class="text-base md:text-xs lg:text-base" value="disposed">Disposed</option>
+												<option class="text-base md:text-xs lg:text-base" value="returned">Returned</option>
 											</select>
 
 

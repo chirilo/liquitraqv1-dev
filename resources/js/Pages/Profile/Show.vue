@@ -19,12 +19,12 @@ defineProps({
     
     <nav class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
         <!-- Primary Navigation Menu -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex" style="padding-right: 15%; margin: 5px 0px 5px 0px;">
                     <!-- Logo -->
                     <div class="m-auto">
-                        <div class="flex items-center"><a href="/liquijobs"><img src="/images/logos/liquis-logo.png" alt="LiquiTraq" class="block md:w-32 sm:w-16"></a></div>
+                        <div class="flex items-center"><a href="/liquijobs"><img src="/images/logos/liquis-logo.png" alt="LiquiTraq" class="block w-28 lg:w-32"></a></div>
                     </div>
 
                     <!-- Navigation Links -->
@@ -89,7 +89,7 @@ defineProps({
         </template>
 
         <div>
-            <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto py-6 sm:py-10 px-6">
                 <div v-if="$page.props.jetstream.canUpdateProfileInformation">
                     <UpdateProfileInformationForm :user="$page.props.auth.user" />
 
