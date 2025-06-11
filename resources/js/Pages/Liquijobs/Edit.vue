@@ -293,11 +293,11 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 									<select @change="handleFilterSelectChange" v-model="filterkey"
 										class="appearance-none block w-full p-4 mt-3 text-base primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none">
 										<input type="hidden" name="key" v-model="filterkey">
-										<option class="text-base primary-dark-blue" selected disabled hidden value="">
+										<option class="text-base md:text-xs lg:text-base primary-dark-blue" selected disabled hidden value="">
 											Select
 											filter</option>
-										<option class="text-base primary-dark-blue" value="status">Status</option>
-										<option class="text-base primary-dark-blue" value="sonumber">SO Number</option>
+										<option class="text-base md:text-xs lg:text-base primary-dark-blue" value="status">Status</option>
+										<option class="text-base md:text-xs lg:text-base primary-dark-blue" value="sonumber">SO Number</option>
 									</select>
 									<input
 										class="mt-2 appearance-none block w-full p-4 primary-gray placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg"
@@ -311,12 +311,12 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 										name="filter_status" required /> -->
 									<select :class="isStatusOpen ? 'block' : 'hidden'" v-model="filterstatuskey"
 										class="appearance-none block w-full p-4 mt-3 text-base primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none">
-										<option class="text-base primary-dark-blue" selected disabled hidden value="">
+										<option class="text-base md:text-xs lg:text-base primary-dark-blue" selected disabled hidden value="">
 											Select
 											status</option>
-										<option class="text-base primary-dark-blue" value="New">New</option>
-										<option class="text-base primary-dark-blue" value="Work In Progress">Work In Progress</option>
-										<option class="text-base primary-dark-blue" value="Completed">Completed</option>
+										<option class="text-base md:text-xs lg:text-base primary-dark-blue" value="New">New</option>
+										<option class="text-base md:text-xs lg:text-base primary-dark-blue" value="Work In Progress">Work In Progress</option>
+										<option class="text-base md:text-xs lg:text-base primary-dark-blue" value="Completed">Completed</option>
 									</select>
 									<button type="submit"
 										class="mt-3 w-full text-white py-3 px-4 rounded-full bg-gradient-blue inline-block text-center font-rethinksansbold hover:opacity-90">Go
@@ -367,9 +367,9 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
                                         <select v-model="form.liquis_employee" id="liquis_employee"
 											class="w-full lg:w-[40%] mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
 											name="liquis_employee" required>
-											<option value="" disabled hidden>Select Employee</option>
+											<option class="text-base md:text-xs lg:text-base" value="" disabled hidden>Select Employee</option>
 											
-											<option v-for="entry in props.liquisemployees"
+											<option class="text-base md:text-xs lg:text-base" v-for="entry in props.liquisemployees"
 												:key="entry.id" :value="entry.id" v-if="props.jobownerid != id">
 												<span>
 													{{ entry.name }}
@@ -428,17 +428,16 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
                                         <select v-model="form.type" id="type"
                                             class="mt-2 w-full lg:w-[40%] appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
                                             name="type">
-                                            <option value="" disabled selected hidden>Select Job Type</option>
-                                            <option value="facilitydecomissioning">Facility Decomissioning</option>
-                                            <option value="datacenterdecommissioning">Data Center Decommissioning
-                                            </option>
-                                            <option value="officefurniture">Office Furniture</option>
-                                            <option value="datadestruction">Data Destruction</option>
-                                            <option value="assetrecovery">Asset Recovery</option>
-                                            <option value="assetmanagement">Asset Management</option>
-                                            <option value="recycling">Recycling</option>
-                                            <option value="generatorremoval">Generator Removal</option>
-                                            <option value="industrialremoval">Industrial Removal</option>
+                                            <option class="text-base md:text-xs lg:text-base" value="" disabled selected hidden>Select Job Type</option>
+                                            <option class="text-base md:text-xs lg:text-base" value="facilitydecomissioning">Facility Decomissioning</option>
+                                            <option class="text-base md:text-xs lg:text-base" value="datacenterdecommissioning">Data Center Decommissioning</option>
+                                            <option class="text-base md:text-xs lg:text-base" value="officefurniture">Office Furniture</option>
+                                            <option class="text-base md:text-xs lg:text-base" value="datadestruction">Data Destruction</option>
+                                            <option class="text-base md:text-xs lg:text-base" value="assetrecovery">Asset Recovery</option>
+                                            <option class="text-base md:text-xs lg:text-base" value="assetmanagement">Asset Management</option>
+                                            <option class="text-base md:text-xs lg:text-base" value="recycling">Recycling</option>
+                                            <option class="text-base md:text-xs lg:text-base" value="generatorremoval">Generator Removal</option>
+                                            <option class="text-base md:text-xs lg:text-base" value="industrialremoval">Industrial Removal</option>
                                         </select>
                                         <!-- <InputError class="mt-2 w-full lg:w-[40%]" :message="form.errors.type" /> -->
                                     </div>
@@ -449,10 +448,10 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
                                         <select v-model="form.status" id="status"
                                             class="mt-2 w-full lg:w-[40%] appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#323581] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
                                             name="status">
-                                            <option value="" selected disabled hidden>Select Status</option>
-                                            <option value="New">New</option>
-                                            <option value="Work in Progress">Work in Progress</option>
-                                            <option value="Completed">Completed</option>
+                                            <option class="text-base md:text-xs lg:text-base" value="" selected disabled hidden>Select Status</option>
+                                            <option class="text-base md:text-xs lg:text-base" value="New">New</option>
+                                            <option class="text-base md:text-xs lg:text-base" value="Work in Progress">Work in Progress</option>
+                                            <option class="text-base md:text-xs lg:text-base" value="Completed">Completed</option>
                                         </select>
                                         <!-- <InputError class="mt-2 w-full lg:w-[40%]" :message="form.errors.status" /> -->
                                     </div>
