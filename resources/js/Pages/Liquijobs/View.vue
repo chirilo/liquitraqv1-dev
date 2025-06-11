@@ -116,6 +116,13 @@ const submitaddasset = (e) => {
 	formasset.post(route("liquiassets.store"));
 };
 
+const formasset2 = useForm({
+	job_asset: '',
+});
+const processocrmake = (e) => {
+	formasset2.post(route("ocr.index"));
+};
+
 let isOpenFurniture = ref(false);
 let isOpenIt = ref(false);
 let isOpenInfrastructure = ref(false);
@@ -802,6 +809,7 @@ const completejob = (id) => {
 									</h2>
 									<!-- <a v-bind:href="liquiassetsurl" class="text-white py-3 px-4 rounded-full bg-gradient-blue block sm:inline-block text-center font-rethinksansbold hover:opacity-90">Add Asset</a>  -->
 									<!-- <a @click="openAssetForm" class="text-white py-3 px-4 rounded-full bg-gradient-blue block sm:inline-block text-center font-rethinksansbold hover:opacity-90">Add Asset</a>  -->
+									<a @click="openAssetForm" class="text-white py-3 px-4 rounded-full bg-gradient-blue block sm:inline-block text-center font-rethinksansbold hover:opacity-90">Add Via Image Upload</a>
 								</div>
 								<!-- add asset form from create.vue(asset) -->
 								<!-- <section :class="isOpenForm ? 'block' : 'hidden' "> -->
@@ -904,6 +912,17 @@ const completejob = (id) => {
 											<TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_make" type="text"
 												placeholder="ex. Simmons, Philips, Toshiba.."
 												v-model="formasset.asset_make" required />
+											<p>or upload a file </p>
+											<form @submit.prevent="processocrmake" class="mt-6 space-y-2"
+										enctype="multipart/form-data">
+											<input required type="file"
+													@input="formasset2.job_asset = $event.target.files[0]"
+													name="job_asset" class="mt-1 block w-full">
+												<PrimaryButton :disabled="formasset2.processing"
+													class="py-3 px-4 sm:w-auto w-full">
+													<span class="text-base">Process Image</span>
+												</PrimaryButton>
+											</form>
 											<InputError class="mt-2 w-full lg:w-[40%]"
 												:message="formasset.errors.asset_make" />
 										</div>

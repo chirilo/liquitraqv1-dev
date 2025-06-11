@@ -10,12 +10,17 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "alimranahmed/laraocr": "^1.2",
         "inertiajs/inertia-laravel": "^2.0",
         "intervention/image": "^3.11",
         "laravel/framework": "^12.0",
         "laravel/jetstream": "^5.3",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10.1",
+        "phpmailer/phpmailer": "^6.10",
+        "symfony/http-client": "^7.2",
+        "symfony/mailgun-mailer": "^7.2",
+        "symfony/postmark-mailer": "^7.2",
         "tightenco/ziggy": "^2.0"
     },
     "require-dev": {

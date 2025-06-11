@@ -10,6 +10,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\LiquijobController;
 use App\Http\Controllers\LiquiassetController;
 use App\Http\Controllers\AlljobsController;
+use App\Http\Controllers\OcrController;
 
 
 
@@ -54,3 +55,7 @@ Route::middleware('auth')->group(function () {
 
 // search
 Route::get('/search', [AlljobsController::class, 'index'])->name('search.index');
+
+
+// ocr image to text
+Route::post('/ocr', [OcrController::class, 'index'])->name('ocr.index');
