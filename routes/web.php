@@ -58,4 +58,6 @@ Route::get('/search', [AlljobsController::class, 'index'])->name('search.index')
 
 
 // ocr image to text
-Route::post('/ocr', [OcrController::class, 'index'])->name('ocr.index');
+Route::post('/ocrmake', [OcrController::class, 'make'])->name('ocr.make');
+Route::post('/ocrmodel', [OcrController::class, 'model'])->name('ocr.model');
+Route::post('/ocrserial', [OcrController::class, 'serial'])->name('ocr.serial');

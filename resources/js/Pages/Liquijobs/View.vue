@@ -20,6 +20,8 @@ import UpcomingJobs from '@/Components/UpcomingJobs.vue';
 import { ref } from "vue";
 import moment from "moment";
 
+import axios from 'axios';
+
 const props = defineProps({
 	liquijobs: Object,
 	job_assets: Object,
@@ -119,8 +121,46 @@ const submitaddasset = (e) => {
 const formasset2 = useForm({
 	job_asset: '',
 });
+
 const processocrmake = (e) => {
-	formasset2.post(route("ocr.index"));
+	e.preventDefault();
+	formasset2.post(route("ocr.make"), {
+		onSuccess: (res) => {
+			console.log(res);
+			console.log(res.props.jetstream.flash.message);
+			document.getElementById('asset_make').value = res.props.jetstream.flash.message;
+		},
+	});
+};
+
+const formasset3 = useForm({
+	job_asset: '',
+});
+
+const processocrmodel = (e) => {
+	e.preventDefault();
+	formasset3.post(route("ocr.model"), {
+		onSuccess: (res) => {
+			console.log(res);
+			console.log(res.props.jetstream.flash.message);
+			document.getElementById('asset_model').value = res.props.jetstream.flash.message;
+		},
+	});
+};
+
+const formasset4 = useForm({
+	job_asset: '',
+});
+
+const processocrserial = (e) => {
+	e.preventDefault();
+	formasset4.post(route("ocr.serial"), {
+		onSuccess: (res) => {
+			console.log(res);
+			console.log(res.props.jetstream.flash.message);
+			document.getElementById('asset_serial').value = res.props.jetstream.flash.message;
+		},
+	});
 };
 
 let isOpenFurniture = ref(false);
@@ -809,7 +849,6 @@ const completejob = (id) => {
 									</h2>
 									<!-- <a v-bind:href="liquiassetsurl" class="text-white py-3 px-4 rounded-full bg-gradient-blue block sm:inline-block text-center font-rethinksansbold hover:opacity-90">Add Asset</a>  -->
 									<!-- <a @click="openAssetForm" class="text-white py-3 px-4 rounded-full bg-gradient-blue block sm:inline-block text-center font-rethinksansbold hover:opacity-90">Add Asset</a>  -->
-									<a @click="openAssetForm" class="text-white py-3 px-4 rounded-full bg-gradient-blue block sm:inline-block text-center font-rethinksansbold hover:opacity-90">Add Via Image Upload</a>
 								</div>
 								<!-- add asset form from create.vue(asset) -->
 								<!-- <section :class="isOpenForm ? 'block' : 'hidden' "> -->
@@ -931,6 +970,17 @@ const completejob = (id) => {
 											<InputLabel for="asset_model" value=" Model" class="w-full lg:w-[60%]" />
 											<TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_model" type="text"
 												placeholder="ex. SQ-12.." v-model="formasset.asset_model" required />
+											<p>or upload a file </p>
+											<form @submit.prevent="processocrmodel" class="mt-6 space-y-2"
+										enctype="multipart/form-data">
+											<input required type="file"
+													@input="formasset3.job_asset = $event.target.files[0]"
+													name="job_asset" class="mt-1 block w-full">
+												<PrimaryButton :disabled="formasset3.processing"
+													class="py-3 px-4 sm:w-auto w-full">
+													<span class="text-base">Process Image</span>
+												</PrimaryButton>
+											</form>
 											<InputError class="mt-2 w-full lg:w-[40%]"
 												:message="formasset.errors.asset_model" />
 										</div>
@@ -940,6 +990,17 @@ const completejob = (id) => {
 											<TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_serial" type="text"
 												placeholder="ex. HFIOE18DHIN23-23" v-model="formasset.asset_serial"
 												required />
+											<p>or upload a file </p>
+											<form @submit.prevent="processocrserial" class="mt-6 space-y-2"
+										enctype="multipart/form-data">
+											<input required type="file"
+													@input="formasset4.job_asset = $event.target.files[0]"
+													name="job_asset" class="mt-1 block w-full">
+												<PrimaryButton :disabled="formasset4.processing"
+													class="py-3 px-4 sm:w-auto w-full">
+													<span class="text-base">Process Image</span>
+												</PrimaryButton>
+											</form>
 											<InputError class="mt-2 w-full lg:w-[40%]"
 												:message="formasset.errors.asset_serial" />
 										</div>
