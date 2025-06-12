@@ -204,8 +204,7 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 					<div class="grid gap-6 lg:grid-cols-3 md:grid-cols-5 lg:gap-8">
 						<!-- LEFT PART -->
 						<!-- Container for Left Sidebar (search and quick add job) -->
-						<div id="left-side"
-							class="w-full mx-auto flex flex-col items-start overflow-hidden pb-6 pt-6 rounded-lg bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] lg:col-span-1 md:col-span-2">
+						<div id="left-side" class="w-full mx-auto flex flex-col items-start overflow-hidden pb-6 pt-6 rounded-lg bg-white shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] lg:col-span-1 md:col-span-2">
 							<div class="relative w-full flex items-center pb-6 border-divider">
 								<div class="mx-auto">
 									<div class="flex items-center"><a href="/liquijobs"><img
