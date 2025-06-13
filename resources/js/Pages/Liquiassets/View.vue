@@ -451,28 +451,28 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 								<div id="recent-jobs">
 									<ul class="p-0">
 										<li class="m-0" v-for="item in job_assets" :key="id" :value="id">
-											<div class="relative flex justify-between items-start lg:flex-row flex-col-reverse">
+											<div class="relative flex justify-between items-start lg:flex-row flex-col-reverse items-center">
 												<h1 class="lg:mt-0 mt-6 w-full lg:w-[50%] block text-2xl primary-light-blue font-rethinksansextrabold uppercase">
 													Job: <span>{{ props.thisjobcompanyname }}</span>
 												</h1>
 												<div class="lg:w-auto w-full flex justify-between">
 													<a :href="backtoprevjob"
-														class="text-white py-2 px-4 rounded-full bg-gradient-blue text-center text-sm font-rethinksansbold hover:opacity-90 flex">
+														class="text-white py-2 px-4 rounded-full bg-gradient-blue text-center text-xs sm:text-sm font-rethinksansbold hover:opacity-90 flex">
 														<img class="w-4 mr-2" src="/images/logos/back.png"> Back
 													</a>
-													<div class="ml-3 flex" v-if="props.userrole == 'admin' | props.userrole == 'owner'">
+													<div class="ml-3 flex items-center" v-if="props.userrole == 'admin' | props.userrole == 'owner'">
 														<a
 															 v-bind:href="/liquiassets/+item.id+'/edit'"
 															class="text-white py-2 px-2 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
-															<img class="w-5" src="/images/logos/editing.png">
+															<img class="w-4 sm:w-5" src="/images/logos/editing.png">
 														</a>
 														<a @click="deleteTradeAsset(item.id)"
 															v-if="props.userrole == 'admin'"
 															class="cursor-pointer ml-1 text-white py-2 px-2 rounded-full bg-red-600 inline-block text-center text-sm font-rethinksansbold hover:opacity-90 flex">
-															<img class="w-5" src="/images/logos/trash-can.png">
+															<img class="w-4 sm:w-5" src="/images/logos/trash-can.png">
 														</a>
-														<a href="/liquijobs" class="text-white ml-1 py-2 px-4 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
-															<img class="w-5 mr-2" src="/images/logos/home.png"> Home
+														<a href="/liquijobs" class="text-white ml-1 py-2 px-4 rounded-full bg-gradient-blue inline text-center text-xs sm:text-sm font-rethinksansbold hover:opacity-90 flex">
+															<img class="w-4 sm:w-5 mr-2" src="/images/logos/home.png"> Home
 														</a>
 													</div>
 												</div>
