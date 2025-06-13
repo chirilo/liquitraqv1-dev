@@ -619,19 +619,19 @@ onMounted(() => {
 							<!-- current job selected /recent jobs -->
 							<div class="rounded-lg bg-white p-6">
 								<div id="assets-info">
-									<div class="relative flex justify-between items-start lg:flex-row flex-col-reverse">
+									<div class="relative flex justify-between items-center lg:flex-row flex-col-reverse">
 										<h1
 											class="lg:mt-0 mt-6 w-full lg:w-[50%] block text-2xl primary-light-blue font-rethinksansextrabold uppercase">
 											Edit Asset: {{ props.thisjobid }}
 										</h1>
-										<div class="lg:w-auto w-full flex justify-between">
+										<div class="lg:w-auto w-full flex justify-between items-center">
 											<a :href="backtoprevjob"
-												class="text-white py-2 px-4 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
+												class="text-white py-2 px-4 rounded-full bg-gradient-blue inline text-center text-xs sm:text-sm font-rethinksansbold hover:opacity-90 flex">
 												<img class="w-4 mr-2" src="/images/logos/back.png"> Back
 											</a>
 											<a href="/liquijobs"
-												class="text-white ml-1 py-2 px-4 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
-												<img class="w-5 mr-2" src="/images/logos/home.png"> Home
+												class="text-white ml-1 py-2 px-4 rounded-full bg-gradient-blue inline text-center text-xs sm:text-sm font-rethinksansbold hover:opacity-90 flex">
+												<img class="w-4 sm:w-5 mr-2" src="/images/logos/home.png"> Home
 											</a>
 										</div>
 									</div>

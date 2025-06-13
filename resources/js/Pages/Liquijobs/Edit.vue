@@ -342,7 +342,7 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
                                     </h1>
                                     <!-- LINK TO JOBS archive page -->
                                     <a :href="backtoprevjob"
-                                        class="text-white py-2 px-4 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
+                                        class="text-white py-2 px-4 rounded-full bg-gradient-blue inline text-center text-xs sm:text-sm font-rethinksansbold hover:opacity-90 flex">
                                         <img class="w-4 mr-2" src="/images/logos/back.png"> Back
                                     </a>
                                 </div>

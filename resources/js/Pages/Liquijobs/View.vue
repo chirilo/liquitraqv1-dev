@@ -162,6 +162,36 @@ const processocrserial = (e) => {
 		},
 	});
 };
+// MAKE UPLOAD
+const checkMake = ref(false);
+const toggleMakeUpload = (event) => {
+	if(event.target.checked === false) {
+		checkMake.value = event.target.checked;
+	}
+	else {
+		checkMake.value = event.target.checked;
+	}
+}
+// MODEL UPLOAD
+const checkModel = ref(false);
+const toggleModelUpload = (event) => {
+	if(event.target.checked === false) {
+		checkModel.value = event.target.checked;
+	}
+	else {
+		checkModel.value = event.target.checked;
+	}
+}
+// SERIAL UPLOAD
+const checkSerial = ref(false);
+const toggleSerialUpload = (event) => {
+	if(event.target.checked === false) {
+		checkSerial.value = event.target.checked;
+	}
+	else {
+		checkSerial.value = event.target.checked;
+	}
+}
 
 let isOpenFurniture = ref(false);
 let isOpenIt = ref(false);
@@ -668,32 +698,32 @@ const completejob = (id) => {
 											Job:
 											<span>{{ props.liquijobs.company_name }}</span>
 										</h1>
-										<div class="lg:w-auto w-full flex justify-between">
+										<div class="lg:w-auto w-full flex justify-between items-center">
 											<a href="/liquijobs"
-												class="text-white py-2 px-4 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
+												class="text-white py-2 px-4 rounded-full bg-gradient-blue inline text-center text-xs sm:text-sm font-rethinksansbold hover:opacity-90 flex">
 												<img class="w-4 mr-2" src="/images/logos/back.png"> Back
 											</a>
-											<div class="ml-3 flex justify-center sm:justify-end">
+											<div class="ml-3 flex justify-center sm:justify-end items-center">
 												<form @submit.prevent="completejob">
 													<input type="hidden" name="completejobindicator" value="1">
 													<button type="submit"
 														v-if="props.liquijobs.status != 'Completed' && props.userrole == 'admin'"
 														href="#"
-														class="text-white py-2 px-4 rounded-full bg-[#00afef] inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
+														class="text-white py-2 px-4 rounded-full bg-[#00afef] inline text-center text-xs sm:text-sm font-rethinksansbold hover:opacity-90 flex">
 														Complete Job
 													</button>
 												</form>
-												<div class="ml-1 flex"
+												<div class="ml-1 flex items-center"
 													v-if="props.userrole == 'admin' | props.userrole == 'owner'">
 													<a v-if="props.liquijobs.deleted_at == null"
 														:href="route('liquijobs.edit', { 'id': props.liquijobs.id })"
 														class="text-white py-2 px-2 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
-														<img class="w-5" src="/images/logos/editing.png">
+														<img class="w-4 sm:w-5" src="/images/logos/editing.png">
 													</a>
 													<a @click="deleteTrade(props.liquijobs.id)"
 														v-if="props.liquijobs.deleted_at == null && props.userrole == 'admin'"
 														class="cursor-pointer ml-1 text-white py-2 px-2 rounded-full bg-red-600 inline-block text-center text-sm font-rethinksansbold hover:opacity-90 flex">
-														<img class="w-5" src="/images/logos/trash-can.png">
+														<img class="w-4 sm:w-5" src="/images/logos/trash-can.png">
 													</a>
 												</div>
 											</div>
@@ -1023,66 +1053,80 @@ const completejob = (id) => {
 											<InputError class="mt-2 w-full lg:w-[40%]"
 												:message="formasset.errors.asset_quantity" />
 										</div>
-										<div class="flex border-divider pb-2 items-center justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
-											<InputLabel value="Add Asset Via Image Upload" class="w-full lg:w-[60%]" />
-											<div class="w-full lg:w-[40%]" >
-												<form class="lg:block flex flex-col md:flex-row justify-between lg:mt-0 mt-3" @submit.prevent="processocrmake" enctype="multipart/form-data">
-													<input class="w-full sm:w-[60%] lg:w-full" required type="file"
-														@input="formasset2.job_asset = $event.target.files[0]"
-														name="job_asset">
+										<div class="flex border-divider pb-2 items-start justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<div class="w-full lg:w-[60%] lg:mt-1">
+												<InputLabel for="asset_make" value="Make"/>
+												<div class="flex items-center gap-2">
+													<label class="switch">
+														<input type="checkbox" :checked="checkMake" @change="toggleMakeUpload" />
+														<span class="slider round"></span>
+													</label>
+													<span :class="checkMake ? 'block' : 'hidden'">Hide upload</span>
+													<span :class="!checkMake ? 'block' : 'hidden'">Add Make via image upload</span>
+												</div>
+											</div>
+											<div class="w-full lg:w-[40%] pb-2">
+												<TextInput class="px-4 py-2" id="asset_make" type="text" :placeholder="checkMake ? '' : 'ex. Simmons, Philips, Toshiba..'"
+													v-model="formasset.asset_make" required :disabled="checkMake" :class="checkMake ? 'placeholder-[#8c8c97]' : ''"/>
+												<form v-if="checkMake" class="lg:block flex flex-col md:flex-row justify-between mt-2" @submit.prevent="processocrmake" enctype="multipart/form-data">
+													<input class="w-full sm:w-[60%] lg:w-full" required type="file" @input="formasset2.job_asset = $event.target.files[0]" name="job_asset">
 													<PrimaryButton class="mt-2 md:mt-0 lg:mt-2 w-auto" :disabled="formasset2.processing">
 														<span class="text-base">Process Image</span>
 													</PrimaryButton>
 												</form>
 												<InputError class="mt-2 w-full"
-													:message="formasset.errors.asset_make" />
+														:message="formasset.errors.asset_make" />
 											</div>
 										</div>
-										<div
-											class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
-											<InputLabel for="asset_make" value="Make" class="w-full lg:w-[60%]" />
-											<TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_make" type="text"
-												placeholder="ex. Simmons, Philips, Toshiba.."
-												v-model="formasset.asset_make" required />
+										<div class="flex border-divider pb-2 items-start justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<div class="w-full lg:w-[60%] lg:mt-1">
+												<InputLabel for="asset_model" value=" Model" />
+												<div class="flex items-center gap-2">
+													<label class="switch">
+														<input type="checkbox" :checked="checkModel" @change="toggleModelUpload" />
+														<span class="slider round"></span>
+													</label>
+													<span :class="checkModel ? 'block' : 'hidden'">Hide upload</span>
+													<span :class="!checkModel ? 'block' : 'hidden'">Add Model via image upload</span>
+												</div>
+											</div>
+											<div class="w-full lg:w-[40%] pb-2">
+												<TextInput class="px-4 py-2" id="asset_model" type="text" :placeholder="checkModel ? '' : 'ex. SQ-12..'" 
+												v-model="formasset.asset_model" required :disabled="checkModel" :class="checkModel ? 'placeholder-[#8c8c97]' : ''" />
+												<form v-if="checkModel" class="lg:block flex flex-col md:flex-row justify-between mt-2" @submit.prevent="processocrmodel" enctype="multipart/form-data">
+													<input class="w-full sm:w-[60%] lg:w-full" required type="file" @input="formasset3.job_asset = $event.target.files[0]" name="job_asset" >
+													<PrimaryButton class="mt-2 md:mt-0 lg:mt-2 w-auto" :disabled="formasset3.processing">
+														<span class="text-base">Process Image</span>
+													</PrimaryButton>
+												</form>
+												<InputError class="mt-2 w-full"
+													:message="formasset.errors.asset_model" />
+											</div>
 										</div>
-										<div
-											class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
-											<InputLabel for="asset_model" value=" Model" class="w-full lg:w-[60%]" />
-											<TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_model" type="text"
-												placeholder="ex. SQ-12.." v-model="formasset.asset_model" required />
-											<p>or upload a file </p>
-											<form @submit.prevent="processocrmodel" class="mt-6 space-y-2"
-										enctype="multipart/form-data">
-											<input required type="file"
-													@input="formasset3.job_asset = $event.target.files[0]"
-													name="job_asset" class="mt-1 block w-full">
-												<PrimaryButton :disabled="formasset3.processing"
-													class="py-3 px-4 sm:w-auto w-full">
-													<span class="text-base">Process Image</span>
-												</PrimaryButton>
-											</form>
-											<InputError class="mt-2 w-full lg:w-[40%]"
-												:message="formasset.errors.asset_model" />
-										</div>
-										<div
-											class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
-											<InputLabel for="asset_serial" value=" Serial" class="w-full lg:w-[60%]" />
-											<TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_serial" type="text"
-												placeholder="ex. HFIOE18DHIN23-23" v-model="formasset.asset_serial"
-												required />
-											<p>or upload a file </p>
-											<form @submit.prevent="processocrserial" class="mt-6 space-y-2"
-										enctype="multipart/form-data">
-											<input required type="file"
-													@input="formasset4.job_asset = $event.target.files[0]"
-													name="job_asset" class="mt-1 block w-full">
-												<PrimaryButton :disabled="formasset4.processing"
-													class="py-3 px-4 sm:w-auto w-full">
-													<span class="text-base">Process Image</span>
-												</PrimaryButton>
-											</form>
-											<InputError class="mt-2 w-full lg:w-[40%]"
-												:message="formasset.errors.asset_serial" />
+										<div class="flex border-divider pb-2 items-start justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<div class="w-full lg:w-[60%] lg:mt-1">
+												<InputLabel for="asset_serial" value="Serial" />
+												<div class="flex items-center gap-2">
+													<label class="switch">
+														<input type="checkbox" :checked="checkSerial" @change="toggleSerialUpload" />
+														<span class="slider round"></span>
+													</label>
+													<span :class="checkSerial ? 'block' : 'hidden'">Hide upload</span>
+													<span :class="!checkSerial ? 'block' : 'hidden'">Add Serial via image upload</span>
+												</div>
+											</div>
+											<div class="w-full lg:w-[40%] pb-2">
+												<TextInput class="px-4 py-2" id="asset_serial" type="text" :placeholder="checkSerial ? '' : 'ex. HFIOE18DHIN23-23..'" 
+												v-model="formasset.asset_serial" required :disabled="checkSerial" :class="checkSerial ? 'placeholder-[#8c8c97]' : ''" />
+												<form v-if="checkSerial" class="lg:block flex flex-col md:flex-row justify-between mt-2" @submit.prevent="processocrmodel" enctype="multipart/form-data">
+													<input class="w-full sm:w-[60%] lg:w-full" required type="file" @input="formasset4.job_asset = $event.target.files[0]" name="job_asset" >
+													<PrimaryButton class="mt-2 md:mt-0 lg:mt-2 w-auto" :disabled="formasset4.processing">
+														<span class="text-base">Process Image</span>
+													</PrimaryButton>
+												</form>
+												<InputError class="mt-2 w-full"
+													:message="formasset.errors.asset_serial" />
+											</div>
 										</div>
 										<div
 											class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">

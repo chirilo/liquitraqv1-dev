@@ -451,13 +451,13 @@ const fulldatebasedonbrowser = monthName + " " + dayNumber + ", " + year + " - "
 							<div class="grid items-start rounded-lg bg-white p-6 mb-6">
 								<!-- recent jobs -->
 								<div id="recent-jobs">
-									<div class="relative flex justify-between items-end">
+									<div class="relative flex justify-between items-center">
 										<h3
 											class="w-[60%] block text-2xl primary-light-blue font-rethinksansextrabold uppercase">
 											Recent Jobs</h3>
 										<!-- LINK TO JOBS archive page -->
 										<a href="/liquijobs?&alljobs=1"
-											class="text-white py-2 px-4 rounded-full bg-gradient-blue inline text-center text-sm font-rethinksansbold hover:opacity-90 flex">
+											class="text-white py-2 px-4 rounded-full bg-gradient-blue inline text-center text-xs sm:text-sm font-rethinksansbold hover:opacity-90 flex">
 											View All
 										</a>
 									</div>
