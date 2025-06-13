@@ -1118,7 +1118,7 @@ const completejob = (id) => {
 											<div class="w-full lg:w-[40%] pb-2">
 												<TextInput class="px-4 py-2" id="asset_serial" type="text" :placeholder="checkSerial ? '' : 'ex. HFIOE18DHIN23-23..'" 
 												v-model="formasset.asset_serial" required :disabled="checkSerial" :class="checkSerial ? 'placeholder-[#8c8c97]' : ''" />
-												<form v-if="checkSerial" class="lg:block flex flex-col md:flex-row justify-between mt-2" @submit.prevent="processocrmodel" enctype="multipart/form-data">
+												<form v-if="checkSerial" class="lg:block flex flex-col md:flex-row justify-between mt-2" @submit.prevent="processocrserial" enctype="multipart/form-data">
 													<input class="w-full sm:w-[60%] lg:w-full" required type="file" @input="formasset4.job_asset = $event.target.files[0]" name="job_asset" >
 													<PrimaryButton class="mt-2 md:mt-0 lg:mt-2 w-auto" :disabled="formasset4.processing">
 														<span class="text-base">Process Image</span>
