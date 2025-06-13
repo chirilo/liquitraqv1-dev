@@ -127,7 +127,7 @@ const processocrmake = (e) => {
 	formasset2.post(route("ocr.make"), {
 		onSuccess: (res) => {
 			console.log(res);
-			console.log('image content make: 'res.props.jetstream.flash.message);
+			console.log('image content make: '+res.props.jetstream.flash.message);
 			document.getElementById('asset_make').value = res.props.jetstream.flash.message;
 		},
 	});
@@ -157,7 +157,7 @@ const processocrserial = (e) => {
 	formasset4.post(route("ocr.serial"), {
 		onSuccess: (res) => {
 			console.log(res);
-			console.log('image content serial: 'res.props.jetstream.flash.message);
+			console.log('image content serial: '+res.props.jetstream.flash.message);
 			document.getElementById('asset_serial').value = res.props.jetstream.flash.message;
 		},
 	});
