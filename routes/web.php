@@ -13,15 +13,40 @@ use App\Http\Controllers\AlljobsController;
 use App\Http\Controllers\OcrController;
 
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+
+
 
 
 Route::get('/', function () {
-    return Inertia::render('Auth/Login', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    $user = Auth::user();
+    //dd($user);
+    // if( $user === null ){
+    //     print_r('hre');
+    // }
+    if ( $user === null ){
+        return Inertia::render('Auth/Login', [
+            'canLogin' => Route::has('login'),
+            'canRegister' => Route::has('register'),
+            'laravelVersion' => Application::VERSION,
+            'phpVersion' => PHP_VERSION,
+        ]);
+        //return Inertia::render('Liquijobs/Index', []);
+    }
+    else{
+        //dd('here');
+        return redirect('/liquijobs');
+        //return Inertia::render('Liquijobs/Index');
+        // code...
+        // return Inertia::render('Auth/Login', [
+        //     'canLogin' => Route::has('login'),
+        //     'canRegister' => Route::has('register'),
+        //     'laravelVersion' => Application::VERSION,
+        //     'phpVersion' => PHP_VERSION,
+        // ]);
+    }
+    
 });
 
 Route::middleware([
@@ -61,3 +86,4 @@ Route::get('/search', [AlljobsController::class, 'index'])->name('search.index')
 Route::post('/ocrmake', [OcrController::class, 'make'])->name('ocr.make');
 Route::post('/ocrmodel', [OcrController::class, 'model'])->name('ocr.model');
 Route::post('/ocrserial', [OcrController::class, 'serial'])->name('ocr.serial');
+Route::post('/ocrfull', [OcrController::class, 'full'])->name('ocr.full');
