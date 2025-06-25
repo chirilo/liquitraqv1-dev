@@ -49,6 +49,28 @@ Route::get('/', function () {
     
 });
 
+Route::get('/ocr', function () {
+    $user = Auth::user();
+    //dd($user);
+    // if( $user === null ){
+    //     print_r('hre');
+    // }
+    if ( $user === null ){
+        return Inertia::render('Auth/Login', [
+            'canLogin' => Route::has('login'),
+            'canRegister' => Route::has('register'),
+            'laravelVersion' => Application::VERSION,
+            'phpVersion' => PHP_VERSION,
+        ]);
+        //return Inertia::render('Liquijobs/Index', []);
+    }
+    else{
+        //dd('here');
+        return redirect('/liquijobs');
+    }
+    
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
