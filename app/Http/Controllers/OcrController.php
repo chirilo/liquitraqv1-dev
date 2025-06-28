@@ -131,6 +131,7 @@ class OcrController extends Controller
                 $t = str_replace(' : ', '', $t);
                 $t = str_replace(' = ', '', $t);
                 $t = str_replace(' > ', '', $t);
+                 $t = str_replace(' * ', '', $t);
                 $t = str_replace('Category', '', $t);
                 $t = strtolower($t);
                 $newarray['category'] = strtolower($t);
@@ -141,6 +142,7 @@ class OcrController extends Controller
                 $t = str_replace(' : ', '', $t);
                 $t = str_replace(' = ', '', $t);
                 $t = str_replace(' > ', '', $t);
+                 $t = str_replace(' * ', '', $t);
                 $t = str_replace('Type', '', $t);
                 $t = strtolower($t);
                 $newarray['type'] = $t;
@@ -182,6 +184,7 @@ class OcrController extends Controller
                 $t = str_replace(' : ', '', $t);
                 $t = str_replace(' = ', '', $t);
                 $t = str_replace(' > ', '', $t);
+                 $t = str_replace(' * ', '', $t);
                 $t = str_replace('Quantity', '', $t);
                 $newarray['quantity'] = $t;
             }
@@ -192,6 +195,7 @@ class OcrController extends Controller
                 $t = str_replace(' : ', '', $t);
                 $t = str_replace(' = ', '', $t);
                 $t = str_replace(' > ', '', $t);
+                 $t = str_replace(' * ', '', $t);
                 $t = str_replace('WeightEach', '', $t);
                 $newarray['weighteach'] = $t;
             }
@@ -201,6 +205,7 @@ class OcrController extends Controller
                 $t = str_replace(' : ', '', $t);
                 $t = str_replace(' = ', '', $t);
                 $t = str_replace(' > ', '', $t);
+                $t = str_replace(' * ', '', $t);
                 $t = str_replace('Description', '', $t);
                 $newarray['description'] = $explodedocrtext[$k+2];
             }
@@ -211,6 +216,7 @@ class OcrController extends Controller
                 $t = str_replace(' : ', '', $t);
                 $t = str_replace(' = ', '', $t);
                 $t = str_replace(' > ', '', $t);
+                 $t = str_replace(' * ', '', $t);
                 $t = str_replace('Status', '', $t);
                 $t = strtolower($t);
                 $newarray['status'] = $t;

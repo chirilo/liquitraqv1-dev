@@ -180,29 +180,11 @@ const processocrfull = (e) => {
 			// assign
 			jetstreamresponseobj = res;
 			console.log('jetstreamresponseobjinside'+jetstreamresponseobj);
-			alert(res.props.jetstream.flash.message.category);
+			//alert(res.props.jetstream.flash.message.category);
 
-			const category = res.props.jetstream.flash.message.category;
-			const type = res.props.jetstream.flash.message.type;
-			const quantity = res.props.jetstream.flash.message.quantity;
-			const make = res.props.jetstream.flash.message.make;
-			const model = res.props.jetstream.flash.message.model;
-			const serial = res.props.jetstream.flash.message.serial;
-			const weighteach = res.props.jetstream.flash.message.weighteach;
-			const description = res.props.jetstream.flash.message.description;
-			const status = res.props.jetstream.flash.message.status;
-
-			// 
-			document.getElementById('typex').value = res.props.jetstream.flash.message.category;
-
-
-
-
+			// for the main Category select
 			clickCategorySelect(res.props.jetstream.flash.message.category, res.props.jetstream.flash.message.type);
-			//assetCategoryClickEvent(res.props.jetstream.flash.message.category, res.props.jetstream.flash.message.type);
-
-			// document.getElementById('typex').value = res.props.jetstream.flash.message.category;
-			// document.getElementById('typex').options[2].setAttribute('selected', 'selected');
+			
 
 			document.getElementById('asset_quantity').value = res.props.jetstream.flash.message.quantity;
 			document.getElementById('asset_make').value = res.props.jetstream.flash.message.make;
@@ -210,7 +192,11 @@ const processocrfull = (e) => {
 			document.getElementById('asset_serial').value = res.props.jetstream.flash.message.serial;
 			document.getElementById('asset_weight_each').value = res.props.jetstream.flash.message.weighteach;
 			document.getElementById('asset_description').value = res.props.jetstream.flash.message.description;
-			document.getElementById('asset_status').value = res.props.jetstream.flash.message.status;
+
+			// for main Status select
+			clickStatusSelect(res.props.jetstream.flash.message.status);
+			//document.getElementById('asset_status').value = res.props.jetstream.flash.message.status;
+
 			
 
 			//document.getElementById('asset_serial').value = res.props.jetstream.flash.message;
@@ -277,17 +263,39 @@ const clickCategorySelect = (cat, type) => {
 
 		
 		const txt = document.querySelector('#infrastructure_asset_type [value="infrastructure-'+type+'"]').selected = 'selected';
+		elsss.dispatchEvent(new Event('change'));
+		assettypediv.dispatchEvent(new Event('change'));
+		//txt.dispatchEvent(new Event('change'));
+	}
+	else if( cat == 'furniture') {
+		const elsss = document.getElementById('furniture_asset_type');
+		elsss.classList.remove("hidden");
+		assettypediv.classList.remove("hidden");
 
-		const statusmainselect = document.getElementById('asset_status_main');
-		const statustxt = document.querySelector('#asset_status_main [value="completed"]').selected = 'selected';
-		statusmainselect.dispatchEvent(new Event('change'));
+		
+		const txt = document.querySelector('#furniture_asset_type [value="furniture-'+type+'"]').selected = 'selected';
+		elsss.dispatchEvent(new Event('change'));
+		assettypediv.dispatchEvent(new Event('change'));
+		//txt.dispatchEvent(new Event('change'));
+	}
+	else if( cat == 'it') {
+		const elsss = document.getElementById('it_asset_type');
+		elsss.classList.remove("hidden");
+		assettypediv.classList.remove("hidden");
 
-
+		
+		const txt = document.querySelector('#it_asset_type [value="it-'+type+'"]').selected = 'selected';
 		elsss.dispatchEvent(new Event('change'));
 		assettypediv.dispatchEvent(new Event('change'));
 		//txt.dispatchEvent(new Event('change'));
 	}
 
+}
+
+const clickStatusSelect = (status) => {
+	const statusmainselect = document.getElementById('asset_status_main');
+	const statustxt = document.querySelector('#asset_status_main [value="'+status+'"]').selected = 'selected';
+	statusmainselect.dispatchEvent(new Event('change'));
 }
 
 // MAKE UPLOAD
