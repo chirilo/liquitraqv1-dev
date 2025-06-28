@@ -17,7 +17,7 @@ import RecentJobs from '@/Components/RecentJobs.vue';
 import JobsLastSevenDays from '@/Components/JobsLastSevenDays.vue';
 import UpcomingJobs from '@/Components/UpcomingJobs.vue';
 
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import moment from "moment";
 
 import axios from 'axios';
@@ -162,6 +162,133 @@ const processocrserial = (e) => {
 		},
 	});
 };
+
+
+// full form
+const formasset5 = useForm({
+	job_asset: '',
+});
+
+let jetstreamresponseobj;
+const processocrfull = (e) => {
+	e.preventDefault();
+	formasset5.post(route("ocr.full"), {
+		onSuccess: (res) => {
+			console.log('res here'+res);
+			console.log('image content full: '+res.props.jetstream.flash.message);
+
+			// assign
+			jetstreamresponseobj = res;
+			console.log('jetstreamresponseobjinside'+jetstreamresponseobj);
+
+			const category = res.props.jetstream.flash.message.category;
+			const type = res.props.jetstream.flash.message.type;
+			const quantity = res.props.jetstream.flash.message.quantity;
+			const make = res.props.jetstream.flash.message.make;
+			const model = res.props.jetstream.flash.message.model;
+			const serial = res.props.jetstream.flash.message.serial;
+			const weighteach = res.props.jetstream.flash.message.weighteach;
+			const description = res.props.jetstream.flash.message.description;
+			const status = res.props.jetstream.flash.message.status;
+
+			// 
+			document.getElementById('typex').value = res.props.jetstream.flash.message.category;
+
+
+
+
+			clickCategorySelect(res.props.jetstream.flash.message.category, res.props.jetstream.flash.message.type);
+			//assetCategoryClickEvent(res.props.jetstream.flash.message.category, res.props.jetstream.flash.message.type);
+
+			// document.getElementById('typex').value = res.props.jetstream.flash.message.category;
+			// document.getElementById('typex').options[2].setAttribute('selected', 'selected');
+
+			document.getElementById('asset_quantity').value = res.props.jetstream.flash.message.quantity;
+			document.getElementById('asset_make').value = res.props.jetstream.flash.message.make;
+			document.getElementById('asset_model').value = res.props.jetstream.flash.message.model;
+			document.getElementById('asset_serial').value = res.props.jetstream.flash.message.serial;
+			document.getElementById('asset_weight_each').value = res.props.jetstream.flash.message.weighteach;
+			document.getElementById('asset_description').value = res.props.jetstream.flash.message.description;
+			document.getElementById('asset_status').value = res.props.jetstream.flash.message.status;
+			
+
+			//document.getElementById('asset_serial').value = res.props.jetstream.flash.message;
+		},
+	});
+};
+// end of full form
+
+onMounted(() => {
+
+	// if( props.jetstream ){
+	// 	alert('here')
+	// 	document.getElementById('type').click();
+	// }
+    // this.$nextTick(() => {
+	   
+	//  });
+
+	//clickCategorySelect(cat, type);
+	//alert('aaaaaa')
+	//document.getElementById('type').click();
+	//console.log('jetstreamresponseobj'+jetstreamresponseobj);
+
+	anotherRandomFunction();
+});
+
+// call this onMounted
+
+function anotherRandomFunction() {
+    // const elem = this.$refs.assetCategorySelect
+    // elem.click();
+    // var elem = document.getElementById('type').$refs.myBtn
+    // elem.click()
+    //document.getElementById('type').click()
+}
+
+function assetCategoryClickEvent(cat, type){
+	//document.getElementById('type').value = cat;
+	console.log('cassst'+cat);
+	console.log('typsssse'+type)
+}
+
+const clickCategorySelect = (cat, type) => {
+
+	// process the triggering of category and type select dropdowns based on passed parameters
+	console.log('cat'+cat);
+	console.log('type'+type)
+
+	/* for the main category dropdown select */
+	const catmainselect = document.getElementById('asset_category');
+	catmainselect.style.display = 'block';
+	const selectedcat = document.querySelector('#asset_category [value="'+cat+'"]').selected = 'selected';
+	// fire the change event manually
+	catmainselect.dispatchEvent(new Event('change'));
+	/* END OF - for the main category dropdown select */
+
+	
+
+	const assettypediv = document.getElementById('assettypediv');
+	if( cat == 'infrastructure') {
+		const elsss = document.getElementById('infrastructure_asset_type');
+		elsss.classList.remove("hidden");
+		assettypediv.classList.remove("hidden");
+
+		
+		const txt = document.querySelector('#infrastructure_asset_type [value="infrastructure-'+type+'"]').selected = 'selected';
+
+		const statusmainselect = document.getElementById('asset_status_main');
+		const statustxt = document.querySelector('#asset_status_main [value="completed"]').selected = 'selected';
+		statusmainselect.dispatchEvent(new Event('change'));
+
+
+		elsss.dispatchEvent(new Event('change'));
+		assettypediv.dispatchEvent(new Event('change'));
+		//txt.dispatchEvent(new Event('change'));
+	}
+
+}
+
 // MAKE UPLOAD
 const checkMake = ref(false);
 const toggleMakeUpload = (event) => {
@@ -905,23 +1032,380 @@ const completejob = (id) => {
 										Add New Asset
 									</h2>
 									<!-- <a v-bind:href="liquiassetsurl" class="text-white py-3 px-4 rounded-full bg-gradient-blue block sm:inline-block text-center font-rethinksansbold hover:opacity-90">Add Asset</a>  -->
-									<!-- <a @click="openAssetForm" class="text-white py-3 px-4 rounded-full bg-gradient-blue block sm:inline-block text-center font-rethinksansbold hover:opacity-90">Add Asset</a>  -->
+									<a @click="openAssetForm" class="text-white py-3 px-4 rounded-full bg-gradient-blue block sm:inline-block text-center font-rethinksansbold hover:opacity-90 mt-2" title="Upload a picture with serial, make, model and other details. Uploaded image will be converted to text so you can skip on manually adding it in the form.">Add Via Image Upload</a> 
 								</div>
 								<!-- add asset form from create.vue(asset) -->
 								<!-- <section :class="isOpenForm ? 'block' : 'hidden' "> -->
 								<div>
-									<form @submit.prevent="submitaddasset" class="mt-6 space-y-2"
+									<div id="fullformdiv" :class="isOpenForm ? 'block' : 'hidden' ">
+										<form id="fullform" @submit.prevent="processocrfull" class="mt-6 space-y-2" enctype="multipart/form-data">
+											<div class="w-full lg:w-[40%] pb-2">
+												
+												<!-- <form class="lg:block flex flex-col md:flex-row justify-between mt-2" @submit.prevent="processocrmake" > -->
+													<input class="w-full sm:w-[60%] lg:w-full" required type="file" @input="formasset5.job_asset = $event.target.files[0]" name="job_asset">
+													<PrimaryButton class="mt-2 md:mt-0 lg:mt-2 w-auto" :disabled="formasset5.processing">
+														<span class="text-base">Process Image Full</span>
+													</PrimaryButton>
+												<!-- </form> -->
+												<InputError class="mt-2 w-full"
+														:message="formasset5.errors.asset_make" />
+											</div>
+										</form>
+										<hr style="margin: 2em 0em 2.5em 0em;" />
+									</div>
+
+									<form id="manualform2" @submit.prevent="submitaddasset" class="mt-6 space-y-2"
 										enctype="multipart/form-data">
 										<!-- Asset Details Form Fields -->
 										<div
 											class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
 											<InputLabel for="asset_category" value="Category"
 												class="w-full lg:w-[60%]" />
-											<select v-model="formasset.asset_category" id="type"
+											<select v-model="formasset.asset_category" id="asset_category"
 												class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
 												name="asset_category" required @change="openMenuSelect">
-												<option class="text-base md:text-xs lg:text-base" value="" disabled
-													hidden>
+												<option class="text-base md:text-xs lg:text-base" disabled value="">
+													Select Category</option>
+												<option class="text-base md:text-xs lg:text-base" value="it">IT</option>
+												<option class="text-base md:text-xs lg:text-base"
+													value="infrastructure">
+													Infrastructure</option>
+												<option class="text-base md:text-xs lg:text-base" value="furniture">
+													Furniture
+												</option>
+											</select>
+											<InputError class="mt-2 w-full lg:w-[40%]"
+												:message="formasset.errors.asset_category" />
+										</div>
+										<div id="assettypediv"
+											class="hidden flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<InputLabel for="asset_type" value="Type" class="w-full lg:w-[60%]" />
+											<select v-model="formasset.asset_type" id="furniture_asset_type"
+												class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+												name="asset_type" :class="isOpenFurniture ? 'block' : 'hidden'">
+												<optgroup class="text-base md:text-xs lg:text-base" label="Furniture">
+													<option class="text-base md:text-xs lg:text-base" value="" selected
+														disabled hidden>Select Furniture Type
+													</option>
+													<option class="text-base md:text-xs lg:text-base"
+														value="furniture-cubicle">
+														Cubicle</option>
+													<option class="text-base md:text-xs lg:text-base"
+														value="furniture-casegood">Case Good</option>
+													<option class="text-base md:text-xs lg:text-base"
+														value="furniture-chair">
+														Chair</option>
+													<option class="text-base md:text-xs lg:text-base"
+														value="furniture-wallhanging">Wall Hanging</option>
+													<option class="text-base md:text-xs lg:text-base"
+														value="furniture-appliance">Appliance</option>
+													<option class="text-base md:text-xs lg:text-base"
+														value="furniture-others">
+														Others</option>
+												</optgroup>
+											</select>
+											<select v-model="formasset.asset_type" id="it_asset_type"
+												class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+												name="asset_type" :class="isOpenIt ? 'block' : 'hidden'">
+												<optgroup class="text-base md:text-xs lg:text-base" label="IT">
+													<option class="text-base md:text-xs lg:text-base" value="" selected
+														disabled hidden>Select IT Type</option>
+													<option class="text-base md:text-xs lg:text-base"
+														value="it-networkgear">
+														Network Gear</option>
+													<option class="text-base md:text-xs lg:text-base"
+														value="it-servers">Servers
+													</option>
+													<option class="text-base md:text-xs lg:text-base" value="it-pcs">PCs
+													</option>
+													<option class="text-base md:text-xs lg:text-base"
+														value="it-laptops">Laptops
+													</option>
+													<option class="text-base md:text-xs lg:text-base" value="it-rack">
+														Rack
+													</option>
+													<option class="text-base md:text-xs lg:text-base"
+														value="it-telecom">Telecom
+													</option>
+													<option class="text-base md:text-xs lg:text-base"
+														value="it-monitors">
+														Monitors</option>
+													<option class="text-base md:text-xs lg:text-base" value="it-camera">
+														Camera
+													</option>
+													<option class="text-base md:text-xs lg:text-base"
+														value="it-printers">
+														Printers</option>
+													<option class="text-base md:text-xs lg:text-base" value="it-others">
+														Others
+													</option>
+												</optgroup>
+											</select>
+											<select v-model="formasset.asset_type" id="infrastructure_asset_type"
+												class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+												name="asset_type" :class="isOpenInfrastructure ? 'block' : 'hidden'">
+												<optgroup class="text-base md:text-xs lg:text-base"
+													label="Infrastructure">
+													<option class="text-base md:text-xs lg:text-base" value=""
+														disabled hidden>Select Infrastructure Type
+													</option>
+													<option class="text-base md:text-xs lg:text-base"
+														value="infrastructure-generator">Generator</option>
+													<option class="text-base md:text-xs lg:text-base"
+														value="infrastructure-cracunit">CRAC Unit</option>
+													<option class="text-base md:text-xs lg:text-base"
+														value="infrastructure-ups">UPS</option>
+													<option class="text-base md:text-xs lg:text-base"
+														value="infrastructure-ats">ATS</option>
+													<option class="text-base md:text-xs lg:text-base"
+														value="infrastructure-bypass">Bypass</option>
+													<option class="text-base md:text-xs lg:text-base"
+														value="infrastructure-switchgear">Switchgear</option>
+													<option class="text-base md:text-xs lg:text-base"
+														value="infrastructure-batteries">Batteries</option>
+													<option class="text-base md:text-xs lg:text-base"
+														value="infrastructure-wiringlowvoltage">Wiring, Low-Voltage
+													</option>
+													<option class="text-base md:text-xs lg:text-base"
+														value="infrastructure-wiringhighvoltage">Wiring,
+														High-Voltage
+													</option>
+													<option class="text-base md:text-xs lg:text-base"
+														value="infrastructure-firesuppressant">Fire Suppressant
+													</option>
+													<option class="text-base md:text-xs lg:text-base"
+														value="infrastructure-raisedflooring">Raised Flooring
+													</option>
+													<option class="text-base md:text-xs lg:text-base"
+														value="infrastructure-paintchemical">Paint/Chemical</option>
+													<option class="text-base md:text-xs lg:text-base"
+														value="infrastructure-others">Others</option>
+												</optgroup>
+											</select>
+											<InputError class="mt-2 w-full lg:w-[40%]"
+												:message="formasset.errors.asset_type" />
+											<div class="w-[40%]"></div>
+										</div>
+										<div
+											class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<InputLabel for="asset_quantity" value="Quantity"
+												class="w-full lg:w-[60%]" />
+											<TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_quantity"
+												type="number" placeholder="Quantity" v-model="formasset.asset_quantity"
+												required />
+											<InputError class="mt-2 w-full lg:w-[40%]"
+												:message="formasset.errors.asset_quantity" />
+										</div>
+										<div class="flex border-divider pb-2 items-start justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<div class="w-full lg:w-[60%] lg:mt-1">
+												<InputLabel for="asset_make" value="Make"/>
+												<div class="flex items-center gap-2 hidden">
+													<label class="switch">
+														<input type="checkbox" :checked="checkMake" @change="toggleMakeUpload" />
+														<span class="slider round"></span>
+													</label>
+													<span :class="checkMake ? 'block' : 'hidden'">Hide upload</span>
+													<span :class="!checkMake ? 'block' : 'hidden'">Add Make via image upload</span>
+												</div>
+											</div>
+											<div class="w-full lg:w-[40%] pb-2">
+												<TextInput class="px-4 py-2" id="asset_make" type="text" :placeholder="checkMake ? '' : 'ex. Simmons, Philips, Toshiba..'"
+													v-model="formasset.asset_make" required :disabled="checkMake" :class="checkMake ? 'placeholder-[#8c8c97]' : ''"/>
+												<form v-if="checkMake" class="lg:block flex flex-col md:flex-row justify-between mt-2" @submit.prevent="processocrmake" enctype="multipart/form-data">
+													<input class="w-full sm:w-[60%] lg:w-full" required type="file" @input="formasset2.job_asset = $event.target.files[0]" name="job_asset">
+													<PrimaryButton class="mt-2 md:mt-0 lg:mt-2 w-auto" :disabled="formasset2.processing">
+														<span class="text-base">Process Image</span>
+													</PrimaryButton>
+												</form>
+												<InputError class="mt-2 w-full"
+														:message="formasset.errors.asset_make" />
+											</div>
+										</div>
+										<div class="flex border-divider pb-2 items-start justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<div class="w-full lg:w-[60%] lg:mt-1">
+												<InputLabel for="asset_model" value=" Model" />
+												<div class="flex items-center gap-2 hidden">
+													<label class="switch">
+														<input type="checkbox" :checked="checkModel" @change="toggleModelUpload" />
+														<span class="slider round"></span>
+													</label>
+													<span :class="checkModel ? 'block' : 'hidden'">Hide upload</span>
+													<span :class="!checkModel ? 'block' : 'hidden'">Add Model via image upload</span>
+												</div>
+											</div>
+											<div class="w-full lg:w-[40%] pb-2">
+												<TextInput class="px-4 py-2" id="asset_model" type="text" :placeholder="checkModel ? '' : 'ex. SQ-12..'" 
+												v-model="formasset.asset_model" required :disabled="checkModel" :class="checkModel ? 'placeholder-[#8c8c97]' : ''" />
+												<form v-if="checkModel" class="lg:block flex flex-col md:flex-row justify-between mt-2" @submit.prevent="processocrmodel" enctype="multipart/form-data">
+													<input class="w-full sm:w-[60%] lg:w-full" required type="file" @input="formasset3.job_asset = $event.target.files[0]" name="job_asset" >
+													<PrimaryButton class="mt-2 md:mt-0 lg:mt-2 w-auto" :disabled="formasset3.processing">
+														<span class="text-base">Process Image</span>
+													</PrimaryButton>
+												</form>
+												<InputError class="mt-2 w-full"
+													:message="formasset.errors.asset_model" />
+											</div>
+										</div>
+										<div class="flex border-divider pb-2 items-start justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<div class="w-full lg:w-[60%] lg:mt-1">
+												<InputLabel for="asset_serial" value="Serial" />
+												<div class="flex items-center gap-2 hidden">
+													<label class="switch">
+														<input type="checkbox" :checked="checkSerial" @change="toggleSerialUpload" />
+														<span class="slider round"></span>
+													</label>
+													<span :class="checkSerial ? 'block' : 'hidden'">Hide upload</span>
+													<span :class="!checkSerial ? 'block' : 'hidden'">Add Serial via image upload</span>
+												</div>
+											</div>
+											<div class="w-full lg:w-[40%] pb-2">
+												<TextInput class="px-4 py-2" id="asset_serial" type="text" :placeholder="checkSerial ? '' : 'ex. HFIOE18DHIN23-23..'" 
+												v-model="formasset.asset_serial" required :disabled="checkSerial" :class="checkSerial ? 'placeholder-[#8c8c97]' : ''" />
+												<form v-if="checkSerial" class="lg:block flex flex-col md:flex-row justify-between mt-2" @submit.prevent="processocrserial" enctype="multipart/form-data">
+													<input class="w-full sm:w-[60%] lg:w-full" required type="file" @input="formasset4.job_asset = $event.target.files[0]" name="job_asset" >
+													<PrimaryButton class="mt-2 md:mt-0 lg:mt-2 w-auto" :disabled="formasset4.processing">
+														<span class="text-base">Process Image</span>
+													</PrimaryButton>
+												</form>
+												<InputError class="mt-2 w-full"
+													:message="formasset.errors.asset_serial" />
+											</div>
+										</div>
+										<div
+											class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<InputLabel for="asset_weight_each" value="Weight Each"
+												class="w-full lg:w-[60%]" />
+											<TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_weight_each"
+												type="text" placeholder="ex. 12 lbs"
+												v-model="formasset.asset_weight_each" required />
+											<InputError class="mt-2 w-full lg:w-[40%]"
+												:message="formasset.errors.asset_weight_each" />
+										</div>
+										<div
+											class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<InputLabel for="asset_description" value="Description"
+												class="w-full lg:w-[60%]" />
+											<TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_description"
+												type="text" placeholder="Description"
+												v-model="formasset.asset_description" required />
+											<InputError class="mt-2 w-full lg:w-[40%]"
+												:message="formasset.errors.asset_description" />
+										</div>
+										<div
+											class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<InputLabel for="asset_status" value="Status" class="w-full lg:w-[60%]" />
+											<select v-model="formasset.asset_status" id="asset_status_main"
+												class="w-full lg:w-[40%] px-4 py-2 sm:mt-0 mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+												name="asset_status" required @change="openStatusMenuSelect">
+												<option class="text-base md:text-xs lg:text-base" value=""
+													disabled hidden>Select Status</option>
+												<option class="text-base md:text-xs lg:text-base" value="originalstate">
+													Original
+													State</option>
+												<option class="text-base md:text-xs lg:text-base"
+													value="workinprogress">Work In
+													Progress</option>
+												<option class="text-base md:text-xs lg:text-base" value="completed">
+													Completed
+												</option>
+											</select>
+										</div>
+
+										<div id="assetdispositiondiv"
+											class="hidden flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<InputLabel for="asset_disposition" value="Asset Disposition"
+												class="w-full lg:w-[60%]" />
+
+											<select v-model="formasset.asset_disposition" id="asset_status"
+												class="w-full lg:w-[40%] px-4 py-2 sm:mt-0 mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+												name="asset_status" @change="openAssetStatusMiniForm">
+												<option class="text-base md:text-xs lg:text-base" value="" selected
+													disabled hidden>Select Disposition</option>
+												<option class="text-base md:text-xs lg:text-base" value="resold">Resold
+												</option>
+												<option class="text-base md:text-xs lg:text-base" value="recycled">
+													Recycled
+												</option>
+												<option class="text-base md:text-xs lg:text-base" value="disposed">
+													Disposed
+												</option>
+												<option class="text-base md:text-xs lg:text-base" value="returned">
+													Returned
+												</option>
+											</select>
+
+
+											<div class="w-full lg:w-[70%] float-none md:float-right mt-3">
+												<div id="resold"
+													class="hidden flex sm:flex-row flex-col justify-end gap-1">
+													<input v-model="formasset.assetdisdate"
+														class="p-2 w-full lg:w-[25%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none"
+														type="date" name="assetdisdate" placeholder="Date" />
+													<input v-model="formasset.assetdiswho"
+														class="p-2 w-full lg:w-[25%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none"
+														type="text" name="assetdiswho" placeholder="Who" />
+													<input v-model="formasset.assetdisticketshippinginfo"
+														class="p-2 w-full lg:w-[40%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none"
+														type="text" name="assetdisticketshippinginfo"
+														placeholder="Shipping/Ticket Info" />
+												</div>
+												
+											</div>
+
+											<InputError class="mt-2 w-full lg:w-[40%]"
+												:message="formasset.errors.asset_status" />
+										</div>
+										<!-- END OF : Asset Details Form Fields -->
+										<div
+											class="flex items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<div class="mt-6 sm:w-[60%] w-full flex flex-col">
+												<InputLabel for="job_asset" value="Job Asset"
+													class="w-full lg:w-[60%]" />
+												<!-- <input type="file" @input="form.avatar = $event.target.files[0]" name="job_asset" class="mt-1 block w-full" v-on:change="onImageChange" > -->
+												<input required type="file"
+													@input="formasset.job_asset = $event.target.files[0]"
+													name="job_asset" class="mt-1 block w-full">
+												<input type="hidden" name="job_id" v-model="formasset.jobid">
+												<InputError class="mt-2 w-full lg:w-[40%]"
+													:message="formasset.errors.job_asset" />
+											</div>
+											<div
+												class="sm:w-[40%] w-full flex sm:justify-end justify-start sm:mt-0 mt-6">
+												<PrimaryButton :disabled="form.processing"
+													class="py-3 px-4 sm:w-auto w-full">
+													<span class="text-base">Go</span> <svg
+														class="size-6 shrink-0 stroke-[#FFFFFF]"
+														xmlns="http://www.w3.org/2000/svg" fill="none"
+														viewBox="0 0 24 24" stroke-width="1.5"
+														style="display: inline; float: inline-end; margin-left: 5px;">
+														<path stroke-linecap="round" stroke-linejoin="round"
+															d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"></path>
+													</svg>
+												</PrimaryButton>
+												<Transition enter-active-class="transition ease-in-out"
+													enter-from-class="opacity-0"
+													leave-active-class="transition ease-in-out"
+													leave-to-class="opacity-0">
+													<p v-if="formasset.recentlySuccessful"
+														class="text-sm text-gray-600">Saved.
+													</p>
+												</Transition>
+											</div>
+										</div>
+									</form>
+
+									<!-- temporarily hidden, this form contains the OCR solo for make, model and serial -->
+									<form id="manualform" @submit.prevent="submitaddasset" class="hidden mt-6 space-y-2"
+										enctype="multipart/form-data">
+										<!-- Asset Details Form Fields -->
+										<div
+											class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
+											<InputLabel for="asset_category" value="Category"
+												class="w-full lg:w-[60%]" />
+											<select ref="myBtn" @click="assetCategoryClickEvent" v-model="formasset.asset_category" id="typex"
+												class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
+												name="asset_category" required @change="openMenuSelect">
+												<option class="text-base md:text-xs lg:text-base">
 													Select Category</option>
 												<option class="text-base md:text-xs lg:text-base" value="it">IT</option>
 												<option class="text-base md:text-xs lg:text-base"
@@ -1154,7 +1638,7 @@ const completejob = (id) => {
 											<select v-model="formasset.asset_status" id="asset_status"
 												class="w-full lg:w-[40%] px-4 py-2 sm:mt-0 mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
 												name="asset_status" required @change="openStatusMenuSelect">
-												<option class="text-base md:text-xs lg:text-base" value="" selected
+												<option class="text-base md:text-xs lg:text-base" value=""
 													disabled hidden>Select Status</option>
 												<option class="text-base md:text-xs lg:text-base" value="originalstate">
 													Original
@@ -1267,6 +1751,8 @@ const completejob = (id) => {
 											</div>
 										</div>
 									</form>
+
+									
 								</div>
 								<!-- end of add assset -->
 							</div>

@@ -33,9 +33,9 @@ const props = defineProps({
 	currentdatetime: String,
 });
 
-const filters = {
-	filter: props.filters.filter,
-}
+// const filters = {
+// 	filter: props.filters.filter,
+// }
 //const form = useForm(filters);
 
 const deleteTrade = (id) => {
