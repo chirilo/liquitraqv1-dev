@@ -127,43 +127,80 @@ class OcrController extends Controller
         $newarray = [];
         foreach( $explodedocrtext as $k => $t ){
             if( str_contains($t, 'Category') ){
-                $t = str_replace('Category =: ', '', $t);
+               // $t = str_replace(' ', '', $t);
+                $t = str_replace(' : ', '', $t);
+                $t = str_replace(' = ', '', $t);
+                $t = str_replace(' > ', '', $t);
+                $t = str_replace('Category', '', $t);
                 $t = strtolower($t);
                 $newarray['category'] = strtolower($t);
             }
 
             if( str_contains($t, 'Type') ){
-                $t = str_replace('Type : ', '', $t);
+                //$t = str_replace(' ', '', $t);
+                $t = str_replace(' : ', '', $t);
+                $t = str_replace(' = ', '', $t);
+                $t = str_replace(' > ', '', $t);
+                $t = str_replace('Type', '', $t);
                 $t = strtolower($t);
                 $newarray['type'] = $t;
             }
 
             if( str_contains($t, 'Make') ){
                 $t = str_replace('Make : ', '', $t);
+                //$t = str_replace(' ', '', $t);
+                $t = str_replace(' : ', '', $t);
+                $t = str_replace(' = ', '', $t);
+                $t = str_replace(' > ', '', $t);
+                $t = str_replace('Make', '', $t);
                 $newarray['make'] = $t;
             }
 
             if( str_contains($t, 'Model') ){
                 $t = str_replace('Model : ', '', $t);
+               // $t = str_replace(' ', '', $t);
+                $t = str_replace(' : ', '', $t);
+                $t = str_replace(' = ', '', $t);
+                $t = str_replace(' > ', '', $t);
+                $t = str_replace('Model', '', $t);
                 $newarray['model'] = $t;
             }
 
             if( str_contains($t, 'Serial') ){
                 $t = str_replace('Serial >  ', '', $t);
+                //$t = str_replace(' ', '', $t);
+                $t = str_replace(' : ', '', $t);
+                $t = str_replace(' = ', '', $t);
+                $t = str_replace(' > ', '', $t);
+                $t = str_replace('Serial', '', $t);
                 $newarray['serial'] = $t;
             }
 
             if( str_contains($t, 'Quantity') ){
                 $t = str_replace('Quantity 2 ', '', $t);
+                //$t = str_replace(' ', '', $t);
+                $t = str_replace(' : ', '', $t);
+                $t = str_replace(' = ', '', $t);
+                $t = str_replace(' > ', '', $t);
+                $t = str_replace('Quantity', '', $t);
                 $newarray['quantity'] = $t;
             }
 
             if( str_contains($t, 'WeightEach') ){
                 $t = str_replace('WeightEach : ', '', $t);
+                //$t = str_replace(' ', '', $t);;
+                $t = str_replace(' : ', '', $t);
+                $t = str_replace(' = ', '', $t);
+                $t = str_replace(' > ', '', $t);
+                $t = str_replace('WeightEach', '', $t);
                 $newarray['weighteach'] = $t;
             }
 
             if( str_contains($t, 'Description') ){
+                $t = str_replace('Description', '', $t);
+                $t = str_replace(' : ', '', $t);
+                $t = str_replace(' = ', '', $t);
+                $t = str_replace(' > ', '', $t);
                 $t = str_replace('Description', '', $t);
                 $newarray['description'] = $explodedocrtext[$k+2];
             }
@@ -171,6 +208,10 @@ class OcrController extends Controller
             if( str_contains($t, 'Status') ){
                 $t = str_replace('Status : ', '', $t);
                 $t = str_replace(' ', '', $t);
+                $t = str_replace(' : ', '', $t);
+                $t = str_replace(' = ', '', $t);
+                $t = str_replace(' > ', '', $t);
+                $t = str_replace('Status', '', $t);
                 $t = strtolower($t);
                 $newarray['status'] = $t;
             }

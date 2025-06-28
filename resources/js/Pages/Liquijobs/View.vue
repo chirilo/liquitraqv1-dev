@@ -180,6 +180,7 @@ const processocrfull = (e) => {
 			// assign
 			jetstreamresponseobj = res;
 			console.log('jetstreamresponseobjinside'+jetstreamresponseobj);
+			alert(res.props.jetstream.flash.message.category);
 
 			const category = res.props.jetstream.flash.message.category;
 			const type = res.props.jetstream.flash.message.type;
@@ -255,8 +256,8 @@ function assetCategoryClickEvent(cat, type){
 const clickCategorySelect = (cat, type) => {
 
 	// process the triggering of category and type select dropdowns based on passed parameters
-	console.log('cat'+cat);
-	console.log('type'+type)
+	console.log('catxxx'+cat);
+	console.log('typexxx'+type)
 
 	/* for the main category dropdown select */
 	const catmainselect = document.getElementById('asset_category');
