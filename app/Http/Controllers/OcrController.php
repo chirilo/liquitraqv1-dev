@@ -131,10 +131,20 @@ class OcrController extends Controller
                 $t = str_replace(' : ', '', $t);
                 $t = str_replace(' = ', '', $t);
                 $t = str_replace(' > ', '', $t);
-                 $t = str_replace(' * ', '', $t);
+                $t = str_replace(' * ', '', $t);
+                $t = str_replace("'", '', $t);
                 $t = str_replace('Category', '', $t);
                 $t = strtolower($t);
-                $newarray['category'] = strtolower($t);
+                if( str_contains($t, 'infrastructure') ){
+                    $t = 'infrastructure';
+                }
+                else if ( str_contains($t, 'furniture') ) {
+                    $t = 'furniture';
+                }
+                else if ( str_contains($t, 'it') ) {
+                    $t = 'it';
+                }
+                $newarray['category'] = $t;
             }
 
             if( str_contains($t, 'Type') ){
