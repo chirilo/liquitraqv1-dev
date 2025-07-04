@@ -120,6 +120,7 @@ class OcrController extends Controller
 
         $ocrText = OCR::scan($imagePath);
 
+        //dd($ocrText);
         $explodedocrtext = explode("\n", $ocrText);
 
 
@@ -226,11 +227,63 @@ class OcrController extends Controller
                 $t = str_replace(' : ', '', $t);
                 $t = str_replace(' = ', '', $t);
                 $t = str_replace(' > ', '', $t);
-                 $t = str_replace(' * ', '', $t);
+                $t = str_replace(' * ', '', $t);
                 $t = str_replace('Status', '', $t);
                 $t = strtolower($t);
                 $newarray['status'] = $t;
             }
+
+            // for extended readings of ocr
+            if( str_contains($t, 'Infrastructure') || str_contains($t, 'furniture') || str_contains($t, 'IT') ){
+                $newarray['category'] = strtolower($t);
+            }
+            if( str_contains($t, 'Work In Progress') || str_contains($t, 'Original State') || str_contains($t, 'Completed') ){
+                $t = str_replace(' ', '', $t);
+                $newarray['status'] = strtolower($t);
+            }
+
+            // if( $k > 25 ){
+            //     dd($k);
+            //     if($k == 20 ){
+            //         $newarray['type'] = $explodedocrtext[$k];
+            //     }
+                
+            // }
+            if( count($explodedocrtext) > 25 ){
+                if($k == 20 ){
+                    $explodedocrtext[$k] = strtolower($explodedocrtext[$k]);
+                    $explodedocrtext[$k] = str_replace(',', '', $explodedocrtext[$k]);
+                    $explodedocrtext[$k] = str_replace('-', '', $explodedocrtext[$k]);
+                    $explodedocrtext[$k] = str_replace(' ', '', $explodedocrtext[$k]);
+                    //$explodedocrtext[$k] = str_replace(',', '', $explodedocrtext[$k]);
+                    $newarray['type'] = $explodedocrtext[$k];
+                }
+
+                if($k == 22 ){
+                    $newarray['quantity'] = $explodedocrtext[$k];
+                }
+
+                if($k == 24 ){
+                    $newarray['make'] = $explodedocrtext[$k];
+                }
+
+                if($k == 26 ){
+                    $newarray['model'] = $explodedocrtext[$k];
+                }
+
+                if($k == 28 ){
+                    $newarray['serial'] = $explodedocrtext[$k];
+                }
+
+                if($k == 30 ){
+                    $newarray['weighteach'] = $explodedocrtext[$k];
+                }
+
+                if($k == 32 ){
+                    $newarray['description'] = $explodedocrtext[$k];
+                }
+            }
+            
 
         }
         //dd($newarray);
