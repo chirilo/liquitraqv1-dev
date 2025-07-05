@@ -221,13 +221,15 @@ class OcrController extends Controller
             }
 
             if( str_contains($t, 'Description') ){
+                //dd(strval($explodedocrtext[$k+2]));
                 $t = str_replace('Description', '', $t);
                 $t = str_replace(' : ', '', $t);
                 $t = str_replace(' = ', '', $t);
                 $t = str_replace(' > ', '', $t);
                 $t = str_replace(' * ', '', $t);
                 $t = str_replace('Description', '', $t);
-                $newarray['description'] = $explodedocrtext[$k+2];
+
+                $newarray['description'] = $explodedocrtext[$k+2] . $explodedocrtext[$k+3] . $explodedocrtext[$k+4] . $explodedocrtext[$k+5];
             }
 
             if( str_contains($t, 'Status') ){
