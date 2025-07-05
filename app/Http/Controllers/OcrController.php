@@ -157,7 +157,7 @@ class OcrController extends Controller
                 $t = str_replace(' = ', '', $t);
                 $t = str_replace(' ', '', $t);
                 $t = str_replace(',', '', $t);
-                $t = str_replace(' > ', '', $t);
+                $t = str_replace('>', '', $t);
                  $t = str_replace(' * ', '', $t);
                 $t = str_replace('Type', '', $t);
                 $t = strtolower($t);
