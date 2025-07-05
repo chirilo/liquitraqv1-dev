@@ -149,13 +149,19 @@ class OcrController extends Controller
             }
 
             if( str_contains($t, 'Type') ){
+
                 //$t = str_replace(' ', '', $t);
                 $t = str_replace(' : ', '', $t);
+                $t = str_replace(' + ', '', $t);
+                $t = str_replace('-', '', $t);
                 $t = str_replace(' = ', '', $t);
+                $t = str_replace(' ', '', $t);
+                $t = str_replace(',', '', $t);
                 $t = str_replace(' > ', '', $t);
                  $t = str_replace(' * ', '', $t);
                 $t = str_replace('Type', '', $t);
                 $t = strtolower($t);
+                //dd($t);
                 $newarray['type'] = $t;
             }
 
@@ -190,17 +196,20 @@ class OcrController extends Controller
             }
 
             if( str_contains($t, 'Quantity') ){
+
                 $t = str_replace('Quantity 2 ', '', $t);
+                $t = str_replace('Quantity > ', '', $t);
                 //$t = str_replace(' ', '', $t);
                 $t = str_replace(' : ', '', $t);
                 $t = str_replace(' = ', '', $t);
                 $t = str_replace(' > ', '', $t);
                  $t = str_replace(' * ', '', $t);
                 $t = str_replace('Quantity', '', $t);
+                //dd($t);
                 $newarray['quantity'] = $t;
             }
 
-            if( str_contains($t, 'WeightEach') ){
+            if( str_contains($t, 'WeightEach') || str_contains($t, 'Weight Each') ){
                 $t = str_replace('WeightEach : ', '', $t);
                 //$t = str_replace(' ', '', $t);;
                 $t = str_replace(' : ', '', $t);
@@ -233,6 +242,21 @@ class OcrController extends Controller
                 $newarray['status'] = $t;
             }
 
+            if( str_contains($t, 'Asset Disposition') || str_contains($t, 'Asset Dispostion') ){
+                //dd($t);
+                $t = str_replace('.', '', $t);
+                $t = str_replace('Asset Disposition', '', $t);
+                $t = str_replace('Asset Dispostion', '', $t);
+                $t = str_replace(' ', '', $t);
+                $t = str_replace(' : ', '', $t);
+                $t = str_replace(' = ', '', $t);
+                $t = str_replace(' > ', '', $t);
+                $t = str_replace(' * ', '', $t);
+                
+                $t = strtolower($t);
+                $newarray['assetdisposition'] = $t;
+            }
+
             // for extended readings of ocr
             if( str_contains($t, 'Infrastructure') || str_contains($t, 'furniture') || str_contains($t, 'IT') ){
                 $newarray['category'] = strtolower($t);
@@ -250,7 +274,7 @@ class OcrController extends Controller
                 
             // }
             if( count($explodedocrtext) > 25 ){
-                if($k == 20 ){
+                if( $k == 20 && !$newarray['type'] ){
                     $explodedocrtext[$k] = strtolower($explodedocrtext[$k]);
                     $explodedocrtext[$k] = str_replace(',', '', $explodedocrtext[$k]);
                     $explodedocrtext[$k] = str_replace('-', '', $explodedocrtext[$k]);
@@ -259,27 +283,27 @@ class OcrController extends Controller
                     $newarray['type'] = $explodedocrtext[$k];
                 }
 
-                if($k == 22 ){
+                if($k == 22 && !$newarray['quantity'] ){
                     $newarray['quantity'] = $explodedocrtext[$k];
                 }
 
-                if($k == 24 ){
+                if($k == 24 && !$newarray['make'] ){
                     $newarray['make'] = $explodedocrtext[$k];
                 }
 
-                if($k == 26 ){
+                if($k == 26 && !$newarray['model'] ){
                     $newarray['model'] = $explodedocrtext[$k];
                 }
 
-                if($k == 28 ){
+                if($k == 28 && !$newarray['serial'] ){
                     $newarray['serial'] = $explodedocrtext[$k];
                 }
 
-                if($k == 30 ){
+                if($k == 30 && !$newarray['weighteach'] ){
                     $newarray['weighteach'] = $explodedocrtext[$k];
                 }
 
-                if($k == 32 ){
+                if($k == 32 && !$newarray['description'] ){
                     $newarray['description'] = $explodedocrtext[$k];
                 }
             }

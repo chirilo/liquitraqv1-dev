@@ -196,6 +196,8 @@ const processocrfull = (e) => {
 			// for main Status select
 			clickStatusSelect(res.props.jetstream.flash.message.status);
 			//document.getElementById('asset_status').value = res.props.jetstream.flash.message.status;
+			// for asset disposition select
+			clickAssetDispositionSelect(res.props.jetstream.flash.message.assetdisposition);
 
 			
 
@@ -295,6 +297,17 @@ const clickCategorySelect = (cat, type) => {
 const clickStatusSelect = (status) => {
 	const statusmainselect = document.getElementById('asset_status_main');
 	const statustxt = document.querySelector('#asset_status_main [value="'+status+'"]').selected = 'selected';
+	if( statustxt == 'completed' ){
+		// select the first choice by default
+		const statusdispo = document.querySelector('#asset_disposition [value="recycled"]').selected = 'selected';
+	}
+	statusmainselect.dispatchEvent(new Event('change'));
+}
+
+const clickAssetDispositionSelect = (status) => {
+	const statusmainselect = document.getElementById('asset_disposition');
+	//const statustxt = document.querySelector('#asset_disposition [value="'+status+'"]').selected = 'selected';
+	const statusdispo = document.querySelector('#asset_disposition [value="recycled"]').selected = 'selected';
 	statusmainselect.dispatchEvent(new Event('change'));
 }
 
@@ -1296,7 +1309,7 @@ const completejob = (id) => {
 												class="w-full lg:w-[60%]" />
 											<TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_description"
 												type="text" placeholder="Description"
-												v-model="formasset.asset_description" required />
+												v-model="formasset.asset_description" required :max-length="500" />
 											<InputError class="mt-2 w-full lg:w-[40%]"
 												:message="formasset.errors.asset_description" />
 										</div>
@@ -1325,10 +1338,10 @@ const completejob = (id) => {
 											<InputLabel for="asset_disposition" value="Asset Disposition"
 												class="w-full lg:w-[60%]" />
 
-											<select v-model="formasset.asset_disposition" id="asset_status"
+											<select v-model="formasset.asset_disposition" id="asset_disposition"
 												class="w-full lg:w-[40%] px-4 py-2 sm:mt-0 mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
-												name="asset_status" @change="openAssetStatusMiniForm">
-												<option class="text-base md:text-xs lg:text-base" value="" selected
+												name="asset_disposition" @change="openAssetStatusMiniForm">
+												<option class="text-base md:text-xs lg:text-base" value=""
 													disabled hidden>Select Disposition</option>
 												<option class="text-base md:text-xs lg:text-base" value="resold">Resold
 												</option>
