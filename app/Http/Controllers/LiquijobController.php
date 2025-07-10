@@ -66,12 +66,21 @@ class LiquijobController extends Controller
         if( $user->email == 'webteamsupprt@gmail.com' ){
             $userrole = 'admin';
         }
-        else if( $user->id == $liquijobs[0]->job_owner_id ) {
+        else if( !empty($liquijobs[0]) && $user->id && $user->id == $liquijobs[0]->job_owner_id ) {
             $userrole = 'owner' ;
         }
         else{
             $userrole = 'employee';
         }
+
+        //dd( $liquijobs);
+        // if( !empty($liquijobs[0]) ){
+        //     print_r('here');
+        //     if( $liquijobs && $user->id && $user->id == $liquijobs[0]->job_owner_id ) {
+        //         $userrole = 'owner' ;
+        //     }
+        // }
+        
         
 
         //dd($request);
@@ -96,6 +105,32 @@ class LiquijobController extends Controller
         }
 
         
+    }
+
+    // returns all jobs
+    public function allJobs()
+    {
+        // Get the currently authenticated user...
+        $user = Auth::user(); 
+        // Get the currently authenticated user's ID...
+        $id = Auth::id();
+
+        if( $user->email == 'webteamsupprt@gmail.com' ){
+            // query all jobs
+            $liquijobs = \DB::table('liquijobs')
+            ->groupBy('liquijobs.id')
+            ->orderBy('updated_at', 'DESC')
+            ->limit('10')->get();
+        }
+        else{
+            $liquijobs = \DB::table('liquijobs')
+            ->groupBy('liquijobs.id')
+            ->where('job_owner_id', $id)
+            ->orderBy('updated_at', 'DESC')
+            ->limit('10')->get();
+        }
+
+        return $liquijobs;
     }
 
     /**
