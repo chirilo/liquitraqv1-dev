@@ -1054,7 +1054,7 @@ const completejob = (id) => {
 										Add New Asset
 									</h2>
 									<!-- <a v-bind:href="liquiassetsurl" class="text-white py-3 px-4 rounded-full bg-gradient-blue block sm:inline-block text-center font-rethinksansbold hover:opacity-90">Add Asset</a>  -->
-									<a @click="openAssetForm" class="text-white py-3 px-4 rounded-full bg-gradient-blue block sm:inline-block text-center font-rethinksansbold hover:opacity-90 mt-2" title="Upload a picture with serial, make, model and other details. Uploaded image will be converted to text so you can skip on manually adding it in the form.">Add Via Image Upload</a> 
+									<a @click="openAssetForm" style="display: none !important;" class="text-white py-3 px-4 rounded-full bg-gradient-blue block sm:inline-block text-center font-rethinksansbold hover:opacity-90 mt-2" title="Upload a picture with serial, make, model and other details. Uploaded image will be converted to text so you can skip on manually adding it in the form.">Add Via Image Upload</a> 
 								</div>
 								<!-- add asset form from create.vue(asset) -->
 								<!-- <section :class="isOpenForm ? 'block' : 'hidden' "> -->
@@ -1076,17 +1076,21 @@ const completejob = (id) => {
 										<hr style="margin: 2em 0em 2.5em 0em;" />
 									</div>
 
-									<form id="manualform2" @submit.prevent="submitaddasset" class="mt-6 space-y-2"
+									<!-- manualform2 is temporarily removed -->
+
+									<!-- temporarily hidden, this form contains the OCR solo for make, model and serial -->
+									<!-- removed to a new file -->
+									<form id="manualform" @submit.prevent="submitaddasset" class=" mt-6 space-y-2"
 										enctype="multipart/form-data">
 										<!-- Asset Details Form Fields -->
 										<div
 											class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
 											<InputLabel for="asset_category" value="Category"
 												class="w-full lg:w-[60%]" />
-											<select v-model="formasset.asset_category" id="asset_category"
+											<select ref="myBtn" @click="assetCategoryClickEvent" v-model="formasset.asset_category" id="typex"
 												class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
 												name="asset_category" required @change="openMenuSelect">
-												<option class="text-base md:text-xs lg:text-base" disabled value="">
+												<option class="text-base md:text-xs lg:text-base">
 													Select Category</option>
 												<option class="text-base md:text-xs lg:text-base" value="it">IT</option>
 												<option class="text-base md:text-xs lg:text-base"
@@ -1168,7 +1172,7 @@ const completejob = (id) => {
 												name="asset_type" :class="isOpenInfrastructure ? 'block' : 'hidden'">
 												<optgroup class="text-base md:text-xs lg:text-base"
 													label="Infrastructure">
-													<option class="text-base md:text-xs lg:text-base" value=""
+													<option class="text-base md:text-xs lg:text-base" value="" selected
 														disabled hidden>Select Infrastructure Type
 													</option>
 													<option class="text-base md:text-xs lg:text-base"
@@ -1221,7 +1225,7 @@ const completejob = (id) => {
 										<div class="flex border-divider pb-2 items-start justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
 											<div class="w-full lg:w-[60%] lg:mt-1">
 												<InputLabel for="asset_make" value="Make"/>
-												<div class="flex items-center gap-2 hidden">
+												<div class="flex items-center gap-2">
 													<label class="switch">
 														<input type="checkbox" :checked="checkMake" @change="toggleMakeUpload" />
 														<span class="slider round"></span>
@@ -1246,7 +1250,7 @@ const completejob = (id) => {
 										<div class="flex border-divider pb-2 items-start justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
 											<div class="w-full lg:w-[60%] lg:mt-1">
 												<InputLabel for="asset_model" value=" Model" />
-												<div class="flex items-center gap-2 hidden">
+												<div class="flex items-center gap-2">
 													<label class="switch">
 														<input type="checkbox" :checked="checkModel" @change="toggleModelUpload" />
 														<span class="slider round"></span>
@@ -1271,7 +1275,7 @@ const completejob = (id) => {
 										<div class="flex border-divider pb-2 items-start justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
 											<div class="w-full lg:w-[60%] lg:mt-1">
 												<InputLabel for="asset_serial" value="Serial" />
-												<div class="flex items-center gap-2 hidden">
+												<div class="flex items-center gap-2">
 													<label class="switch">
 														<input type="checkbox" :checked="checkSerial" @change="toggleSerialUpload" />
 														<span class="slider round"></span>
@@ -1309,14 +1313,14 @@ const completejob = (id) => {
 												class="w-full lg:w-[60%]" />
 											<TextInput class="w-full lg:w-[40%] px-4 py-2" id="asset_description"
 												type="text" placeholder="Description"
-												v-model="formasset.asset_description" required :max-length="500" />
+												v-model="formasset.asset_description" required />
 											<InputError class="mt-2 w-full lg:w-[40%]"
 												:message="formasset.errors.asset_description" />
 										</div>
 										<div
 											class="flex border-divider pb-2 items-end justify-start sm:justify-end sm:flex-row flex-col flex-wrap">
 											<InputLabel for="asset_status" value="Status" class="w-full lg:w-[60%]" />
-											<select v-model="formasset.asset_status" id="asset_status_main"
+											<select v-model="formasset.asset_status" id="asset_status"
 												class="w-full lg:w-[40%] px-4 py-2 sm:mt-0 mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
 												name="asset_status" required @change="openStatusMenuSelect">
 												<option class="text-base md:text-xs lg:text-base" value=""
@@ -1338,10 +1342,10 @@ const completejob = (id) => {
 											<InputLabel for="asset_disposition" value="Asset Disposition"
 												class="w-full lg:w-[60%]" />
 
-											<select v-model="formasset.asset_disposition" id="asset_disposition"
+											<select v-model="formasset.asset_disposition" id="asset_status"
 												class="w-full lg:w-[40%] px-4 py-2 sm:mt-0 mt-2 appearance-none block w-full p-4 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
-												name="asset_disposition" @change="openAssetStatusMiniForm">
-												<option class="text-base md:text-xs lg:text-base" value=""
+												name="asset_status" @change="openAssetStatusMiniForm">
+												<option class="text-base md:text-xs lg:text-base" value="" selected
 													disabled hidden>Select Disposition</option>
 												<option class="text-base md:text-xs lg:text-base" value="resold">Resold
 												</option>
@@ -1371,7 +1375,24 @@ const completejob = (id) => {
 														type="text" name="assetdisticketshippinginfo"
 														placeholder="Shipping/Ticket Info" />
 												</div>
-												
+												<!-- <div id="recycled" class="flex sm:flex-row flex-col justify-end mt-1 gap-1">
+													<input class="p-2 w-full lg:w-[25%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none" type="date" name="recycleddate" placeholder="Date" />
+													<input class="p-2 w-full lg:w-[25%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" name="recycledwho" placeholder="Who" />
+													<input class="p-2 w-full lg:w-[40%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" name="recycledticketinfo"
+														placeholder="Ticket Info" />
+												</div>
+												<div id="disposed" class="flex sm:flex-row flex-col justify-end mt-1 gap-1">
+													<input class="p-2 w-full lg:w-[25%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none" type="date" name="disposeddate" placeholder="Date" />
+													<input class="p-2 w-full lg:w-[25%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" name="disposedwho" placeholder="Who" />
+													<input class="p-2 w-full lg:w-[40%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" name="disposedticketinfo"
+														placeholder="Ticket Info" />
+												</div>
+												<div id="returned" class="flex sm:flex-row flex-col justify-end mt-1 gap-1">
+													<input class="p-2 w-full lg:w-[25%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none" type="date" name="returneddate" placeholder="Date" />
+													<input class="p-2 w-full lg:w-[25%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" name="returnedwho" placeholder="Who" />
+													<input class="p-2 w-full lg:w-[40%] md:w-[33.3%] text-sm primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#323581] bg-[#f2f4f7] rounded-lg focus:outline-none" type="text" name="returnedticketinfo"
+														placeholder="Ticket Info" />
+												</div> -->
 											</div>
 
 											<InputError class="mt-2 w-full lg:w-[40%]"
@@ -1415,9 +1436,6 @@ const completejob = (id) => {
 											</div>
 										</div>
 									</form>
-
-									<!-- temporarily hidden, this form contains the OCR solo for make, model and serial -->
-									<!-- removed to a new file -->
 
 									
 								</div>
