@@ -96,7 +96,7 @@ export default defineComponent({
         initialView: 'dayGridMonth',
         height: 'auto',
         //initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
-        events: 'http://127.0.0.1:8000/api/events',
+        events: '/api/events',
         //initialEvents: this.eventss,
         editable: true,
         selectable: true,
