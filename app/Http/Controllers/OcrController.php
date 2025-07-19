@@ -43,7 +43,15 @@ class OcrController extends Controller
         //$imagePath = 'storage/job_assets_make/viJ8NOF2inXw4u7qB9VAfNjNoz02L5CneYRkDnNL.png';
 
         $ocrText = OCR::scan($imagePath);
+        if(str_contains($ocrText, 'Make') || str_contains($ocrText, 'MAKE') || str_contains($ocrText, 'Make No') || str_contains($ocrText, 'Make Number') || str_contains($ocrText, 'MAKE NUMBER')){
+            $ocrText = str_replace('Make', '', $ocrText);
+            $ocrText = str_replace('MAKE', '', $ocrText);
+            $ocrText = str_replace('No', '', $ocrText);
+            $ocrText = str_replace('Number', '', $ocrText);
+            $ocrText = str_replace('NUMBER', '', $ocrText);
+        }
         return back()->with('flash', [
+            //'message' => $newarray['serial'],
             'message' => $ocrText,
         ]);
     }
@@ -69,7 +77,15 @@ class OcrController extends Controller
         //$imagePath = 'storage/job_assets_make/viJ8NOF2inXw4u7qB9VAfNjNoz02L5CneYRkDnNL.png';
 
         $ocrText = OCR::scan($imagePath);
+        if(str_contains($ocrText, 'Model') || str_contains($ocrText, 'MODEL') || str_contains($ocrText, 'Model No') || str_contains($ocrText, 'Model Number') || str_contains($ocrText, 'MODEL NUMBER')){
+            $ocrText = str_replace('Model', '', $ocrText);
+            $ocrText = str_replace('MODEL', '', $ocrText);
+            $ocrText = str_replace('No', '', $ocrText);
+            $ocrText = str_replace('Number', '', $ocrText);
+            $ocrText = str_replace('NUMBER', '', $ocrText);
+        }
         return back()->with('flash', [
+            //'message' => $newarray['serial'],
             'message' => $ocrText,
         ]);
     }
@@ -95,7 +111,17 @@ class OcrController extends Controller
         //$imagePath = 'storage/job_assets_make/viJ8NOF2inXw4u7qB9VAfNjNoz02L5CneYRkDnNL.png';
 
         $ocrText = OCR::scan($imagePath);
+        
+        
+        if(str_contains($ocrText, 'Serial') || str_contains($ocrText, 'SERIAL') || str_contains($ocrText, 'Serial No') || str_contains($ocrText, 'Serial Number') || str_contains($ocrText, 'SERIAL NUMBER')){
+            $ocrText = str_replace('Serial', '', $ocrText);
+            $ocrText = str_replace('SERIAL', '', $ocrText);
+            $ocrText = str_replace('No', '', $ocrText);
+            $ocrText = str_replace('Number', '', $ocrText);
+            $ocrText = str_replace('NUMBER', '', $ocrText);
+        }
         return back()->with('flash', [
+            //'message' => $newarray['serial'],
             'message' => $ocrText,
         ]);
     }
