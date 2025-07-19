@@ -38,6 +38,12 @@ export const INITIAL_EVENTS = [
     title: 'Building: New Job Testing',
     start: '2025-08-01'
   }
+  ,
+  {
+    id: 2,
+    title: 'Testererrr',
+    start: '2025-07-09'
+  }
 ]
 
 export function createEventId() {

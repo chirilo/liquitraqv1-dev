@@ -1,10 +1,79 @@
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent, defineProps, toRefs, ref, onMounted } from 'vue'
 import FullCalendar from '@fullcalendar/vue3'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
-import { INITIAL_EVENTS, createEventId } from './event-utils'
+//import { INITIAL_EVENTS, createEventId } from './event-utils'
+import { createEventId } from './event-utils'
+
+
+
+const props = ['liquijobs'];
+
+// //const { myProp } = toRefs(props);
+//console.log('propssss'+props.liquijobs);
+
+let todayStr = new Date().toISOString().replace(/T.*$/, '') // YYYY-MM-DD of today
+const INITIAL_EVENTS = [
+  {
+    id: 1,
+    title: 'Building: update one',
+    start: '2025-05-29'
+  },
+  {
+    id: 2,
+    title: 'Building: Manchester UK',
+    start: '2025-05-28'
+  },
+  {
+    id: 2,
+    title: 'Building: Birmingham, United Kingdom',
+    start: '2025-06-28'
+  },
+  {
+    id: 2,
+    title: 'Building: Tulsa okhloma',
+    start: '2025-05-26'
+  },
+  {
+    id: 2,
+    title: 'Building: Tulsa okhloma',
+    start: '2025-05-26'
+  },
+  {
+    id: 2,
+    title: 'Building: this is the test address',
+    start: '2025-07-03'
+  },
+  {
+    id: 2,
+    title: 'Building: New Job Testing',
+    start: '2025-08-01'
+  }
+]
+
+// const eventss = ref([])
+// onMounted(async () => {
+//   await axios
+//     .get('/api/events')
+//     .then(response => {
+//       console.log('resssss'+response);
+//       eventss = response.data.message
+//       //console.log('response data'+response.data);
+//     })
+// })
+// console.log('eventssss response: '+eventss);
+
+// console.log(JSON.stringify(eventss));
+//console.log(INITIAL_EVENTS);
+
+// mounted() {
+//         axios.get('http://127.0.0.1:8000/api/')
+//             .then(response => {
+//                 this.results = response.data.results
+//             })
+//     }
 
 export default defineComponent({
   components: {
@@ -12,6 +81,7 @@ export default defineComponent({
   },
   data() {
     return {
+      //eventss: [],
       calendarOptions: {
         plugins: [
           dayGridPlugin,
@@ -25,7 +95,9 @@ export default defineComponent({
         },
         initialView: 'dayGridMonth',
         height: 'auto',
-        initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
+        //initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
+        events: 'http://127.0.0.1:8000/api/events',
+        //initialEvents: this.eventss,
         editable: true,
         selectable: true,
         selectMirror: true,
@@ -40,9 +112,18 @@ export default defineComponent({
         eventRemove:
         */
       },
-      currentEvents: [],
+      currentEvents: ['asd'],
+      
     }
   },
+  mounted() {
+        axios.get('/api/events')
+            .then(response => {
+                this.eventss = response.data.message
+                this.initialEvents = response.data.message
+                console.log('eventss'+response.data.message)
+            })
+    },
   methods: {
     handleWeekendsToggle() {
       this.calendarOptions.weekends = !this.calendarOptions.weekends // update a property
@@ -64,7 +145,7 @@ export default defineComponent({
       }
     },
     handleEventClick(clickInfo) {
-      if (confirm(`This feature is still unavailable. Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
+      if (confirm(`Job: '${clickInfo.event.title}'`)) {
         clickInfo.event.remove()
       }
     },
@@ -113,11 +194,21 @@ export default defineComponent({
         class='demo-app-calendar'
         :options='calendarOptions'
       >
-        <template v-slot:eventContent='arg'>
+        <!-- <template v-slot:eventContent='arg'>
           <b>{{ arg.timeText }}</b>
           <i>{{ arg.event.title }}</i>
-        </template>
+        </template> -->
+        
       </FullCalendar>
+      <template v-for="entry in eventss" :key="entry.id">
+          <b>{{ entry.corporate_address }}</b>
+          <i>{{ entry.start_date }}</i>
+        </template>
+        <ul>
+          <li v-for="entry in eventss" :key="entry.id">
+            <b>{{ entry.corporate_address }}</b>
+          </li>
+        </ul>
     </div>
   </div>
 </template>
@@ -179,7 +270,7 @@ b { /* used for event dates/times */
   margin: 0 auto;
 }
 /* removing today button */
-.fc-today-button {
+/*.fc-today-button {
   display: none !important;
 }
 .fc-toolbar-chunk:nth-child(1), .fc-toolbar-chunk:nth-child(3) {
@@ -188,5 +279,5 @@ b { /* used for event dates/times */
 .fc-toolbar-chunk:nth-child(2) {
   width: 100% !important;
   text-align: center;
-}
+}*/
 </style>
