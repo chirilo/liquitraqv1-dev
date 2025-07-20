@@ -60,6 +60,9 @@ class LiquiassetController extends Controller
     public function store(Request $request)
     {
 
+        //dd($request);
+        // exit;
+
         $image = $request->file('job_asset');
         $fname = $request->file('job_asset')->getClientOriginalName();
 

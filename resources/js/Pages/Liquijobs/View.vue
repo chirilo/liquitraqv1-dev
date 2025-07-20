@@ -94,7 +94,7 @@ const openAssetForm = () => {
 	isOpenForm.value = !isOpenForm.value;
 	console.log(isOpenForm);
 };
-
+//let ocrassetmakevalue = document.getElementById('asset_make').value;
 const formasset = useForm({
 	job_asset: '',
 	jobid: props.liquijobs.id,
@@ -115,6 +115,15 @@ const formasset = useForm({
 });
 
 const submitaddasset = (e) => {
+	var asset_make_value_get = document.getElementById('asset_make').value;
+	var asset_model_value_get = document.getElementById('asset_model').value;
+	var asset_serial_value_get = document.getElementById('asset_serial').value;
+	formasset['asset_make'] = asset_make_value_get;
+	formasset['asset_model'] = asset_model_value_get;
+	formasset['asset_serial'] = asset_serial_value_get;
+	console.log('formassetmake'+formasset['asset_make'])
+	console.log('formassetmodel'+formasset['asset_model'])
+	console.log('formassetserial'+formasset['asset_serial'])
 	formasset.post(route("liquiassets.store"));
 };
 
@@ -129,6 +138,8 @@ const processocrmake = (e) => {
 			console.log(res);
 			console.log('image content make: '+res.props.jetstream.flash.message);
 			document.getElementById('asset_make').value = res.props.jetstream.flash.message;
+			//var asset_make_value = document.getElementById('asset_make').value;
+			//alert(asset_make_value);
 		},
 	});
 };
@@ -144,6 +155,7 @@ const processocrmodel = (e) => {
 			console.log(res);
 			console.log('image content model: '+res.props.jetstream.flash.message);
 			document.getElementById('asset_model').value = res.props.jetstream.flash.message;
+
 		},
 	});
 };
@@ -320,6 +332,7 @@ const toggleMakeUpload = (event) => {
 	else {
 		checkMake.value = event.target.checked;
 	}
+	console.log('checkMakevalue'+checkMake.value);
 }
 // MODEL UPLOAD
 const checkModel = ref(false);
@@ -1235,8 +1248,8 @@ const completejob = (id) => {
 												</div>
 											</div>
 											<div class="w-full lg:w-[40%] pb-2">
-												<TextInput class="px-4 py-2" id="asset_make" type="text" :placeholder="checkMake ? '' : 'ex. Simmons, Philips, Toshiba..'"
-													v-model="formasset.asset_make" required :disabled="checkMake" :class="checkMake ? 'placeholder-[#8c8c97]' : ''"/>
+												<TextInput class="px-4 py-2" id="asset_make" name="asset_make" type="text" :placeholder="checkMake ? '' : 'ex. Simmons, Philips, Toshiba..'"
+													v-model="formasset.asset_make" required :class="checkMake ? 'placeholder-[#8c8c97]' : ''"/>
 												<form v-if="checkMake" class="lg:block flex flex-col md:flex-row justify-between mt-2" @submit.prevent="processocrmake" enctype="multipart/form-data">
 													<input class="w-full sm:w-[60%] lg:w-full" required type="file" @input="formasset2.job_asset = $event.target.files[0]" name="job_asset">
 													<PrimaryButton class="mt-2 md:mt-0 lg:mt-2 w-auto" :disabled="formasset2.processing">
@@ -1260,8 +1273,8 @@ const completejob = (id) => {
 												</div>
 											</div>
 											<div class="w-full lg:w-[40%] pb-2">
-												<TextInput class="px-4 py-2" id="asset_model" type="text" :placeholder="checkModel ? '' : 'ex. SQ-12..'" 
-												v-model="formasset.asset_model" required :disabled="checkModel" :class="checkModel ? 'placeholder-[#8c8c97]' : ''" />
+												<TextInput class="px-4 py-2" id="asset_model" name="asset_model" type="text" :placeholder="checkModel ? '' : 'ex. SQ-12..'" 
+												v-model="formasset.asset_model" required :class="checkModel ? 'placeholder-[#8c8c97]' : ''" />
 												<form v-if="checkModel" class="lg:block flex flex-col md:flex-row justify-between mt-2" @submit.prevent="processocrmodel" enctype="multipart/form-data">
 													<input class="w-full sm:w-[60%] lg:w-full" required type="file" @input="formasset3.job_asset = $event.target.files[0]" name="job_asset" >
 													<PrimaryButton class="mt-2 md:mt-0 lg:mt-2 w-auto" :disabled="formasset3.processing">
@@ -1285,8 +1298,8 @@ const completejob = (id) => {
 												</div>
 											</div>
 											<div class="w-full lg:w-[40%] pb-2">
-												<TextInput class="px-4 py-2" id="asset_serial" type="text" :placeholder="checkSerial ? '' : 'ex. HFIOE18DHIN23-23..'" 
-												v-model="formasset.asset_serial" required :disabled="checkSerial" :class="checkSerial ? 'placeholder-[#8c8c97]' : ''" />
+												<TextInput class="px-4 py-2" id="asset_serial" name="asset_serial" type="text" :placeholder="checkSerial ? '' : 'ex. HFIOE18DHIN23-23..'" 
+												v-model="formasset.asset_serial" required :class="checkSerial ? 'placeholder-[#8c8c97]' : ''" />
 												<form v-if="checkSerial" class="lg:block flex flex-col md:flex-row justify-between mt-2" @submit.prevent="processocrserial" enctype="multipart/form-data">
 													<input class="w-full sm:w-[60%] lg:w-full" required type="file" @input="formasset4.job_asset = $event.target.files[0]" name="job_asset" >
 													<PrimaryButton class="mt-2 md:mt-0 lg:mt-2 w-auto" :disabled="formasset4.processing">
