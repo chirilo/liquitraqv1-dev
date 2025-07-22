@@ -8,11 +8,16 @@ import UpdatePasswordForm from '@/Pages/Profile/Partials/UpdatePasswordForm.vue'
 import UpdateProfileInformationForm from '@/Pages/Profile/Partials/UpdateProfileInformationForm.vue';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
+import { Head, Link, useForm, usePage, router } from '@inertiajs/vue3';
 
 defineProps({
     confirmsTwoFactorAuthentication: Boolean,
     sessions: Array,
 });
+
+const logout = () => {
+    router.post(route('logout'));
+};
 </script>
 
 <template>
@@ -39,7 +44,7 @@ defineProps({
                     <Dropdown align="right" class="h-[100%]">
                         <template #trigger>
                             <button v-if="$page.props.jetstream.managesProfilePhotos" class="h-[100%] flex items-center ">
-                                <img class="w-12 rounded-full object-cover shadow-md" :src="$page.props.auth.user.profile_photo_url" :alt="$page.props.auth.user.name">
+                                <img class="w-12 rounded-full object-cover shadow-md" :src="$page.props.auth.user.profile_photo_url.replace('https://phplaravel-728976-5430189.cloudwaysapps.com/liquijobs', '')" :alt="$page.props.auth.user.name">
                             </button>
                             <span v-else class="inline-flex rounded-md">
                                 <button type="button" class="inline-flex items-center border border-transparent text-base text-base primary-light-blue font-rethinksansextrabold uppercase dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
