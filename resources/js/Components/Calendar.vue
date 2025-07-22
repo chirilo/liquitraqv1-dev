@@ -146,7 +146,9 @@ export default defineComponent({
     },
     handleEventClick(clickInfo) {
       if (confirm(`Job: '${clickInfo.event.title}'`)) {
-        clickInfo.event.remove()
+        //clickInfo.event.remove()
+        var url = '/liquijobs/' + clickInfo.event.id;
+        window.location.href = url;
       }
     },
     handleEvents(events) {
