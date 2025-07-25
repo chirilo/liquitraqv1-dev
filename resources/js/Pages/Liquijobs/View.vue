@@ -869,7 +869,7 @@ const completejob = (id) => {
 												<form @submit.prevent="completejob">
 													<input type="hidden" name="completejobindicator" value="1">
 													<button type="submit"
-														v-if="props.liquijobs.status != 'Completed' && props.userrole == 'admin'"
+														v-if="props.liquijobs.status != 'Completed' && props.userrole == 'admin' || props.userrole == 'owner'"
 														href="#"
 														class="text-white py-2 px-4 rounded-full bg-[#00afef] inline text-center text-xs sm:text-sm font-rethinksansbold hover:opacity-90 flex">
 														Complete Job
@@ -1103,7 +1103,7 @@ const completejob = (id) => {
 											<select ref="myBtn" @click="assetCategoryClickEvent" v-model="formasset.asset_category" id="typex"
 												class="w-full lg:w-[40%] sm:mt-0 mt-2 appearance-none block w-full px-4 py-2 primary-dark-blue placeholder-[#8c8c97] font-rethinksansmedium border-[#f2f4f7] bg-[#f2f4f7] rounded-lg focus:outline-none"
 												name="asset_category" required @change="openMenuSelect">
-												<option class="text-base md:text-xs lg:text-base">
+												<option class="text-base md:text-xs lg:text-base" disabled hidden value="">
 													Select Category</option>
 												<option class="text-base md:text-xs lg:text-base" value="it">IT</option>
 												<option class="text-base md:text-xs lg:text-base"

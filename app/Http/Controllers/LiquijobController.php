@@ -63,7 +63,8 @@ class LiquijobController extends Controller
         // dd($liquijobs[0]->job_owner_id);
         // USER = 'admin' | 'owner' | 'employee'
         $userrole = 'normal';
-        if( $user->email == 'webteamsupprt@gmail.com' ){
+        //if( $user->email == 'webteamsupprt@gmail.com' ){
+        if( !empty($user->email) ){
             $userrole = 'admin';
         }
         else if( !empty($liquijobs[0]) && $user->id && $user->id == $liquijobs[0]->job_owner_id ) {
